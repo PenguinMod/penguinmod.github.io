@@ -56,7 +56,7 @@ export default function ({id, spriteName, opcode, params, value, vm}) {
     if (typeof value === 'object' &&
         typeof (value.toMonitorContent || value.toReporterContent) === 'function') {
         value = value.toMonitorContent
-            ? value.toMonitorContent()
+            ? value.toMonitorContent(id)
             : value.toReporterContent();
         isHTML = true;
     }
