@@ -34,7 +34,7 @@ class ListMonitorScroller extends React.Component {
     rowRenderer ({index, key, style}) {
         const item = this.props.values[index];
         const renderedValue = item.toListItem
-            ? item.toListItem()
+            ? item.toListItem(index)
             : item.toMonitorContent
                 ? item.toMonitorContent()
                 : item.toReporterContent
