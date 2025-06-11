@@ -1,16 +1,10 @@
-scratch-gui modified for use in [TurboWarp](https://turbowarp.org/) then modified for use in [PenguinMod](https://studio.penguinmod.com) 😀
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/PenguinMod/penguinmod.github.io/)
-## Setup
-
-See https://docs.turbowarp.org/development/getting-started to setup the complete TurboWarp environment.
-
-If you just want to play with the GUI then it's the same process as upstream scratch-gui.
+scratch-gui modified for use in [TurboWarp](https://turbowarp.org/) then modified for use in [PenguinMod](https://studio.penguinmod.com) and yet again for GreenMod (internally known as deletelaterMod) 😀
 
 ## License
 
 TurboWarp's modifications to Scratch are licensed under the GNU General Public License v3.0. See LICENSE or https://www.gnu.org/licenses/ for details.
 
-The following is the original license for scratch-gui, which we are required to retain. This is NOT the license of this project.
+The following is the original license for scratch-gui, which we I required to retain. This is NOT the license of this project.
 
 ```
 Copyright (c) 2016, Massachusetts Institute of Technology
