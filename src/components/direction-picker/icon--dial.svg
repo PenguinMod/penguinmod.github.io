@@ -1,1 +1,41 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="112" height="112" viewBox="0 0 112 112"><defs><style>.cls-1{opacity:0.25;}.cls-2{fill:#00c3ff;}.cls-3{fill:#00a3ff;}.cls-4{opacity:0.15;}.cls-5{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>dial-face</title><g class="cls-1"><circle class="cls-2" cx="56" cy="56" r="55.5"/><path class="cls-3" d="M56,1A55,55,0,1,1,1,56,55.06,55.06,0,0,1,56,1m0-1a56,56,0,1,0,56,56A56,56,0,0,0,56,0Z"/></g><g class="cls-4"><line class="cls-5" x1="56" y1="14.86" x2="56" y2="20.73"/><line class="cls-5" x1="56" y1="91.27" x2="56" y2="97.14"/><line class="cls-5" x1="45.35" y1="16.26" x2="46.87" y2="21.94"/><line class="cls-5" x1="65.13" y1="90.06" x2="66.65" y2="95.74"/><line class="cls-5" x1="35.43" y1="20.37" x2="38.37" y2="25.46"/><line class="cls-5" x1="73.63" y1="86.54" x2="76.57" y2="91.63"/><line class="cls-5" x1="26.91" y1="26.91" x2="31.06" y2="31.06"/><line class="cls-5" x1="80.94" y1="80.94" x2="85.09" y2="85.09"/><line class="cls-5" x1="20.37" y1="35.43" x2="25.46" y2="38.37"/><line class="cls-5" x1="86.54" y1="73.63" x2="91.63" y2="76.57"/><line class="cls-5" x1="16.26" y1="45.35" x2="21.94" y2="46.87"/><line class="cls-5" x1="90.06" y1="65.13" x2="95.74" y2="66.65"/><line class="cls-5" x1="14.86" y1="56" x2="20.73" y2="56"/><line class="cls-5" x1="91.27" y1="56" x2="97.14" y2="56"/><line class="cls-5" x1="16.26" y1="66.65" x2="21.94" y2="65.13"/><line class="cls-5" x1="90.06" y1="46.87" x2="95.74" y2="45.35"/><line class="cls-5" x1="20.37" y1="76.57" x2="25.46" y2="73.63"/><line class="cls-5" x1="86.54" y1="38.37" x2="91.63" y2="35.43"/><line class="cls-5" x1="26.91" y1="85.09" x2="31.06" y2="80.94"/><line class="cls-5" x1="80.94" y1="31.06" x2="85.09" y2="26.91"/><line class="cls-5" x1="35.43" y1="91.63" x2="38.37" y2="86.54"/><line class="cls-5" x1="73.63" y1="25.46" x2="76.57" y2="20.37"/><line class="cls-5" x1="45.35" y1="95.74" x2="46.87" y2="90.06"/><line class="cls-5" x1="65.13" y1="21.94" x2="66.65" y2="16.26"/></g><circle class="cls-2" cx="56" cy="56" r="2"/></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="clip_path_1">
+      <rect width="46" height="46" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip_path_1)">
+    <g transform="translate(-0.001 0)">
+      <path d="M0 22.7946C0 10.2055 10.2055 0 22.7946 0C35.3838 0 45.5893 10.2055 45.5893 22.7946C45.5893 35.3838 35.3838 45.5893 22.7946 45.5893C10.2055 45.5893 0 35.3838 0 22.7946Z" fill="#11FF00" fill-rule="evenodd" transform="translate(0.207 0.205)" />
+      <path d="M23.0012 0.410714C35.4769 0.410714 45.5905 10.5243 45.5905 23C45.5905 35.4757 35.4769 45.5893 23.0012 45.5893C10.5255 45.5893 0.411924 35.4757 0.411924 23C0.42484 10.5311 10.5299 0.424965 23 0.410716C23 0.410716 23.0012 0.410714 23.0012 0.410714ZM23 1.56675e-06C10.2974 1.56675e-06 0 10.2975 0 23C1.56675e-06 35.7026 10.2975 46 23 46C35.7026 46 46 35.7025 46 23C46 10.2979 35.7033 0.000669003 23.0012 0C23.0012 0 23 1.56675e-06 23 1.56675e-06Z" fill="#00A3FF" />
+    </g>
+    <g transform="translate(6.103 6.103)">
+      <line x1="0.411" y1="0" x2="0.411" y2="2.411" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(16.486 0)" />
+      <line x1="0.411" y1="0" x2="0.411" y2="2.411" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(16.486 31.383)" />
+      <line x1="0" y1="0" x2="0.624" y2="2.333" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(12.523 0.575)" />
+      <line x1="0" y1="0" x2="0.624" y2="2.333" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(20.647 30.886)" />
+      <line x1="0" y1="0" x2="1.208" y2="2.091" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(8.448 2.263)" />
+      <line x1="0" y1="0" x2="1.208" y2="2.091" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(24.138 29.44)" />
+      <line x1="0" y1="0" x2="1.704" y2="1.704" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(4.949 4.949)" />
+      <line x1="0" y1="0" x2="1.704" y2="1.704" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(27.14 27.14)" />
+      <line x1="0" y1="0" x2="2.091" y2="1.208" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(2.263 8.448)" />
+      <line x1="0" y1="0" x2="2.091" y2="1.208" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(29.44 24.138)" />
+      <line x1="0" y1="0" x2="2.333" y2="0.624" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(0.575 12.523)" />
+      <line x1="0" y1="0" x2="2.333" y2="0.624" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(30.886 20.647)" />
+      <line x1="0" y1="0.411" x2="2.411" y2="0.411" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 16.486)" />
+      <line x1="0" y1="0.411" x2="2.411" y2="0.411" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(31.383 16.486)" />
+      <line x1="0" y1="0.624" x2="2.333" y2="0" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(0.575 20.647)" />
+      <line x1="0" y1="0.624" x2="2.333" y2="0" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(30.886 12.523)" />
+      <line x1="0" y1="1.208" x2="2.091" y2="0" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(2.263 24.138)" />
+      <line x1="0" y1="1.208" x2="2.091" y2="0" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(29.44 8.448)" />
+      <line x1="0" y1="1.704" x2="1.704" y2="0" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(4.949 27.14)" />
+      <line x1="0" y1="1.704" x2="1.704" y2="0" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(27.14 4.949)" />
+      <line x1="0" y1="2.091" x2="1.208" y2="0" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(8.448 29.44)" />
+      <line x1="0" y1="2.091" x2="1.208" y2="0" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(24.138 2.263)" />
+      <line x1="0" y1="2.333" x2="0.624" y2="0" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(12.523 30.886)" />
+      <line x1="0" y1="2.333" x2="0.624" y2="0" fill="none" stroke-width="1" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(20.647 0.575)" />
+    </g>
+    <path d="M0 0.821428C0 0.367765 0.367765 0 0.821428 0C1.27509 0 1.64286 0.367765 1.64286 0.821428C1.64286 1.27509 1.27509 1.64286 0.821428 1.64286C0.367765 1.64286 0 1.27509 0 0.821428Z" fill="#11FF00" fill-rule="evenodd" transform="translate(22.179 22.179)" />
+  </g>
+</svg>

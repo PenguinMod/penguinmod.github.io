@@ -19,7 +19,7 @@ import styles from './custom-procedures.css';
 
 const messages = defineMessages({
     myblockModalTitle: {
-        defaultMessage: 'Make a Block',
+        defaultMessage: 'Craft your new custom block!',
         description: 'Title for the modal where you create a custom block.',
         id: 'gui.customProcedures.myblockModalTitle'
     }
@@ -398,7 +398,7 @@ const CustomProcedures = props => (
                     onClick={props.onCancel}
                 >
                     <FormattedMessage
-                        defaultMessage="Cancel"
+                        defaultMessage="Discard"
                         description="Label for button to cancel custom procedure edits"
                         id="gui.customProcedures.cancel"
                     />
@@ -408,7 +408,7 @@ const CustomProcedures = props => (
                     onClick={props.onOk}
                 >
                     <FormattedMessage
-                        defaultMessage="OK"
+                        defaultMessage="Save"
                         description="Label for button to save new custom procedure"
                         id="gui.customProcedures.ok"
                     />
