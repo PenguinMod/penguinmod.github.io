@@ -87,6 +87,7 @@ const formatProjectTitle = _title => {
             src="https://library.penguinmod.com/files/emojis/${emojiName}.png"
             alt=":${emojiName}:"
             title=":${emojiName}:"
+            loading="lazy"
             style="width:1.75rem;vertical-align: middle;"
         >`;
     });

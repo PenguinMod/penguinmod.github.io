@@ -263,6 +263,7 @@ class Renderer {
                 src={`https://library.penguinmod.com/files/emojis/${name}.png`}
                 alt={`:${name}:`}
                 title={`:${name}:`}
+                loading="lazy"
                 className={styles.emoji}
             />
         );
