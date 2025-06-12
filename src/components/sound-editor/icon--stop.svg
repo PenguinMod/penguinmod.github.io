@@ -1,21 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="52px" height="52px" viewBox="0 0 52 52" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
-    <title>stop-playback</title>
-    <desc>Created with Sketch.</desc>
-    <defs>
-        <rect id="path-1" x="0" y="0" width="44" height="44" rx="4"></rect>
-    </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Desktop---1280x720" transform="translate(-619.000000, -345.000000)">
-            <g id="Step-4---Playing-Trim" transform="translate(0.000000, 42.000000)">
-                <g id="Play-/-Record-/-Stop" transform="translate(623.000000, 307.000000)">
-                    <g id="stop-playback">
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
-                        <rect stroke="#FFFFFF" stroke-width="1" x="0.5" y="0.5" width="43" height="43" rx="4"></rect>
-                    </g>
-                </g>
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <g transform="translate(1.538 1.538)">
+      <g>
+        <g>
+          <g>
+            <g>
+              <path d="M0 3.07692L0 1.53846C0 1.11363 0.150202 0.751008 0.450605 0.450605C0.751008 0.150202 1.11363 0 1.53846 0L15.3846 0C15.8095 0 16.1721 0.150202 16.4725 0.450605C16.7729 0.751008 16.9231 1.11363 16.9231 1.53846L16.9231 15.3846C16.9231 15.8095 16.7729 16.1721 16.4725 16.4725C16.1721 16.7729 15.8095 16.9231 15.3846 16.9231L1.53846 16.9231C1.11363 16.9231 0.751008 16.7729 0.450605 16.4725C0.150202 16.1721 0 15.8095 0 15.3846L0 3.07692Z" fill="#FFFFFF" fill-rule="evenodd" />
+              <path d="M0 3.07692L0 1.53846C0 1.11363 0.150202 0.751008 0.450605 0.450605C0.751008 0.150202 1.11363 0 1.53846 0L15 0C15.4248 0 15.7875 0.150202 16.0879 0.450605C16.3883 0.751008 16.5385 1.11363 16.5385 1.53846L16.5385 15C16.5385 15.4248 16.3883 15.7875 16.0879 16.0879C15.7875 16.3883 15.4248 16.5385 15 16.5385L1.53846 16.5385C1.11363 16.5385 0.751008 16.3883 0.450605 16.0879C0.150202 15.7875 0 15.4248 0 15L0 3.07692Z" fill="none" stroke-width="1" stroke="#FFFFFF" transform="translate(0.192 0.192)" />
             </g>
+          </g>
         </g>
+      </g>
     </g>
+  </g>
 </svg>

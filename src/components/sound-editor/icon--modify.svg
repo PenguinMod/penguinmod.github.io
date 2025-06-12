@@ -1,20 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
-    <title>icon--modify</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <mask id="myMask">
-        <!-- Everything under a white pixel will be visible -->
-        <rect x="0" y="0" width="20" height="20" fill="white" />
-
-        <!-- Everything under a black pixel will be invisible -->
-        <circle cx="10" cy="9" r="5" fill="black"></circle>
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <mask id="mask_1" x="-126.232" y="-2535.69" width="20" height="20">
+      <g>
+        <rect width="20" height="20" fill="#FFFFFF" fill-rule="evenodd" />
+        <path d="M0 5C0 2.23858 2.23858 0 5 0C7.76142 0 10 2.23858 10 5C10 7.76143 7.76142 10 5 10C2.23858 10 0 7.76143 0 5Z" fill="#000000" fill-rule="evenodd" transform="translate(5 4)" />
+      </g>
     </mask>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="modify" fill="#00c3ff">
-            <rect x="7.5" y="2" width="5" height="16" rx="2.5" mask="url(#myMask)"></rect>
-            <circle cx="10" cy="9" r="4"></circle>
+  </defs>
+  <g>
+    <g>
+      <g>
+        <g mask="url(#mask_1)">
+          <path d="M0 5L0 2.5C0 1.80964 0.244077 1.22039 0.732233 0.732234C1.22039 0.244078 1.80964 0 2.5 0C3.19036 0 3.77961 0.244078 4.26777 0.732234C4.75592 1.22039 5 1.80964 5 2.5L5 13.5C5 14.1904 4.75592 14.7796 4.26777 15.2678C3.77961 15.7559 3.19036 16 2.5 16C1.80964 16 1.22039 15.7559 0.732233 15.2678C0.244077 14.7796 0 14.1904 0 13.5L0 5Z" fill="#11FF00" fill-rule="evenodd" transform="translate(7.5 2)" />
         </g>
+        <path d="M0 4C0 1.79086 1.79086 0 4 0C6.20914 0 8.00001 1.79086 8.00001 4C8.00001 6.20914 6.20914 8 4 8C1.79086 8 0 6.20914 0 4Z" fill="#11FF00" fill-rule="evenodd" transform="translate(6 5)" />
+      </g>
     </g>
+  </g>
 </svg>
