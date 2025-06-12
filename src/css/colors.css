@@ -21,13 +21,13 @@ $motion-transparent: hsla(194, 100%, 50%, 0.35); /* 35% transparent version of m
 $motion-light-transparent: hsla(203, 100%, 39%, 0.15); /* 15% transparent version of motion-primary */
 
 /* opt-in theme overrides */
-$motion-primary-dark: #009CCC; /*top bar color when in dark mode*/
+$motion-primary-dark: #11ff00; /*top bar color when in dark mode*/
 $ui-primary-light: hsla(215, 100%, 95%, 1);
 $ui-secondary-light: hsla(215, 75%, 95%, 1);
 $ui-tertiary-light: hsla(215, 50%, 90%, 1);
 $text-primary-light: hsla(225, 15%, 40%, 1);
 
-$red-primary: #11FF00; /* #00c3ff wow turbowarp non-generic naming? how rude. */
+$red-primary: #11ff00; /* #00c3ff wow turbowarp non-generic naming? how rude. */
 $red-tertiary: #00fab3; /* #007bc7 */
 
 $sound-primary: hsla(300, 53%, 60%, 1); /* #CF63CF */
