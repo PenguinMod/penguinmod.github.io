@@ -58,7 +58,7 @@ const Credits = () => (
             </h1>
         </header>
         <section>
-            <h1>All people below have either contributed to PenguinMod, TurboWarp, or another related project. They are not affiliated with GreenMod.</h1>
+            <h1>All people below have either contributed to PenguinMod, TurboWarp, or another related project. They are not affiliated with GreenMod unless otherwise said.</h1>
         </section>
         <section>
             <h2>Thank you</h2>
@@ -96,7 +96,7 @@ const Credits = () => (
         </section>
         <section>
             <h2>GitHub Pages</h2>
-            <p>We currently use <a href="https://pages.github.com/">GitHub Pages</a> to host PenguinMod.</p>
+            <p>We currently use <a href="https://pages.github.com/">GitHub Pages</a> to host GreenMod.</p>
             <a href="https://pages.github.com/">
                 <img
                     src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/collections/github-pages-examples/github-pages-examples.png"
@@ -104,25 +104,16 @@ const Credits = () => (
                     height="160"
                 />
             </a>
-            <h2>Domain Provider</h2>
-            <p>
-                <a href="https://penguinmod.com">penguinmod.com</a> (and any subdomains) are currently
-                provided by <a href="https://github.com/enderhacker">enderhacker</a>.
-                <br></br>
-                <a href="https://github.com/enderhacker">
-                    <img src="https://avatars.githubusercontent.com/u/61245488?v=4" style={{ width: "128px" }}></img>
-                </a>
-            </p>
             <h2>Server Host</h2>
             <p>
-                PenguinMod's Project Sharing server is currently hosted by <a href="https://github.com/ianyourgod">ianyourgod</a>.
+                PenguinMod's Project Sharing server (also used by GreenMod) is currently hosted by <a href="https://github.com/ianyourgod">ianyourgod</a>.
                 <br></br>
                 <a href="https://github.com/ianyourgod">
                     <img src="https://avatars.githubusercontent.com/u/104151459?v=4" style={{ width: "128px" }}></img>
                 </a>
             </p>
             <p>
-                The PenguinMod Server API is maintained by many people.
+                The PenguinMod Server API (also used by GreenMod) is maintained by many people.
                 A list is below, but you can also check <a href="https://github.com/PenguinMod/PenguinMod-IntermediateBackendApi/graphs/contributors">the GitHub repository</a> incase this one is out of date.
             </p>
             <UserList users={UserData.pmApiDevelopers} />
