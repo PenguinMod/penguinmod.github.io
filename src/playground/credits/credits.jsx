@@ -58,13 +58,13 @@ const Credits = () => (
             </h1>
         </header>
         <section>
-            <h1>PenguinMod</h1>
+            <h1>All people below have either contributed to PenguinMod, TurboWarp, or another related project. They are not affiliated with GreenMod.</h1>
         </section>
         <section>
             <h2>Thank you</h2>
             <p>
-                Without TurboWarp, PenguinMod may have never existed.
-                Thank you to everyone who worked on Scratch and TurboWarp,
+                Without TurboWarp, PenguinMod - and by extension, GreenMod - may have never existed.
+                Thank you to everyone who worked on Scratch, TurboWarp and PenguinMod,
                 you have made many people finally be able to make whatever they can imagine.
             </p>
             <a href="https://scratch.mit.edu/donate">

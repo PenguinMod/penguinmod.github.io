@@ -142,7 +142,7 @@ const Footer = () => (
             <div className={styles.footerText}>
                 <FormattedMessage
                     // eslint-disable-next-line max-len
-                    defaultMessage="PenguinMod and TurboWarp are not affiliated with Scratch, the Scratch Team, or the Scratch Foundation."
+                    defaultMessage="GreenMod, PenguinMod and TurboWarp are not affiliated with Scratch, the Scratch Team, or the Scratch Foundation."
                     description="Disclaimer that PenguinMod and TurboWarp are not connected to Scratch"
                     id="tw.footer.disclaimer"
                 />
@@ -158,7 +158,7 @@ const Footer = () => (
                     </a>
                     <a href="https://penguinmod.com/donate">
                         <FormattedMessage
-                            defaultMessage="Donate"
+                            defaultMessage="Donate to PenguinMod"
                             description="Donation link in footer"
                             id="tw.footer.donate"
                         />
@@ -175,7 +175,7 @@ const Footer = () => (
                     </a>
                     <a href="https://docs.turbowarp.org/embedding">
                         <FormattedMessage
-                            defaultMessage="Embedding"
+                            defaultMessage="Turbowarp Embeds"
                             description="Link in footer to embedding documentation for embedding link"
                             id="tw.footer.embed"
                         />
@@ -189,7 +189,7 @@ const Footer = () => (
                     </a>
                     <a href="https://docs.turbowarp.org/">
                         <FormattedMessage
-                            defaultMessage="Documentation"
+                            defaultMessage="Turbowarp Documentation"
                             description="Link in footer to additional documentation"
                             id="tw.footer.documentation"
                         />
@@ -198,26 +198,26 @@ const Footer = () => (
                 <div className={styles.footerSection}>
                     <a href="https://penguinmod.com/terms">
                         <FormattedMessage
-                            defaultMessage="Terms of Service"
+                            defaultMessage="PenguinMod Terms of Service"
                             description="Link to Terms of Service"
                             id="pm.terms"
                         />
                     </a>
                     <a href="https://penguinmod.com/privacy">
                         <FormattedMessage
-                            defaultMessage="Privacy Policy"
+                            defaultMessage="PenguinMod Privacy Policy"
                             description="Link to privacy policy"
                             id="tw.privacy"
                         />
                     </a>
-                    <a href="https://github.com/PenguinMod/PenguinMod-Home/issues">
+                    <a href="https://github.com/deletelaterMod/.github/issues">
                         <FormattedMessage
                             defaultMessage="Feedback & Bugs"
                             description="Link to feedback/bugs page"
                             id="tw.feedback"
                         />
                     </a>
-                    <a href="https://github.com/PenguinMod">
+                    <a href="https://github.com/deletelaterMod">
                         <FormattedMessage
                             defaultMessage="Source Code"
                             description="Link to source code"
