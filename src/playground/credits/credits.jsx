@@ -74,6 +74,9 @@ const Credits = () => (
             <a href="https://github.com/sponsors/GarboMuffin">
                 Donate to support TurboWarp.
             </a>
+            <a href="https://penguinmod.com/donate/">
+                Donate to support PenguinMod.
+            </a>
             <h2>Contributors</h2>
             <p>
                 PenguinMod is made by a small bunch of developers.
