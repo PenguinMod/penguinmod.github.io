@@ -66,7 +66,7 @@ const AccountNavComponent = ({
         >
             <MenuItemContainer href={profileUrl}>
                 <FormattedMessage
-                    defaultMessage="TEST" // profile
+                    defaultMessage="profile"
                     description="Text to link to my user profile, in the account navigation menu"
                     id="gui.accountMenu.profile"
                 />

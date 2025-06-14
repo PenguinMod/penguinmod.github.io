@@ -73,7 +73,8 @@ const addons = [
     'rename-broadcasts',
     'sprite-properties',
     'paint-snap',
-    "editor-block-chomping"
+    "editor-block-chomping",
+    'dark-www'
 ];
 
 const newAddons = [
