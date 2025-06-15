@@ -1,1 +1,12 @@
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80.48145" height="80.48145" viewBox="0,0,80.48145,80.48145"><defs><linearGradient x1="240.00001" y1="141.25928" x2="240.00001" y2="218.74073" gradientUnits="userSpaceOnUse" id="color-1"><stop offset="0" stop-color="#ff2484"/><stop offset="1" stop-color="#c40056"/></linearGradient></defs><g transform="translate(-199.75928,-139.75928)"><g data-paper-data="{&quot;isPaintingLayer&quot;:true}" fill="url(#color-1)" fill-rule="nonzero" stroke="#780034" stroke-width="3" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" style="mix-blend-mode: normal"><path d="M223.95307,218.74073l-22.69379,-22.69379v-32.09387l22.69379,-22.69379h32.09387l22.69379,22.69379v32.09387l-22.69379,22.69379z"/></g></g></svg><!--rotationCenter:40.24071714514935:40.24071714514929-->
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="80.481" height="80.481" viewBox="0 0 80.481 80.481" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient_1" gradientUnits="userSpaceOnUse" x1="38.741" y1="0" x2="38.741" y2="77.481">
+      <stop offset="0" stop-color="#FF2424" />
+      <stop offset="1" stop-color="#C44B00" />
+    </linearGradient>
+  </defs>
+  <g>
+    <path d="M21.2591 76.0467L1.43472 56.2224Q1.09357 55.8812 0.825536 55.4801Q0.557499 55.0789 0.372871 54.6332Q0.188244 54.1875 0.0941221 53.7143Q0 53.2411 0 52.7587L0 24.7228Q0 24.2403 0.0941221 23.7671Q0.188244 23.294 0.372871 22.8482Q0.557498 22.4025 0.825536 22.0014Q1.09357 21.6002 1.43472 21.2591L21.2591 1.43472Q21.6002 1.09357 22.0014 0.825536Q22.4025 0.557498 22.8482 0.372871Q23.294 0.188244 23.7671 0.0941221Q24.2403 0 24.7228 0L52.7587 0Q53.2411 0 53.7143 0.0941221Q54.1875 0.188244 54.6332 0.372871Q55.0789 0.557498 55.4801 0.825536Q55.8812 1.09357 56.2224 1.43472L76.0467 21.2591Q76.3879 21.6002 76.6559 22.0014Q76.9239 22.4025 77.1086 22.8482Q77.2932 23.294 77.3873 23.7671Q77.4814 24.2403 77.4814 24.7228L77.4814 52.7587Q77.4814 53.2411 77.3873 53.7143Q77.2932 54.1875 77.1086 54.6332Q76.9239 55.0789 76.6559 55.4801Q76.3879 55.8812 76.0467 56.2224L56.2224 76.0467Q55.8812 76.3879 55.4801 76.6559Q55.0789 76.9239 54.6332 77.1086Q54.1875 77.2932 53.7143 77.3873Q53.2411 77.4814 52.7587 77.4814L24.7228 77.4814Q24.2403 77.4814 23.7671 77.3873Q23.294 77.2932 22.8482 77.1086Q22.4025 76.9239 22.0014 76.6559Q21.6002 76.3879 21.2591 76.0467Z" fill="url(#gradient_1)" stroke-width="3" stroke="#780000" stroke-linejoin="round" transform="translate(1.5 1.5)" />
+  </g>
+</svg>

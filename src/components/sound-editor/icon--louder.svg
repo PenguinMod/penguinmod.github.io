@@ -4,10 +4,10 @@
     <g transform="translate(2 4.75)">
       <g>
         <g>
-          <path d="M6.704 0.631C6.704 0.631 6.704 9.045 6.704 9.045C6.704 9.394 6.422 9.676 6.074 9.676C6.074 9.676 4.897 9.676 4.897 9.676C4.625 9.676 4.383 9.501 4.298 9.241C3.818 7.777 2.452 6.787 0.911 6.787C0.911 6.787 0.631 6.787 0.631 6.787C0.284 6.787 0 6.503 0 6.156C0 6.156 0 3.52 0 3.52C0 3.173 0.284 2.889 0.631 2.889C0.631 2.889 0.911 2.889 0.911 2.889C2.452 2.889 3.818 1.899 4.298 0.435C4.383 0.175 4.625 0 4.897 0C4.897 0 6.074 0 6.074 0C6.422 0 6.704 0.282 6.704 0.631C6.704 0.631 6.704 0.631 6.704 0.631Z" fill="#11FF00" fill-rule="evenodd" transform="translate(0 0.741)" />
-          <path d="M0 0C0.612001 0.613 0.612001 1.619 0 2.232" fill="none" stroke-width="1.5" stroke="#11FF00" stroke-linecap="round" stroke-linejoin="round" transform="translate(9.117 4.463)" />
-          <path d="M0 0C1.848 1.848 1.848 4.848 0 6.695" fill="none" stroke-width="1.5" stroke="#11FF00" stroke-linecap="round" stroke-linejoin="round" transform="translate(11.349 2.231)" />
-          <path d="M0 0C3.08299 3.082 3.08299 8.076 0 11.158" fill="none" stroke-width="1.5" stroke="#11FF00" stroke-linecap="round" stroke-linejoin="round" transform="translate(13.58 0)" />
+          <path d="M6.704 0.631C6.704 0.631 6.704 9.045 6.704 9.045C6.704 9.394 6.422 9.676 6.074 9.676C6.074 9.676 4.897 9.676 4.897 9.676C4.625 9.676 4.383 9.501 4.298 9.241C3.818 7.777 2.452 6.787 0.911 6.787C0.911 6.787 0.631 6.787 0.631 6.787C0.284 6.787 0 6.503 0 6.156C0 6.156 0 3.52 0 3.52C0 3.173 0.284 2.889 0.631 2.889C0.631 2.889 0.911 2.889 0.911 2.889C2.452 2.889 3.818 1.899 4.298 0.435C4.383 0.175 4.625 0 4.897 0C4.897 0 6.074 0 6.074 0C6.422 0 6.704 0.282 6.704 0.631C6.704 0.631 6.704 0.631 6.704 0.631Z" fill="#416836" fill-rule="evenodd" transform="translate(0 0.741)" />
+          <path d="M0 0C0.612001 0.613 0.612001 1.619 0 2.232" fill="none" stroke-width="1.5" stroke="#416836" stroke-linecap="round" stroke-linejoin="round" transform="translate(9.117 4.463)" />
+          <path d="M0 0C1.848 1.848 1.848 4.848 0 6.695" fill="none" stroke-width="1.5" stroke="#416836" stroke-linecap="round" stroke-linejoin="round" transform="translate(11.349 2.231)" />
+          <path d="M0 0C3.08299 3.082 3.08299 8.076 0 11.158" fill="none" stroke-width="1.5" stroke="#416836" stroke-linecap="round" stroke-linejoin="round" transform="translate(13.58 0)" />
         </g>
       </g>
     </g>

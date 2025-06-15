@@ -1,1 +1,17 @@
-<svg viewBox="0,0,69.43514,81.85361" height="81.85361" width="69.43514" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1"><defs><linearGradient id="color-1" gradientUnits="userSpaceOnUse" y2="191.84137" x2="240.07404" y1="141.15092" x1="240.07404"><stop stop-color="#00a5ff" offset="0"></stop><stop stop-color="#0065ff" offset="1"></stop></linearGradient></defs><g transform="translate(-204.78243,-139.49547)"><g style="mix-blend-mode: normal" stroke-dashoffset="0" stroke-dasharray="" stroke-miterlimit="10" stroke-linejoin="miter" stroke="#00316b" fill-rule="nonzero" data-paper-data="{&quot;isPaintingLayer&quot;:true}"><path stroke-linecap="butt" stroke-width="3" fill="url(#color-1)" d="M207.43052,187.26642v-42.45554c0,0 7.45008,-3.65996 15.81171,-3.65996c8.98973,0 25.47635,8.23491 33.83366,8.23491c8.29234,0 15.64169,-4.57495 15.64169,-4.57495v42.45554c0,0 -7.37725,4.57495 -15.64169,4.57495c-7.51077,0 -24.57873,-8.23491 -32.98357,-8.23491c-8.73065,0 -16.6618,3.65996 -16.6618,3.65996z"></path><path stroke-linecap="round" stroke-width="5" fill="none" d="M207.28244,218.84908v-76.85361"></path></g></g></svg><!--rotationCenter:35.21756500000001:40.50452999999999-->
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="69.435" height="81.854" viewBox="0 0 69.435 81.854" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient_1" gradientUnits="userSpaceOnUse" x1="32.644" y1="0" x2="32.644" y2="50.69">
+      <stop offset="0" stop-color="#44972D" />
+      <stop offset="1" stop-color="#28830E" />
+    </linearGradient>
+  </defs>
+  <g>
+    <g transform="translate(2.5 1.655)">
+      <g>
+        <path d="M0 46.1155C0 46.1155 0 3.65996 0 3.65996C0 3.65996 7.45007 0 15.8117 0C24.8014 0 41.2881 8.23491 49.6454 8.23491C57.9377 8.23491 65.2871 3.65996 65.2871 3.65996C65.2871 3.65996 65.2871 46.1155 65.2871 46.1155C65.2871 46.1155 57.9098 50.6904 49.6454 50.6904C42.1346 50.6904 25.0666 42.4555 16.6618 42.4555C7.93115 42.4555 0 46.1155 0 46.1155C0 46.1155 0 46.1155 0 46.1155Z" fill="url(#gradient_1)" stroke-width="3" stroke="#294F20" transform="translate(0.148 0)" />
+        <path d="M0 76.8536L0 0" fill="none" stroke-width="5" stroke="#294F20" stroke-linecap="round" transform="translate(0 0.845)" />
+      </g>
+    </g>
+  </g>
+</svg>

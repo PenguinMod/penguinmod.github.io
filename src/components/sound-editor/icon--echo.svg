@@ -4,10 +4,10 @@
     <g transform="translate(4 2.609)">
       <g>
         <g>
-          <path d="M2.56872 0.439969C3.15534 1.02822 3.15534 1.98047 2.56872 2.56872C1.98209 3.15534 1.02822 3.15534 0.439969 2.56872C-0.146656 1.98047 -0.146656 1.02822 0.439969 0.439969C1.02822 -0.146657 1.98209 -0.146657 2.56872 0.439969Z" fill="#11FF00" fill-rule="evenodd" stroke-width="1.5" stroke="#11FF00" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 5.943)" />
-          <path d="M0 0C1.77125 1.755 1.77125 4.59875 0 6.37" fill="none" stroke-width="1.75" stroke="#11FF00" stroke-linecap="round" stroke-linejoin="round" transform="translate(4.5 4.258)" />
-          <path d="M0 0C2.94125 2.94125 2.94125 7.68463 0 10.6275" fill="none" stroke-width="1.75" stroke="#11FF00" stroke-linecap="round" stroke-linejoin="round" transform="translate(6.75 2.13)" />
-          <path d="M0 0C4.11125 4.11125 4.11125 10.7575 0 14.885" fill="none" stroke-width="1.75" stroke="#11FF00" stroke-linecap="round" stroke-linejoin="round" transform="translate(9 0)" />
+          <path d="M2.56872 0.439969C3.15534 1.02822 3.15534 1.98047 2.56872 2.56872C1.98209 3.15534 1.02822 3.15534 0.439969 2.56872C-0.146656 1.98047 -0.146656 1.02822 0.439969 0.439969C1.02822 -0.146657 1.98209 -0.146657 2.56872 0.439969Z" fill="#416836" fill-rule="evenodd" stroke-width="1.5" stroke="#416836" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 5.943)" />
+          <path d="M0 0C1.77125 1.755 1.77125 4.59875 0 6.37" fill="none" stroke-width="1.75" stroke="#416836" stroke-linecap="round" stroke-linejoin="round" transform="translate(4.5 4.258)" />
+          <path d="M0 0C2.94125 2.94125 2.94125 7.68463 0 10.6275" fill="none" stroke-width="1.75" stroke="#416836" stroke-linecap="round" stroke-linejoin="round" transform="translate(6.75 2.13)" />
+          <path d="M0 0C4.11125 4.11125 4.11125 10.7575 0 14.885" fill="none" stroke-width="1.75" stroke="#416836" stroke-linecap="round" stroke-linejoin="round" transform="translate(9 0)" />
         </g>
       </g>
     </g>

@@ -2,12 +2,12 @@
 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g>
     <g transform="translate(1 2)">
-      <rect width="16.5" height="8" fill="#11FF00" fill-rule="evenodd" fill-opacity="0.25" transform="translate(1 8)" />
-      <line x1="1" y1="0" x2="1" y2="16" fill="none" stroke-width="1.5" stroke="#11FF00" stroke-linecap="round" />
-      <line x1="16" y1="0" x2="0" y2="0" fill="none" stroke-width="1.5" stroke="#11FF00" stroke-linecap="round" stroke-linejoin="round" transform="translate(1 16)" />
-      <line x1="0" y1="1" x2="16" y2="1" fill="none" stroke-width="1.5" stroke="#11FF00" stroke-linecap="round" stroke-linejoin="round" transform="translate(1 7)" />
-      <line x1="0" y1="0" x2="4" y2="4" fill="none" stroke-width="1.5" stroke="#11FF00" stroke-linecap="round" transform="translate(7.5 1)" />
-      <line x1="4" y1="0" x2="0" y2="4" fill="none" stroke-width="1.5" stroke="#11FF00" stroke-linecap="round" transform="translate(7.5 1)" />
+      <rect width="16.5" height="8" fill="#416836" fill-rule="evenodd" fill-opacity="0.25" transform="translate(1 8)" />
+      <path d="M1 0L1 16" fill="none" stroke-width="1.5" stroke="#416836" stroke-linecap="round" />
+      <path d="M16 0L0 0" fill="none" stroke-width="1.5" stroke="#416836" stroke-linecap="round" stroke-linejoin="round" transform="translate(1 16)" />
+      <path d="M0 1L16 1" fill="none" stroke-width="1.5" stroke="#416836" stroke-linecap="round" stroke-linejoin="round" transform="translate(1 7)" />
+      <path d="M0 0L4 4" fill="none" stroke-width="1.5" stroke="#416836" stroke-linecap="round" transform="translate(7.5 1)" />
+      <path d="M4 0L0 4" fill="none" stroke-width="1.5" stroke="#416836" stroke-linecap="round" transform="translate(7.5 1)" />
     </g>
   </g>
 </svg>
