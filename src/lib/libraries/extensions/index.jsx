@@ -1113,7 +1113,7 @@ const menuItems = [
     },
     {
         name: 'SharkPool\'s Extension Collection',
-        href: 'https://sharkpools-extensions.vercel.app/?originPM=true',
+        href: 'https://deletelatermod.github.io/mod_SharkPools-Extensions/', // https://sharkpools-extensions.vercel.app/?originPM=true
         extensionId: 'special_sharkpoolExtensionLibrary',
         iconURL: sharkpoolGalleryIcon,
         description: 'Tons of extensions created by SharkPool.\n\nClick on an extension while this menu is open to add it to your project.',
@@ -1187,6 +1187,9 @@ These extensions could have missing features, cause random errors, broken projec
 Moving these into the main extension list will cause people who use your fork to assume they are ready for them to use!
 
 Please keep these in livetests to reduce bug reports on your fork! :)
+
+ok ill reveal the livetest features to users! :) - thanks, SpaceySlime
+(i would never do that, as the one user of GreenMod i already know to use ?livetests=true)
 ----------------------------------------------
 */
 if (IsLocal || IsLiveTests) {
