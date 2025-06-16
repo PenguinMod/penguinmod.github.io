@@ -59,6 +59,8 @@ const SecurityManagerModalComponent = props => (
                 <Unsandbox {...props.data} />
             ) : props.type === SecurityModals.Embed ? (
                 <Embed {...props.data} />
+            ) : props.type === SecurityModals.ScreenshotCamera ? (
+                <RecordVideo {...props.data} />
             ) : null}
 
             <Box className={styles.buttons}>

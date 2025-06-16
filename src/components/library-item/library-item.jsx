@@ -303,6 +303,18 @@ class LibraryItemComponent extends React.PureComponent {
                                             </div>
                                         </div>
                                     ) : null}
+                                    {this.props.extraLabels ? this.props.extraLabels.map((label) => (
+                                        <div className={styles.smallBottomMargin}>
+                                            <div>
+                                                {label.name}
+                                            </div>
+                                            <div
+                                                className={styles.featuredExtensionMetadataDetail}
+                                            >
+                                                {label.value}
+                                            </div>
+                                        </div>
+                                    )) : null}
                                 </div>
                             </div>
                         ) : null}
@@ -392,11 +404,38 @@ class LibraryItemComponent extends React.PureComponent {
 LibraryItemComponent.propTypes = {
     intl: intlShape,
     bluetoothRequired: PropTypes.bool,
-    collaborator: PropTypes.string,
-    credits: PropTypes.string,
-    twDeveloper: PropTypes.string,
-    extDeveloper: PropTypes.string,
-    eventSubmittor: PropTypes.string,
+    collaborator: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node
+    ]),
+    credits: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node
+    ]),
+    twDeveloper: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node
+    ]),
+    extDeveloper: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node
+    ]),
+    eventSubmittor: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node
+    ]),
+    extraLabels: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.node
+            ]),
+            value: PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.node
+            ]),
+        })
+    ),
     description: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.node

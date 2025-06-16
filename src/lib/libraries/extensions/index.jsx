@@ -1513,7 +1513,13 @@ if (IsLocal || IsLiveTests) {
             iconURL: jgVrExtensionIcon,
             tags: ['penguinmod', 'hardware'],
             description: 'In development.',
-            credits: 'Vadik1',
+            extDeveloper: "JeremyGamer13",
+            extraLabels: [
+                {
+                    name: "Uses code from",
+                    value: "\"Augmented Reality\" by Vadik1"
+                }
+            ],
             featured: true,
             extensionWarningOnImport: true
         }

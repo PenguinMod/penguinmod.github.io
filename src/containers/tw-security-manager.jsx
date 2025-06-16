@@ -118,6 +118,7 @@ let allowedVideo = false;
 let allowedReadClipboard = false;
 let allowedNotify = false;
 let allowedGeolocation = false;
+let allowedScreenshotCamera = false;
 const notAllowedToAskUnsandbox = Object.create(null);
 let loadingExtensionsRemember = false;
 let rememberedExtensionInfo = {
@@ -137,7 +138,8 @@ const SECURITY_MANAGER_METHODS = [
     'canNotify',
     'canGeolocate',
     'canEmbed',
-    'canUnsandbox'
+    'canUnsandbox',
+    'canScreenshotCamera'
 ];
 
 class TWSecurityManagerComponent extends React.Component {
@@ -425,6 +427,16 @@ class TWSecurityManagerComponent extends React.Component {
         return allowedGeolocation;
     }
 
+    /**
+     * @returns {Promise<boolean>} True if screenshotting the camera is allowed.
+     */
+    async canScreenshotCamera() {
+        if (!allowedScreenshotCamera) {
+            const { showModal } = await this.acquireModalLock();
+            allowedScreenshotCamera = await showModal(SecurityModals.ScreenshotCamera);
+        }
+        return allowedScreenshotCamera;
+    }
 
     /**
      * @returns {Promise<boolean>} True if geolocation is allowed.
