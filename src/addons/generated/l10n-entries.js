@@ -2,6 +2,7 @@
 export default {
   "de": () => import(/* webpackChunkName: "addon-l10n-de" */ "../addons-l10n/de.json"),
   "es": () => import(/* webpackChunkName: "addon-l10n-es" */ "../addons-l10n/es.json"),
+  "fi": () => import(/* webpackChunkName: "addon-l10n-fi" */ "../addons-l10n/fi.json"),
   "fr": () => import(/* webpackChunkName: "addon-l10n-fr" */ "../addons-l10n/fr.json"),
   "hu": () => import(/* webpackChunkName: "addon-l10n-hu" */ "../addons-l10n/hu.json"),
   "it": () => import(/* webpackChunkName: "addon-l10n-it" */ "../addons-l10n/it.json"),
@@ -14,4 +15,6 @@ export default {
   "ru": () => import(/* webpackChunkName: "addon-l10n-ru" */ "../addons-l10n/ru.json"),
   "sl": () => import(/* webpackChunkName: "addon-l10n-sl" */ "../addons-l10n/sl.json"),
   "tr": () => import(/* webpackChunkName: "addon-l10n-tr" */ "../addons-l10n/tr.json"),
+  "zh-cn": () => import(/* webpackChunkName: "addon-l10n-zh-cn" */ "../addons-l10n/zh-cn.json"),
+  "zh-tw": () => import(/* webpackChunkName: "addon-l10n-zh-tw" */ "../addons-l10n/zh-tw.json"),
 };

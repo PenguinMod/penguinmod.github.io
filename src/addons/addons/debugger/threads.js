@@ -62,13 +62,12 @@ export default async function createThreadsTab({ debug, addon, console, msg }) {
       }
     }
 
-    // pm: this isnt very useful if every thread will be compiled
-    // if (row.type === "compiled") {
-    //   const el = document.createElement('div');
-    //   el.className = "sa-debugger-thread-compiled";
-    //   el.textContent = "Compiled threads can't be stepped and have no stack information.";
-    //   root.appendChild(el);
-    // }
+    if (row.type === "compiled") {
+      const el = document.createElement('div');
+      el.className = "sa-debugger-thread-compiled";
+      el.textContent = "Compiled threads can't be stepped and have no stack information.";
+      root.appendChild(el);
+    }
 
     if (row.targetId && row.blockId) {
       root.appendChild(debug.createBlockLink(debug.getTargetInfoById(row.targetId), row.blockId));
@@ -103,6 +102,7 @@ export default async function createThreadsTab({ debug, addon, console, msg }) {
     const newRows = [];
     const threads = vm.runtime.threads;
     const visitedThreads = new Set();
+    const runningThread = getRunningThread();
 
     const createThreadInfo = (thread, depth) => {
       if (visitedThreads.has(thread)) {
@@ -130,7 +130,6 @@ export default async function createThreadsTab({ debug, addon, console, msg }) {
       }
       const cacheInfo = threadInfoCache.get(thread);
 
-      const runningThread = getRunningThread();
       const createBlockInfo = (block, stackFrameIdx) => {
         const blockId = block.id;
         if (!block) return;
@@ -232,7 +231,32 @@ export default async function createThreadsTab({ debug, addon, console, msg }) {
   handlePauseChanged(isPaused());
   onPauseChanged(handlePauseChanged);
 
-  onSingleStep(updateContent);
+  onSingleStep(() => {
+    updateContent();
+    queueMicrotask(() => {
+      const runningIndex = logView.rows.findIndex((i) => i.running);
+      if (runningIndex !== -1 && !logView.isInView(runningIndex, logView.rowHeight)) {
+        // Try to show the entire thread if we can fit it on screen
+        let found = false;
+        const maxScrollback = Math.floor(logView.height / logView.rowHeight);
+        for (let i = 1; i < maxScrollback; i++) {
+          const checkIndex = runningIndex - i;
+          if (logView.rows[checkIndex].type === "thread-header") {
+            logView.scrollTo(checkIndex);
+            found = true;
+            break;
+          }
+        }
+
+        if (!found) {
+          // We somehow couldn't find the header or the stack is too big for us to show the header
+          // and the current stack item at the same time. Settle for showing as much of the stack
+          // as we can while also leaving some room on the bottom for the stack to grow.
+          logView.scrollTo(Math.max(0, runningIndex - maxScrollback + 5));
+        }
+      }
+    });
+  });
 
   const show = () => {
     logView.show();

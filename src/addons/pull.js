@@ -23,7 +23,7 @@ const fs = require('fs');
 const childProcess = require('child_process');
 const rimraf = require('rimraf');
 const pathUtil = require('path');
-const {addons, newAddons} = require('./addons.js');
+let {addons, newAddons} = require('./addons.js');
 
 const walk = dir => {
     const children = fs.readdirSync(dir);
@@ -48,7 +48,7 @@ const clone = obj => JSON.parse(JSON.stringify(obj));
 const repoPath = pathUtil.resolve(__dirname, 'ScratchAddons');
 if (!process.argv.includes('-')) {
     rimraf.sync(repoPath);
-    childProcess.execSync(`git clone --depth=1 --branch=tw https://github.com/TurboWarp/addons ${repoPath}`);
+    childProcess.execSync(`git clone --depth=1 --branch=develop https://github.com/PenguinMod/PenguinMod-Addons ${repoPath}`);
 }
 
 for (const folder of ['addons', 'addons-l10n', 'addons-l10n-settings', 'libraries']) {
@@ -184,7 +184,7 @@ const normalizeManifest = (id, manifest) => {
     delete manifest.dynamicEnable;
 
     const filterUserscripts = scripts => scripts
-        .filter(({matches}) => matches.includes('projects') || matches.includes('https://scratch.mit.edu/projects/*'))
+        .filter(({matches}) => !matches || matches.includes('projects') || matches.includes('https://scratch.mit.edu/projects/*'))
         .map(obj => ({
             url: obj.url,
             if: obj.if

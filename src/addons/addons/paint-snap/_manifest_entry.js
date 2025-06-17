@@ -2,9 +2,7 @@
 const manifest = {
   "name": "Costume editor snapping",
   "description": "Snap objects in the costume editor to bounding boxes and vector nodes.",
-  "tags": [
-    "recommended"
-  ],
+  "tags": [],
   "userscripts": [
     {
       "url": "userscript.js"

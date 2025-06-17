@@ -63,9 +63,22 @@ export default async function ({ addon, console }) {
     }
   }
 
-  await addon.tab.waitForElement(".blocklyZoom");
-  update();
-  addon.tab.addEventListener("urlChange", update);
+  if (document.querySelector('[class^="backpack_backpack-container"]')) {
+    window.dispatchEvent(new Event("resize"));
+  }
   addon.settings.addEventListener("change", update);
   window.addEventListener("resize", onResize);
+  while (true) {
+    await addon.tab.waitForElement(".blocklyZoom", {
+      markAsSeen: true,
+      reduxEvents: [
+        "scratch-gui/mode/SET_PLAYER",
+        "scratch-gui/locales/SELECT_LOCALE",
+        "scratch-gui/theme/SET_THEME",
+        "fontsLoaded/SET_FONTS_LOADED",
+      ],
+      reduxCondition: (state) => !state.scratchGui.mode.isPlayerOnly,
+    });
+    update();
+  }
 }

@@ -3,7 +3,7 @@ const manifest = {
   "editorOnly": true,
   "noTranslations": true,
   "name": "Cat blocks",
-  "description": "Brings back editor cat hat blocks from April Fools 2020.",
+  "description": "Brings back editor cat hat blocks that were first introduced for April Fools' Day 2020.",
   "credits": [
     {
       "name": "TheColaber",

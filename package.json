@@ -4,6 +4,7 @@
   "description": "GraphicaL User Interface for creating and running Scratch 3.0 projects",
   "main": "./dist/scratch-gui.js",
   "scripts": {
+    "addons": "node ./src/addons/pull.js",
     "buildall": "npm run build && npm run deploy",
     "build": "webpack --colors --bail",
     "clean": "rimraf ./build && mkdirp build && rimraf ./dist && mkdirp dist",

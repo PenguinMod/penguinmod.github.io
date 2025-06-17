@@ -3,6 +3,12 @@ const manifest = {
   "name": "Hide delete button",
   "description": "Hides delete button (trash can icon) from sprites, costumes and sounds. They can still be deleted using the right click context menu.",
   "tags": [],
+  "info": [
+    {
+      "text": "Tip: If you accidentally delete a sprite, costume, or sound, you can undo the deletion by clicking Edit in the menu bar then Restore.",
+      "id": "restoretip"
+    }
+  ],
   "dynamicDisable": true,
   "settings": [
     {

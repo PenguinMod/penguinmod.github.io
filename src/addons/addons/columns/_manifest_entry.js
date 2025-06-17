@@ -10,7 +10,9 @@ const manifest = {
       "link": "https://scratch.mit.edu/TheColaber"
     }
   ],
-  "tags": [],
+  "tags": [
+    "theme"
+  ],
   "dynamicDisable": true,
   "userscripts": [
     {

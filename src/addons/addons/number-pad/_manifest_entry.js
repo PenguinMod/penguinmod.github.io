@@ -3,7 +3,7 @@ const manifest = {
   "editorOnly": true,
   "noTranslations": true,
   "name": "Always show number pad",
-  "description": "Show Scratch's number pad input when editing number fields on all devices, instead of only touchscreen devices.",
+  "description": "Show Scratch's virtual number pad when editing number fields in blocks on all devices, instead of only touchscreen devices.",
   "credits": [
     {
       "name": "GarboMuffin"
@@ -11,7 +11,7 @@ const manifest = {
   ],
   "info": [
     {
-      "text": "A number pad will show when editing number inputs from certain blocks, such as \"set x to\".",
+      "text": "A number pad will show when editing number inputs from blocks such as \"move () steps\".",
       "id": "explanation"
     }
   ],

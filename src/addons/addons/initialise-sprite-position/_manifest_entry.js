@@ -3,7 +3,7 @@ const manifest = {
   "editorOnly": true,
   "noTranslations": true,
   "name": "Customizable new sprite position",
-  "description": "Change the default x/y position of new sprites.",
+  "description": "Change where newly created sprites are placed on the stage.",
   "credits": [
     {
       "name": "pufferfish101007",
@@ -38,28 +38,28 @@ const manifest = {
     {
       "dynamic": true,
       "id": "library",
-      "name": "Randomize the position of library sprites",
+      "name": "Place sprites from library at random position",
       "type": "boolean",
       "default": false
     },
     {
       "dynamic": true,
       "id": "duplicate",
-      "name": "Behavior when duplicating sprites",
+      "name": "Position for duplicated sprites",
       "type": "select",
       "default": "randomize",
       "potentialValues": [
         {
           "id": "custom",
-          "name": "Send to specified x/y values"
+          "name": "Specified x/y position"
         },
         {
           "id": "keep",
-          "name": "Keep the same as the original sprite"
+          "name": "Same as original sprite"
         },
         {
           "id": "randomize",
-          "name": "Randomize"
+          "name": "Random"
         }
       ]
     }

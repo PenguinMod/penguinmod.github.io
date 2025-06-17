@@ -48,7 +48,7 @@
   width: calc(308px - 1rem);
   height: calc(1.75rem - 2px);
   background-color: transparent;
-  border-color: var(--ui-black-transparent, rgba(0, 0, 0, 0.15));
+  border-color: var(--editorDarkMode-border, rgba(0, 0, 0, 0.15));
 }
 
 /* [dir] is for specificity to override editor-stage-left */
@@ -57,7 +57,7 @@
 }
 
 [class*="gui_extension-button-container_"]:hover {
-  background-color: var(--ui-tertiary, white);
+  background-color: var(--editorDarkMode-accent, white);
 }
 
 [class*="gui_extension-button-container_"]::before {
@@ -77,17 +77,14 @@
 [class*="gui_extension-button-container_"]:hover [class*="gui_extension-button-icon_"] {
   filter: var(--editorDarkMode-accent-invertedFilter, brightness(0.4));
 }
-[theme="dark"] [class*="gui_extension-button-icon_"] {
-  filter: none !important;
-}
 
 .sa-add-extension-label {
-  color: var(--text-primary, #575e75);
+  color: var(--editorDarkMode-categoryMenu-text, #575e75);
   font-size: 0.65rem;
 }
 
 [class*="gui_extension-button-container_"]:hover .sa-add-extension-label {
-  color: var(--text-primary, #575e75);
+  color: var(--editorDarkMode-accent-text, #575e75);
   font-size: 0.65rem;
 }
 

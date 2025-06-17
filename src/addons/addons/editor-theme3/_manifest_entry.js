@@ -11,70 +11,12 @@ const manifest = {
     {
       "name": "TheColaber",
       "link": "https://scratch.mit.edu/users/TheColaber/"
+    },
+    {
+      "name": "DNin01"
     }
   ],
   "customCssVariables": [
-    {
-      "name": "inputColor-text",
-      "value": {
-        "type": "alphaThreshold",
-        "source": {
-          "type": "settingValue",
-          "settingId": "input-color"
-        },
-        "opaque": {
-          "type": "textColor",
-          "source": {
-            "type": "settingValue",
-            "settingId": "input-color"
-          }
-        },
-        "transparent": {
-          "type": "map",
-          "source": {
-            "type": "settingValue",
-            "settingId": "text"
-          },
-          "options": {
-            "white": "#ffffff",
-            "black": "#575e75",
-            "colorOnWhite": "#575e75",
-            "colorOnBlack": "#ffffff"
-          }
-        }
-      }
-    },
-    {
-      "name": "inputColor-blackText",
-      "value": {
-        "type": "alphaThreshold",
-        "source": {
-          "type": "settingValue",
-          "settingId": "input-color"
-        },
-        "opaque": {
-          "type": "textColor",
-          "black": "#000000",
-          "source": {
-            "type": "settingValue",
-            "settingId": "input-color"
-          }
-        },
-        "transparent": {
-          "type": "map",
-          "source": {
-            "type": "settingValue",
-            "settingId": "text"
-          },
-          "options": {
-            "white": "#ffffff",
-            "black": "#000000",
-            "colorOnWhite": "#000000",
-            "colorOnBlack": "#ffffff"
-          }
-        }
-      }
-    },
     {
       "name": "commentText",
       "value": {
@@ -237,14 +179,6 @@ const manifest = {
     },
     {
       "dynamic": true,
-      "name": "TurboWarp",
-      "id": "tw-color",
-      "type": "color",
-      "default": "#ff4c4c",
-      "allowTransparency": true
-    },
-    {
-      "dynamic": true,
       "name": "Addon blocks",
       "id": "sa-color",
       "type": "color",
@@ -303,9 +237,75 @@ const manifest = {
   "enabledByDefault": false,
   "presets": [
     {
-      "name": "3.0 Tweaks",
+      "name": "High contrast",
+      "id": "contrast",
+      "description": "Scratch 3.0's high contrast block color palette",
+      "values": {
+        "motion-color": "#80B5FF",
+        "looks-color": "#CCB3FF",
+        "sounds-color": "#E19DE1",
+        "events-color": "#FFD966",
+        "control-color": "#FFBE4C",
+        "sensing-color": "#85C4E0",
+        "operators-color": "#7ECE7E",
+        "data-color": "#FFA54C",
+        "data-lists-color": "#FF9966",
+        "custom-color": "#FF99AA",
+        "Pen-color": "#13ECAF",
+        "sa-color": "#34E4D0",
+        "comment-color": "#FEF49C",
+        "input-color": "#FFFFFF",
+        "text": "black"
+      }
+    },
+    {
+      "name": "Dark",
+      "id": "new-dark",
+      "description": "Dark versions of the default colors that look good in dark themes",
+      "values": {
+        "motion-color": "#2461B7",
+        "looks-color": "#633EAC",
+        "sounds-color": "#863286",
+        "events-color": "#AE8500",
+        "control-color": "#B07200",
+        "sensing-color": "#468CAF",
+        "operators-color": "#438C43",
+        "data-color": "#B46313",
+        "data-lists-color": "#A84210",
+        "custom-color": "#973545",
+        "Pen-color": "#2A7468",
+        "sa-color": "#2A797C",
+        "comment-color": "#423F24",
+        "input-color": "#FFFFFF",
+        "text": "white"
+      }
+    },
+    {
+      "name": "Darker",
+      "id": "dark",
+      "description": "Even darker versions of the default colors",
+      "values": {
+        "motion-color": "#004099",
+        "looks-color": "#220066",
+        "sounds-color": "#752475",
+        "events-color": "#997300",
+        "control-color": "#664100",
+        "sensing-color": "#1f5f7a",
+        "operators-color": "#235c23",
+        "data-color": "#b35900",
+        "data-lists-color": "#993300",
+        "custom-color": "#99004d",
+        "Pen-color": "#064734",
+        "sa-color": "#166966",
+        "comment-color": "#423f24",
+        "input-color": "#202020",
+        "text": "white"
+      }
+    },
+    {
+      "name": "Scratch 3.0 tweaked",
       "id": "tweaks",
-      "description": "Events, Control, and Custom blocks with 2.0 inspired colors",
+      "description": "Scratch 3.0's block colors with Events, Control, and Custom blocks that resemble Scratch 2.0's colors",
       "values": {
         "motion-color": "#4C97FF",
         "looks-color": "#9966FF",
@@ -325,7 +325,7 @@ const manifest = {
       }
     },
     {
-      "name": "2.0 Colors",
+      "name": "Scratch 2.0 colors",
       "id": "original",
       "description": "The original block colors from Scratch 2.0",
       "values": {
@@ -347,50 +347,38 @@ const manifest = {
       }
     },
     {
-      "name": "Dark",
-      "id": "dark",
-      "description": "Dark versions of the default colors",
-      "values": {
-        "motion-color": "#004099",
-        "looks-color": "#220066",
-        "sounds-color": "#752475",
-        "events-color": "#997300",
-        "control-color": "#664100",
-        "sensing-color": "#1f5f7a",
-        "operators-color": "#235c23",
-        "data-color": "#b35900",
-        "data-lists-color": "#993300",
-        "custom-color": "#99004d",
-        "Pen-color": "#064734",
-        "tw-color": "#660000",
-        "sa-color": "#166966",
-        "comment-color": "#423f24",
-        "input-color": "#202020",
-        "text": "white"
-      }
-    },
-    {
       "name": "Black",
       "id": "black",
-      "description": "Makes block backgrounds black",
+      "description": "Makes block backgrounds black and borders/text colored",
       "values": {
-        "motion-color": "#4C97FF",
-        "looks-color": "#9966FF",
-        "sounds-color": "#CF63CF",
-        "events-color": "#FFBF00",
-        "control-color": "#FFAB19",
-        "sensing-color": "#5CB1D6",
-        "operators-color": "#59C059",
-        "data-color": "#FF8C1A",
-        "data-lists-color": "#FF661A",
-        "custom-color": "#FF6680",
-        "Pen-color": "#0FBD8C",
-        "sa-color": "#29BEB8",
+        "motion-color": "#80B5FF",
+        "looks-color": "#CCB3FF",
+        "sounds-color": "#E19DE1",
+        "events-color": "#FFD966",
+        "control-color": "#FFBE4C",
+        "sensing-color": "#85C4E0",
+        "operators-color": "#7ECE7E",
+        "data-color": "#FFA54C",
+        "data-lists-color": "#FF9966",
+        "custom-color": "#FF99AA",
+        "Pen-color": "#13ECAF",
+        "sa-color": "#34E4D0",
         "comment-color": "#FEF49C",
         "input-color": "#202020",
         "text": "colorOnBlack"
       }
     }
-  ]
+  ],
+  "presetPreview": {
+    "type": "palette",
+    "colors": [
+      "motion-color",
+      "looks-color",
+      "sounds-color",
+      "events-color",
+      "control-color",
+      "sensing-color"
+    ]
+  }
 };
 export default manifest;

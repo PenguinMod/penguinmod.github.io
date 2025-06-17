@@ -24,10 +24,10 @@
   right: -1px;
 }
 .sa-flyout-border-1 {
-  border-left: 1px solid var(--ui-primary, hsla(215, 100%, 95%, 1));
+  border-left: 1px solid var(--editorDarkMode-page, hsla(215, 100%, 95%, 1));
 }
 .sa-flyout-border-2 {
-  border-left: 1px solid var(--ui-black-transparent, rgba(0, 0, 0, 0.15));
+  border-left: 1px solid var(--editorDarkMode-border, rgba(0, 0, 0, 0.15));
 }
 
 .blocklyFlyout,
@@ -79,25 +79,27 @@
   padding: 0;
   justify-content: center;
   align-items: center;
-  background-color: var(--ui-primary, white);
-  border: 1px solid var(--ui-black-transparent, rgba(0, 0, 0, 0.15));
+  background-color: var(--editorDarkMode-accent, white);
+  border: 1px solid var(--editorDarkMode-border, rgba(0, 0, 0, 0.15));
   border-radius: 4px;
 }
 
 .sa-lock-object.locked .sa-lock-button {
-  background-color: #00c3ff;
-  border-color: #0099ff;
+  background-color: var(--editorDarkMode-primary, #855cd6);
+  border-color: var(--editorDarkMode-primary-variant, #714eb6);
 }
 
 .sa-lock-button img {
   width: 20px;
+  user-select: none;
+  filter: var(--editorDarkMode-accent-filter, none);
 }
 
-[theme="dark"] .sa-lock-button img {
-  filter: brightness(200%);
+.sa-lock-object.locked img {
+  filter: var(--editorDarkMode-primary-filter, none);
 }
 
-.sa-hide-flyout-not-fullscreen [class*="gui_body-wrapper_" ] [class*="gui_stage-and-target-wrapper"] {
+.sa-hide-flyout-not-fullscreen .sa-body-editor [class*="gui_stage-and-target-wrapper"] {
   position: relative;
   /* We need to be above these to hide the flyout while dragging blocks: */
   /* .blocklyFlyout (z-index: 20) */
@@ -107,7 +109,7 @@
   /* .gui_extension-button-container_b4rCs (z-index: 42) */
   z-index: 43;
   padding-inline: 0.5rem;
-  background-color: var(--ui-primary, hsl(215, 100%, 95%));
+  background-color: var(--editorDarkMode-page, hsl(215, 100%, 95%));
 }
 
 [class*="gui_stage-and-target-wrapper_"] {

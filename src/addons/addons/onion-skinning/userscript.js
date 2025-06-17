@@ -1,3 +1,5 @@
+import {sanitizeSvg} from '@turbowarp/scratch-svg-renderer';
+
 export default async function ({ addon, console, msg }) {
   const paper = await addon.tab.traps.getPaper();
 
@@ -45,7 +47,7 @@ export default async function ({ addon, console, msg }) {
 
   const injectPaper = () => {
     // When background guide layer is added, show onion layers.
-    // https://github.com/LLK/scratch-paint/blob/cdf0afc217633e6cfb8ba90ea4ae38b79882cf6c/src/helper/layer.js#L145
+    // https://github.com/scratchfoundation/scratch-paint/blob/cdf0afc217633e6cfb8ba90ea4ae38b79882cf6c/src/helper/layer.js#L145
     const originalAddLayer = paper.Project.prototype.addLayer;
     paper.Project.prototype.addLayer = function (layer) {
       const result = originalAddLayer.call(this, layer);
@@ -60,7 +62,7 @@ export default async function ({ addon, console, msg }) {
     };
 
     // Scratch uses importJSON to undo or redo
-    // https://github.com/LLK/scratch-paint/blob/cdf0afc217633e6cfb8ba90ea4ae38b79882cf6c/src/helper/undo.js#L37
+    // https://github.com/scratchfoundation/scratch-paint/blob/cdf0afc217633e6cfb8ba90ea4ae38b79882cf6c/src/helper/undo.js#L37
     // The code prior to this will remove our onion layers, so we have to manually add them back.
     const originalImportJSON = paper.Project.prototype.importJSON;
     paper.Project.prototype.importJSON = function (json) {
@@ -71,7 +73,7 @@ export default async function ({ addon, console, msg }) {
       return result;
     };
 
-    // https://github.com/LLK/scratch-paint/blob/cdf0afc217633e6cfb8ba90ea4ae38b79882cf6c/src/helper/layer.js#L114
+    // https://github.com/scratchfoundation/scratch-paint/blob/cdf0afc217633e6cfb8ba90ea4ae38b79882cf6c/src/helper/layer.js#L114
     // When background guide layer is removed, hide onion layers.
     const originalRemoveLayer = paper.Layer.prototype.remove;
     paper.Layer.prototype.remove = function () {
@@ -95,7 +97,7 @@ export default async function ({ addon, console, msg }) {
     const PaperCanvas = paperCanvas.constructor;
 
     // importImage is called to start loading an image.
-    // https://github.com/LLK/scratch-paint/blob/cdf0afc217633e6cfb8ba90ea4ae38b79882cf6c/src/containers/paper-canvas.jsx#L124
+    // https://github.com/scratchfoundation/scratch-paint/blob/cdf0afc217633e6cfb8ba90ea4ae38b79882cf6c/src/containers/paper-canvas.jsx#L124
     const originalImportImage = PaperCanvas.prototype.importImage;
     PaperCanvas.prototype.importImage = function (...args) {
       expectingImport = true;
@@ -105,7 +107,7 @@ export default async function ({ addon, console, msg }) {
 
     // recalibrateSize is called when the canvas finishes loading an image.
     // all paths of importImage will result in a call to this method.
-    // https://github.com/LLK/scratch-paint/blob/cdf0afc217633e6cfb8ba90ea4ae38b79882cf6c/src/containers/paper-canvas.jsx#L310-L327
+    // https://github.com/scratchfoundation/scratch-paint/blob/cdf0afc217633e6cfb8ba90ea4ae38b79882cf6c/src/containers/paper-canvas.jsx#L310-L327
     // We use this to know when to add layers.
     const originalRecalibrateSize = PaperCanvas.prototype.recalibrateSize;
     PaperCanvas.prototype.recalibrateSize = function (callback) {
@@ -268,7 +270,7 @@ export default async function ({ addon, console, msg }) {
         const canvas = this.canvas;
         const ctx = this.context;
 
-        // Based on https://github.com/LLK/paper.js/blob/16d5ff0267e3a0ef647c25e58182a27300afad20/src/item/Item.js#L1761
+        // Based on https://github.com/scratchfoundation/paper.js/blob/16d5ff0267e3a0ef647c25e58182a27300afad20/src/item/Item.js#L1761
         const scaledWidth = width * newScale;
         const scaledHeight = height * newScale;
         canvas.width = scaledWidth;
@@ -300,8 +302,10 @@ export default async function ({ addon, console, msg }) {
 
   const makeVectorOnion = (opacity, costume, asset, isBefore) =>
     new Promise((resolve, reject) => {
+      asset = sanitizeSvg.sanitizeSvgText(asset);
+
       const { rotationCenterX, rotationCenterY } = costume;
-      // https://github.com/LLK/scratch-paint/blob/cdf0afc217633e6cfb8ba90ea4ae38b79882cf6c/src/containers/paper-canvas.jsx#L196-L218
+      // https://github.com/scratchfoundation/scratch-paint/blob/cdf0afc217633e6cfb8ba90ea4ae38b79882cf6c/src/containers/paper-canvas.jsx#L196-L218
       asset = asset.split(/<\s*svg:/).join("<");
       asset = asset.split(/<\/\s*svg:/).join("</");
       const svgAttrs = asset.match(/<svg [^>]*>/);
@@ -322,7 +326,7 @@ export default async function ({ addon, console, msg }) {
       const handleLoad = (root) => {
         root.opacity = opacity;
 
-        // https://github.com/LLK/scratch-paint/blob/cdf0afc217633e6cfb8ba90ea4ae38b79882cf6c/src/containers/paper-canvas.jsx#L274-L275
+        // https://github.com/scratchfoundation/scratch-paint/blob/cdf0afc217633e6cfb8ba90ea4ae38b79882cf6c/src/containers/paper-canvas.jsx#L274-L275
         recursePaperItem(root, (i) => {
           if (i.className === "PathItem") {
             i.clockwise = true;
@@ -362,7 +366,7 @@ export default async function ({ addon, console, msg }) {
         }
 
         const paperCenter = getPaperCenter();
-        // https://github.com/LLK/scratch-paint/blob/cdf0afc217633e6cfb8ba90ea4ae38b79882cf6c/src/containers/paper-canvas.jsx#L277-L287
+        // https://github.com/scratchfoundation/scratch-paint/blob/cdf0afc217633e6cfb8ba90ea4ae38b79882cf6c/src/containers/paper-canvas.jsx#L277-L287
         if (typeof rotationCenterX !== "undefined" && typeof rotationCenterY !== "undefined") {
           let rotationPoint = new paper.Point(rotationCenterX, rotationCenterY);
           if (viewBox && viewBox.length >= 2 && !isNaN(viewBox[0]) && !isNaN(viewBox[1])) {
@@ -399,7 +403,7 @@ export default async function ({ addon, console, msg }) {
         const width = Math.min(paperCenter.x * 2, image.width);
         const height = Math.min(paperCenter.y * 2, image.height);
 
-        // https://github.com/LLK/scratch-paint/blob/cdf0afc217633e6cfb8ba90ea4ae38b79882cf6c/src/containers/paper-canvas.jsx#L151-L156
+        // https://github.com/scratchfoundation/scratch-paint/blob/cdf0afc217633e6cfb8ba90ea4ae38b79882cf6c/src/containers/paper-canvas.jsx#L151-L156
         if (typeof rotationCenterX === "undefined") {
           rotationCenterX = width / 2;
         }
@@ -588,6 +592,10 @@ export default async function ({ addon, console, msg }) {
   settingButton.addEventListener("click", () => setSettingsOpen(!areSettingsOpen()));
   settingButton.title = msg("settings");
   settingButton.appendChild(createButtonImage("settings"));
+
+  document.body.addEventListener("click", (e) => {
+    if (areSettingsOpen() && !e.target.matches(".sa-onion-group *")) setSettingsOpen(false);
+  });
 
   //
   // Settings page

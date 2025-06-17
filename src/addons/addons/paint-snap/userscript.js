@@ -17,8 +17,8 @@ export default async function (api) {
   addon.settings.addEventListener("change", () => setGuideColor(addon.settings.get("guide-color")));
 
   if (isSelectTool(tool)) {
-    updateSelectTool(paper, tool);
-    updateScaleTool(paper, tool);
+    updateSelectTool(paper, tool, addon.tab.traps.vm);
+    updateScaleTool(paper, tool, addon.tab.traps.vm);
   }
   initUI(api);
 }

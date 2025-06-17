@@ -1,29 +1,9 @@
-@namespace xlink url("http://www.w3.org/1999/xlink");
-
+/* block-palette-icons */
 .scratchCategoryItemBubble::after {
-  /* block-palette-icons */
   filter: brightness(0);
 }
-
-.blocklyEditableText > text {
-  fill: var(--editorTheme3-inputColor-blackText);
-}
-.blocklyHtmlInput {
-  color: var(--editorTheme3-inputColor-blackText);
-}
-
-[class*="blocks_blocks_"] image[xlink|href$="/rotate-left.svg"],
-[class*="blocks_blocks_"] image[xlink|href$="/rotate-right.svg"],
-[class*="blocks_blocks_"] image[xlink|href$="/repeat.svg"] {
-  filter: invert(1) hue-rotate(180deg);
-}
-
-.blocklyDropDownDiv .goog-menuitem,
-.sa-contextmenu-colored .blocklyContextMenu .goog-menuitem .goog-menuitem-content {
+.blocklyNumPadButton {
   color: black;
-}
-.blocklyDropDownDiv .blocklyText {
-  fill: black;
 }
 
 /* Compatibility */
@@ -31,6 +11,6 @@
 .sa-block-color {
   --sa-block-text: black;
   --sa-block-gray-text: black;
-  --sa-block-colored-text: var(--sa-block-background-tertiary);
+  --sa-block-colored-text: var(--sa-block-background-tertiary, black);
   --sa-block-text-on-bright-background: black;
 }

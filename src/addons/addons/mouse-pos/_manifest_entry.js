@@ -2,7 +2,7 @@
 const manifest = {
   "editorOnly": true,
   "noTranslations": true,
-  "name": "Mouse position",
+  "name": "Mouse position display",
   "description": "Displays your mouse x/y position above the stage in the editor.",
   "credits": [
     {

@@ -5,18 +5,11 @@ let hasSetup = false;
 let gainNode = null;
 let unmuteVolume = 1;
 let volumeBeforeFinishSetup = 1;
-let globalVm;
 const callbacks = [];
 
 export const setVolume = (newVolume) => {
   if (gainNode) {
     gainNode.value = newVolume;
-    // literally any other extension
-    for (const audioData of globalVm.runtime._extensionAudioObjects.values()) {
-      if (audioData.gainNode) {
-        audioData.gainNode.gain.value = gainNode.value;
-      }
-    }
   } else {
     volumeBeforeFinishSetup = newVolume;
   }
@@ -58,12 +51,6 @@ const gotAudioEngine = (audioEngine) => {
   }
   gainNode = audioEngine.inputNode.gain;
   gainNode.value = volumeBeforeFinishSetup;
-  // literally any other extension
-  for (const audioData of globalVm.runtime._extensionAudioObjects.values()) {
-    if (audioData.gainNode) {
-      audioData.gainNode.gain.value = gainNode.value;
-    }
-  }
 };
 
 export const setup = (vm) => {
@@ -71,7 +58,6 @@ export const setup = (vm) => {
     return;
   }
   hasSetup = true;
-  globalVm = vm;
 
   const audioEngine = vm.runtime.audioEngine;
   if (audioEngine) {

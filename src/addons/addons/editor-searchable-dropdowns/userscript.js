@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default async function ({ addon, console, msg }) {
   const Blockly = await addon.tab.traps.getBlockly();
   const vm = addon.tab.traps.vm;
@@ -104,31 +103,6 @@ export default async function ({ addon, console, msg }) {
   const oldFieldDropdownGetOptions = Blockly.FieldDropdown.prototype.getOptions;
   Blockly.FieldDropdown.prototype.getOptions = function () {
     const options = oldFieldDropdownGetOptions.call(this);
-    const block = this.sourceBlock_;
-    const isStage = vm.editingTarget && vm.editingTarget.isStage;
-    if (block) {
-      if (block.category_ === "data") {
-        options.push(getMenuItemMessage("createGlobalVariable"));
-        if (!isStage) {
-          options.push(getMenuItemMessage("createLocalVariable"));
-        }
-      } else if (block.category_ === "data-lists") {
-        options.push(getMenuItemMessage("createGlobalList"));
-        if (!isStage) {
-          options.push(getMenuItemMessage("createLocalList"));
-        }
-      } else if (block.type === "event_broadcast_menu" || block.type === "event_whenbroadcastreceived") {
-        options.push(getMenuItemMessage("createBroadcast"));
-      }
-    }
-    // Options aren't normally stored anywhere, so we'll store them ourselves.
-    resultOfLastGetOptions = options;
-    return options;
-  };
-
-  const oldFieldTextDropdownGetOptions = Blockly.FieldTextDropdown.prototype.getOptions;
-  Blockly.FieldTextDropdown.prototype.getOptions = function () {
-    const options = oldFieldTextDropdownGetOptions.call(this);
     const block = this.sourceBlock_;
     const isStage = vm.editingTarget && vm.editingTarget.isStage;
     if (block) {

@@ -2,8 +2,12 @@
 const manifest = {
   "editorOnly": true,
   "name": "Insert blocks by name",
-  "description": "Middle click on the code area, use Ctrl+Space or Shift+Click to bring up a floating input box where you can type the name of a block (or parts of it) and drag the block into the code area. Hold Shift while dragging to avoid closing the box when adding multiple blocks at once.",
+  "description": "Middle or shift-click the code area, or press Ctrl+Space to bring up a block search window. Type block names (or parts of them) and drag them into the code area to add them to your project. The menu can be navigated with the arrow keys and Enter and supports autocompleting with Tab. To prevent the menu from closing, hold Shift while dragging blocks out of it.",
   "credits": [
+    {
+      "name": "Tacodiva",
+      "link": "https://scratch.mit.edu/users/Tacodiva7729/"
+    },
     {
       "name": "griffpatch"
     },
@@ -12,8 +16,9 @@ const manifest = {
       "link": "https://scratch.mit.edu/users/TheColaber/"
     },
     {
-      "name": "JeremyGamer13"
-    },
+      "name": "CST1229",
+      "link": "https://scratch.mit.edu/users/CST1229/"
+    }
   ],
   "tags": [
     "recommended"
@@ -31,15 +36,17 @@ const manifest = {
   ],
   "settings": [
     {
+      "dynamic": true,
       "name": "Popup Block Size",
       "id": "popup_scale",
       "type": "integer",
       "min": 1,
       "max": 100,
-      "default": 64
+      "default": 48
     },
     {
-      "name": "Popup Default Width",
+      "dynamic": true,
+      "name": "Popup Width",
       "id": "popup_width",
       "type": "integer",
       "min": 1,
@@ -47,38 +54,19 @@ const manifest = {
       "default": 16
     },
     {
-      "name": "Popup Max Search Height",
+      "dynamic": true,
+      "name": "Popup Maximum Height",
       "id": "popup_max_height",
       "type": "integer",
       "min": 1,
       "max": 100,
       "default": 40
-    },
-    {
-      "name": "Max Search Results",
-      "id": "popup_max_search",
-      "type": "integer",
-      "min": 1,
-      "max": 1000,
-      "default": 100
-    },
-    {
-      "name": "Max Object Variants",
-      "id": "popup_max_variants",
-      "type": "integer",
-      "min": 1,
-      "max": 1000,
-      "default": 7
     }
   ],
   "info": [
     {
       "text": "This addon was previously part of the \"developer tools\" addon but has moved here.",
       "id": "developer-tools"
-    },
-    {
-      "text": "Changing the \"Max Object Variants\" will limit the amount of results that just use a different costume, sprite, sound or menu option selected in the block.",
-      "id": "maxObjectVariants"
     }
   ]
 };

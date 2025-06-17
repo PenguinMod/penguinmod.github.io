@@ -35,9 +35,6 @@
   background-position: calc(100% - 7px) center;
   font-size: 0.75rem;
 }
-[theme="dark"] .sa-var-manager-searchbox {
-  border-color: #333;
-}
 
 [dir="rtl"] .sa-var-manager-searchbox {
   padding-right: 8px;
@@ -120,11 +117,8 @@
 }
 
 .sa-var-manager td {
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--ui-black-transparent);
   text-align: left;
-}
-[theme="dark"] .sa-var-manager td {
-  border-color: #333;
 }
 
 /* tr:nth-child(even) {

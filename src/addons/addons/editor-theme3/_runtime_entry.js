@@ -4,10 +4,46 @@ import _css from "!css-loader!./theme3.css";
 import _css2 from "!css-loader!./black_text.css";
 import _css3 from "!css-loader!./color_on_white.css";
 import _css4 from "!css-loader!./color_on_black.css";
+import _asset from "!url-loader!./icons/black_text/arrow_button.svg";
+import _asset2 from "!url-loader!./icons/black_text/extensions/music.svg";
+import _asset3 from "!url-loader!./icons/black_text/extensions/pen.svg";
+import _asset4 from "!url-loader!./icons/black_text/extensions/text2speech.svg";
+import _asset5 from "!url-loader!./icons/black_text/extensions/translate.svg";
+import _asset6 from "!url-loader!./icons/black_text/extensions/videoSensing.svg";
+import _asset7 from "!url-loader!./icons/black_text/repeat.svg";
+import _asset8 from "!url-loader!./icons/black_text/rotate-left.svg";
+import _asset9 from "!url-loader!./icons/black_text/rotate-right.svg";
+import _asset10 from "!url-loader!./icons/white_text/arrow_button.svg";
+import _asset11 from "!url-loader!./icons/white_text/extensions/music.svg";
+import _asset12 from "!url-loader!./icons/white_text/extensions/pen.svg";
+import _asset13 from "!url-loader!./icons/white_text/extensions/text2speech.svg";
+import _asset14 from "!url-loader!./icons/white_text/extensions/translate.png";
+import _asset15 from "!url-loader!./icons/white_text/extensions/videoSensing.svg";
+import _asset16 from "!url-loader!./icons/white_text/repeat.svg";
+import _asset17 from "!url-loader!./icons/white_text/rotate-left.svg";
+import _asset18 from "!url-loader!./icons/white_text/rotate-right.svg";
 export const resources = {
   "theme3.js": _js,
   "theme3.css": _css,
   "black_text.css": _css2,
   "color_on_white.css": _css3,
   "color_on_black.css": _css4,
+  "icons/black_text/arrow_button.svg": _asset,
+  "icons/black_text/extensions/music.svg": _asset2,
+  "icons/black_text/extensions/pen.svg": _asset3,
+  "icons/black_text/extensions/text2speech.svg": _asset4,
+  "icons/black_text/extensions/translate.svg": _asset5,
+  "icons/black_text/extensions/videoSensing.svg": _asset6,
+  "icons/black_text/repeat.svg": _asset7,
+  "icons/black_text/rotate-left.svg": _asset8,
+  "icons/black_text/rotate-right.svg": _asset9,
+  "icons/white_text/arrow_button.svg": _asset10,
+  "icons/white_text/extensions/music.svg": _asset11,
+  "icons/white_text/extensions/pen.svg": _asset12,
+  "icons/white_text/extensions/text2speech.svg": _asset13,
+  "icons/white_text/extensions/translate.png": _asset14,
+  "icons/white_text/extensions/videoSensing.svg": _asset15,
+  "icons/white_text/repeat.svg": _asset16,
+  "icons/white_text/rotate-left.svg": _asset17,
+  "icons/white_text/rotate-right.svg": _asset18,
 };

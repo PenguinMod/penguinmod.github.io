@@ -23,7 +23,6 @@
     "mediarecorder/record-until-stop-disabled": "Ai nevoie să activezi „{afterFlagOption}” pentru a folosi această opțiune.",
     "mediarecorder/start": "Pornește",
     "mediarecorder/stop": "Oprește Înregistrarea",
-    "pause/pause": "Întrerupe",
     "clones/clones": "clone: {cloneCount}",
     "color-picker/hex": "culoare hex",
     "remove-sprite-confirm/confirm": "Vrei să ștergi acest personaj?",

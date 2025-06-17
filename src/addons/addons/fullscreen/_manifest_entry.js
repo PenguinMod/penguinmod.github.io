@@ -11,7 +11,7 @@ const manifest = {
   "info": [
     {
       "type": "notice",
-      "text": "If you choose to hide the toolbar, remember that you can use the Esc key to exit the project player's full screen mode.",
+      "text": "If you choose to never show the toolbar, remember that you can use the Esc key to exit the project player's full screen mode.",
       "id": "hideToolbarNotice"
     }
   ],
@@ -25,10 +25,24 @@ const manifest = {
     },
     {
       "dynamic": true,
-      "name": "Hide toolbar in full screen",
-      "id": "hideToolbar",
-      "type": "boolean",
-      "default": false
+      "name": "Toolbar visibility",
+      "id": "toolbar",
+      "type": "select",
+      "potentialValues": [
+        {
+          "name": "Always",
+          "id": "show"
+        },
+        {
+          "name": "When hovered",
+          "id": "hover"
+        },
+        {
+          "name": "Never",
+          "id": "hide"
+        }
+      ],
+      "default": "show"
     }
   ],
   "dynamicDisable": true,
@@ -43,7 +57,7 @@ const manifest = {
       "url": "resizeWindow.css",
       "if": {
         "settings": {
-          "hideToolbar": false
+          "toolbar": "show"
         }
       }
     },
@@ -51,7 +65,10 @@ const manifest = {
       "url": "resizeWindow_noToolbar.css",
       "if": {
         "settings": {
-          "hideToolbar": true
+          "toolbar": [
+            "hide",
+            "hover"
+          ]
         }
       }
     },
@@ -59,7 +76,10 @@ const manifest = {
       "url": "hideToolbar.css",
       "if": {
         "settings": {
-          "hideToolbar": true
+          "toolbar": [
+            "hide",
+            "hover"
+          ]
         }
       }
     }

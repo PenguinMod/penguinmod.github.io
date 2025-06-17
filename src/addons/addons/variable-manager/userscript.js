@@ -1,4 +1,3 @@
-const variableManagerTabId = 10000 + 3; // addon tabs are in 10000s
 export default async function ({ addon, console, msg }) {
   const vm = addon.tab.traps.vm;
 
@@ -50,7 +49,7 @@ export default async function ({ addon, console, msg }) {
   // Cannot use number due to conflict after leaving and re-entering editor
   varTab.id = "react-tabs-sa-variable-manager";
 
-  const varTabIcon = document.createElement("img");
+  const varTabIcon = addon.tab.recolorable();
   varTabIcon.draggable = false;
   varTabIcon.src = addon.self.getResource("/icon.svg") /* rewritten by pull.js */;
 
@@ -281,7 +280,7 @@ export default async function ({ addon, console, msg }) {
   }
 
   function fullReload() {
-    if (addon.tab.redux.state?.scratchGui?.editorTab?.activeTabIndex !== variableManagerTabId || preventUpdate) return;
+    if (addon.tab.redux.state?.scratchGui?.editorTab?.activeTabIndex !== 3 || preventUpdate) return;
 
     const editingTarget = vm.runtime.getEditingTarget();
     const stage = vm.runtime.getTargetForStage();
@@ -314,7 +313,7 @@ export default async function ({ addon, console, msg }) {
   }
 
   function quickReload() {
-    if (addon.tab.redux.state?.scratchGui?.editorTab?.activeTabIndex !== variableManagerTabId || preventUpdate) return;
+    if (addon.tab.redux.state?.scratchGui?.editorTab?.activeTabIndex !== 3 || preventUpdate) return;
 
     for (const variable of localVariables) {
       variable.updateValue();
@@ -330,7 +329,7 @@ export default async function ({ addon, console, msg }) {
   }
 
   varTab.addEventListener("click", (e) => {
-    addon.tab.redux.dispatch({ type: "scratch-gui/navigation/ACTIVATE_TAB", activeTabIndex: variableManagerTabId });
+    addon.tab.redux.dispatch({ type: "scratch-gui/navigation/ACTIVATE_TAB", activeTabIndex: 3 });
   });
 
   function setVisible(visible) {
@@ -355,9 +354,17 @@ export default async function ({ addon, console, msg }) {
   addon.tab.redux.initialize();
   addon.tab.redux.addEventListener("statechanged", ({ detail }) => {
     if (detail.action.type === "scratch-gui/navigation/ACTIVATE_TAB") {
-      setVisible(detail.action.activeTabIndex === variableManagerTabId);
+      const varManagerWasSelected = document.body.contains(manager);
+      const switchedToVarManager = detail.action.activeTabIndex === 3;
+
+      if (varManagerWasSelected && !switchedToVarManager) {
+        // Fixes #5773
+        queueMicrotask(() => window.dispatchEvent(new Event("resize")));
+      }
+
+      setVisible(switchedToVarManager);
     } else if (detail.action.type === "scratch-gui/mode/SET_PLAYER") {
-      if (!detail.action.isPlayerOnly && addon.tab.redux.state.scratchGui.editorTab.activeTabIndex === variableManagerTabId) {
+      if (!detail.action.isPlayerOnly && addon.tab.redux.state.scratchGui.editorTab.activeTabIndex === 3) {
         // DOM doesn't actually exist yet
         queueMicrotask(() => setVisible(true));
       }
@@ -391,7 +398,7 @@ export default async function ({ addon, console, msg }) {
   };
 
   addon.self.addEventListener("disabled", () => {
-    if (addon.tab.redux.state.scratchGui.editorTab.activeTabIndex === variableManagerTabId) {
+    if (addon.tab.redux.state.scratchGui.editorTab.activeTabIndex === 3) {
       addon.tab.redux.dispatch({ type: "scratch-gui/navigation/ACTIVATE_TAB", activeTabIndex: 2 });
     }
   });
@@ -402,6 +409,6 @@ export default async function ({ addon, console, msg }) {
       reduxEvents: ["scratch-gui/mode/SET_PLAYER", "fontsLoaded/SET_FONTS_LOADED", "scratch-gui/locales/SELECT_LOCALE"],
       reduxCondition: (state) => !state.scratchGui.mode.isPlayerOnly,
     });
-    addon.tab.appendToSharedSpace({ space: "afterSoundTab", element: varTab, order: variableManagerTabId });
+    addon.tab.appendToSharedSpace({ space: "afterSoundTab", element: varTab, order: 3 });
   }
 }

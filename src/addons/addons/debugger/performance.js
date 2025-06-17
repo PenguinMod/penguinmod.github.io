@@ -1,9 +1,13 @@
 import { onPauseChanged, isPaused } from "./module.js";
+import "../../libraries/thirdparty/cs/chart.min.js";
 
 export default async function createPerformanceTab({ debug, addon, console, msg }) {
   const vm = addon.tab.traps.vm;
 
-  await addon.tab.loadScript(addon.self.getResource("/thirdparty/cs/chart.min.js")) /* rewritten by pull.js */;
+  // In optimized graphs everything still looks good
+  const fancyGraphs = addon.settings.get("fancy_graphs");
+  const lineWidth = fancyGraphs ? 1 : 2;
+  const lineColor = fancyGraphs ? "hsla(163, 85%, 40%, 0.5)" : "hsla(163, 85%, 40%, 1)";
 
   const tab = debug.createHeaderTab({
     text: msg("tab-performance"),
@@ -29,7 +33,8 @@ export default async function createPerformanceTab({ debug, addon, console, msg 
 
   const now = () => performance.now();
 
-  const getMaxFps = () => Math.round(1000 / vm.runtime.currentStepTime);
+  // We'll guess that requestAnimationFrame is probably 60, but even if it's not, it's not a big deal.
+  const getMaxFps = () => vm.runtime.frameLoop.framerate === 0 ? 60 : vm.runtime.frameLoop.framerate;
 
   const NUMBER_OF_POINTS = 20;
   // An array like [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
@@ -45,16 +50,18 @@ export default async function createPerformanceTab({ debug, addon, console, msg 
       datasets: [
         {
           data: Array(NUMBER_OF_POINTS).fill(-1),
-          borderWidth: 1,
-          fill: true,
+          borderWidth: lineWidth,
+          fill: fancyGraphs,
           backgroundColor: "#29beb8",
+          borderColor: lineColor,
         },
       ],
     },
     options: {
+      animation: fancyGraphs,
       scales: {
         y: {
-          max: getMaxFps(),
+          suggestedMax: getMaxFps(),
           min: 0,
         },
       },
@@ -81,16 +88,18 @@ export default async function createPerformanceTab({ debug, addon, console, msg 
       datasets: [
         {
           data: Array(NUMBER_OF_POINTS).fill(-1),
-          borderWidth: 1,
-          fill: true,
+          borderWidth: lineWidth,
+          fill: fancyGraphs,
           backgroundColor: "#29beb8",
+          borderColor: lineColor,
         },
       ],
     },
     options: {
+      animation: fancyGraphs,
       scales: {
         y: {
-          max: 300,
+          suggestedMax: 300,
           min: 0,
         },
       },
@@ -132,7 +141,7 @@ export default async function createPerformanceTab({ debug, addon, console, msg 
       fpsData.shift();
       fpsData.push(Math.min(renderTimes.length, maxFps));
       // Incase we switch between 30FPS and 60FPS, update the max height of the chart.
-      fpsChart.options.scales.y.max = maxFps;
+      fpsChart.options.scales.y.suggestedMax = maxFps;
 
       const clonesData = performanceClonesChart.data.datasets[0].data;
       clonesData.shift();

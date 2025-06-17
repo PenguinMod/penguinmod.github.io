@@ -108,7 +108,7 @@ export default async function createLogsTab({ debug, addon, console, msg }) {
                 sprite: targetInfo ? targetInfo.name : msg("unknown-sprite"),
                 type,
                 content: text,
-              }[match])
+              })[match]
           ) + "\n"
         ).repeat(count)
       )
@@ -139,7 +139,7 @@ export default async function createLogsTab({ debug, addon, console, msg }) {
       preview: true,
     };
     if (thread) {
-      log.blockId = thread.peekStack ? thread.peekStack() : thread.thread.peekStack();
+      log.blockId = thread.peekStack();
       const targetId = thread.target.id;
       log.targetId = targetId;
       log.targetInfo = debug.getTargetInfoById(targetId);

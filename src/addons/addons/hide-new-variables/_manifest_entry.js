@@ -3,7 +3,7 @@ const manifest = {
   "editorOnly": true,
   "noTranslations": true,
   "name": "Hide new variables",
-  "description": "Do not automatically create monitors for newly created variables or lists.",
+  "description": "Do not automatically show monitors for newly created variables or lists.",
   "credits": [
     {
       "name": "GarboMuffin"

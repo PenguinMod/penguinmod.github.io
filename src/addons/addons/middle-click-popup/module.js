@@ -1,3 +1,5 @@
+import EventTarget from "../../event-target.js"; /* inserted by pull.js */
+
 const textWidthCache = new Map();
 const textWidthCacheSize = 1000;
 

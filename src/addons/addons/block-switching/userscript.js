@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 export default async function ({ addon, console, msg }) {
   const ScratchBlocks = await addon.tab.traps.getBlockly();
   const vm = addon.tab.traps.vm;
@@ -29,20 +27,6 @@ export default async function ({ addon, console, msg }) {
       blockSwitches["motion_turnleft"] = [
         {
           opcode: "motion_turnright",
-        },
-        noopSwitch,
-      ];
-      blockSwitches["motion_gotoxy"] = [
-        noopSwitch,
-        {
-          opcode: "motion_changebyxy",
-          remapInputName: { X: "DX", Y: "DY" },
-        }
-      ];
-      blockSwitches["motion_changebyxy"] = [
-        {
-          opcode: "motion_gotoxy",
-          remapInputName: { DX: "X", DY: "Y" },
         },
         noopSwitch,
       ];
@@ -170,24 +154,6 @@ export default async function ({ addon, console, msg }) {
       blockSwitches["looks_hide"] = [
         {
           opcode: "looks_show",
-        },
-        noopSwitch,
-      ];
-      blockSwitches["looks_setShape"] = [
-        {
-          opcode: "looks_setShape",
-        },
-        noopSwitch,
-      ];
-      blockSwitches["looks_setColor"] = [
-        {
-          opcode: "looks_setColor",
-        },
-        noopSwitch,
-      ];
-      blockSwitches["looks_setFont"] = [
-        {
-          opcode: "looks_setFont",
         },
         noopSwitch,
       ];
@@ -401,9 +367,6 @@ export default async function ({ addon, console, msg }) {
       blockSwitches["control_repeat_until"] = [
         noopSwitch,
         {
-          opcode: "control_while",
-        },
-        {
           opcode: "control_wait_until",
           splitInputs: ["SUBSTACK"],
         },
@@ -416,9 +379,6 @@ export default async function ({ addon, console, msg }) {
         {
           opcode: "control_repeat_until",
         },
-        {
-          opcode: "control_while",
-        },
         noopSwitch,
       ];
       blockSwitches["control_wait_until"] = [
@@ -427,17 +387,6 @@ export default async function ({ addon, console, msg }) {
         },
         noopSwitch,
       ];
-
-      blockSwitches["control_while"] = [
-        {
-          opcode: "control_repeat_until",
-        },
-        noopSwitch,
-        {
-          opcode: "control_forever",
-          splitInputs: ["CONDITION"],
-        },
-      ];
     }
 
     if (addon.settings.get("operator")) {
@@ -445,36 +394,18 @@ export default async function ({ addon, console, msg }) {
         {
           opcode: "operator_gt",
         },
-        {
-          opcode: "operator_gtorequal",
-        },
-        {
-          opcode: "operator_lt",
-        },
-        {
-          opcode: "operator_ltorequal",
-        },
         noopSwitch,
         {
-          opcode: "operator_notequal",
+          opcode: "operator_lt",
         },
       ];
       blockSwitches["operator_gt"] = [
         noopSwitch,
         {
-          opcode: "operator_gtorequal",
-        },
-        {
-          opcode: "operator_lt",
-        },
-        {
-          opcode: "operator_ltorequal",
-        },
-        {
           opcode: "operator_equals",
         },
         {
-          opcode: "operator_notequal",
+          opcode: "operator_lt",
         },
       ];
       blockSwitches["operator_lt"] = [
@@ -482,72 +413,9 @@ export default async function ({ addon, console, msg }) {
           opcode: "operator_gt",
         },
         {
-          opcode: "operator_gtorequal",
-        },
-        noopSwitch,
-        {
-          opcode: "operator_ltorequal",
-        },
-        {
-          opcode: "operator_equals",
-        },
-        {
-          opcode: "operator_notequal",
-        },
-      ];
-      blockSwitches["operator_notequal"] = [
-        {
-          opcode: "operator_gt",
-        },
-        {
-          opcode: "operator_gtorequal",
-        },
-        {
-          opcode: "operator_lt",
-        },
-        {
-          opcode: "operator_ltorequal",
-        },
-        {
           opcode: "operator_equals",
         },
         noopSwitch,
-      ];
-      blockSwitches["operator_gtorequal"] = [
-        {
-          opcode: "operator_gt",
-        },
-        noopSwitch,
-        {
-          opcode: "operator_lt",
-        },
-        {
-          opcode: "operator_ltorequal",
-        },
-        {
-          opcode: "operator_equals",
-        },
-        {
-          opcode: "operator_notequal",
-        },
-      ];
-      blockSwitches["operator_ltorequal"] = [
-        {
-          opcode: "operator_gt",
-        },
-        {
-          opcode: "operator_gtorequal",
-        },
-        {
-          opcode: "operator_lt",
-        },
-        noopSwitch,
-        {
-          opcode: "operator_equals",
-        },
-        {
-          opcode: "operator_notequal",
-        },
       ];
       blockSwitches["operator_add"] = [
         noopSwitch,
@@ -559,9 +427,6 @@ export default async function ({ addon, console, msg }) {
         },
         {
           opcode: "operator_divide",
-        },
-        {
-          opcode: "operator_power",
         },
         {
           opcode: "operator_mod",
@@ -579,9 +444,6 @@ export default async function ({ addon, console, msg }) {
           opcode: "operator_divide",
         },
         {
-          opcode: "operator_power",
-        },
-        {
           opcode: "operator_mod",
         },
       ];
@@ -597,9 +459,6 @@ export default async function ({ addon, console, msg }) {
           opcode: "operator_divide",
         },
         {
-          opcode: "operator_power",
-        },
-        {
           opcode: "operator_mod",
         },
       ];
@@ -612,27 +471,6 @@ export default async function ({ addon, console, msg }) {
         },
         {
           opcode: "operator_multiply",
-        },
-        noopSwitch,
-        {
-          opcode: "operator_power",
-        },
-        {
-          opcode: "operator_mod",
-        },
-      ];
-      blockSwitches["operator_power"] = [
-        {
-          opcode: "operator_add",
-        },
-        {
-          opcode: "operator_subtract",
-        },
-        {
-          opcode: "operator_multiply",
-        },
-        {
-          opcode: "operator_divide",
         },
         noopSwitch,
         {
@@ -652,9 +490,6 @@ export default async function ({ addon, console, msg }) {
         {
           opcode: "operator_divide",
         },
-        {
-          opcode: "operator_power",
-        },
         noopSwitch,
       ];
       blockSwitches["operator_and"] = [
@@ -666,18 +501,6 @@ export default async function ({ addon, console, msg }) {
       blockSwitches["operator_or"] = [
         {
           opcode: "operator_and",
-        },
-        noopSwitch,
-      ];
-      blockSwitches["operator_trueBoolean"] = [
-        noopSwitch,
-        {
-          opcode: "operator_falseBoolean",
-        },
-      ];
-      blockSwitches["operator_falseBoolean"] = [
-        {
-          opcode: "operator_trueBoolean",
         },
         noopSwitch,
       ];
@@ -862,23 +685,6 @@ export default async function ({ addon, console, msg }) {
         },
         noopSwitch,
       ];
-
-      if (vm.extensionManager) {
-        const switches = vm.extensionManager.getAddonBlockSwitches();
-        Object.getOwnPropertyNames(switches).forEach(extID => {
-          Object.getOwnPropertyNames(switches[extID]).forEach(block => {
-            blockSwitches[`${extID}_${block}`] = switches[extID][block];
-          })
-        })
-      }
-      vm.runtime.on("EXTENSION_ADDED", () => {
-        const switches = vm.extensionManager.getAddonBlockSwitches();
-        Object.getOwnPropertyNames(switches).forEach(extID => {
-          Object.getOwnPropertyNames(switches[extID]).forEach(block => {
-            blockSwitches[`${extID}_${block}`] = switches[extID][block];
-          })
-        })
-      })
     }
 
     if (addon.settings.get("sa")) {
@@ -945,7 +751,7 @@ export default async function ({ addon, console, msg }) {
    * @param {Element} xmlBlock
    */
   const pasteBlockXML = (workspace, xmlBlock) => {
-    // Similar to https://github.com/LLK/scratch-blocks/blob/7575c9a0f2c267676569c4b102b76d77f35d9fd6/core/workspace_svg.js#L1020
+    // Similar to https://github.com/scratchfoundation/scratch-blocks/blob/7575c9a0f2c267676569c4b102b76d77f35d9fd6/core/workspace_svg.js#L1020
     // but without the collision checking.
     const block = ScratchBlocks.Xml.domToBlock(xmlBlock, workspace);
     const x = +xmlBlock.getAttribute("x");
@@ -1162,7 +968,7 @@ export default async function ({ addon, console, msg }) {
             }
           } else if (customArgsMode === "defOnly") {
             const root = block.getRootBlock();
-            if (root.type !== "procedures_definition" || root.type !== "procedures_definition_return") return items;
+            if (root.type !== "procedures_definition") return items;
             const customBlockObj = customBlocks[root.getChildren(true)[0].getProcCode()];
             switch (type) {
               case "argument_reporter_string_number":
@@ -1223,7 +1029,7 @@ export default async function ({ addon, console, msg }) {
     { blocks: true }
   );
 
-  // https://github.com/LLK/scratch-blocks/blob/abbfe93136fef57fdfb9a077198b0bc64726f012/blocks_vertical/procedures.js#L207-L215
+  // https://github.com/scratchfoundation/scratch-blocks/blob/abbfe93136fef57fdfb9a077198b0bc64726f012/blocks_vertical/procedures.js#L207-L215
   // Returns a list like ["%s", "%d"]
   const parseArguments = (code) =>
     code

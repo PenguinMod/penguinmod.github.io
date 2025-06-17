@@ -78,3 +78,23 @@
 .sa-stage-hidden [class*="gui_tab-list_"] {
   padding-inline-start: calc(240px + 1.125rem);
 }
+
+/* related to TW changes to headers */
+[dir="ltr"] [class^="stage-header_stage-header-wrapper_"] {
+  right: initial;
+  left: 0;
+}
+[dir="rtl"] [class^="stage-header_stage-header-wrapper_"] {
+  right: 0;
+  left: initial;
+}
+[class*="stage-wrapper_offset-controls_"] {
+  z-index: 10;
+}
+[dir="rtl"] [class^="stage-header_stage-header-wrapper_"] {
+  right: 0 !important;
+}
+[dir="rtl"] .sa-stage-hidden [class*="stage-header_stage-size-row"] {
+  right: 0.5rem !important;
+  left: 0 !important;
+}

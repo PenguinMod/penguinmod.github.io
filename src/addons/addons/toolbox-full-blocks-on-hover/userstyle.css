@@ -1,8 +1,0 @@
-[class*="blocks_blocks_"] .blocklyFlyout:has(.blocklyDraggable:hover) {
-    overflow: visible;
-    z-index: 31;
-}
-
-[class*="blocks_blocks_"] .blocklyFlyout:has(.blocklyDraggable:hover) .blocklyWorkspace {
-    clip-path: unset !important;
-}
