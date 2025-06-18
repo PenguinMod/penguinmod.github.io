@@ -5,6 +5,7 @@ import log from '../lib/log';
 import bindAll from 'lodash.bindall';
 import SecurityManagerModal from '../components/tw-security-manager-modal/security-manager-modal.jsx';
 import SecurityModals from '../lib/tw-security-manager-constants';
+import { isDefinitelyExecutable } from '../lib/pm-security-manager-download-util.js';
 
 /**
  * Set of extension URLs that the user has manually trusted to load unsandboxed.
@@ -77,10 +78,15 @@ const isAlwaysTrustedForFetching = parsed => (
 
     // GitHub
     parsed.origin === 'https://raw.githubusercontent.com' ||
+    parsed.origin === 'https://gist.githubusercontent.com' ||
     parsed.origin === 'https://api.github.com' ||
 
-    // GitLab
+    // GitLab API
+    // GitLab Pages allows redirects, so not included here.
     parsed.origin === 'https://gitlab.com' ||
+
+    // Sourcehut Pages
+    parsed.origin.endsWith('.srht.site') ||
 
     // Itch
     parsed.origin.endsWith('.itch.io') ||
@@ -95,18 +101,38 @@ const isAlwaysTrustedForFetching = parsed => (
     parsed.origin === 'https://scratchdb.lefty.one'
 );
 
+const FETCHABLE_PROTOCOLS = [
+    'http:',
+    'https:',
+    'data:',
+    'blob:',
+    'ws:',
+    'wss:'
+];
+
+const VISITABLE_PROTOCOLS = [
+    // The important one we want to exclude is javascript:
+    'http:',
+    'https:',
+    'data:',
+    'blob:',
+    'mailto:',
+    'steam:',
+    'calculator:'
+];
+
 /**
  * @param {string} url Original URL string
+ * @param {string[]} protocols List of allowed protocols
  * @returns {URL|null} A URL object if it is valid and of a known protocol, otherwise null.
  */
-const parseURL = url => {
+const parseURL = (url, protocols) => {
     let parsed;
     try {
         parsed = new URL(url);
     } catch (e) {
         return null;
     }
-    const protocols = ['http:', 'https:', 'ws:', 'wss:', 'data:', 'blob:'];
     if (!protocols.includes(parsed.protocol)) {
         return null;
     }
@@ -119,12 +145,24 @@ let allowedReadClipboard = false;
 let allowedNotify = false;
 let allowedGeolocation = false;
 let allowedScreenshotCamera = false;
-const notAllowedToAskUnsandbox = Object.create(null);
-let loadingExtensionsRemember = false;
-let rememberedExtensionInfo = {
+
+let rememberFetchSitesDecision = false;
+let rememberFetchSitesAllAllowed = false;
+let rememberEmbedSitesDecision = false;
+let rememberEmbedSitesAllAllowed = false;
+let rememberDownloadDecision = false;
+let rememberDownloadAllAllowed = false;
+let rememberLoadingExtensions = false;
+let rememberLoadingExtensionsInfo = {
     unsandboxed: false,
     loaded: false
 };
+
+/**
+ * A list of developer defined names that are not allowed to ask for unsandboxing.
+ * @type {Set<string>}
+ */
+const notAllowedToAskUnsandbox = new Set();
 
 const SECURITY_MANAGER_METHODS = [
     'getSandboxMode',
@@ -139,7 +177,8 @@ const SECURITY_MANAGER_METHODS = [
     'canGeolocate',
     'canEmbed',
     'canUnsandbox',
-    'canScreenshotCamera'
+    'canScreenshotCamera',
+    'canDownload'
 ];
 
 class TWSecurityManagerComponent extends React.Component {
@@ -162,16 +201,23 @@ class TWSecurityManagerComponent extends React.Component {
     }
 
     projectWillChange() {
-        loadingExtensionsRemember = false;
-        rememberedExtensionInfo = {
+        rememberFetchSitesDecision = false;
+        rememberFetchSitesAllAllowed = false;
+        rememberEmbedSitesDecision = false;
+        rememberEmbedSitesAllAllowed = false;
+        rememberDownloadDecision = false;
+        rememberDownloadAllAllowed = false;
+        rememberLoadingExtensions = false;
+        rememberLoadingExtensionsInfo = {
             unsandboxed: false,
             loaded: false
         };
     }
     componentDidMount() {
-        const securityManager = this.props.vm.extensionManager.securityManager;
+        const vmSecurityManager = this.props.vm.extensionManager.securityManager;
+        const propsSecurityManager = this.props.securityManager;
         for (const method of SECURITY_MANAGER_METHODS) {
-            securityManager[method] = this[method];
+            vmSecurityManager[method] = propsSecurityManager[method] || this[method];
         }
         this.props.vm.runtime.on('RUNTIME_DISPOSED', this.projectWillChange);
     }
@@ -279,19 +325,19 @@ class TWSecurityManagerComponent extends React.Component {
             log.info(`Loading extension ${url} automatically`);
             return true;
         }
-        if (loadingExtensionsRemember) {
-            // TODO: find some way to identify these, custom extensions have too long of URLs
-            if (!rememberedExtensionInfo.loaded) {
-                console.warn('An extension was not loaded');
+        const { showModal, releaseLock } = await this.acquireModalLock();
+        if (rememberLoadingExtensions) {
+            releaseLock();
+            if (!rememberLoadingExtensionsInfo.loaded) {
+                log.info('An unseen extension was automatically not loaded');
                 return false;
             }
-            if (rememberedExtensionInfo.unsandboxed) {
-                console.log('An extension was loaded unsandboxed');
+            if (rememberLoadingExtensionsInfo.unsandboxed) {
+                log.warn('An unseen extension was automatically loaded unsandboxed');
                 manuallyTrustExtension(url);
             }
             return true;
         }
-        const { showModal } = await this.acquireModalLock();
 
         // we allow all urls to be unsandboxed.
         // its very likely that people would load any file unsandboxed anyways, theres no safety in blocking it for urls only.
@@ -307,8 +353,8 @@ class TWSecurityManagerComponent extends React.Component {
             manuallyTrustExtension(url);
         }
         if (this.state.data.remember) {
-            loadingExtensionsRemember = true;
-            rememberedExtensionInfo = {
+            rememberLoadingExtensions = true;
+            rememberLoadingExtensionsInfo = {
                 unsandboxed: this.state.data.unsandboxed,
                 loaded: allowed
             };
@@ -321,7 +367,7 @@ class TWSecurityManagerComponent extends React.Component {
      * @returns {Promise<boolean>} True if the resource is allowed to be fetched
      */
     async canFetch(url) {
-        const parsed = parseURL(url);
+        const parsed = parseURL(url, FETCHABLE_PROTOCOLS);
         if (!parsed) {
             return false;
         }
@@ -329,15 +375,32 @@ class TWSecurityManagerComponent extends React.Component {
             return true;
         }
         const { showModal, releaseLock } = await this.acquireModalLock();
-        if (fetchOriginsTrustedByUser.has(origin)) {
+        const origin = (parsed.protocol === 'http:' || parsed.protocol === 'https:') ? parsed.origin : null;
+        if (rememberFetchSitesDecision) {
+            releaseLock();
+            if (rememberFetchSitesAllAllowed) {
+                log.warn(url, "was automatically fetched without prompt");
+            } else {
+                log.info(url, "was automatically denied without prompt");
+            }
+            return rememberFetchSitesAllAllowed;
+        }
+        if (origin && fetchOriginsTrustedByUser.has(origin)) {
             releaseLock();
             return true;
         }
         const allowed = await showModal(SecurityModals.Fetch, {
-            url
+            url,
+            remember: false,
+            onChangeRemember: this.handleChangeRemember.bind(this),
         });
         if (allowed) {
             fetchOriginsTrustedByUser.add(origin);
+        }
+        if (this.state.data.remember) {
+            rememberFetchSitesDecision = true;
+            rememberFetchSitesAllAllowed = allowed;
+            log.info("Remembering to allow all sites?", rememberFetchSitesAllAllowed);
         }
         return allowed;
     }
@@ -347,7 +410,7 @@ class TWSecurityManagerComponent extends React.Component {
      * @returns {Promise<boolean>} True if the website can be opened
      */
     async canOpenWindow(url) {
-        const parsed = parseURL(url);
+        const parsed = parseURL(url, VISITABLE_PROTOCOLS);
         if (!parsed) {
             return false;
         }
@@ -362,7 +425,7 @@ class TWSecurityManagerComponent extends React.Component {
      * @returns {Promise<boolean>} True if the website can be redirected to
      */
     async canRedirect(url) {
-        const parsed = parseURL(url);
+        const parsed = parseURL(url, VISITABLE_PROTOCOLS);
         if (!parsed) {
             return false;
         }
@@ -439,14 +502,14 @@ class TWSecurityManagerComponent extends React.Component {
     }
 
     /**
-     * @returns {Promise<boolean>} True if geolocation is allowed.
+     * @returns {Promise<boolean>} True if unsandboxing the provided extension name is allowed.
      */
     async canUnsandbox(name) {
-        if (notAllowedToAskUnsandbox[name]) return false;
+        if (notAllowedToAskUnsandbox.has(name)) return false;
         const { showModal } = await this.acquireModalLock();
         const allowedUnsandbox = await showModal(SecurityModals.Unsandbox, { name: name || "" });
         if (!allowedUnsandbox) {
-            notAllowedToAskUnsandbox[name] = true;
+            notAllowedToAskUnsandbox.add(name);
         }
         return allowedUnsandbox;
     }
@@ -456,19 +519,76 @@ class TWSecurityManagerComponent extends React.Component {
      * @returns {Promise<boolean>} True if embed is allowed.
      */
     async canEmbed(url) {
-        const parsed = parseURL(url);
+        const parsed = parseURL(url, FETCHABLE_PROTOCOLS);
         if (!parsed) {
             return false;
         }
         const origin = (parsed.protocol === 'http:' || parsed.protocol === 'https:') ? parsed.origin : null;
         const { showModal, releaseLock } = await this.acquireModalLock();
+        if (rememberEmbedSitesDecision) {
+            releaseLock();
+            if (rememberEmbedSitesAllAllowed) {
+                log.warn(url, "was automatically embedded without prompt");
+            } else {
+                log.info(url, "was automatically embed denied without prompt");
+            }
+            return rememberEmbedSitesAllAllowed;
+        }
         if (origin && embedOriginsTrustedByUser.has(origin)) {
             releaseLock();
             return true;
         }
-        const allowed = await showModal(SecurityModals.Embed, { url });
+        const allowed = await showModal(SecurityModals.Embed, {
+            url,
+            remember: false,
+            onChangeRemember: this.handleChangeRemember.bind(this),
+        });
         if (origin && allowed) {
             embedOriginsTrustedByUser.add(origin);
+        }
+        if (this.state.data.remember) {
+            rememberEmbedSitesDecision = true;
+            rememberEmbedSitesAllAllowed = allowed;
+            log.info("Remembering to allow embedding all sites?", rememberEmbedSitesAllAllowed);
+        }
+        return allowed;
+    }
+
+    /**
+     * @param {string} url URL to download
+     * @param {string} name Name to download as
+     * @returns {Promise<boolean>} True if allowed
+     */
+    async canDownload(url, name) {
+        const parsed = parseURL(url, FETCHABLE_PROTOCOLS);
+        if (!parsed) {
+            return false;
+        }
+        // pm: We only prompt the user for known executables.
+        // See src/lib/pm-security-manager-download-util.js for details.
+        if (!isDefinitelyExecutable(name)) {
+            return true;
+        }
+        const { showModal, releaseLock } = await this.acquireModalLock();
+        if (rememberDownloadDecision) {
+            releaseLock();
+            if (rememberDownloadAllAllowed) {
+                log.warn(url, "was automatically downloaded without prompt");
+            } else {
+                log.info(url, "was automatically download denied without prompt");
+            }
+            return rememberDownloadAllAllowed;
+        }
+        const allowed = await showModal(SecurityModals.Download, {
+            url,
+            name,
+            remember: false,
+            onChangeRemember: this.handleChangeRemember.bind(this),
+        });
+        if (this.state.data.remember) {
+            rememberDownloadDecision = true;
+            rememberDownloadAllAllowed = allowed;
+            log.info("Remembering to allow downloading all files?", rememberDownloadAllAllowed);
         }
         return allowed;
     }
@@ -500,7 +620,12 @@ TWSecurityManagerComponent.propTypes = {
                 }, {})
             ).isRequired
         }).isRequired
-    }).isRequired
+    }).isRequired,
+    securityManager: PropTypes.shape(Object.fromEntries(SECURITY_MANAGER_METHODS.map(i => [i, PropTypes.func])))
+};
+
+TWSecurityManagerComponent.defaultProps = {
+    securityManager: {}
 };
 
 const mapStateToProps = state => ({

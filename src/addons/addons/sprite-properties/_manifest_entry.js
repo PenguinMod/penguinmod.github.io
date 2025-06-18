@@ -4,8 +4,7 @@ const manifest = {
   "name": "Collapsing sprite properties",
   "description": "Hides the sprite properties panel by default, like in Scratch 2.0. Use the info button on the currently selected sprite or double-click a sprite to show the properties panel again. To re-hide it, use the collapse button in the properties panel or double-click a sprite.",
   "tags": [
-    "recommended",
-    "new"
+    "recommended"
   ],
   "credits": [
     {

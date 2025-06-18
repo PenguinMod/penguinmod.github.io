@@ -11,6 +11,7 @@ const SecurityModals = {
     Embed: 'Embed',
     Unsandbox: 'Unsandbox',
     ScreenshotCamera: 'ScreenshotCamera',
+    Download: 'Download'
 };
 
 export default SecurityModals;

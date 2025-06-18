@@ -1,7 +1,7 @@
 @import "../../css/colors.css";
 
 .modal-content {
-    max-width: 750px;
+    max-width: max(60%, 750px);
 }
 
 .body {

@@ -160,8 +160,13 @@ export default async function () {
         modalStorage.dir = settings.dir;
     }
 
-    function handleFillEvent() {
+    function handleFillEvent(paint) {
         if (!modalStorage._gradCache) return;
+
+        // set the GUI gradient mode to linear so we can position our gradients
+        paint.fillMode.gradientType = "HORIZONTAL";
+        paint.color.fillColor.gradientType = "HORIZONTAL";
+        paint.color.strokeColor.gradientType = "HORIZONTAL";
 
         // set the swatch color in case the GUI resets it
         const swatch = document.querySelector(`div[class^=color-button_color-button_] div[class^=color-button_color-button-swatch_]`);
@@ -591,7 +596,7 @@ export default async function () {
             }
 
             // run relative tool events
-            if (mode === "FILL") handleFillEvent();
+            if (mode === "FILL") handleFillEvent(paint);
             else if (paperLinkModes.has(mode)) handleShapeModeEvent(mode);
 
             const idChain = selectedItems.map((e) => e.id).join(".");
@@ -628,6 +633,7 @@ export default async function () {
                         customBtn.setAttribute("class", selectedClassName);
                         openGradientMaker();
                     } else if (e.target.nodeName === "IMG") {
+                        modalStorage._gradCache = undefined;
                         customBtn.setAttribute("class", unselectedClassName);
                     }
                 });
