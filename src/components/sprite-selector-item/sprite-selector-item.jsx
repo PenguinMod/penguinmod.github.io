@@ -161,7 +161,7 @@ SpriteSelectorItem.propTypes = {
     selected: PropTypes.bool.isRequired,
     animPref: PropTypes.string,
     deleteAnim: PropTypes.string,
-    restoreState: PropTypes.bool
+    restoreFun: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
