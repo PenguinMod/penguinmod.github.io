@@ -20,7 +20,15 @@ const SpriteSelectorItem = props => {
     const [visible, setVisible] = useState(true); // provides a clear way to check visibility
     const waitOut = useRef(null);
     const onReqCloseRef = useRef(props.onDeleteButtonClick);
-
+    const prevRestoreFun = useRef(props.restoreFun);
+    
+    useEffect(() => {
+        if (props.restoreFun && props.restoreFun !== prevRestoreFun.current) {
+            setVisible(true);
+        }
+        prevRestoreFun.current = props.restoreFun;
+    }, [props.restoreFun]);
+    
     useEffect(() => {
         onReqCloseRef.current = props.onDeleteButtonClick;
     }, [props.onDeleteButtonClick]);
@@ -46,8 +54,8 @@ const SpriteSelectorItem = props => {
             attributes={{
                 className: classNames(props.className, styles.spriteSelectorParent, {
                     [styles.isSelected]: props.selected,
-                    [styles.deletingFly]: !visible && (props.deleteAnim == "fly"),
-                    [styles.deletingShrink]: !visible && (props.deleteAnim == "shrink"),
+                    [styles.deletingFly]: !visible && (props.deleteAnim == "fly") && (props.restoreState != {}),
+                    [styles.deletingShrink]: !visible && (props.deleteAnim == "shrink") && (props.restoreState != {}),
                     [styles.noAnimation]: props.animPref == 'none' || prefersReducedMotion
                 }),
                 onClick: props.onClick,
@@ -150,13 +158,17 @@ SpriteSelectorItem.propTypes = {
     onMouseEnter: PropTypes.func,
     onMouseLeave: PropTypes.func,
     preventContextMenu: PropTypes.bool,
-    selected: PropTypes.bool.isRequired
+    selected: PropTypes.bool.isRequired,
+    animPref: PropTypes.string,
+    deleteAnim: PropTypes.string,
+    restoreState: PropTypes.bool
 };
 
 const mapStateToProps = (state) => {
     return {
         animPref: state.scratchGui.addonUtil.editorAnimPref,
         deleteAnim: state.scratchGui.addonUtil.editorDeleteAnim,
+        restoreFun: state.scratchGui.restoreDeletion.restoreFun
     };
 };
 
