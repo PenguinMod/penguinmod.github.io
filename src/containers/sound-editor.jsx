@@ -75,10 +75,17 @@ class SoundEditor extends React.Component {
                 chunkLevels: computeChunkedRMS(newProps.samples, newProps.waveformChunkSize),
             });
         }
-        if (newProps.soundId !== this.props.soundId) { // A different sound has been selected
+        if (
+            (newProps && typeof newProps.soundId !== 'undefined' && newProps.soundId !== null) &&
+            (this.props && typeof this.props.soundId !== 'undefined' && this.props.soundId !== null) &&
+            newProps.soundId !== this.props.soundId
+        ) { // this is so overkill but whatever
             this.redoStack = [];
             this.undoStack = [];
-            this.resetState(newProps.samples, newProps.sampleRate);
+            this.resetState(
+                typeof newProps.samples !== 'undefined' && newProps.samples !== null ? newProps.samples : new Float32Array(1),
+                typeof newProps.sampleRate !== 'undefined' && newProps.sampleRate !== null ? newProps.sampleRate : 3000
+            );
             this.setState({
                 trimStart: null,
                 trimEnd: null
@@ -792,16 +799,49 @@ SoundEditor.propTypes = {
 };
 
 const mapStateToProps = (state, { soundIndex }) => {
-    const sprite = state.scratchGui.vm.editingTarget.sprite;
-    // Make sure the sound index doesn't go out of range.
+    const sprite = state.scratchGui.vm.editingTarget && state.scratchGui.vm.editingTarget.sprite;
+    if (!sprite || !sprite.sounds || !Array.isArray(sprite.sounds) || sprite.sounds.length === 0) {
+        return {
+            isStereo: false,
+            duration: 0,
+            size: 0,
+            soundId: "1",
+            dataFormat: 0,
+            sampleRate: 3000,
+            samples: new Float32Array(1),
+            isFullScreen: state.scratchGui.mode.isFullScreen,
+            name: "",
+            vm: state.scratchGui.vm,
+            waveformChunkSize: state.scratchGui.addonUtil.soundEditorWaveformChunkSize,
+        };
+    }
     const index = soundIndex < sprite.sounds.length ? soundIndex : sprite.sounds.length - 1;
-    const sound = state.scratchGui.vm.editingTarget.sprite.sounds[index];
+    const sound = sprite.sounds[index];
     const audioBuffer = state.scratchGui.vm.getSoundBuffer(index);
+
+    if (!sound || !audioBuffer) {
+        return {
+            isStereo: false,
+            duration: 0,
+            size: 0,
+            soundId: "1",
+            dataFormat: 0,
+            sampleRate: 3000,
+            samples: new Float32Array(1),
+            isFullScreen: state.scratchGui.mode.isFullScreen,
+            name: "",
+            vm: state.scratchGui.vm,
+            waveformChunkSize: state.scratchGui.addonUtil.soundEditorWaveformChunkSize,
+        };
+    }
+
+    // I HATE THIS WORKAROUND PLEASE FIX IT LATER (i'm just doing this quick fix to get sharkpool off my ass)
+
     return {
         isStereo: audioBuffer.numberOfChannels !== 1,
         duration: sound.sampleCount / sound.rate,
         size: sound.asset ? sound.asset.data.byteLength : 0,
-        soundId: sound.soundId,
+        soundId: sound.soundId !== undefined ? sound.soundId : "1",
         dataFormat: sound.dataFormat,
         sampleRate: audioBuffer.sampleRate,
         samples: audioBuffer.getChannelData(0),
@@ -811,6 +851,7 @@ const mapStateToProps = (state, { soundIndex }) => {
         waveformChunkSize: state.scratchGui.addonUtil.soundEditorWaveformChunkSize,
     };
 };
+
 
 export default connect(
     mapStateToProps
