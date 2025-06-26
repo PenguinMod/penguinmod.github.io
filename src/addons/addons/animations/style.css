@@ -1,0 +1,11 @@
+.scratchCategoryMenuItem {
+    transition: transform 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95);
+}
+
+.scratchCategoryMenuItem:hover {
+    transform: scale(1.05);
+}
+
+.scratchCategoryMenuItem:active {
+    transform: scale(0.95);
+}

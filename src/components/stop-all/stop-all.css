@@ -7,10 +7,12 @@
     border-radius: 0.25rem;
     user-select: none;
     cursor: pointer;
+    transition: transform 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95);
 }
 
 .stop-all:hover {
     background-color: $motion-light-transparent;
+    transform: scale(1.05);
 }
 
 .stop-all {
@@ -19,4 +21,8 @@
 
 .stop-all.is-active {
     opacity: 1;
+}
+
+.stop-all:active {
+    transform: scale(0.95);
 }

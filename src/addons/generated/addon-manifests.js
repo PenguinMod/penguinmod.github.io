@@ -71,8 +71,10 @@ import _tw_straighten_comments from "../addons/tw-straighten-comments/_manifest_
 import _tw_remove_feedback from "../addons/tw-remove-feedback/_manifest_entry.js";
 import _tw_remove_backpack from "../addons/tw-remove-backpack/_manifest_entry.js";
 import _tw_disable_cloud_variables from "../addons/tw-disable-cloud-variables/_manifest_entry.js";
+import _animations from "../addons/animations/_manifest_entry.js";
 
 export default {
+  "animations": _animations,
   "cat-blocks": _cat_blocks,
   "editor-devtools": _editor_devtools,
   "find-bar": _find_bar,

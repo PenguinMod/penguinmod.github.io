@@ -551,5 +551,24 @@ export default function (vm) {
         // see src/components/blocks.jsx (just after `VMScratchBlocks(props.vm)`) for Edit Extension
     ]);
 
+    // brute force a toolbox update if there are no extensions loaded
+    // Someone made a commit that broke initial toolbox populate calls back in the day
+    // and no one can find it, this brute fixes the problem...
+    vm.runtime.on("PROJECT_LOADED", () => {
+        if (vm.extensionManager._loadedExtensions.size > 0) return;
+
+        const workspace = ScratchBlocks.getMainWorkspace();
+        const toolbox = workspace.getToolbox();
+        if (!toolbox) return;
+        const categoryMenu = toolbox.categoryMenu_;
+        if (!categoryMenu) return;
+        if (categoryMenu.secondTable) return;
+
+        categoryMenu.dispose();
+        categoryMenu.createDom();
+        toolbox.populate_(workspace.options.languageTree);
+        toolbox.position();
+    });
+
     return ScratchBlocks;
 }

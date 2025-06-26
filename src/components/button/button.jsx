@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -13,16 +14,19 @@ const ButtonComponent = ({
     iconHeight,
     onClick,
     children,
+    animPref,
     ...props
 }) => {
-
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (disabled) {
         onClick = function () {};
     }
 
     const icon = iconSrc && (
         <img
-            className={classNames(iconClassName, styles.icon)}
+            className={classNames(iconClassName, styles.icon, {
+                [styles.noAnimation]: animPref == 'none' || prefersReducedMotion
+            })}
             draggable={false}
             src={iconSrc}
             height={iconHeight}
@@ -34,6 +38,7 @@ const ButtonComponent = ({
         <span
             className={classNames(
                 styles.outlinedButton,
+                styles.button,
                 className
             )}
             role="button"
@@ -57,4 +62,12 @@ ButtonComponent.propTypes = {
     onClick: PropTypes.func
 };
 
-export default ButtonComponent;
+const mapStateToProps = (state) => {
+    return {
+        animPref: state.scratchGui.addonUtil.editorAnimPref,
+    };
+};
+
+export default connect(
+    mapStateToProps
+)(ButtonComponent);

@@ -1,5 +1,6 @@
 import {FormattedMessage, intlShape, defineMessages} from 'react-intl';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import React from 'react';
 
 import Box from '../box/box.jsx';
@@ -32,13 +33,15 @@ const getMSFormatted = (ms) => {
 /* eslint-disable react/prefer-stateless-function */
 class LibraryItemComponent extends React.PureComponent {
     render() {
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         return this.props.featured ? (
             <div
                 className={classNames(
                     styles.libraryItem,
                     styles.featuredItem,
                     {
-                        [styles.disabled]: this.props.disabled
+                        [styles.disabled]: this.props.disabled,
+                        [styles.noAnimation]: this.props.animPref == 'none' || prefersReducedMotion,
                     },
                     typeof this.props.extensionId === 'string' ? styles.libraryItemExtension : null,
                     this.props.hidden ? styles.hidden : null
@@ -483,4 +486,12 @@ LibraryItemComponent.defaultProps = {
     showPlayButton: false
 };
 
-export default LibraryItemComponent;
+const mapStateToProps = (state) => {
+    return {
+        animPref: state.scratchGui.addonUtil.editorAnimPref,
+    };
+};
+
+export default connect(
+    mapStateToProps
+)(LibraryItemComponent);

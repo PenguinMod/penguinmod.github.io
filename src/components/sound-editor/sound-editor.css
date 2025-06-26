@@ -86,9 +86,19 @@ $border-radius: 0.25rem;
     transition: 0.2s;
     user-select: none;
     margin: 0px;
+    transition: transform 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95);
 }
 [theme="dark"] .button {
     background-color: $ui-primary;
+}
+
+
+.button:hover {
+    transform: scale(1.02);
+}
+
+.button:active {
+    transform: scale(0.95);
 }
 
 .button > img {

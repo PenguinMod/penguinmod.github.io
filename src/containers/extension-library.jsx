@@ -215,6 +215,7 @@ class ExtensionLibrary extends React.PureComponent {
                 id="extensionLibrary"
                 actor="ExtensionLibrary"
                 header={"Extensions"}
+                kind="extension"
                 title={this.props.intl.formatMessage(messages.extensionTitle)}
                 visible={this.props.visible}
                 onItemSelected={this.handleItemSelect}
