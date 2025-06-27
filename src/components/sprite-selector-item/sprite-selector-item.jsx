@@ -54,8 +54,8 @@ const SpriteSelectorItem = props => {
             attributes={{
                 className: classNames(props.className, styles.spriteSelectorParent, {
                     [styles.isSelected]: props.selected,
-                    [styles.deletingFly]: !visible && (props.deleteAnim == "fly"),
-                    [styles.deletingShrink]: !visible && (props.deleteAnim == "shrink"),
+                    [styles.deletingFly]: !visible && (props.deleteAnim == "fly") && (props.restoreState != {}),
+                    [styles.deletingShrink]: !visible && (props.deleteAnim == "shrink") && (props.restoreState != {}),
                     [styles.noAnimation]: props.animPref == 'none' || prefersReducedMotion
                 }),
                 onClick: props.onClick,
