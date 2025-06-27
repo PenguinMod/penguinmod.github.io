@@ -20,6 +20,7 @@ const DeleteButton = props => (
             <img
                 className={styles.deleteIcon}
                 src={deleteIcon}
+                draggable="false"
             />
         </div>
     </div>
