@@ -77,7 +77,6 @@ const addons = [
 ];
 
 const newAddons = [
-    "animations",
     "paint-gradient-maker",
     "toolbox-full-blocks-on-hover",
     "waveform-chunk-size",

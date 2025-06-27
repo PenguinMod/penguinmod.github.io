@@ -19,10 +19,6 @@
     transition: opacity 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95), transform 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95);
 }
 
-.no-animation {
-    transition: opacity 0s ease, transform 0s ease !important;
-}
-
 .menu-visible {
     opacity: 1;
     transform: scale(1);

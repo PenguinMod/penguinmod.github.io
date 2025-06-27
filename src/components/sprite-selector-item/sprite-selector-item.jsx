@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import React, {useState, useEffect, useRef, useCallback} from 'react';
 
 import DeleteButton from '../delete-button/delete-button.jsx';
@@ -12,11 +11,9 @@ import { FormattedMessage } from 'react-intl';
 // react-contextmenu requires unique id to match trigger and context menu
 let contextMenuId = 0;
 
-
+const animOut = 150; // ms
 
 const SpriteSelectorItem = props => {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const animOut = props.animPref == "none" ? 0 : 150; // ms
     const [visible, setVisible] = useState(true); // provides a clear way to check visibility
     const waitOut = useRef(null);
     const onReqCloseRef = useRef(props.onDeleteButtonClick);
@@ -46,8 +43,7 @@ const SpriteSelectorItem = props => {
             attributes={{
                 className: classNames(props.className, styles.spriteSelectorItem, {
                     [styles.isSelected]: props.selected,
-                    [styles.deleting]: !visible,
-                    [styles.noAnimation]: props.animPref == 'none' || prefersReducedMotion
+                    [styles.deleting]: !visible
                 }),
                 onClick: props.onClick,
                 onMouseEnter: props.onMouseEnter,
@@ -149,12 +145,4 @@ SpriteSelectorItem.propTypes = {
     selected: PropTypes.bool.isRequired
 };
 
-const mapStateToProps = (state) => {
-    return {
-        animPref: state.scratchGui.addonUtil.editorAnimPref,
-    };
-};
-
-export default connect(
-    mapStateToProps
-)(SpriteSelectorItem);
+export default SpriteSelectorItem;

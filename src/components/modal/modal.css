@@ -45,10 +45,6 @@
 }
 
 
-.no-animation {
-    transition: opacity 0s ease, transform 0s ease !important;
-}
-
 .modal-fs-visible {
     opacity: 1;
     transform: scale(1) rotateX(0deg);

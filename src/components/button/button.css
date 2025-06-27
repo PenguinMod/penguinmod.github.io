@@ -12,10 +12,6 @@
     user-select: none;
 }
 
-.no-animation {
-    transition: transform 0s ease !important;
-}
-
 .button {
     transition: transform 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95);
 }

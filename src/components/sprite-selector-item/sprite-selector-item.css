@@ -23,10 +23,6 @@
     transition: transform 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95), opacity 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95);
 }
 
-.no-animation {
-    transition: opacity 0s ease, transform 0s ease !important;
-}
-
 .deleting {
     opacity: 0;
     transform: scale(0);
