@@ -306,7 +306,6 @@ class LibraryComponent extends React.Component {
                 contentLabel={this.props.title}
                 id={this.props.id}
                 onRequestClose={this.handleClose}
-                kind={this.props.kind}
             >
                 {/*
                     todo: translation support?

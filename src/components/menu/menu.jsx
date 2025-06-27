@@ -1,43 +1,29 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, {useState, useEffect, useRef} from 'react';
-import styles from './menu.css';
+import React from 'react';
 
-const animIn = 0; // ms, you could add a delay but it doesn't feel right
+import styles from './menu.css';
 
 const MenuComponent = ({
     className = '',
     children,
     componentRef,
     place = 'right'
-}) => {
-    const [visible, setVisible] = useState(false); // provides a clear way to check visibility
-    const waitOut = useRef(null);
-
-    useEffect(() => {
-        const waitIn = setTimeout(() => setVisible(true), animIn); 
-        return () => {
-            clearTimeout(waitIn);
-            if (waitOut.current) clearTimeout(waitOut.current);
-        };
-    }, []);
-    return (
-        <ul
-            className={classNames(
-                styles.menu,
-                className,
-                {
-                    [styles.left]: place === 'left',
-                    [styles.right]: place === 'right',
-                    [styles.menuVisible]: visible,
-                }
-            )}
-            ref={componentRef}
-        >
-            {children}
-        </ul>
-    )
-};
+}) => (
+    <ul
+        className={classNames(
+            styles.menu,
+            className,
+            {
+                [styles.left]: place === 'left',
+                [styles.right]: place === 'right'
+            }
+        )}
+        ref={componentRef}
+    >
+        {children}
+    </ul>
+);
 
 MenuComponent.propTypes = {
     children: PropTypes.node,

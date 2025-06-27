@@ -91,7 +91,7 @@ class SpriteSelectorItem extends React.PureComponent {
         }
     }
     handleDelete (e) {
-        if (e) e.stopPropagation(); // To prevent from bubbling back to handleClick
+        e.stopPropagation(); // To prevent from bubbling back to handleClick
         this.props.onDeleteButtonClick(this.props.id);
     }
     handleDuplicate (e) {

@@ -10,53 +10,13 @@
     bottom: 0;
     z-index: $z-index-modal;
     background-color: $ui-modal-overlay;
-    opacity: 0;
-    transition: opacity 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95);
 }
-
-.modal-overlay-visible {
-    opacity: 1;
-}
-
 .scrollable {
     overflow: auto;
 }
 
 .modal-content * {
     box-sizing: border-box;
-}
-
-.full-screen {
-    opacity: 0;
-    transform: scale(0);
-    transition: opacity 0.5s cubic-bezier(0.63, 0.32, 0.08, 0.95), transform 0.5s cubic-bezier(0.63, 0.32, 0.08, 0.95);
-    -webkit-perspective: 240px;
-    perspective: 240px;
-}
-
-.modal-container {
-    opacity: 0;
-    transform: scale(0.7) rotateX(-45deg);
-    transition: opacity 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95), transform 0.2s cubic-bezier(0.63, 0.32, 0.08, 0.95);
-    -webkit-perspective: 240px;
-    perspective: 240px;
-    max-width: max(60%, 750px);
-    width: max(60%, 750px);
-}
-
-
-.modal-fs-visible {
-    opacity: 1;
-    transform: scale(1) rotateX(0deg);
-}
-
-.modal-visible {
-    opacity: 1;
-    transform: scale(1) rotateX(0deg);
-}
-
-.ext-modal {
-    transform-origin: bottom left;
 }
 
 .modal-content {
