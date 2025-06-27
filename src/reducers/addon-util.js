@@ -1,10 +1,9 @@
 const SET_SOUND_EDITOR_WAVEFORM_CHUNK_SIZE = 'scratch-gui/addon-util/SET_SOUND_EDITOR_WAVEFORM_CHUNK_SIZE';
-const SET_REACTIVE_SETTINGS = 'scratch-gui/addon-util/SET_REACTIVE_SETTINGS';
+const SET_EDITOR_ANIM_PREF = 'scratch-gui/addon-util/SET_EDITOR_ANIM_PREF';
 
 const initialState = {
     soundEditorWaveformChunkSize: 1024,
-    editorAnimPref: 'none',
-    editorDeleteAnim: 'shrink'
+    editorAnimPref: 'default'
 };
 
 const reducer = function (state, action) {
@@ -14,10 +13,9 @@ const reducer = function (state, action) {
             return {
                 soundEditorWaveformChunkSize: action.chunkSize
             };
-        case SET_REACTIVE_SETTINGS:
+        case SET_EDITOR_ANIM_PREF:
             return {
-                editorAnimPref: action.animPref,
-                editorDeleteAnim: action.deleteAnim
+                editorAnimPref: action.animPref
             };
         default:
             return state;
@@ -31,18 +29,16 @@ const setSoundEditorWaveformChunkSize = function (chunkSize) {
     };
 };
 
-const setReactiveSettings = function (settings) {
+const setEditorAnimPref = function (preference) {
     return {
-        type: SET_REACTIVE_SETTINGS,
-        settings: settings
+        type: SET_EDITOR_ANIM_PREF,
+        animPref: preference
     };
 };
-
-
 
 export {
     reducer as default,
     initialState as addonUtilInitialState,
     setSoundEditorWaveformChunkSize,
-    setReactiveSettings
+    setEditorAnimPref
 };
