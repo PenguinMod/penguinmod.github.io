@@ -25,6 +25,10 @@ const manifest = {
       "type": "select",
       "potentialValues": [
         {
+          "id": "none",
+          "name": "No animations"
+        },
+        {
           "id": "default",
           "name": "Moderate animations"
         },

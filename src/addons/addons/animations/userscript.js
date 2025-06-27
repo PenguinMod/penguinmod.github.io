@@ -2,13 +2,13 @@ export default async function ({ addon, console, msg }) {
   function applySettings() {
     ReduxStore.dispatch({
       type: 'scratch-gui/addon-util/SET_EDITOR_ANIM_PREF',
-      animPref: addon.settings.get('intensity') || "none"
+      animPref: addon.settings.get('intensity') || "default"
     });
   }
   function resetSettings() {
     ReduxStore.dispatch({
       type: 'scratch-gui/addon-util/SET_EDITOR_ANIM_PREF',
-      animPref: "none"
+      animPref: "default"
     });
   }
   addon.self.addEventListener("reenabled", applySettings);
