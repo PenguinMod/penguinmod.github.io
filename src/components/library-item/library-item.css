@@ -21,21 +21,7 @@
     border-radius: $space;
     text-align: center;
     cursor: pointer;
-    transition: transform 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95), border-color 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95);
 }
-
-.no-animation {
-    transition: transform 0s ease, border-color 0s ease !important;
-}
-
-.library-item:hover {
-    transform: scale(1.02);
-}
-
-.library-item:active {
-    transform: scale(0.98);
-}
-
 [theme="dark"] .library-item {
     background: $ui-primary;
 }

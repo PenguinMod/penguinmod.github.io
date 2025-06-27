@@ -950,7 +950,7 @@ const sensing = function (isInitialSetup, isStage, targetId) {
             </value>
         </block>
         ${blockSeparator}
-        <button text="${helpManual}" callbackKey="OPEN_USERNAME_DOCS" />
+        <button text="${helpManual}" callbackKey="OPEN_USERNAME_DOCS" isLaterDefined="true" />
         <block type="sensing_username"/>
         <block type="sensing_loggedin"/>
         ${categorySeparator}

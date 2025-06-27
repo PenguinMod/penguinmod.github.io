@@ -5,37 +5,17 @@ import closeIcon from '../components/close-button/icon--close.svg';
 import styles from './modal.css';
 
 export const createEditorModal = (tab, title, {isOpen = false} = {}) => {
-     const shouldAnimate = !(window.ReduxStore &&
-        window.ReduxStore.getState &&
-        window.ReduxStore.getState().scratchGui &&
-        window.ReduxStore.getState().scratchGui.addonUtil &&
-        window.ReduxStore.getState().scratchGui.addonUtil.editorAnimPref === "none");
     const container = Object.assign(document.createElement('div'), {
         className: tab.scratchClass('modal_modal-overlay'),
         dir: tab.direction
     });
-    
-    setTimeout(() => {
-        container.classList.add(tab.scratchClass('modal_modal-overlay-visible'));
-    });
     container.style.display = isOpen ? '' : 'none';
     document.body.appendChild(container);
-    const modalOuter = Object.assign(document.createElement('div'), {
-        className: tab.scratchClass('modal_modal-container')
-    });
     const modal = Object.assign(document.createElement('div'), {
-        className: tab.scratchClass('modal_modal-content-addons')
+        className: tab.scratchClass('modal_modal-content')
     });
-    modalOuter.appendChild(modal);
-    setTimeout(() => {
-        modalOuter.classList.add(tab.scratchClass('modal_modal-visible'));
-    });
-    if (!shouldAnimate) {
-        modalOuter.classList.add(tab.scratchClass('modal_no-animation'));
-        container.classList.add(tab.scratchClass('modal_no-animation'));
-    }
     modal.addEventListener('click', e => e.stopPropagation());
-    container.appendChild(modalOuter);
+    container.appendChild(modal);
     const header = Object.assign(document.createElement('div'), {
         className: tab.scratchClass('modal_header')
     });
@@ -64,10 +44,8 @@ export const createEditorModal = (tab, title, {isOpen = false} = {}) => {
         className: styles.modalContent
     });
     modal.appendChild(content);
-   
-
     return {
-        container: modalOuter,
+        container: modal,
         content,
         backdrop: container,
         closeButton,
@@ -75,27 +53,9 @@ export const createEditorModal = (tab, title, {isOpen = false} = {}) => {
             container.style.display = '';
         },
         close: () => {
-            container.classList.remove(tab.scratchClass('modal_modal-overlay-visible'));
-            modalOuter.classList.remove(tab.scratchClass('modal_modal-visible'));
-            if (shouldAnimate) {
-                setTimeout(() => {
-                    container.style.display = 'none';
-                }, 150);
-            } else {
-                container.style.display = 'none';
-            }
+            container.style.display = 'none';
         },
-        remove: () => {
-            container.classList.remove(tab.scratchClass('modal_modal-overlay-visible'));
-            modalOuter.classList.remove(tab.scratchClass('modal_modal-visible'));
-            if (shouldAnimate) {
-                setTimeout(() => {
-                    container.remove();
-                }, 150);
-            } else {
-                container.remove();
-            }
-        }
+        remove: container.remove.bind(container)
     };
 };
 

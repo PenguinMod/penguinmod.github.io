@@ -542,15 +542,6 @@ export default function (vm) {
         return true;
     };
 
-    ScratchBlocks.Toolbox.registerMenu('extensionControls', [
-        {
-            text: 'Remove Extension',
-            enabled: true,
-            callback: ext => vm.extensionManager.removeExtension(ext)
-        }
-        // see src/components/blocks.jsx (just after `VMScratchBlocks(props.vm)`) for Edit Extension
-    ]);
-
     // brute force a toolbox update if there are no extensions loaded
     // Someone made a commit that broke initial toolbox populate calls back in the day
     // and no one can find it, this brute fixes the problem...

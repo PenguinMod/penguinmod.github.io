@@ -198,4 +198,5 @@
     height: 100%;
     width: 0;
     background-color: white;
+    transition: width 200ms ease-in-out;
 }

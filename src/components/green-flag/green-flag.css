@@ -8,18 +8,12 @@
     user-select: none;
     user-drag: none;
     cursor: pointer;
-    transition: transform 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95);
 }
 
 .green-flag:hover {
     background-color: $motion-light-transparent;
-    transform: scale(1.05);
 }
 
 .green-flag.is-active {
     background-color: $motion-transparent;
-}
-
-.green-flag:active {
-    transform: scale(0.95);
 }

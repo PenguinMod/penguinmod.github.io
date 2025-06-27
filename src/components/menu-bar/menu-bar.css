@@ -77,26 +77,14 @@
     position: relative;
     align-items: center;
     white-space: nowrap;
-    height: calc($menu-bar-height - 10px);
-    transition: transform 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95), background-color 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95), border-radius 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95);
+    height: $menu-bar-height;
 }
-
-.menu-bar-item.hoverable:hover {
-    transform: scale(1.1);
-    border-radius: 10px;
-}
-
-.menu-bar-item.active {
-    transform: scale(1) !important;
-    border-radius: 10px;
-}
-
-
 
 .menu-bar-item.hoverable {
     cursor: pointer;
 }
 
+.menu-bar-item.active,
 .menu-bar-item.hoverable:hover {
     background-color: $ui-black-transparent;
 }

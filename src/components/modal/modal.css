@@ -10,14 +10,7 @@
     bottom: 0;
     z-index: $z-index-modal;
     background-color: $ui-modal-overlay;
-    opacity: 0;
-    transition: opacity 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95);
 }
-
-.modal-overlay-visible {
-    opacity: 1;
-}
-
 .scrollable {
     overflow: auto;
 }
@@ -26,58 +19,8 @@
     box-sizing: border-box;
 }
 
-.full-screen {
-    opacity: 0;
-    transform: scale(0);
-    transition: opacity 0.5s cubic-bezier(0.63, 0.32, 0.08, 0.95), transform 0.5s cubic-bezier(0.63, 0.32, 0.08, 0.95);
-    -webkit-perspective: 240px;
-    perspective: 240px;
-}
-
-.modal-container {
-    opacity: 0;
-    transform: scale(0.7) rotateX(-45deg);
-    transition: opacity 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95), transform 0.2s cubic-bezier(0.63, 0.32, 0.08, 0.95);
-    -webkit-perspective: 240px;
-    perspective: 240px;
-    max-width: max(60%, 750px);
-    width: max(60%, 750px);
-}
-
-
-.no-animation {
-    transition: opacity 0s ease, transform 0s ease !important;
-}
-
-.modal-fs-visible {
-    opacity: 1;
-    transform: scale(1) rotateX(0deg);
-}
-
-.modal-visible {
-    opacity: 1;
-    transform: scale(1) rotateX(0deg);
-}
-
-.ext-modal {
-    transform-origin: bottom left;
-}
-
 .modal-content {
     margin: 100px auto;
-    outline: none;
-    border: 4px solid $ui-white-transparent;
-    padding: 0;
-    border-radius: $space;
-    user-select: none;
-
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: $text-primary-light;
-    overflow: hidden;
-}
-
-.modal-content-addons {
-    margin: auto auto;
     outline: none;
     border: 4px solid $ui-white-transparent;
     padding: 0;

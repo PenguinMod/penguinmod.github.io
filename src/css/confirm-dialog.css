@@ -9,19 +9,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    transition: opacity 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95);
 }
 [theme="dark"] .base {
     background-color: #333a;
-}
-
-.noAnimation {
-    transition: opacity 0s linear, transform 0s linear !important;
-}
-
-.baseVisible {
-    opacity: 1;
 }
 
 .promptBox {
@@ -35,21 +25,11 @@
     overflow: hidden;
     position: relative;
     color: black;
-    opacity: 0;
-    transform: scale(0.7) rotateX(-45deg);
-    transition: opacity 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95), transform 0.2s cubic-bezier(0.63, 0.32, 0.08, 0.95);
 }
 [theme="dark"] .promptBox {
     color: $text-primary;
     background: $ui-primary;
 }
-
-
-.promptVisible {
-    opacity: 1; 
-    transform: scale(1) rotateX(0deg);
-}
-
 
 .header {
     width: 100%;

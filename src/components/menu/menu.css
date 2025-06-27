@@ -13,21 +13,7 @@
     overflow: visible;
     color: $ui-white;
     box-shadow: 0 8px 8px 0 $ui-black-transparent-default;
-    transform-origin: top left;
-    opacity: 0;
-    transform: scale(0.6);
-    transition: opacity 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95), transform 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95);
 }
-
-.no-animation {
-    transition: opacity 0s ease, transform 0s ease !important;
-}
-
-.menu-visible {
-    opacity: 1;
-    transform: scale(1);
-}
-
 [theme="dark"] .menu {
     background-color: $motion-primary-dark;
 }

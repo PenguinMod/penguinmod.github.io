@@ -661,25 +661,12 @@ class SoundEditor extends React.Component {
 
     // TODO: use actual scratch-gui menus instead of this
     displayPopup(title, width, height, okname, denyname, accepted, cancelled) {
-        const shouldAnimate = !(window.ReduxStore &&
-            window.ReduxStore.getState &&
-            window.ReduxStore.getState().scratchGui &&
-            window.ReduxStore.getState().scratchGui.addonUtil &&
-            window.ReduxStore.getState().scratchGui.addonUtil.editorAnimPref === "none");
         const div = document.createElement("div");
         document.body.append(div);
         div.classList.add(confirmStyles.base);
         const box = document.createElement("div");
         div.append(box);
         box.classList.add(confirmStyles.promptBox);
-        if (!shouldAnimate) {
-            div.classList.add(confirmStyles.noAnimation);
-            box.classList.add(confirmStyles.noAnimation);
-        }
-        setTimeout(() => {
-            div.classList.add(confirmStyles.baseVisible);
-            box.classList.add(confirmStyles.promptVisible);
-        }, 0);
         box.style.width = `${width}px`;
         box.style.height = `${height}px`;
         const header = document.createElement("div");
@@ -702,20 +689,12 @@ class SoundEditor extends React.Component {
         accept.classList.add(confirmStyles.accept);
         accept.innerHTML = okname ? okname : "OK";
         accept.onclick = () => {
-            div.classList.remove(confirmStyles.baseVisible);
-            box.classList.remove(confirmStyles.promptVisible);
-            setTimeout(() => {
             div.remove();
             if (accepted) accepted();
-            }, 150);
         }
         deny.onclick = () => {
-            div.classList.remove(confirmStyles.baseVisible);
-            box.classList.remove(confirmStyles.promptVisible);
-            setTimeout(() => {
             div.remove();
             if (cancelled) cancelled();
-            }, 150);
         }
         return {
             popup: div,
