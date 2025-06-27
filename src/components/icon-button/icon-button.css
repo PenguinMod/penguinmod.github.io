@@ -9,15 +9,6 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: $motion-primary;
     border-radius: 0.5rem;
-    transition: transform 0.15s cubic-bezier(0.63, 0.32, 0.08, 0.95);
-}
-
-.container:hover {
-    transform: scale(1.06);
-}
-
-.container:active {
-    transform: scale(0.94);
 }
 
 .container + .container {

@@ -667,10 +667,6 @@ class SoundEditor extends React.Component {
         const box = document.createElement("div");
         div.append(box);
         box.classList.add(confirmStyles.promptBox);
-        setTimeout(() => {
-            div.classList.add(confirmStyles.baseVisible);
-            box.classList.add(confirmStyles.promptVisible);
-        }, 0);
         box.style.width = `${width}px`;
         box.style.height = `${height}px`;
         const header = document.createElement("div");
@@ -693,20 +689,12 @@ class SoundEditor extends React.Component {
         accept.classList.add(confirmStyles.accept);
         accept.innerHTML = okname ? okname : "OK";
         accept.onclick = () => {
-            div.classList.remove(confirmStyles.baseVisible);
-            box.classList.remove(confirmStyles.promptVisible);
-            setTimeout(() => {
             div.remove();
             if (accepted) accepted();
-            }, 150);
         }
         deny.onclick = () => {
-            div.classList.remove(confirmStyles.baseVisible);
-            box.classList.remove(confirmStyles.promptVisible);
-            setTimeout(() => {
             div.remove();
             if (cancelled) cancelled();
-            }, 150);
         }
         return {
             popup: div,

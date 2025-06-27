@@ -76,19 +76,6 @@
     overflow: hidden;
 }
 
-.modal-content-addons {
-    margin: auto auto;
-    outline: none;
-    border: 4px solid $ui-white-transparent;
-    padding: 0;
-    border-radius: $space;
-    user-select: none;
-
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: $text-primary-light;
-    overflow: hidden;
-}
-
 .modal-content.full-screen {
     position: absolute;
 

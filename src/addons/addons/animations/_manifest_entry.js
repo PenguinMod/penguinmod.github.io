@@ -1,6 +1,6 @@
 const manifest = {
-  "name": "Reactive",
-  "description": "Adds animations and reactiveness to parts of the editor. (formerly Animation Types)",
+  "name": "Animation Types",
+  "description": "Change the intensity of animations that appear in the editor. Some moderate animations come with the editor by default.",
   "credits": [
     {
       "name": "Reflow"
@@ -13,7 +13,7 @@ const manifest = {
   ],
   "info": [
     {
-      "text": "If you enabled a reduced motion setting on your device, these settings will not apply. See how to re-enable motion: https://mgik.dev/turn-on-motion",
+      "text": "If you enabled a reduced motion setting on your device, these settings will not apply.",
       "id": "reduced-motion"
     }
   ],
