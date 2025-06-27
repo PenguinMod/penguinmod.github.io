@@ -32,5 +32,6 @@
     position: relative;
     margin: 0.25rem;
     user-select: none;
+    pointer-events: none !important;
     transform-origin: 50%;
 }
