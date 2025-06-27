@@ -90,6 +90,9 @@ class LoaderComponent extends React.Component {
         this.update();
     }
     componentWillUnmount () {
+        // force completion
+        this.progress = 1;
+        this.update();
         progressMonitor.setProgressHandler(() => {});
     }
     handleProgressChange (state, progress, complete, total) {

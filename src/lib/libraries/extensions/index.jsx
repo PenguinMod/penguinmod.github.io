@@ -80,6 +80,7 @@ import jwArrayExtensionThumb from './penguinmod/extensions/jwArray.svg';
 import jwTargetsExtensionThumb from './penguinmod/extensions/jwTargets.svg';
 import jwNumExtensionThumb from './penguinmod/extensions/jwNum.svg';
 import jwColorExtensionThumb from './penguinmod/extensions/jwColor.svg';
+import jwVectorExtensionThumb from './penguinmod/extensions/jwVector.svg';
 
 import iygPerlinNoiseExtensionIcon from './penguinmod/extensions/perlinnoisebanner.png';
 
@@ -901,6 +902,15 @@ const menuItems = [
         iconURL: jwColorExtensionThumb,
         tags: ['penguinmod', 'graphics'],
         description: 'Utilities for anything involving colors.',
+        extDeveloper: 'jwklong',
+        featured: true
+    },
+    {
+        name: 'Vector',
+        extensionId: 'jwVector',
+        iconURL: jwVectorExtensionThumb,
+        tags: ['penguinmod', 'math'],
+        description: 'Vector type for calculating with X and Y coordinates.',
         extDeveloper: 'jwklong',
         featured: true
     },

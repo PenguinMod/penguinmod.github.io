@@ -8,6 +8,8 @@ export default async function () {
     const valueObserverObj = { r: 0, sx: 1, sy: 1, kx: 0, ky: 0, outlineRatio: 1 };
     const panelID = "costume-editor-panel";
     const epsilon = 1e-8;
+    const toRad = Math.PI / 180;
+    const toDeg = 180 / Math.PI;
 
     const guiIMGS = {
         "panel": `<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect x="10.796" y="6.222" width="4.813" height="2.174" rx=".5" ry=".5" fill="#fff" fill-rule="evenodd" stroke="#575e75" stroke-width=".75"/><path fill="none" stroke="red" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75" style="paint-order:markers stroke fill" d="M3 3h14v14H3z"/><g fill="#fff" fill-rule="evenodd" stroke-width=".75"><path stroke="red" stroke-linecap="round" stroke-linejoin="round" style="paint-order:markers fill stroke" d="M3 3h14v1.896H3z"/><rect x="10.796" y="9.722" width="4.813" height="2.174" rx=".5" ry=".5" stroke="#575e75"/><rect x="10.796" y="13.222" width="4.813" height="2.174" rx=".5" ry=".5" stroke="#575e75"/></g><path d="M9.563 7.309H4.242m5.321 6.978H4.242m5.321-3.478H4.242" style="paint-order:markers stroke fill" fill="none" stroke="red" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/></svg>`,
@@ -50,6 +52,10 @@ export default async function () {
             items: [
                 { title: "x", input: "number", params: "sx" },
                 { title: "y", input: "number", params: "sy" },
+                "br",
+                { title: "width", input: "monitor", params: "width" },
+                { title: "height", input: "monitor", params: "height" },
+                "br",
                 { title: "Group Scaling", id: "groupScale", input: "toggler" },
                 "br",
                 { title: "Scale Outlines", id: "strokeScale", input: "toggler" },
@@ -59,7 +65,8 @@ export default async function () {
             title: "Skewing",
             items: [
                 { title: "x", input: "number", params: "sx" },
-                { title: "y", input: "number", params: "sy" }
+                { title: "y", input: "number", params: "sy" },
+                { title: "Group Skewing", id: "groupSkew", input: "toggler" },
             ]
         },
         {
@@ -110,16 +117,16 @@ export default async function () {
             return ogScale.call(this, ...args);
         };
 
-        const ogSkew = paper.Item.prototype.skew;
-        paper.Item.prototype.skew = function(...args) {
+        const ogShear = paper.Item.prototype.shear;
+        paper.Item.prototype.shear = function(...args) {
             const kx = typeof args[0] === "number" ? args[0] : 1;
             const ky = typeof args[1] === "number" ? args[1] : kx;
             for (const child of this._children ?? [this]) {
                 if (!child[panelTag]) child[panelTag] = structuredClone(valueObserverObj);
-                child[panelTag].kx += kx;
-                child[panelTag].ky += ky;
+                child[panelTag].kx += Math.atan(kx) * toDeg;
+                child[panelTag].ky += Math.atan(ky) * toDeg;
             }
-            return ogSkew.call(this, ...args);
+            return ogShear.call(this, ...args);
         };
   	}
 
@@ -138,8 +145,9 @@ export default async function () {
         for (const item of selectedItems) func(item, value);
 
         queueMicrotask(() => {
+            updateMonitors();
             if (sessionCenterNeedsUpdate) {
-                // calculate the new center & clear session storage
+                // perform tasks for bounding box updates
                 modalStorage.sessionStore = { center: getCenter(selectedItems) };
                 sessionCenterNeedsUpdate = false;
             }
@@ -228,6 +236,16 @@ export default async function () {
         }
     }
 
+    function skewItem(item, x, y, isLocked) {
+        let pivot = isLocked ? new paper.Point(modalStorage.sessionStore.center) : item.bounds.center;
+
+        item.translate(pivot.multiply(-1));
+        item.shear(Math.tan(x * toRad), Math.tan(y * toRad));
+        item.translate(pivot);
+
+        sessionCenterNeedsUpdate = true;
+    }
+
     /* GUI Utils */
     function getButtonURI(name, dontCompile) {
         const themeHex = isPM ? "#00c3ff" : document.documentElement.style.getPropertyValue("--looks-secondary") || "#ff4c4c";
@@ -269,6 +287,18 @@ export default async function () {
                 else return {
                     max: 15000,
                     value: (item1[panelTag] ? isX ? item1[panelTag].sx : item1[panelTag].sy : 1) * 100
+                };
+            }
+            case "Scaling/width":
+            case "Scaling/height": {
+                if (selectedItems.length > 1) {
+                    const groupBounds = paper.Rectangle.create(selectedItems.map(i => i.bounds))
+                        .reduce((a, b) => a.unite(b));
+                    return {
+                      value: (groupBounds[name.endsWith("width") ? "width" : "height"] / 2).toFixed(2)
+                    };
+                } else return {
+                    value: (item1.getBounds()[name.endsWith("width") ? "width" : "height"] / 2).toFixed(2)
                 };
             }
             case "Skewing/x":
@@ -350,10 +380,10 @@ export default async function () {
             case "Skewing/y": return (item, value) => {
                 if (isX) {
                   value -= item[panelTag]?.kx ?? 0;
-                  item.skew(value, 0);
+                  skewItem(item, value, 0, modalStorage["groupSkew"]);
                 } else {
                   value -= item[panelTag]?.ky ?? 0;
-                  item.skew(0, value);
+                  skewItem(item, 0, value, modalStorage["groupSkew"]);
                 }
             }
             case "Layering/order": return (item, value) => {
@@ -381,6 +411,7 @@ export default async function () {
         const inputStyle = `text-align: center; font-size: 13px; width: 60px; height: 25px; margin: 5px; border: solid 2px var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15)); border-radius: 15px;`;
         const selectStyle = `text-align: center; font-size: 13px; height: 25px; margin: 5px; border: solid 2px var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15)); border-radius: 5px;`;
         const togglerStyle = `background: transparent; border: none; margin-left: 3px; padding: 5px 0 0 0;`;
+        const monitorStyle = `text-align: center; font-size: 13px; margin: 5px; padding: 5px; border: solid 2px var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15)); border-radius: 5px;`;
 
         const selectedItems = getRealSelection();
         const center = getCenter(selectedItems);
@@ -411,7 +442,15 @@ export default async function () {
 
                 const id = `${tool.title}/${item.title}`;
                 let input;
-                if (item.input === "select") {
+                if (item.input === "monitor") {
+                    input = document.createElement("div");
+                    input.setAttribute("style", monitorStyle);
+                    input.classList.add("monitor");
+                    input.id = id;
+
+                    const param = getToolParams(id, selectedItems);
+                    input.textContent = param.value;
+                } else if (item.input === "select") {
                     input = document.createElement("select");
                     input.setAttribute("style", selectStyle);
                     input.id = id;
@@ -481,12 +520,27 @@ export default async function () {
                 if (item === "br") continue;
 
                 const id = `${tool.title}/${item.title}`;
-                const input = toolDiv.querySelector(`input[id="${id}"], select[id="${id}"`);
+                const input = toolDiv.querySelector(`input[id="${id}"], select[id="${id}"], div[id="${id}"]`);
                 if (input) {
                     const params = getToolParams(id, selectedItems);
-                    if (params.value !== "") input.value = params.value;
+                    if (params.value !== "") {
+                      if (item.input === "monitor") input.textContent = params.value;
+                      else input.value = params.value;
+                    }
                 }
             }
+        }
+    }
+
+    function updateMonitors() {
+        const selectedItems = getRealSelection();
+        const toolDiv = modalStorage.toolDiv;
+        if (!toolDiv) return;
+
+        const monitors = modalStorage.toolDiv.querySelectorAll(`[class="monitor"]`);
+        for (const monitor of monitors) {
+            const params = getToolParams(monitor.id, selectedItems);
+            if (params.value !== "") monitor.textContent = params.value;
         }
     }
 
