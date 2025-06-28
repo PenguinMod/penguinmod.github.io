@@ -21,4 +21,11 @@ export default async function (api) {
     updateScaleTool(paper, tool);
   }
   initUI(api);
+
+  ReduxStore.subscribe(() => {
+    const paint = ReduxStore.getState().scratchPaint;
+    if (!paint) return;
+
+    if (paint.mode === "RESHAPE" || paint.mode === "SELECT") updateSelectTool(paper, paper.tool, true);
+  });
 }

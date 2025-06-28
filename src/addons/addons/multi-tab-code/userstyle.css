@@ -1,0 +1,81 @@
+.tab-scroller {
+  width: max-content;
+  display: flex;
+  position: absolute;
+}
+.tab-scrollbar {
+  position: absolute;
+  background-color: black;
+  height: 1px;
+  width: 20px;
+  bottom: 0;
+}
+.tab-scrollbar:hover { height: 3px; }
+.tab-wrapper {
+  position: absolute;
+  right: 0;
+  height: 17px;
+  overflow-x: hidden;
+  overflow-y: visible;
+  scrollbar-width: thin;
+}
+.tab-wrapper.copying {
+  height: 29px;
+}
+.tab-adder-button {
+  width: 12px;
+  height: 12px;
+  margin: 1px;
+  margin-right: 11px;
+  border-radius: 3px;
+  border: none;
+}
+[theme=dark] .tab-adder-button {
+  filter: invert(1);
+}
+.tab-adder-button:hover {
+  background-color: rgba(0 0 0 / 15%);
+}
+.tab-bounds {
+  height: 14px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: max-content;
+}
+.tab-bounds.copying {
+  height: 28px;
+}
+.tab {
+  border-radius: 3px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  padding: 1px 4px;
+  min-width: 20px;
+  font-size: 10px;
+  text-align: center;
+  cursor: pointer;
+  overflow-y: hidden;
+  user-select: none;
+  background-color: var(--ui-primary, hsla(215, 100%, 95%, 1));
+  border: 1px solid var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+  color: var(--text-primary, hsla(225, 15%, 40%, 1));
+  border-top: none;
+  transition: height 100ms ease-in, color 100ms ease-in;
+}
+.tab.unselected {
+  height: 7px;
+  color: transparent;
+}
+.tab.hover {
+  height: 10px;
+  color: #333;
+}
+.tab.selected {
+  height: 14px;
+  color: var(--text-primary, hsla(225, 15%, 40%, 1));
+}
+.tab.copying {
+  height: 28px;
+  color: var(--text-primary, hsla(225, 15%, 40%, 1));
+}

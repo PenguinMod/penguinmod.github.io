@@ -71,6 +71,7 @@ import _tw_straighten_comments from "../addons/tw-straighten-comments/_manifest_
 import _tw_remove_feedback from "../addons/tw-remove-feedback/_manifest_entry.js";
 import _tw_remove_backpack from "../addons/tw-remove-backpack/_manifest_entry.js";
 import _tw_disable_cloud_variables from "../addons/tw-disable-cloud-variables/_manifest_entry.js";
+import _multi_tab_code from "../addons/multi-tab-code/_manifest_entry.js";
 
 export default {
   "cat-blocks": _cat_blocks,
@@ -146,4 +147,5 @@ export default {
   "tw-disable-cloud-variables": _tw_disable_cloud_variables,
   "vol-slider": _vol_slider,
   "waveform-chunk-size": _waveform_chunk_size,
+  "multi-tab-code": _multi_tab_code
 };

@@ -4,10 +4,19 @@ import { loadModules, Modes, BitmapModes } from "./helpers.js";
 import { snapOn, threshold, guideColor } from "./state.js";
 
 const getMoveTool = (tool) => {
-  return tool.boundingBoxTool._modeMap.MOVE;
+  if (tool?.mode === "SELECTION_BOX" || tool?.mode === "FILL" || tool?.mode === "POINT" || tool?.mode === "HANDLE") return tool;
+  else return tool.boundingBoxTool._modeMap.MOVE;
 };
 
-export const updateSelectTool = (paper, tool) => {
+let moveTool;
+let patchedSelectTool = false, patchedReshapeTool = false;
+
+export const updateSelectTool = (paper, tool, optIsGUI) => {
+  if (optIsGUI) {
+    moveTool = getMoveTool(tool);
+    updatePatches(tool);
+    return;
+  }
   const lib = loadModules(paper);
   const {
     math: { checkPointsClose, snapDeltaToAngle },
@@ -16,7 +25,7 @@ export const updateSelectTool = (paper, tool) => {
     guide: { hoverBounds },
   } = lib;
 
-  const moveTool = getMoveTool(tool);
+  moveTool = getMoveTool(tool);
 
   // https://github.com/LLK/scratch-paint/blob/2a9fb2356d961200dc849b5b0a090d33f473c0b5/src/helper/selection-tools/move-tool.js
 
@@ -88,6 +97,35 @@ export const updateSelectTool = (paper, tool) => {
   };
 
   let removeGuides;
+
+  function updatePatches(tool) {
+    if ("selectionBoxTool" in tool && "boundingBoxTool" in tool) {
+      // select tool
+      if (patchedSelectTool) return;
+      patchedSelectTool = true;
+    } else {
+      // reshape tool
+      if (patchedReshapeTool || !moveTool) return;
+      patchedReshapeTool = true;
+    }
+
+    const oldMouseDrag = moveTool.constructor.prototype.onMouseDrag;
+    moveTool.constructor.prototype.onMouseDrag = onMouseDrag;
+
+    const oldMouseDown = moveTool.constructor.prototype.onMouseDown;
+    moveTool.constructor.prototype.onMouseDown = function (...a) {
+      if (snapOn) moveTool.constructor.prototype.onMouseDrag = onMouseDrag;
+      else moveTool.constructor.prototype.onMouseDrag = oldMouseDrag;
+
+      oldMouseDown.apply(this, a);
+    };
+
+    const oldMouseUp = moveTool.constructor.prototype.onMouseUp;
+    moveTool.constructor.prototype.onMouseUp = function (...a) {
+      removeGuides?.();
+      oldMouseUp.apply(this, a);
+    };
+  }
 
   function onMouseDrag(event) {
     const point = event.point;
@@ -303,24 +341,12 @@ export const updateSelectTool = (paper, tool) => {
     getDragCrosshairLayer().opacity = CROSSHAIR_FULL_OPACITY * opacityMultiplier;
   }
 
-  const oldMouseDrag = moveTool.constructor.prototype.onMouseDrag;
-  moveTool.constructor.prototype.onMouseDrag = onMouseDrag;
-
-  const oldMouseDown = moveTool.constructor.prototype.onMouseDown;
-  moveTool.constructor.prototype.onMouseDown = function (...a) {
-    if (snapOn) moveTool.constructor.prototype.onMouseDrag = onMouseDrag;
-    else moveTool.constructor.prototype.onMouseDrag = oldMouseDrag;
-
-    oldMouseDown.apply(this, a);
-  };
-
-  const oldMouseUp = moveTool.constructor.prototype.onMouseUp;
-  moveTool.constructor.prototype.onMouseUp = function (...a) {
-    removeGuides?.();
-    oldMouseUp.apply(this, a);
-  };
+  updatePatches(tool);
 };
 
 export const isSelectTool = (tool) => {
-  return "selectionBoxTool" in tool && "boundingBoxTool" in tool;
+  return (
+    ("selectionBoxTool" in tool && "boundingBoxTool" in tool) || /* select tool */
+    (tool?.mode === "SELECTION_BOX" || tool?.mode === "FILL" || tool?.mode === "POINT" || tool?.mode === "HANDLE") /* reshape tool */
+  );
 };

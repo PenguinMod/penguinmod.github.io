@@ -73,4 +73,5 @@ export default {
   "tw-disable-cloud-variables": () => import(/* webpackChunkName: "addon-entry-tw-disable-cloud-variables" */ "../addons/tw-disable-cloud-variables/_runtime_entry.js"),
   "vol-slider": () => import(/* webpackChunkName: "addon-entry-vol-slider" */ "../addons/vol-slider/_runtime_entry.js"),
   "waveform-chunk-size": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/waveform-chunk-size/_runtime_entry.js"),
+  "multi-tab-code": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/multi-tab-code/_runtime_entry.js"),
 };
