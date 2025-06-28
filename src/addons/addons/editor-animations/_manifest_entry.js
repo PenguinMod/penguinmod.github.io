@@ -6,7 +6,7 @@ const manifest = {
   "description": "Adds smooth animations to various aspects of the editor!",
   "credits": [
     {
-      "name": "mmmmaaaaarrrrrrkkkkkkkk",
+      "name": "reflow",
       "link": " https://github.com/mmmmaaaaarrrrrrkkkkkkkk"
     },
     {
