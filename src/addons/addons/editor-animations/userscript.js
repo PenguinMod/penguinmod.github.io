@@ -1,6 +1,6 @@
 // Editor Animations (remake of Reactive Animation by <https://github.com/mmmmaaaaarrrrrrkkkkkkkk>)
 // By: SharkPool
-// By: mmmmaaaaarrrrrrkkkkkkkk <https://github.com/mmmmaaaaarrrrrrkkkkkkkk>
+// By: reflow <https://github.com/mmmmaaaaarrrrrrkkkkkkkk>
 export default async function({ addon }) {
   const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const addonKey = "addonAnimations-";
@@ -65,6 +65,19 @@ export default async function({ addon }) {
 .${addonKey}custom-ext-hover:active {
   transform: scale(.95);
   border: none;
+}
+
+/* Library Items */
+.${addonKey}library-item-scaler div[class^="library-item_library-item"] {
+    transition: transform ${getAnim(.1)};
+    transform-origin: center center;
+    transform-box: fill-box;
+}
+.${addonKey}library-item-scaler div[class^="library-item_library-item"]:hover {
+    transform: scale(1.05);
+}
+.${addonKey}library-item-scaler div[class^="library-item_library-item"]:active {
+    transform: scale(.95);
 }
 
 /* Categories */
@@ -272,6 +285,7 @@ export default async function({ addon }) {
       if (optLibrary === "extensionLibrary") {
         classMapper.set("custom-ext-hover", [document.querySelector(`span[class*="button_outlined-button"][class*="tag-button_tag-button"]`)]);
       }
+      classMapper.set("library-item-scaler", [document.querySelector(`div[class*="library_library-scroll-grid"]`)]);
       classMapper.set("static-scaler", [
         document.querySelector(`span[class*="modal_back-button_"]`),
         collapser
