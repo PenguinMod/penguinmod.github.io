@@ -15,7 +15,7 @@ const manifest = {
   "info": [
     {
       "type": "notice",
-      "text": "This addon will not take effect if you have motion turned off on your system. See https://mgik.dev/turn-on-motion for how to turn it on.",
+      "text": "This addon will not take effect if you have 'reduce motion' turned off on your browser/device. See https://mgik.dev/turn-on-motion for how to turn it on.",
       "id": "reduced-motion-notice"
     }
   ],
