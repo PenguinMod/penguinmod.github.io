@@ -16,7 +16,7 @@ const manifest = {
   "info": [
     {
       "type": "notice",
-      "text": "Animations will not play if you have 'reduce motion' enabled on your device/browser.",
+      "text": "This addon will not take effect if you have motion turned off on your system. See https://mgik.dev/turn-on-motion for how to turn it on.",
       "id": "reduced-motion-notice"
     }
   ],
