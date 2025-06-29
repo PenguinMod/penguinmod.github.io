@@ -206,8 +206,8 @@ class Blocks extends React.Component {
         // entire toolbox every time we reset the workspace.  We call updateToolbox as a part of
         // componentDidUpdate so the toolbox will still correctly be updated
         this.setToolboxRefreshEnabled = this.workspace.setToolboxRefreshEnabled.bind(this.workspace);
-        this.workspace.setToolboxRefreshEnabled = () => {
-            this.setToolboxRefreshEnabled(false);
+        this.workspace.setToolboxRefreshEnabled = value => {
+            this.setToolboxRefreshEnabled(value);
         };
 
         // @todo change this when blockly supports UI events
