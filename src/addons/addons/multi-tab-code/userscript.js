@@ -5,6 +5,8 @@ export default async function ({ addon, msg, console }) {
   let hoveredTab = -1;
   let dragging = false;
   const tabs = [];
+  const synchQueue = [];
+  let queueTab = -1;
   window.tabs = tabs;
   let tabTarget = null;
   const commentId = '// multi-tab configuration entry\n';
@@ -65,11 +67,15 @@ export default async function ({ addon, msg, console }) {
       Object.create(null) :
       Object.assign({}, this.editingTarget.variables);
 
-    // ensure that all scripts belong to some tab
+    // ensure that all scripts appear to belong to some tab
+    let otherBlocks = '';
     for (const script of vm.editingTarget.blocks._scripts) {
-      const owner = tabs.find(tab => tab.blocks._scripts.includes(script));
-      if (!owner)
-        copyScript(script, tabs[selectedTab].blocks);
+      if (!tabs.some(tab => tab.blocks._scripts.includes(script))) {
+        if (synchQueue.includes(script) && queueTab !== selectedTab) continue;
+        otherBlocks += this.editingTarget.blocks.blockToXML(script, this.editingTarget.comments);
+        if (!synchQueue.includes(script)) synchQueue.push(script);
+        queueTab = selectedTab;
+      }
     }
 
     const globalVariables = Object.keys(globalVarMap).map(k => globalVarMap[k]);
@@ -85,6 +91,7 @@ export default async function ({ addon, msg, console }) {
                         </variables>
                         ${workspaceComments.map(c => c.toXML()).join()}
                         ${tabs[selectedTab].blocks.toXML(this.editingTarget.comments)}
+                        ${otherBlocks}
                       </xml>`;
 
     this.emit('workspaceUpdate', {xml: xmlString});
@@ -208,12 +215,15 @@ export default async function ({ addon, msg, console }) {
     getInput() { return null }
     getProcCode() { return this.mutation.proccode }
     get workspace() { return ScratchBlocks.getMainWorkspace() }
-    mutationToDom() {
+    mutationToDom(generateShadows) {
       const blocks = vm.editingTarget.blocks;
       const str = blocks.mutationToXML(this.mutation);
       const parser = new DOMParser();
-      const dom = parser.parseFromString(`<xml>${str}</xml>`, 'text/xml');
-      return dom.firstChild.firstChild;
+      const element = parser.parseFromString(`<xml>${str}</xml>`, 'text/xml')
+        .firstChild.firstChild;
+      if (generateShadows)
+        element.setAttribute('generateshadows', 'true');
+      return element;
     }
     domToMutation(dom) {
       const blocks = vm.editingTarget.blocks;
@@ -238,7 +248,7 @@ export default async function ({ addon, msg, console }) {
       const block = blocks._blocks[id];
       if (block.opcode === 'procedures_prototype' && !blockMutes[block.mutation.proccode]) {
         const wrapper = new MutatorWrapper(block.mutation, id);
-        blockMutes[block.mutation.proccode] = wrapper.mutationToDom();
+        blockMutes[block.mutation.proccode] = wrapper.mutationToDom(true);
       }
     }
     return Object.values(blockMutes);
@@ -349,13 +359,16 @@ export default async function ({ addon, msg, console }) {
     do {
       block = vm.editingTarget.blocks.getBlock(id);
       if (!block) break;
-      blocks.createBlock(block);
+      blocks._blocks[id] = block;
+      if (block.topLevel && !blocks._scripts.includes(id))
+        blocks._scripts.push(id);
       for (const name in block.inputs) {
         copyScript(block.inputs[name].block, blocks);
         copyScript(block.inputs[name].shadow, blocks);
       }
       id = block.next;
     } while (block.next);
+    vm.emitWorkspaceUpdate();
   }
   function selectTab(idx) {
     const { element: tab } = tabs[idx];
@@ -489,7 +502,7 @@ export default async function ({ addon, msg, console }) {
       .filter(tab => tab.blocks._scripts.length > 0)
       .map((tab, idx) => ({
         name: tab.name,
-        scripts: tab.blocks._scripts,
+        scripts: tab.blocks._scripts.concat(queueTab === idx ? synchQueue : []),
         selected: selectedTab === idx,
         comments: Object.values(tabTarget.comments)
           .filter(c => !c.text.startsWith(commentId) && c.tab == idx)
@@ -530,6 +543,8 @@ export default async function ({ addon, msg, console }) {
       console.warn('Couldnt read the serialized tabs', err);
       addTab(true, null, vm.editingTarget.blocks._scripts);
     }
+    // queue may have filled up with requests while we where loading
+    synchQueue.splice(0, synchQueue.length);
   });
 
   const keysPressed = {};

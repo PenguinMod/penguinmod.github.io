@@ -74,4 +74,5 @@ export default {
   "vol-slider": () => import(/* webpackChunkName: "addon-entry-vol-slider" */ "../addons/vol-slider/_runtime_entry.js"),
   "waveform-chunk-size": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/waveform-chunk-size/_runtime_entry.js"),
   "multi-tab-code": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/multi-tab-code/_runtime_entry.js"),
+  "editor-animations": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/editor-animations/_runtime_entry.js"),
 };
