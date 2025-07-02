@@ -280,12 +280,14 @@ export default async function({ addon }) {
           );
         } else {
           collapser.style.transform = "rotateY(0deg)";
-          collapser.setAttribute("closed", "true");
           const animation = filterDiv.animate(
             [{ width: "342px", opacity: 1 }, { width: "0px", opacity: 0 }],
             { duration: 300, easing: cubicAnimation }
           );
-          animation.onfinish = () => { filterDiv.style.display = "none" };
+          animation.onfinish = () => {
+              collapser.setAttribute("closed", "true");
+              filterDiv.style.display = "none";
+          };
         }
 
         e.stopPropagation();

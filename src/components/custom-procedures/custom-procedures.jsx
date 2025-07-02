@@ -283,7 +283,7 @@ const CustomProcedures = props => (
                         />
                         <div className={styles.optionTitle}>
                             <FormattedMessage
-                                defaultMessage="Return Text"
+                                defaultMessage="Return Text or Number"
                                 description="Label for block to return text"
                                 id="gui.customProcedures.returnText"
                             />
@@ -293,22 +293,21 @@ const CustomProcedures = props => (
                         className={styles.optionCard}
                         role="button"
                         tabIndex="0"
-                        onClick={() => props.onOutputTypeChanged('number')}
+                        onClick={() => props.onOutputTypeChanged('boolean')}
                     >
                         <img
                             className={styles.optionIcon}
-                            src={reporterBlockIcon}
+                            src={booleanBlockIcon}
                         />
                         <div className={styles.optionTitle}>
                             <FormattedMessage
-                                defaultMessage="Return a Number"
-                                description="Label for block to return a number"
-                                id="gui.customProcedures.returnANumber"
+                                defaultMessage="Return a Boolean"
+                                description="Label for block to return a boolean"
+                                id="gui.customProcedures.returnABoolean"
                             />
                         </div>
                     </div>
-                </>
-                : <>
+                </> : <>
                     <div
                         className={styles.optionCard}
                         role="button"
@@ -346,24 +345,6 @@ const CustomProcedures = props => (
                         </div>
                     </div>
                 </>}
-                {props.returns && <div
-                    className={styles.optionCard}
-                    role="button"
-                    tabIndex="0"
-                    onClick={() => props.onOutputTypeChanged('boolean')}
-                >
-                    <img
-                        className={styles.optionIcon}
-                        src={booleanBlockIcon}
-                    />
-                    <div className={styles.optionTitle}>
-                        <FormattedMessage
-                            defaultMessage="Return a Boolean"
-                            description="Label for block to return a boolean"
-                            id="gui.customProcedures.returnABoolean"
-                        />
-                    </div>
-                </div>}
             </div>}
 
             <BlockColorSection {...props} />
