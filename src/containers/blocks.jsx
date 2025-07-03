@@ -92,6 +92,11 @@ class Blocks extends React.Component {
                 callback: ext => props.vm.extensionManager.removeExtension(ext)
             },
             {
+                text: 'Remove Unused Extensions',
+                enabled: true,
+                callback: () => props.vm.extensionManager.removeUnusedExtensions()
+            },
+            {
                 text: 'Replace Extension',
                 enabled: true,
                 callback: ext => this.props.onOpenCustomExtensionModal(ext)
