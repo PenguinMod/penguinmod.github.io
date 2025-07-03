@@ -216,7 +216,7 @@ export default async function({ addon }) {
     const ogRemoveChild = document.body.constructor.prototype.removeChild;
     document.body.constructor.prototype.removeChild = function(child) {
       const element = document.querySelector(`div[class="ReactModalPortal"]`);
-      if (!element) return;
+      if (!element) return ogRemoveChild.call(this, child);
 
       let animTime = 200;
       patchedBody = true;
