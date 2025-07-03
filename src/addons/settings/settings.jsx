@@ -55,9 +55,9 @@ if (locale !== 'en') {
     }
 }
 
-document.title = `${settingsTranslations.title} - PenguinMod`;
+document.title = `${settingsTranslations.title} - GreenMod`; // PLEASE. THIS HAS TO BE IT.
 
-const theme = getInitialDarkMode() ? 'dark' : 'light';
+const theme = 'dark' //getInitialDarkMode() ? 'dark' : 'light'; // lols
 document.body.setAttribute('theme', theme);
 
 let _throttleTimeout;

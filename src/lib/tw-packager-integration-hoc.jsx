@@ -5,7 +5,7 @@ import log from './log';
 import { getIsShowingProject } from '../reducers/project-state';
 
 const PACKAGER_URL = 'https://studio.penguinmod.com/PenguinMod-Packager';
-const PACKAGER_ORIGIN = "https://studio.penguinmod.com";
+const PACKAGER_ORIGIN = "https://deletelatermod.github.io"; // i'd assume i gotta change this
 
 const PackagerIntegrationHOC = function (WrappedComponent) {
     class PackagerIntegrationComponent extends React.Component {

@@ -1,4 +1,5 @@
 /* eslint-disable max-len */
+// why is it all hardcoded 🥀🥀🥀
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import {APP_NAME} from '../../brand';
