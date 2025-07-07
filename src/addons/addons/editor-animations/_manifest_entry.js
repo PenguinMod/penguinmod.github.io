@@ -29,7 +29,7 @@ const manifest = {
     {
       "id": "animateLibraries",
       "name": "Animate Libraries (costumes, sprites, sounds, etc)",
-      "default": true,
+      "default": false,
       "type": "boolean"
     },
     {
@@ -47,6 +47,6 @@ const manifest = {
   "tags": [
     "new", "theme"
   ],
-  "enabledByDefault": false
+  "enabledByDefault": true // i speak for i
 };
 export default manifest;

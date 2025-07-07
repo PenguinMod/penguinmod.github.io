@@ -14,6 +14,10 @@
   background-size: cover;
 }
 
+[class^="scratchCategoryId-motion"] .scratchCategoryItemBubble::after {
+  opacity: 50%;
+}
+
 .scratchCategoryId-motion .scratchCategoryItemBubble::after {
   background-image: url(icons/motion_icon.svg);
 }

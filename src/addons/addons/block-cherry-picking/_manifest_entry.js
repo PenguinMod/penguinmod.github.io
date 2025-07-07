@@ -34,7 +34,7 @@ const manifest = {
       "name": "Flip controls",
       "id": "invertDrag",
       "type": "boolean",
-      "default": false
+      "default": true
     }
   ],
   "tags": [],
