@@ -1,6 +1,6 @@
 // Editor Animations (remake of Reactive Animation by <https://github.com/mmmmaaaaarrrrrrkkkkkkkk>)
 // By: SharkPool
-// By: reflow <https://github.com/mmmmaaaaarrrrrrkkkkkkkk>
+// By: reflow <https://github.com/mgikdev>
 
 /* TODO
 - patch custom modal api when added
@@ -31,11 +31,19 @@ export default async function({ addon }) {
     "quartInOut": "cubic-bezier(0.77, 0, 0.175, 1)",
     "quintIn": "cubic-bezier(0.755, 0.05, 0.855, 0.06)",
     "quintOut": "cubic-bezier(0.23, 1, 0.32, 1)",
-    "quintInOut": "cubic-bezier(0.86, 0, 0.07, 1)"
+    "quintInOut": "cubic-bezier(0.86, 0, 0.07, 1)",
+    "backIn": "cubic-bezier(0.6, -0.28, 0.74, 0.05)",
+    "backOut": "cubic-bezier(0.18, 0.89, 0.32, 1.28)",
+    "backInOut": "cubic-bezier(0.68, -0.55, 0.27, 1.55)",
+    "elastic": "linear(0 0%, 0.22 2.1%, 0.86 6.5%, 1.11 8.6%, 1.3 10.7%, 1.35 11.8%, 1.37 12.9%, 1.37 13.7%, 1.36 14.5%, 1.32 16.2%, 1.03 21.8%, 0.94 24%, 0.89 25.9%, 0.88 26.85%, 0.87 27.8%, 0.87 29.25%, 0.88 30.7%, 0.91 32.4%, 0.98 36.4%, 1.01 38.3%, 1.04 40.5%, 1.05 42.7%, 1.05 44.1%, 1.04 45.7%, 1 53.3%, 0.99 55.4%, 0.98 57.5%, 0.99 60.7%, 1 68.1%, 1.01 72.2%, 1 86.7%, 1 100%)",
+    "bounce": "linear(0 0%, 0 2.27%, 0.02 4.53%, 0.04 6.8%, 0.06 9.07%, 0.1 11.33%, 0.14 13.6%, 0.25 18.15%, 0.39 22.7%, 0.56 27.25%, 0.77 31.8%, 1 36.35%, 0.89 40.9%, 0.85 43.18%, 0.81 45.45%, 0.79 47.72%, 0.77 50%, 0.75 52.27%, 0.75 54.55%, 0.75 56.82%, 0.77 59.1%, 0.79 61.38%, 0.81 63.65%, 0.85 65.93%, 0.89 68.2%, 1 72.7%, 0.97 74.98%, 0.95 77.25%, 0.94 79.53%, 0.94 81.8%, 0.94 84.08%, 0.95 86.35%, 0.97 88.63%, 1 90.9%, 0.99 93.18%, 0.98 95.45%, 0.99 97.73%, 1 100%)",
+    "emphasis": "linear(0 0%, 0 1.8%, 0.01 3.6%, 0.03 6.35%, 0.07 9.1%, 0.13 11.4%, 0.19 13.4%, 0.27 15%, 0.34 16.1%, 0.54 18.35%, 0.66 20.6%, 0.72 22.4%, 0.77 24.6%, 0.81 27.3%, 0.85 30.4%, 0.88 35.1%, 0.92 40.6%, 0.94 47.2%, 0.96 55%, 0.98 64%, 0.99 74.4%, 1 86.4%, 1 100%)",
   };
-
+  const hasNoVariation = ["default", "fastInSlowOut", "smoothStep", "elastic", "bounce", "emphasis"];
+  
+  
   let needsInit = true, animateModals = true, animateLibraries = true, animateButtons = true,
-    animationSpeed = 1, animationType = "default";
+    animationSpeed = 1, animationType = "default", animationDir = "inOut";
   let patchedBody = false, sbPatched = false, sbEverPatched = false, listenerAttached = false;
 
   const genStyles = () => `
@@ -140,14 +148,18 @@ export default async function({ addon }) {
     animateLibraries = addon.settings.get("animateLibraries");
     animateButtons = addon.settings.get("animateButtons");
     animationType = addon.settings.get("animationType");
-
+    animationDir = addon.settings.get("animationDir");
     const oldSpeed = animationSpeed;
     animationSpeed = 1 / (Number(addon.settings.get("animateSpeed")) / 100);
     if (oldSpeed !== animationSpeed) styleElement.textContent = genStyles();
   }
 
   function getEasing() {
-    return animationTypes[animationType];
+    if (hasNoVariation.includes(animationType)) {
+      return animationTypes[animationType];
+    } else {
+      return animationTypes[animationType + animationDir];
+    }
   }
 
   function getAnim(time) {
