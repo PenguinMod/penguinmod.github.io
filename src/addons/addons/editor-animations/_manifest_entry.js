@@ -17,6 +17,11 @@ const manifest = {
       "type": "notice",
       "text": "This addon will not take effect if you have animations turned off on your system. See https://mgik.dev/turn-on-motion for how to turn it on.",
       "id": "reduced-motion-notice"
+    },
+    {
+      "type": "notice",
+      "text": "Some animation types don't support animation direction; therefore, the animation direction may be ignored.",
+      "id": "animation-support"
     }
   ],
   "settings": [
@@ -58,26 +63,30 @@ const manifest = {
       "default": "default",
       "potentialValues": [
         { "id": "default", "name": "Default" },
-        { "id": "easeIn", "name": "Ease In" },
-        { "id": "easeOut", "name": "Ease Out" },
-        { "id": "easeInOut", "name": "Ease In Out" },
+        { "id": "ease", "name": "Ease" },
         { "id": "smoothStep", "name": "Smooth Step" },
         { "id": "fastInSlowOut", "name": "Fast In Slow Out" },
-        { "id": "sineIn", "name": "Sine In" },
-        { "id": "sineOut", "name": "Sine Out" },
-        { "id": "sineInOut", "name": "Sine In Out" },
-        { "id": "quadIn", "name": "Quadratic In" },
-        { "id": "quadOut", "name": "Quadratic Out" },
-        { "id": "quadInOut", "name": "Quadratic In Out" },
-        { "id": "cubicIn", "name": "Cubic In" },
-        { "id": "cubicOut", "name": "Cubic Out" },
-        { "id": "cubicInOut", "name": "Cubic In Out" },
-        { "id": "quartIn", "name": "Quartic In" },
-        { "id": "quartOut", "name": "Quartic Out" },
-        { "id": "quartInOut", "name": "Quartic In Out" },
-        { "id": "quintIn", "name": "Quintic In" },
-        { "id": "quintOut", "name": "Quintic Out" },
-        { "id": "quintInOut", "name": "Quintic In Out" }
+        { "id": "sine", "name": "Sine" },
+        { "id": "quad", "name": "Quadratic" },
+        { "id": "cubic", "name": "Cubic" },
+        { "id": "quart", "name": "Quartic" },
+        { "id": "quint", "name": "Quintic" },
+        { "id": "back", "name": "Back" },
+        { "id": "elastic", "name": "Elastic" },
+        { "id": "bounce", "name": "Bounce" },
+        { "id": "emphasis", "name": "Emphasis" },
+      ]
+    },
+    {
+      "id": "animationDir",
+      "name": "Animation Direction",
+      "type": "select",
+      "dynamic": true,
+      "default": "default",
+      "potentialValues": [
+        { "id": "In", "name": "In" },
+        { "id": "Out", "name": "Out" },
+        { "id": "InOut", "name": "Both" },
       ]
     },
   ],
