@@ -43,7 +43,7 @@ export default async function({ addon }) {
   
   
   let needsInit = true, animateModals = true, animateLibraries = true, animateButtons = true,
-    animationSpeed = 1, animationType = "default", animationDir = "inOut";
+    animationSpeed = 1, animationType = "default", animationDir = "InOut";
   let patchedBody = false, sbPatched = false, sbEverPatched = false, listenerAttached = false;
 
   const genStyles = () => `
