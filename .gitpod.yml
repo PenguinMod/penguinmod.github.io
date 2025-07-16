@@ -1,7 +1,7 @@
 tasks:
     - name: Install and build
       init: npm i -g pnpm && pnpm up && pnpm i --shamefully-hoist
-      command: npm run start
+      command: NODE_OPTIONS=--openssl-legacy-provider npm run start
 
 ports:
      - port: 3000
