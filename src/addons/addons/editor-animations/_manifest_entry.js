@@ -82,7 +82,7 @@ const manifest = {
       "name": "Animation Direction",
       "type": "select",
       "dynamic": true,
-      "default": "default",
+      "default": "InOut",
       "potentialValues": [
         { "id": "In", "name": "In" },
         { "id": "Out", "name": "Out" },
