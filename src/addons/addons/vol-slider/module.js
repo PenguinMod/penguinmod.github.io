@@ -11,10 +11,12 @@ const callbacks = [];
 export const setVolume = (newVolume) => {
     if (gainNode) {
         gainNode.value = newVolume;
+
         // literally any other extension
-        for (const audioData of globalVm.runtime._extensionAudioObjects.values()) {
-            if (audioData.gainNode) {
-                audioData.gainNode.gain.value = gainNode.value;
+        for (const extensionInformation of this._extensionIntegrationObjects.values()) {
+            if (extensionInformation.whitelistUsed && !extensionInformation.whitelist.includes("gainNodeSet")) continue;
+            for (const extensionGainNode of extensionInformation.gainNodes) {
+                extensionGainNode.gain.value = gainNode.value;
             }
         }
     } else {
@@ -58,10 +60,12 @@ const gotAudioEngine = (audioEngine) => {
     }
     gainNode = audioEngine.inputNode.gain;
     gainNode.value = volumeBeforeFinishSetup;
+
     // literally any other extension
-    for (const audioData of globalVm.runtime._extensionAudioObjects.values()) {
-        if (audioData.gainNode) {
-            audioData.gainNode.gain.value = gainNode.value;
+    for (const extensionInformation of this._extensionIntegrationObjects.values()) {
+        if (extensionInformation.whitelistUsed && !extensionInformation.whitelist.includes("gainNodeSet")) continue;
+        for (const extensionGainNode of extensionInformation.gainNodes) {
+            extensionGainNode.gain.value = gainNode.value;
         }
     }
 };
