@@ -325,7 +325,7 @@ export default async ({ addon, console, msg }) => {
                 audioSource.connect(dest);
 
                 // connecting extensions to the media stream
-                for (const extensionInformation of this._extensionIntegrationObjects.values()) {
+                for (const extensionInformation of vm.runtime._extensionIntegrationObjects.values()) {
                     if (extensionInformation.whitelistUsed && !extensionInformation.whitelist.includes("audioMediaStream")) continue;
                     // map destination AudioNodes to their AudioContexts
                     const contextMap = new Map();

@@ -13,7 +13,7 @@ export const setVolume = (newVolume) => {
         gainNode.value = newVolume;
 
         // literally any other extension
-        for (const extensionInformation of this._extensionIntegrationObjects.values()) {
+        for (const extensionInformation of vm.runtime._extensionIntegrationObjects.values()) {
             if (extensionInformation.whitelistUsed && !extensionInformation.whitelist.includes("gainNodeSet")) continue;
             for (const extensionGainNode of extensionInformation.gainNodes) {
                 extensionGainNode.gain.value = gainNode.value;
@@ -62,7 +62,7 @@ const gotAudioEngine = (audioEngine) => {
     gainNode.value = volumeBeforeFinishSetup;
 
     // literally any other extension
-    for (const extensionInformation of this._extensionIntegrationObjects.values()) {
+    for (const extensionInformation of vm.runtime._extensionIntegrationObjects.values()) {
         if (extensionInformation.whitelistUsed && !extensionInformation.whitelist.includes("gainNodeSet")) continue;
         for (const extensionGainNode of extensionInformation.gainNodes) {
             extensionGainNode.gain.value = gainNode.value;
