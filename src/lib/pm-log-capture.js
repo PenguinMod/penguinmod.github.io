@@ -142,18 +142,63 @@ const parseStack = (stack, url, line, column) => {
     if (stack.split('\n', 2)[0].includes('@')) return _parseFirefoxStack(stack);
     return _parseChromeStack(stack);
 };
+const downloadLogs = async () => {
+    const str = JSON.stringify(consoleLogs);
+    let blob = new Blob([str]);
+    let filename = 'pm-error-download.json';
+    // if we can, include the project
+    if (vm) {
+        filename = 'pm-error-download.pmp';
+        const archive = vm._saveProjectZip();
+        archive.file('logs.json', blob);
+        blob = await archive.generateAsync({
+            type: 'blob',
+            mimeType: 'application/x.scratch.sb3',
+            compression: 'DEFLATE'
+        });
+    }
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    document.body.append(a);
+    const url = window.URL.createObjectURL(blob);
+    a.href = url;
+    a.download = filename;
+    a.click();
+    window.URL.revokeObjectURL(url);
+    a.remove();
+};
+window.downloadLogs = downloadLogs;
 
 window.addEventListener('error', e =>
     push('error', e.message, parseStack(e.error.stack, e.filename, e.lineno, e.colno)));
 window.addEventListener('unhandledrejection', e => push('promiseError', e.reason, []));
-for (const name of ['log', 'warn', 'error', 'debug', 'info']) {
-    const item = window.console[name];
-    window.console[name] = (...args) => {
-        let stack = [];
-        if (browserHasStack) stack = parseStack(new Error().stack);
-        push(name, args, stack);
-        item(...args);
-    };
+class StackTrace extends Error {
+    constructor() {
+        super('');
+        if (this.stack.split('\n', 2)[0].includes('@'))
+            this.stack = this.stack
+                .split('\n')
+                .slice(2, 3)
+                .join('\n');
+        else {
+            // chrome is weird ngl
+            const lines = this.stack
+                .split('\n')
+                .slice(0, 3);
+            lines.splice(1, 2);
+            this.stack = lines.join('\n');
+        }
+    }
 }
-
-export { consoleLogs, parseStack, push };
+if (!String(window.location.href).startsWith(`http://localhost:`)) {
+    for (const name of ['log', 'warn', 'error', 'debug', 'info']) {
+        const item = window.console[name];
+        window.console[name] = (...args) => {
+            let stack = [];
+            if (browserHasStack) stack = parseStack(new Error().stack);
+            push(name, args, stack);
+            item.call(console, ...args, new StackTrace());
+        };
+    }
+}
+export { consoleLogs, parseStack, push, downloadLogs };

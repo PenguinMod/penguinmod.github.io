@@ -85,7 +85,7 @@ import sharedMessages from '../../lib/shared-messages';
 import SeeInsideButton from './tw-see-inside.jsx';
 import { notScratchDesktop } from '../../lib/isScratchDesktop.js';
 
-//import { consoleLogs } from '../../lib/pm-log-capture.js';
+import { downloadLogs } from '../../lib/pm-log-capture.js';
 
 const ariaMessages = defineMessages({
     language: {
@@ -207,6 +207,7 @@ class MenuBar extends React.Component {
             'handleClickPackager',
             'handleClickRestorePoints',
             'handleClickSeeCommunity',
+            'handleClickDownloadLogs',
             'handleClickShare',
             'handleKeyPress',
             'handleLanguageMouseUp',
@@ -422,21 +423,7 @@ class MenuBar extends React.Component {
             this.props.onRequestCloseAbout();
         };
     }
-    /*
-      - hidden until this is actually helpful for developers
-      - unhide when a solution is found for not blocking error tracking/using 3rd parties
-    handleClickDownloadLogs() {
-        const str = JSON.stringify(consoleLogs);
-        const a = document.createElement('a');
-        a.style.display = 'none';
-        document.body.append(a);
-        const url = window.URL.createObjectURL(new Blob([str]));
-        a.href = url;
-        a.download = 'pm-log-trace.json';
-        a.click();
-        window.URL.revokeObjectURL(url);
-        a.remove();
-    }*/
+    handleClickDownloadLogs() { downloadLogs(); }
     render() {
         const saveNowMessage = (
             <FormattedMessage
@@ -859,6 +846,9 @@ class MenuBar extends React.Component {
                                             description="Menu bar item for gameplay settings"
                                             id="pm.menuBar.moreSettings"
                                         />
+                                    </MenuItem>
+                                    <MenuItem onClick={this.handleClickDownloadLogs}>
+                                        Download Logs
                                     </MenuItem>
                                 </MenuSection>
                             </MenuBarMenu>

@@ -5,6 +5,7 @@ import {FormattedMessage} from 'react-intl';
 
 import styles from './crash-message.css';
 import reloadIcon from './reload.svg';
+import { downloadLogs } from '../../lib/pm-log-capture.js';
 
 const CrashMessage = props => (
     <div className={styles.crashWrapper}>
@@ -25,7 +26,7 @@ const CrashMessage = props => (
                     defaultMessage={'We are so sorry, but it looks like the page has crashed.' +
                         ' Please refresh your page to try' +
                         ' again.' +
-                        ' If the problem persists, please report this error to our Discord.'}
+                        ' If the problem persists, please report the downloadable error below to our Discord.'}
                     description="Message to inform the user that page has crashed."
                     id="tw.gui.crashMessage.description"
                 />
@@ -56,6 +57,12 @@ const CrashMessage = props => (
                     description="Button to reload the page when page crashes"
                     id="gui.crashMessage.reload"
                 />
+            </button>
+            <button
+                className={styles.reloadButton}
+                onClick={downloadLogs}
+            >
+                {'Download Error'}
             </button>
         </Box>
     </div>
