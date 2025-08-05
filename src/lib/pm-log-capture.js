@@ -146,6 +146,7 @@ const downloadLogs = async () => {
     const str = JSON.stringify(consoleLogs);
     let blob = new Blob([str]);
     let filename = 'pm-error-download.json';
+    /* actually, this is a bad idea
     // if we can, include the project
     if (vm) {
         filename = 'pm-error-download.pmp';
@@ -157,6 +158,7 @@ const downloadLogs = async () => {
             compression: 'DEFLATE'
         });
     }
+    */
     const a = document.createElement('a');
     a.style.display = 'none';
     document.body.append(a);
