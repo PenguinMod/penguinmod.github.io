@@ -1,3 +1,6 @@
+import JSZip from 'jszip';
+import uid from './uid';
+
 /**
  * String.prototype.indexOf, but it returns NaN not -1 on failure
  * @param {string} str The string to check in
@@ -143,9 +146,27 @@ const parseStack = (stack, url, line, column) => {
     return _parseChromeStack(stack);
 };
 const downloadLogs = async () => {
-    const str = JSON.stringify(consoleLogs);
-    let blob = new Blob([str]);
-    let filename = 'pm-error-download.json';
+    const files = new JSZip();
+    files.file('logs.json', JSON.stringify(consoleLogs));
+    const index = {};
+    // get files
+    // sadly, this may just dead ass fail to get files due to blob lifecycle
+    // and i dont want to make these files get stored at runtime, cause poopy doo doo ram
+    for (const log of consoleLogs) {
+        for (const trace of log.trace) {
+            if (index[trace.url]) continue;
+            const id = uid();
+            const content = await fetch(trace.url)
+                .then(res => res.ok ? res.text() : null)
+                .catch(() => {});
+            if (!content) continue;
+            files.file(id, content);
+            index[trace.url] = id;
+        }
+    }
+    files.file('index.json', JSON.stringify(index));
+    let blob = await files.generateAsync({ type: 'blob', compression: 'DEFLATE' });
+    let filename = 'pm-error-download.pml';
     /* actually, this is a bad idea
     // if we can, include the project
     if (vm) {
