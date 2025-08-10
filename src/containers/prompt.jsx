@@ -62,8 +62,6 @@ class Prompt extends React.Component {
         if (this.props.isCustom) return (
             <PromptComponent
                 isCustom={this.props.isCustom}
-                width={this.props.width}
-                height={this.props.height}
                 title={this.props.title}
                 enterTitle={this.props.enterTitle}
                 closeTitle={this.props.closeTitle}
@@ -111,8 +109,6 @@ Prompt.propTypes = {
 
     /* custom modals */
     isCustom: PropTypes.bool,
-    width: PropTypes.number,
-    height: PropTypes.number,
     enterTitle: PropTypes.string,
     closeTitle: PropTypes.string
 };
