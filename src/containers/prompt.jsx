@@ -98,15 +98,15 @@ class Prompt extends React.Component {
 }
 
 Prompt.propTypes = {
-    defaultValue: PropTypes.string,
-    isStage: PropTypes.bool.isRequired,
-    showListMessage: PropTypes.bool.isRequired,
-    label: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     onCancel: PropTypes.func.isRequired,
     onOk: PropTypes.func.isRequired,
-    showCloudOption: PropTypes.bool.isRequired,
-    showVariableOptions: PropTypes.bool.isRequired,
-    title: PropTypes.string.isRequired,
+    defaultValue: PropTypes.string,
+    isStage: PropTypes.bool,
+    showListMessage: PropTypes.bool,
+    label: PropTypes.string,
+    showCloudOption: PropTypes.bool,
+    showVariableOptions: PropTypes.bool,
     vm: PropTypes.instanceOf(VM),
 
     /* custom modals */
