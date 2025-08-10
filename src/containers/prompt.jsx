@@ -34,7 +34,8 @@ class Prompt extends React.Component {
         event.target.select();
     }
     handleOk () {
-        this.props.onOk(this.state.inputValue, {
+        if (this.props.isCustom) this.props.onOk();
+        else this.props.onOk(this.state.inputValue, {
             scope: this.state.globalSelected ? 'global' : 'local',
             isCloud: this.state.cloudSelected
         });
@@ -58,7 +59,20 @@ class Prompt extends React.Component {
         }
     }
     render () {
-        return (
+        if (this.props.isCustom) return (
+            <PromptComponent
+                isCustom={this.props.isCustom}
+                width={this.props.width}
+                height={this.props.height}
+                title={this.props.title}
+                enterTitle={this.props.enterTitle}
+                closeTitle={this.props.closeTitle}
+                onOk={this.handleOk}
+                onCancel={this.handleCancel}
+                onKeyPress={this.handleKeyPress}
+            />
+        )
+        else return (
             <PromptComponent
                 isAddingCloudVariableScratchSafe={this.state.isAddingCloudVariableScratchSafe}
                 canAddCloudVariable={this.state.canAddCloudVariable}
@@ -93,7 +107,14 @@ Prompt.propTypes = {
     showCloudOption: PropTypes.bool.isRequired,
     showVariableOptions: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
-    vm: PropTypes.instanceOf(VM)
+    vm: PropTypes.instanceOf(VM),
+
+    /* custom modals */
+    isCustom: PropTypes.bool,
+    width: PropTypes.number,
+    height: PropTypes.number,
+    enterTitle: PropTypes.string,
+    closeTitle: PropTypes.string
 };
 
 export default Prompt;
