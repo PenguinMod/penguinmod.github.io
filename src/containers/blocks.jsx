@@ -643,7 +643,7 @@ class Blocks extends React.Component {
             title,
             width: Number(scale.width), height: Number(scale.height),
             enterInfo, closeInfo
-        });
+        }});
 
         return document.querySelector(`div[class="ReactModalPortal"] div[class*="prompt_body_"]`);
     }
