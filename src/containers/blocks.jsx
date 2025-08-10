@@ -640,12 +640,16 @@ class Blocks extends React.Component {
 
         this.setState({prompt: {
             isCustom: true,
-            title,
-            width: Number(scale.width), height: Number(scale.height),
-            enterInfo, closeInfo
+            title, enterInfo, closeInfo
         }});
 
-        return document.querySelector(`div[class="ReactModalPortal"] div[class*="prompt_body_"]`);
+        const modal = document.querySelector(`div[class="ReactModalPortal"]`);
+        if (modal) {
+            const inner = modal.firstChild.firstChild;
+            inner.style.width = `${scale.width}px`;
+            inner.style.height = `${scale.height}px`;
+            return inner.querySelector(`div[class*="prompt_body_"] div`);
+        }
     }
     handleConnectionModalStart (extensionId) {
         this.props.onOpenConnectionModal(extensionId);
@@ -734,8 +738,6 @@ class Blocks extends React.Component {
                 {this.state.prompt ? this.state.prompt.isCustom ? (
                     <Prompt
                         isCustom={this.state.prompt.isCustom}
-                        width={this.state.prompt.width}
-                        height={this.state.prompt.height}
                         title={this.state.prompt.title}
                         enterTitle={this.state.prompt.enterInfo.name}
                         closeTitle={this.state.prompt.closeInfo.name}
