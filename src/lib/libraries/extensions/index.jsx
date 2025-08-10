@@ -560,6 +560,12 @@ const menuItems = [
         tags: ['penguinmod', 'graphics'],
         iconURL: spTurboSkinsIcon,
         description: 'Display sprites with various images or costumes and control their hitboxes',
+        extraLabels: [
+            {
+                name: "Inspired by",
+                value: "\"Skins\" by LilyMakesThings"
+            }
+        ],
         featured: true,
         credits: 'SharkPool'
     },
