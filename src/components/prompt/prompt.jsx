@@ -40,7 +40,41 @@ const messages = defineMessages({
     }
 });
 
-const PromptComponent = props => (
+const PromptComponent = props => props.isCustom ? (
+    <Modal
+        className={styles.modalContent}
+        contentLabel={props.title}
+        id="customModal"
+        onRequestClose={props.onCancel}
+    >
+        <Box className={styles.body}>
+            <Box>
+            </Box>
+            <Box className={styles.buttonRow}>
+                <button
+                    className={styles.cancelButton}
+                    onClick={props.onCancel}
+                >
+                    <FormattedMessage
+                        defaultMessage={props.closeTitle}
+                        description="Button in prompt for cancelling the dialog"
+                        id="gui.prompt.cancel"
+                    />
+                </button>
+                <button
+                    className={styles.okButton}
+                    onClick={props.onOk}
+                >
+                    <FormattedMessage
+                        defaultMessage={props.enterTitle}
+                        description="Button in prompt for confirming the dialog"
+                        id="gui.prompt.ok"
+                    />
+                </button>
+            </Box>
+        </Box>
+    </Modal>
+) : (
     <Modal
         className={styles.modalContent}
         contentLabel={props.title}
@@ -188,24 +222,29 @@ const PromptComponent = props => (
 );
 
 PromptComponent.propTypes = {
-    isAddingCloudVariableScratchSafe: PropTypes.bool.isRequired,
-    canAddCloudVariable: PropTypes.bool.isRequired,
-    cloudSelected: PropTypes.bool.isRequired,
-    defaultValue: PropTypes.string,
-    globalSelected: PropTypes.bool.isRequired,
-    isStage: PropTypes.bool.isRequired,
-    showListMessage: PropTypes.bool.isRequired,
-    label: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     onCancel: PropTypes.func.isRequired,
-    onChange: PropTypes.func.isRequired,
-    onCloudVarOptionChange: PropTypes.func,
-    onFocus: PropTypes.func.isRequired,
     onKeyPress: PropTypes.func.isRequired,
     onOk: PropTypes.func.isRequired,
-    onScopeOptionSelection: PropTypes.func.isRequired,
-    showCloudOption: PropTypes.bool.isRequired,
-    showVariableOptions: PropTypes.bool.isRequired,
-    title: PropTypes.string.isRequired
+    isAddingCloudVariableScratchSafe: PropTypes.bool,
+    canAddCloudVariable: PropTypes.bool,
+    cloudSelected: PropTypes.bool,
+    defaultValue: PropTypes.string,
+    globalSelected: PropTypes.bool,
+    isStage: PropTypes.bool,
+    showListMessage: PropTypes.bool,
+    label: PropTypes.string,
+    onChange: PropTypes.func,
+    onCloudVarOptionChange: PropTypes.func,
+    onFocus: PropTypes.func,
+    onScopeOptionSelection: PropTypes.func,
+    showCloudOption: PropTypes.bool,
+    showVariableOptions: PropTypes.bool,
+
+    /* custom modals */
+    isCustom: PropTypes.bool,
+    enterTitle: PropTypes.string,
+    closeTitle: PropTypes.string
 };
 
 export default PromptComponent;
