@@ -34,6 +34,7 @@ export const initialState = {
         miscLimits: true,
         dangerousOptimizations: false,
         disableOffscreenRendering: false,
+        disableDirectionClamping: false,
         fencing: true
     },
     isWindowFullScreen: false,

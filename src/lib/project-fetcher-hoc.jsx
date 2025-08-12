@@ -120,6 +120,7 @@ const ProjectFetcherHOC = function (WrappedComponent) {
             ) {
                 this.props.vm.setFramerate(30);
                 this.props.vm.setRuntimeOptions({
+                    disableDirectionClamping: false,
                     dangerousOptimizations: false,
                     disableOffscreenRendering: false,
                     fencing: true,

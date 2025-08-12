@@ -314,6 +314,26 @@ const DisableOffscreenRendering = props => (
         // slug="out-of-bounds-rendering"
     />
 );
+const DisableDirectionClamping = props => (
+    <BooleanSetting
+        {...props}
+        label={
+            <FormattedMessage
+                defaultMessage="Disable Direction Clamping"
+                description="Disable Direction Clamping setting"
+                id="pm.settingsModal.noDirWrap"
+            />
+        }
+        help={
+            <FormattedMessage
+                defaultMessage="When enabled, directions will not be clamped from -179 - 180"
+                description="Disable Direction Clamping setting help"
+                id="pm.settingsModal.noDirWrapHelp"
+            />
+        }
+        // slug="out-of-bounds-rendering"
+    />
+);
 
 const WarpTimer = props => (
     <BooleanSetting
@@ -545,6 +565,10 @@ const SettingsModalComponent = props => (
             <EnableDangerousOptimizations
                 value={props.dangerousOptimizations}
                 onChange={props.onEnableDangerousOptimizationsChange}
+            />
+            <DisableDirectionClamping
+                value={props.disableDirectionClamping}
+                onChange={props.onDisableDirectionClamping}
             />
             <Header>
                 <FormattedMessage
