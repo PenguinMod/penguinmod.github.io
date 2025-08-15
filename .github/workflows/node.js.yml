@@ -27,7 +27,7 @@ jobs:
       with:
         node-version: 16.x
     - name: Install dependencies and build site
-      run: npm i -g pnpm@v6 && pnpm up && pnpm i --shamefully-hoist --force && SOURCEMAP="cheap-source-map" NODE_ENV="production" webpack --bail
+      run: npm i -g pnpm@v6 && pnpm up && pnpm i --shamefully-hoist --force && NODE_ENV="production" webpack --bail
     - name: Upload artifact 
       uses: actions/upload-pages-artifact@v3
       with:
