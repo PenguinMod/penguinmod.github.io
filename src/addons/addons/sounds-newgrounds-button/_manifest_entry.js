@@ -21,7 +21,7 @@ const manifest = {
         }
     ],
     "tags": ["editor", "new"],
-    "enabledByDefault": true,
+    "enabledByDefault": false,
     "dynamicEnable": true,
     "dynamicDisable": false
 };
