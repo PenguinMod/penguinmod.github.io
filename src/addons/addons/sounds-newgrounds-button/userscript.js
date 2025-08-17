@@ -77,7 +77,7 @@ export default async function() {
     okayButton.style.pointerEvents = "none";
 
     const label = document.createElement("div");
-    label.innerHTML = `Import <a href="https://www.newgrounds.com/audio" target="_blank">Newgrounds</a> audio directly into your Project. Not all tracks are fully free-to-use, read the report after searching.`;
+    label.innerHTML = `Import <a href="https://www.newgrounds.com/audio" target="_blank">Newgrounds</a> audio directly into your Project.<br><b>Not all tracks are fully free-to-use, read the report after searching.</b>`;
     label.setAttribute("style", "text-align: center; font-size: .85rem;");
 
     const idInputDiv = document.createElement("div");
