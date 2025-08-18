@@ -59,7 +59,7 @@ const push = (type, message, trace) => {
         trace
     });
 };
-const _parseFirefoxStack = stack => stack.split('\n')
+const _parseFirefoxStack = stack => stack.split('\n').slice(1)
     .map(line => {
         const at = line.indexOf('@');
         const secondCol = line.lastIndexOf(':');
@@ -90,7 +90,7 @@ const _parseFirefoxStack = stack => stack.split('\n')
             origin
         };
     });
-const _parseChromeStack = stack => stack.split('\n').slice(1)
+const _parseChromeStack = stack => stack.split('\n').slice(2)
     .map(line => {
         // we have no use for the human readable fluff
         line = line.slice(7);
