@@ -62,7 +62,7 @@ import sharkpoolGalleryIcon from './penguinmod/sharkpool-library.svg';
 import ExtForgeIcon from './penguinmod/extforge.svg';
 import turboBuilderIcon from './penguinmod/turbobuilder.png';
 import turboBuilderDevIcon from './penguinmod/turbobuilder-dev.png';
-import TringlyBuilderIcon from '.penguinmod/tringlybuilder.png'
+import TringlyBuilderIcon from '.penguinmod/tringlybuilder.svg'
 
 import filesExtensionIcon from './penguinmod/extensions/files.svg';
 import jgJSONExtensionIcon from './penguinmod/extensions/json.png';
