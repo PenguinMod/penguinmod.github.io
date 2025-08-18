@@ -340,11 +340,16 @@ export default async ({ addon, console, msg }) => {
             if (opts.audioEnabled || opts.micEnabled) {
                 stream.addTrack(dest.stream.getAudioTracks()[0]);
             }
-            recorder = new MediaRecorder(stream, { mimeType:
-                isMp4CodecSupported ?
-                "video/webm;codecs=h264"
-                : "video/webm"
-            });
+            try {
+                recorder = new MediaRecorder(stream, { mimeType: "video/webm;codecs=vp9" });
+            } catch (err) {
+                console.error('Could not make a transparency compatable video', err);
+                recorder = new MediaRecorder(stream, { mimeType:
+                    isMp4CodecSupported ?
+                    "video/webm;codecs=h264"
+                    : "video/webm"
+                });
+            }
             recorder.ondataavailable = (e) => {
                 recordBuffer.push(e.data);
             };

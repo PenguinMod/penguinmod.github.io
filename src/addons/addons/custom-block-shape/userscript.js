@@ -7,31 +7,54 @@ export default async function ({ addon, console }) {
 
     const { GRID_UNIT } = BlockSvg;
 
-    function scalePathXY(path, scaleX, scaleY) {
-      const util = BlockSvg.CUSTOM_NOTCH_UTIL;
-      const tokens = util.path2TokenList(path);
-      const result = [];
-      let i = 0;
-      while (i < tokens.length) {
-        const cmd = tokens[i++];
-        result.push(cmd);
+    function path2SegmentList(path) {
+      const cmds = structuredClone(BlockSvg.CUSTOM_NOTCH_UTIL.supportedCommands);
+      cmds.z = 0;
+      const segment = /([astvzqmhlc])([^astvzqmhlc]*)/ig;
+    	const data = [];
+    	path.replace(segment, (_, command, args) => {
+    		let type = command.toLowerCase();
+    		const numbers = args.match(/-?[0-9]*\.?[0-9]+(?:e[-+]?\d+)?/ig);
+    		args = numbers ? numbers.map(Number) : [];
+		    if (type == "m" && args.length > 2) {
+		    	data.push([command].concat(args.splice(0, 2)));
+		    	type = "l";
+		    	command = command == "m" ? "l" : "L";
+		    }
 
-        const expected = util.supportedCommands[cmd];
-        const xIndexes = util.commandXpos[cmd] || [];
-
-        while (i + expected <= tokens.length && !/^[a-z]$/i.test(tokens[i])) {
-          for (let j = 0; j < expected; j++) {
-            let val = parseFloat(tokens[i + j]);
-            if (isNaN(val)) throw new Error(`Invalid number '${tokens[i + j]}'`);
-
-            if (xIndexes.includes(j)) val *= scaleX;
-            else val *= scaleY;
-            result.push(+val.toFixed(6));
+        while (true) {
+          if (args.length == cmds[type]) {
+            args.unshift(command);
+            return data.push(args);
           }
-          i += expected;
+          if (args.length < cmds[type]) throw new Error("malformed path data");
+          data.push([command].concat(args.splice(0, cmds[type])));
         }
-      }
-      return result.join(' ');
+      });
+      return data;
+    }
+
+    function scalePathXY (path, scaleX, scaleY) {
+      const segments = path2SegmentList(path);
+      return segments.map((segment) => {
+        const name = segment[0].toLowerCase();
+        if (name === "v") {
+          segment[1] *= scaleY;
+          return segment;
+        }
+        if (name === "a") {
+          segment[1] *= scaleX;
+          segment[2] *= scaleY;
+          segment[6] *= scaleX;
+          segment[7] *= scaleY;
+          return segment;
+        }
+
+        return segment.map((val, i) => {
+          if (!i) return val;
+          return val *= i % 2 ? scaleX : scaleY;
+        });
+      }).flat().join(" ");
     }
 
     function updateAllBlocks() {
@@ -95,15 +118,28 @@ export default async function ({ addon, console }) {
       const adjustedNotchSize = (multiplier > 1 ? multiplier - 0.05 :
           multiplier < 1 ? multiplier + 0.05 : multiplier) + ((cornerSize - 1) / 10);
       BlockSvg.CUSTOM_NOTCHES.forEach((notch) => {
-        if (!notch.ogLeft) notch.ogLeft = notch.left;
-        if (!notch.ogRight) notch.ogRight = notch.right;
+        if (!notch.ogLeft) {
+          notch.ogLeft = notch.left;
+          notch.ogRight = notch.right;
+        }
         notch.left = scalePathXY(notch.ogLeft, adjustedNotchSize, notchSize);
         notch.right = scalePathXY(notch.ogRight, adjustedNotchSize, notchSize);
       });
 
       /* Custom Shape API Support */
-      // TODO here...
+      BlockSvg.CUSTOM_SHAPES.forEach((shape) => {
+        if (!shape.ogEmptySize) {
+          shape.ogEmptySize = shape.emptyInputWidth;
+          shape.ogEmptyPath = shape.emptyInputPath;
+        }
+        shape.emptyInputWidth = shape.ogEmptySize * multiplier;
+        shape.emptyInputPath = scalePathXY(shape.ogEmptyPath, multiplier, multiplier);
+        if (shape.emptyInputPath[0] !== "M" && shape.emptyInputPath[0] !== "m") {
+            shape.emptyInputPath = "M" + shape.emptyInputPath;
+        }
+      });
 
+      BlockSvg.INPUT_SHAPE_HEXAGONAL_WIDTH = 12 * GRID_UNIT * multiplier;
       BlockSvg.INPUT_SHAPE_HEXAGONAL =
         "M " +
         4 * GRID_UNIT * multiplier +
@@ -129,7 +165,7 @@ export default async function ({ addon, console }) {
         "," +
         -4 * GRID_UNIT * multiplier +
         " z";
-      BlockSvg.INPUT_SHAPE_HEXAGONAL_WIDTH = 12 * GRID_UNIT * multiplier;
+      BlockSvg.INPUT_SHAPE_ROUND_WIDTH = 12 * GRID_UNIT * multiplier;
       BlockSvg.INPUT_SHAPE_ROUND =
         "M " +
         4 * GRID_UNIT * multiplier +
@@ -151,7 +187,55 @@ export default async function ({ addon, console }) {
         " 0 0 1 0 -" +
         8 * GRID_UNIT * multiplier +
         " z";
-      BlockSvg.INPUT_SHAPE_ROUND_WIDTH = 12 * GRID_UNIT * multiplier;
+
+      BlockSvg.INPUT_SHAPE_SQUARE_WIDTH = 12 * GRID_UNIT * multiplier;
+      BlockSvg.INPUT_SHAPE_SQUARE =
+        'm 0,4A 4,4 0 0,1 4,0'+
+        ' h ' + (12 * GRID_UNIT * multiplier - 2 * 4) +
+        'a 4,4 0 0,1 4,4' +
+        ' v ' + (8 * GRID_UNIT * multiplier - 2 * 4) +
+        ' a 4,4 0 0,1 -4,4' +
+        ' h ' + (-12 * GRID_UNIT * multiplier + 2 * 4) +
+        'a 4,4 0 0,1 -4,-4 z';
+
+      BlockSvg.INPUT_SHAPE_LEAF_WIDTH = 12 * GRID_UNIT * multiplier;
+      BlockSvg.INPUT_SHAPE_LEAF = 
+        `M ${6 * GRID_UNIT * multiplier} 0
+        l ${2 * GRID_UNIT * multiplier} 0
+        a ${4 * GRID_UNIT * multiplier} ${4 * GRID_UNIT * multiplier} 0 0 1 ${4 * GRID_UNIT * multiplier} ${4 * GRID_UNIT * multiplier}
+        l 0 ${2.4 * GRID_UNIT * multiplier}
+        a ${1.6 * GRID_UNIT * multiplier} ${1.6 * GRID_UNIT * multiplier} 0 0 1 -${1.6 * GRID_UNIT * multiplier} ${1.6 * GRID_UNIT * multiplier}
+        h -${4 * GRID_UNIT * multiplier}
+        l -${2.4 * GRID_UNIT * multiplier} 0
+        a ${4 * GRID_UNIT * multiplier} ${4 * GRID_UNIT * multiplier} 0 0 1 -${4 * GRID_UNIT * multiplier} -${4 * GRID_UNIT * multiplier}
+        l 0 -${2.4 * GRID_UNIT * multiplier}
+        a ${1.6 * GRID_UNIT * multiplier} ${1.6 * GRID_UNIT * multiplier} 0 0 1 ${1.6 * GRID_UNIT * multiplier} -${1.6 * GRID_UNIT * multiplier}
+        z`;
+
+      BlockSvg.INPUT_SHAPE_PLUS_WIDTH = 12 * GRID_UNIT * multiplier;
+      BlockSvg.INPUT_SHAPE_PLUS = 
+        `M ${9 * GRID_UNIT * multiplier} 0
+        a ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier} 0 0 1 ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier}
+        l 0 2
+        a ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier} 0 0 0 ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier}
+        a ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier} 0 0 1 ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier}
+        l 0 4
+        a ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier} 0 0 1 -${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier}
+        a ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier} 0 0 0 -${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier}
+        l 0 2
+        a ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier} 0 0 1 -${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier}
+        h -${6 * GRID_UNIT * multiplier}
+        a ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier} 0 0 1 -${GRID_UNIT * multiplier} -${GRID_UNIT * multiplier}
+        l 0 -2
+        a ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier} 0 0 0 -${GRID_UNIT * multiplier} -${GRID_UNIT * multiplier}
+        a ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier} 0 0 1 -${GRID_UNIT * multiplier} -${GRID_UNIT * multiplier}
+        l 0 -4
+        a ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier} 0 0 1 ${GRID_UNIT * multiplier} -${GRID_UNIT * multiplier}
+        a ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier} 0 0 0 ${GRID_UNIT * multiplier} -${GRID_UNIT * multiplier}
+        l 0 -2
+        a ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier} 0 0 1 ${GRID_UNIT * multiplier} -${GRID_UNIT * multiplier} 
+        z`;
+
       BlockSvg.INPUT_SHAPE_HEIGHT = 8 * GRID_UNIT * multiplier;
       BlockSvg.FIELD_HEIGHT = 8 * GRID_UNIT * multiplier; // NOTE: Determines string input heights
       BlockSvg.FIELD_WIDTH = 6 * GRID_UNIT * Math.min(multiplier, 1) + 10 * GRID_UNIT * Math.max(multiplier - 1, 0);

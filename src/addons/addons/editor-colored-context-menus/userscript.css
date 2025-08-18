@@ -1,5 +1,5 @@
 .sa-contextmenu-colored .blocklyContextMenu {
-  background-color: var(--sa-contextmenu-bg) !important;
+  background: var(--sa-contextmenu-bg) !important;
   border-color: var(--sa-contextmenu-border) !important;
 }
 .sa-contextmenu-colored .blocklyContextMenu .goog-menuitem-highlight,
@@ -11,5 +11,6 @@
   border-top-color: var(--sa-contextmenu-border) !important;
 }
 .sa-contextmenu-colored .blocklyContextMenu .goog-menuitem .goog-menuitem-content {
-  color: white;
+  color: var(--sa-contextmenu-text, #fff);
 }
+

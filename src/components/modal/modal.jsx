@@ -16,6 +16,7 @@ import styles from './modal.css';
 const ModalComponent = props => (
     <ReactModal
         isOpen
+        ref={props.componentRef}
         className={classNames(styles.modalContent, props.className, {
             [styles.fullScreen]: props.fullScreen
         })}
@@ -24,10 +25,12 @@ const ModalComponent = props => (
             [styles.scrollable]: props.scrollable
         })}
         onRequestClose={props.onRequestClose}
+        style={{ content: props.styleContent, overlay: props.styleOverlay }}
     >
         <Box
             dir={props.isRtl ? 'rtl' : 'ltr'}
             direction="column"
+            componentRef={props.boxRef}
             grow={1}
         >
             <div className={classNames(styles.header, props.headerClassName)}>
@@ -98,6 +101,16 @@ const ModalComponent = props => (
 
 ModalComponent.propTypes = {
     children: PropTypes.node,
+    componentRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    ]),
+    boxRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    ]),
+    styleContent: PropTypes.object,
+    styleOverlay: PropTypes.object,
     className: PropTypes.string,
     contentLabel: PropTypes.oneOfType([
         PropTypes.string,

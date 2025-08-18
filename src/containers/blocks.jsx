@@ -21,6 +21,7 @@ import DragConstants from '../lib/drag-constants';
 import defineDynamicBlock from '../lib/define-dynamic-block';
 import AddonHooks from '../addons/hooks';
 import LoadScratchBlocksHOC from '../lib/tw-load-scratch-blocks-hoc.jsx';
+import uid from "../lib/uid.js";
 
 import {connect} from 'react-redux';
 import {updateToolbox} from '../reducers/toolbox';
@@ -76,6 +77,7 @@ const addFunctionListener = (object, property, callback) => {
         return result;
     };
 };
+const isObject = (value) => value && typeof value === 'object' && !Array.isArray(value);
 
 const DroppableBlocks = DropAreaHOC([
     DragConstants.BACKPACK_CODE
@@ -116,6 +118,7 @@ class Blocks extends React.Component {
             'handleStatusButtonUpdate',
             'handleOpenSoundRecorder',
             'handlePromptStart',
+            'handleCustomPrompt',
             'handlePromptCallback',
             'handlePromptClose',
             'handleCustomProceduresClose',
@@ -137,14 +140,17 @@ class Blocks extends React.Component {
             'handleEnableProcedureReturns'
         ]);
         this.ScratchBlocks.prompt = this.handlePromptStart;
+        this.ScratchBlocks.customPrompt = this.handleCustomPrompt;
         this.ScratchBlocks.statusButtonCallback = this.handleConnectionModalStart;
         this.ScratchBlocks.recordSoundCallback = this.handleOpenSoundRecorder;
 
         this.state = {
-            prompt: null
+            prompt: null,
+            customPrompts: [],
         };
         this.onTargetsUpdate = debounce(this.onTargetsUpdate, 100);
         this.toolboxUpdateQueue = [];
+        this.customModalRefs = new Map();
     }
     componentDidMount () {
         this.props.vm.setCompilerOptions({
@@ -234,6 +240,8 @@ class Blocks extends React.Component {
     shouldComponentUpdate (nextProps, nextState) {
         return (
             this.state.prompt !== nextState.prompt ||
+            this.state.customPrompts !== nextState.customPrompts ||
+            (nextState.customPrompts && this.state.customPrompts.length !== nextState.customPrompts.length) ||
             this.props.isVisible !== nextProps.isVisible ||
             this._renderedToolboxXML !== nextProps.toolboxXML ||
             this.props.extensionLibraryVisible !== nextProps.extensionLibraryVisible ||
@@ -609,6 +617,52 @@ class Blocks extends React.Component {
         p.prompt.showCloudOption = (optVarType === this.ScratchBlocks.SCALAR_VARIABLE_TYPE) && this.props.canUseCloud;
         this.setState(p);
     }
+
+    /**
+     * @param {{title:string, scrollable:boolean?}} config The config for the modal
+     * @param {{content:CSSStyleDeclaration?, overlay:CSSStyleDeclaration?}?} styles Sets styles on parts of the modal. If specified, at least one of the parts should have styles.
+     * @param {Array<{
+     *      name:string,
+     *      role:"ok"|"close"|null,
+     *      class:"ok"|"cancel"|null,
+     *      style:CSSStyleDeclaration?,
+     *      dontClose:boolean?,
+     *      callback:function():void
+     * }>?} buttons Buttons to place onto the modal. `role` makes the button callback run for other types of interactions.
+     * @returns {Promise<HTMLElement>}
+     */
+    handleCustomPrompt (config, styles, buttons) {
+        return new Promise((resolve, reject) => {
+            /* validate arguments */
+            if (config && isObject(config)) {
+                if (!config.title) return reject("Custom Modal -- Missing 'title' (string) property in Param 1");
+            } else {
+                return reject("Custom Modal -- Param 1 must be an object with at least properties: 'title' (string)");
+            }
+            if (styles && !isObject(styles)) {
+                return reject("Custom Modal -- Param 2 must be an object");
+            }
+            if (styles && (!styles.content && !styles.overlay)) {
+                return reject("Custom Modal -- If Param 2 is specified, specify CSS styles within either: 'content' or 'overlay'");
+            }
+
+            // create the callback for when the node is created. an HTML element (or modal) with ref={functionHere} will run the function with the HTMLElement as 1st arg
+            const thisPromptId = uid();
+            this.customModalRefs.set(thisPromptId, (node) => {
+                resolve(node);
+            })
+
+            // Setting state with this info will cause blocks.jsx to re-render, rendering the modal before any code after setState can run.
+            // However, the callback & ref are not be usable until slightly later. this is why ref is set to a callback above.
+            // This is one of many reasons why React is pretty stupid.
+            this.setState({
+                customPrompts: this.state.customPrompts.concat({
+                    id: thisPromptId,
+                    config, styles, buttons
+                })
+            });
+        });
+    }
     handleConnectionModalStart (extensionId) {
         this.props.onOpenConnectionModal(extensionId);
     }
@@ -631,7 +685,34 @@ class Blocks extends React.Component {
             variableOptions);
         this.handlePromptClose();
     }
-    handlePromptClose () {
+    handleCustomPromptButton(button, customPrompt) {
+        button.callback();
+        if (button.dontClose) return;
+        this.setState({
+            customPrompts: this.state.customPrompts.filter(prompt => prompt !== customPrompt)
+        });
+    }
+    handleCustomPromptOk(customPrompt) {
+        const okButton = (customPrompt.buttons || []).find(button => button.role === "ok");
+        if (okButton) {
+            okButton.callback();
+            if (okButton.dontClose) return;
+            return this.setState({
+                customPrompts: this.state.customPrompts.filter(prompt => prompt !== customPrompt)
+            });
+        }
+    }
+    handlePromptClose (customPrompt) {
+        if (customPrompt) {
+            const closeButton = (customPrompt.buttons || []).find(button => button.role === "close");
+            if (closeButton) {
+                closeButton.callback();
+            }
+            return this.setState({
+                customPrompts: this.state.customPrompts.filter(prompt => prompt !== customPrompt)
+            });
+        }
+
         this.setState({prompt: null});
     }
     handleCustomProceduresClose (data) {
@@ -701,6 +782,21 @@ class Blocks extends React.Component {
                         onOk={this.handlePromptCallback}
                     />
                 ) : null}
+                {this.state.customPrompts.map(prompt => (
+                    <Prompt
+                        isCustom={true}
+                        vm={vm}
+                        customRef={this.customModalRefs.get(prompt.id)}
+                        onOk={() => this.handleCustomPromptOk(prompt)}
+                        onCancel={() => this.handlePromptClose(prompt)}
+                        config={prompt.config}
+                        title={prompt.config.title}
+                        styleContent={prompt.styles ? prompt.styles.content : null}
+                        styleOverlay={prompt.styles ? prompt.styles.overlay : null}
+                        customButtons={prompt.buttons}
+                        onCustomButton={(button) => this.handleCustomPromptButton(button, prompt)}
+                    />
+                ))}
                 {extensionLibraryVisible ? (
                     <ExtensionLibrary
                         vm={vm}

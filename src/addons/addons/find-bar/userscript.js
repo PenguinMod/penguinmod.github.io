@@ -254,7 +254,7 @@ export default async function ({ addon, msg, console }) {
       }
 
       for (const root of topBlocks) {
-        if (root.type === "procedures_definition") {
+        if (root.type === "procedures_definition" || root.type === "procedures_definition_return") {
           const label = root.getChildren()[0];
           const procCode = label.getProcCode();
           if (!procCode) {

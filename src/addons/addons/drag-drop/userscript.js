@@ -62,7 +62,10 @@ export default async function ({ addon, console }) {
       (el = e.target.closest('div[class*="selector_wrapper"]'))
     ) {
       callback = (files) => {
-        const hdFilter = addon.settings.get("use-hd-upload") ? "" : ":not(.sa-better-img-uploads-input)";
+        // do not use HD uploads if we drop a GIF or Sprite
+        const hasGif = [...files].some(f => f.type === "image/gif");
+        const hasSprite = el.className.includes("sprite-selector") && [...files].some(f => (f.name.endsWith("pms") || f.name.endsWith("sprite3")));
+        const hdFilter = !hasSprite && !hasGif && addon.settings.get("use-hd-upload") ? "" : ":not(.sa-better-img-uploads-input)";
         const fileInput = el.querySelector('input[class*="action-menu_file-input"]' + hdFilter);
         fileInput.files = files;
         fileInput.dispatchEvent(new Event("change", { bubbles: true }));
