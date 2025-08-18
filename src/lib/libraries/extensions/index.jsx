@@ -62,6 +62,7 @@ import sharkpoolGalleryIcon from './penguinmod/sharkpool-library.svg';
 import ExtForgeIcon from './penguinmod/extforge.svg';
 import turboBuilderIcon from './penguinmod/turbobuilder.png';
 import turboBuilderDevIcon from './penguinmod/turbobuilder-dev.png';
+import TringlyBuilderIcon from '.penguinmod/tringlybuilder.png'
 
 import filesExtensionIcon from './penguinmod/extensions/files.svg';
 import jgJSONExtensionIcon from './penguinmod/extensions/json.png';
@@ -1148,7 +1149,18 @@ const menuItems = [
         isNew: true,
         tags: ['extcreate'],
         featured: true
-    },
+    },{
+        // not really an extension, but it's easiest to present it as one
+        name: 'TringlyBuilder',
+        href: 'https://tringlybuilder.vercel.app',
+        extensionId: 'special_tringlybuilder',
+        iconURL: TringlyBuilderIcon,
+        description: 'Create extensions with a block-based UI.Fork of https://turbobuilder.vercel.app by jwklong',
+        extDeveloper: 'Tringlyman',
+        isNew: true,
+        tags: ['extcreate'],
+        featured: true
+},
     /*{
         // not really an extension, but it's easiest to present it as one
         name: 'TurboBuilder',
