@@ -129,7 +129,6 @@ const motion = function (isInitialSetup, isStage, targetId) {
                 </shadow>
             </value>
         </block>
-        <block type="motion_turnaround"/>
         ${blockSeparator}
         <block type="motion_changexby">
             <value name="DX">
