@@ -1,6 +1,3 @@
-import JSZip from 'jszip';
-import uid from './uid';
-
 /**
  * String.prototype.indexOf, but it returns NaN not -1 on failure
  * @param {string} str The string to check in
@@ -59,7 +56,7 @@ const push = (type, message, trace) => {
         trace
     });
 };
-const _parseFirefoxStack = stack => stack.split('\n').slice(1)
+const _parseFirefoxStack = stack => stack.split('\n')
     .map(line => {
         const at = line.indexOf('@');
         const secondCol = line.lastIndexOf(':');
@@ -90,7 +87,7 @@ const _parseFirefoxStack = stack => stack.split('\n').slice(1)
             origin
         };
     });
-const _parseChromeStack = stack => stack.split('\n').slice(2)
+const _parseChromeStack = stack => stack.split('\n').slice(1)
     .map(line => {
         // we have no use for the human readable fluff
         line = line.slice(7);
@@ -145,83 +142,18 @@ const parseStack = (stack, url, line, column) => {
     if (stack.split('\n', 2)[0].includes('@')) return _parseFirefoxStack(stack);
     return _parseChromeStack(stack);
 };
-const downloadLogs = async () => {
-    const files = new JSZip();
-    files.file('logs.json', JSON.stringify(consoleLogs));
-    const index = {};
-    // get files
-    // sadly, this may just dead ass fail to get files due to blob lifecycle
-    // and i dont want to make these files get stored at runtime, cause poopy doo doo ram
-    for (const log of consoleLogs) {
-        for (const trace of log.trace) {
-            if (index[trace.url]) continue;
-            const id = uid();
-            const content = await fetch(trace.url)
-                .then(res => res.ok ? res.text() : null)
-                .catch(() => {});
-            if (!content) continue;
-            files.file(id, content);
-            index[trace.url] = id;
-        }
-    }
-    files.file('index.json', JSON.stringify(index));
-    let blob = await files.generateAsync({ type: 'blob', compression: 'DEFLATE' });
-    let filename = 'pm-error-download.pml';
-    /* actually, this is a bad idea
-    // if we can, include the project
-    if (vm) {
-        filename = 'pm-error-download.pmp';
-        const archive = vm._saveProjectZip();
-        archive.file('logs.json', blob);
-        blob = await archive.generateAsync({
-            type: 'blob',
-            mimeType: 'application/x.scratch.sb3',
-            compression: 'DEFLATE'
-        });
-    }
-    */
-    const a = document.createElement('a');
-    a.style.display = 'none';
-    document.body.append(a);
-    const url = window.URL.createObjectURL(blob);
-    a.href = url;
-    a.download = filename;
-    a.click();
-    window.URL.revokeObjectURL(url);
-    a.remove();
-};
-window.downloadLogs = downloadLogs;
 
 window.addEventListener('error', e =>
     push('error', e.message, parseStack(`\n${e.error.stack}`, e.filename, e.lineno, e.colno)));
 window.addEventListener('unhandledrejection', e => push('promiseError', e.reason, []));
-class StackTrace extends Error {
-    constructor() {
-        super('');
-        if (this.stack.split('\n', 2)[0].includes('@'))
-            this.stack = this.stack
-                .split('\n')
-                .slice(2, 3)
-                .join('\n');
-        else {
-            // chrome is weird ngl
-            const lines = this.stack
-                .split('\n')
-                .slice(0, 3);
-            lines.splice(1, 2);
-            this.stack = lines.join('\n');
-        }
-    }
+for (const name of ['log', 'warn', 'error', 'debug', 'info']) {
+    const item = window.console[name];
+    window.console[name] = (...args) => {
+        let stack = [];
+        if (browserHasStack) stack = parseStack(new Error().stack);
+        push(name, args, stack);
+        item(...args);
+    };
 }
-if (!String(window.location.href).startsWith(`http://localhost:`)) {
-    for (const name of ['log', 'warn', 'error', 'debug', 'info']) {
-        const item = window.console[name];
-        window.console[name] = (...args) => {
-            let stack = [];
-            if (browserHasStack) stack = parseStack(new Error().stack);
-            push(name, args, stack);
-            item.call(console, ...args, new StackTrace());
-        };
-    }
-}
-export { consoleLogs, parseStack, push, downloadLogs };
+
+export { consoleLogs, parseStack, push };
