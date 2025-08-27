@@ -4,11 +4,12 @@
 export default async function({ addon }) {
   let ogDrawSelected;
 
-  let handleSize = 8;
+  let handleSize = 8, handleShape = "square";
 
   // addon util
   function requestAddonState() {
     handleSize = Math.min(25, Math.max(3, addon.settings.get("handleSize")));
+    handleShape = addon.settings.get("handleShape");
   }
 
   function patchWorker() {
@@ -39,7 +40,8 @@ export default async function({ addon }) {
           // draw a square instead of circle
           // wow such a big patch for small change
           ctx.beginPath();
-          ctx.rect(hX - half, hY - half, half * 2, half * 2);
+          if (handleShape === "square") ctx.rect(hX - half, hY - half, half * 2, half * 2);
+          else ctx.arc(hX, hY, half, 0, Math.PI * 2, true);
           ctx.fill();
         }
       }
@@ -62,7 +64,7 @@ export default async function({ addon }) {
       }
     }
 
-    ogDrawSelected = paper.Path.prototype._drawSelected;
+    if (!ogDrawSelected) ogDrawSelected = paper.Path.prototype._drawSelected;
     paper.Path.prototype._drawSelected = function(ctx, matrix) {
       const setHandleSize = paper.settings.handleSize;
       ctx.beginPath();
