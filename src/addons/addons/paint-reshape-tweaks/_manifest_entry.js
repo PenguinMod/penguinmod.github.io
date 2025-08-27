@@ -29,6 +29,17 @@ const manifest = {
       "default": 8,
       "max": 25
     },
+    {
+      "id": "handleShape",
+      "name": "Handle shape",
+      "type": "select",
+      "dynamic": true,
+      "default": "square",
+      "potentialValues": [
+        { "id": "square", "name": "square" },
+        { "id": "circle", "name": "circle" },
+      ]
+    },
   ]
 };
 export default manifest;
