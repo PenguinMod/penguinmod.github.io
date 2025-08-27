@@ -78,4 +78,5 @@ export default {
   "editor-animations": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/editor-animations/_runtime_entry.js"),
   "reorder-custom-inputs": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/reorder-custom-inputs/_runtime_entry.js"),
   "sounds-newgrounds-button": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/sounds-newgrounds-button/_runtime_entry.js"),
+  "paint-reshape-tweaks": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/paint-reshape-tweaks/_runtime_entry.js"),
 };
