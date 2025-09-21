@@ -72,6 +72,7 @@ import collectMetadata from '../../lib/collect-metadata';
 import styles from './menu-bar.css';
 
 import remixIcon from './icon--remix.svg';
+import highContrastIcon from './icon--high-contrast.svg';
 import dropdownCaret from './dropdown-caret.svg';
 import languageIcon from '../language-selector/language-icon.svg';
 import aboutIcon from './icon--about.svg';
@@ -494,15 +495,15 @@ class MenuBar extends React.Component {
                 )}
             >
                 <div className={styles.mainMenu}>
-                    <div className={styles.menuBarItem}>
-                        <button
-                            onClick={this.handleToggleHighContrast}
-                            style={{ marginRight: '8px', padding: '4px 8px', borderRadius: '4px', border: '1px solid #888', background: '#fff', color: '#222', cursor: 'pointer' }}
-                            aria-pressed={this.state.highContrast}
-                            aria-label="Toggle high contrast mode"
-                        >
-                            {this.state.highContrast ? 'Normal Contrast' : 'High Contrast'}
-                        </button>
+                    <div className={classNames(styles.menuBarItem, styles.hoverable)}
+                        onMouseUp={this.handleToggleHighContrast}
+                        role="button"
+                        tabIndex={0}
+                        aria-pressed={this.state.highContrast}
+                        aria-label={this.state.highContrast ? "Disable high contrast mode" : "Enable high contrast mode"}
+                        style={{ marginRight: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', minWidth: '32px', justifyContent: 'center' }}
+                    >
+                        <img src={highContrastIcon} alt="High Contrast" style={{ width: '24px', height: '24px', display: 'block', filter: this.state.highContrast ? 'invert(1)' : 'none' }} />
                     </div>
                     <div className={styles.fileGroup}>
                         {this.props.onClickLogo ? (
@@ -520,13 +521,15 @@ class MenuBar extends React.Component {
                         ) : null}
                         {(this.props.canChangeLanguage) && (<div
                             className={classNames(styles.menuBarItem, styles.hoverable, styles.languageMenu)}
+                            style={{ minWidth: '32px', justifyContent: 'center', alignItems: 'center', display: 'flex' }}
                         >
-                            <div>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <img
                                     className={styles.languageIcon}
                                     src={languageIcon}
                                     width="24"
                                     height="24"
+                                    style={{ marginRight: '4px', filter: this.state.highContrast ? 'invert(1)' : 'none' }}
                                 />
                                 <img
                                     className={styles.languageCaret}
@@ -542,12 +545,14 @@ class MenuBar extends React.Component {
                             <div
                                 className={classNames(styles.menuBarItem, styles.hoverable)}
                                 onMouseUp={this.props.onClickTheme}
+                                style={{ minWidth: '32px', justifyContent: 'center', alignItems: 'center', display: 'flex' }}
                             >
                                 <img
                                     src={themeIcon}
                                     width="24"
                                     height="24"
                                     draggable={false}
+                                    style={{ filter: this.state.highContrast ? 'invert(1)' : 'none', marginRight: '2px' }}
                                 />
                             </div>
                         )}
@@ -921,13 +926,15 @@ class MenuBar extends React.Component {
                         />
                     ) : null} */}
                     {this.props.canEditTitle ? (
-                        <div className={classNames(styles.menuBarItem, styles.growable)}>
+                        <div className={classNames(styles.menuBarItem, styles.growable)}
+                            style={{ minWidth: '120px', maxWidth: '200px', marginLeft: '8px', marginRight: '8px', display: 'flex', alignItems: 'center' }}>
                             <MenuBarItemTooltip
                                 enable
                                 id="title-field"
                             >
                                 <ProjectTitleInput
                                     className={classNames(styles.titleFieldGrowable)}
+                                    style={{ fontSize: '1em', padding: '3px 8px', borderRadius: '6px', border: '1px solid #ccc', background: 'var(--text-menubar, #fff)', color: this.state.highContrast ? '#000' : '#222', boxShadow: '0 1px 2px rgba(0,0,0,0.04)' }}
                                 />
                             </MenuBarItemTooltip>
                         </div>
@@ -972,14 +979,18 @@ class MenuBar extends React.Component {
                             />)
                             : (null)}
                     </div>
-                    <div className={styles.menuBarItem}>
+                    <div className={styles.menuBarItem}
+                        style={{ marginLeft: '8px', marginRight: '8px', display: 'flex', alignItems: 'center' }}>
                         <a
                             className={styles.feedbackLink}
                             href="https://penguinmod.com"
                             rel="noopener noreferrer"
                             target="_blank"
+                            style={{ textDecoration: 'none' }}
                         >
-                            <Button className={styles.feedbackButton}>
+                            <Button className={styles.feedbackButton}
+                                style={this.state.highContrast ? { background: '#000', color: '#fff' } : undefined}
+                            >
                                 <FormattedMessage
                                     defaultMessage="Back to Home"
                                     description="Button to go back to the home page"

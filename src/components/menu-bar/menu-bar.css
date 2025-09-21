@@ -28,7 +28,7 @@
     font-size: $menu-bar-standard-font-size;
     font-weight: bold;
     background-color: $motion-primary;
-    color: $text-primary;
+    color: $text-menubar;
 }
 [theme="dark"] .menu-bar {
     background-color: $motion-primary-dark;
@@ -54,6 +54,7 @@
 
 .language-icon {
     height:  1.5rem;
+    color: $text-menubar;
     vertical-align: middle;
 }
 
@@ -116,6 +117,7 @@
 .menu-bar-menu {
     margin-top: $menu-bar-height;
     z-index: $z-index-menu-bar;
+    color: $text-menubar;
 }
 
 .feedback-link {
@@ -143,6 +145,7 @@
 
 .menu-bar-button {
     height: $menu-bar-button-size;
+    color: $text-menubar;
 }
 
 .remix-button {
