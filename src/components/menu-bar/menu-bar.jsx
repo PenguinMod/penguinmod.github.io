@@ -536,6 +536,7 @@ class MenuBar extends React.Component {
                                     src={dropdownCaret}
                                     width="8"
                                     height="5"
+                                    style={{ marginRight: '4px', filter: this.state.highContrast ? 'invert(1)' : 'none' }}
                                 />
                             </div>
                             <LanguageSelector label={this.props.intl.formatMessage(ariaMessages.language)} />

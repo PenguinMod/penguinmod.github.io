@@ -2,6 +2,7 @@
 
 .community-button {
     box-shadow: 0 0 0 1px $ui-black-transparent;
+    color: $text-menubar;
 }
 
 .community-button-icon {
