@@ -28,7 +28,7 @@
     font-size: $menu-bar-standard-font-size;
     font-weight: bold;
     background-color: $motion-primary;
-    color: $ui-white;
+    color: $text-primary;
 }
 [theme="dark"] .menu-bar {
     background-color: $motion-primary-dark;
@@ -71,7 +71,7 @@
     display: flex;
     padding: 0 0.25rem;
     text-decoration: none;
-    color: $ui-white;
+    color: $text-menubar;
     user-select: none;
     align-self: center;
     position: relative;

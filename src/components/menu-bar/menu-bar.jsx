@@ -197,6 +197,9 @@ MenuItemLink.propTypes = {
 class MenuBar extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            highContrast: false
+        };
         bindAll(this, [
             'handleClickSeeInside',
             'handleClickNew',
@@ -213,8 +216,23 @@ class MenuBar extends React.Component {
             'handleLanguageMouseUp',
             'handleRestoreOption',
             'getSaveToComputerHandler',
-            'restoreOptionMessage'
+            'restoreOptionMessage',
+            'handleToggleHighContrast'
         ]);
+    }
+
+    handleToggleHighContrast() {
+        this.setState(prevState => {
+            // wcag high contrast mode
+            if (!prevState.highContrast) {
+                document.body.style.setProperty('--text-menubar', '#000000');
+                window.isHighContrast = true;
+            } else {
+                document.body.style.setProperty('--text-menubar', '#FFFFFF');
+                window.isHighContrast = false;
+            }
+            return { highContrast: !prevState.highContrast };
+        });
     }
     componentDidMount() {
         document.addEventListener('keydown', this.handleKeyPress);
@@ -476,6 +494,16 @@ class MenuBar extends React.Component {
                 )}
             >
                 <div className={styles.mainMenu}>
+                    <div className={styles.menuBarItem}>
+                        <button
+                            onClick={this.handleToggleHighContrast}
+                            style={{ marginRight: '8px', padding: '4px 8px', borderRadius: '4px', border: '1px solid #888', background: '#fff', color: '#222', cursor: 'pointer' }}
+                            aria-pressed={this.state.highContrast}
+                            aria-label="Toggle high contrast mode"
+                        >
+                            {this.state.highContrast ? 'Normal Contrast' : 'High Contrast'}
+                        </button>
+                    </div>
                     <div className={styles.fileGroup}>
                         {this.props.onClickLogo ? (
                             <div className={classNames(styles.menuBarItem)}>
