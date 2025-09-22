@@ -565,38 +565,6 @@ class MenuBar extends React.Component {
                         >
                             <img src={highContrastIcon} alt="High Contrast" style={{ width: '24px', height: '24px', display: 'block', filter: this.state.highContrast ? 'invert(1)' : 'none' }} />
                         </div>
-                        <div
-                                className={classNames(styles.menuBarItem, styles.hoverable, {
-                                    [styles.active]: this.props.onClickAppearance
-                                })}
-                                onMouseUp={this.props.onClickAppearance}
-                            >
-                            <FormattedMessage
-                                    defaultMessage="Appearance"
-                                    description="Text for appearance dropdown menu"
-                                    id="gui.menuBar.appearance"
-                            />
-                            <MenuBarMenu
-                                    className={classNames(styles.menuBarMenu)}
-                                    open={this.props.errorsMenuOpen}
-                                    place={this.props.isRtl ? 'left' : 'right'}
-                                    onRequestClose={this.props.onRequestCloseAppearance}
-                            >
-                                <MenuSection>
-                                    <MenuItem
-                                            isRtl={this.props.isRtl}
-                                            onClick={this.handleToggleHighContrast}
-                                        >
-                                            <FormattedMessage
-                                                defaultMessage="Toggle High Contrast"
-                                                // eslint-disable-next-line max-len
-                                                description="aaaaa"
-                                                id="pm.menuBar.hcontrast"
-                                            />
-                                        </MenuItem>
-                                </MenuSection>
-                            </MenuBarMenu>
-                        </div>
                         {/* tw: display compile errors */}
                         {this.props.compileErrors.length > 0 && <div>
                             <div
@@ -650,6 +618,38 @@ class MenuBar extends React.Component {
                                 </MenuBarMenu>
                             </div>
                         </div>}
+                        <div
+                                className={classNames(styles.menuBarItem, styles.hoverable, {
+                                    [styles.active]: this.props.openAppearanceMenu
+                                })}
+                                onMouseUp={this.props.onClickAppearance}
+                            >
+                            <FormattedMessage
+                                    defaultMessage="Appearance"
+                                    description="Text for appearance dropdown menu"
+                                    id="gui.menuBar.appearance"
+                            />
+                            <MenuBarMenu
+                                    className={classNames(styles.menuBarMenu)}
+                                    open={this.props.errorsMenuOpen}
+                                    place={this.props.isRtl ? 'left' : 'right'}
+                                    onRequestClose={this.props.onRequestCloseAppearance}
+                            >
+                                <MenuSection>
+                                    <MenuItem
+                                            isRtl={this.props.isRtl}
+                                            onClick={this.handleToggleHighContrast}
+                                        >
+                                            <FormattedMessage
+                                                defaultMessage="Toggle High Contrast"
+                                                // eslint-disable-next-line max-len
+                                                description="aaaaa"
+                                                id="gui.menuBar.hcontrast"
+                                            />
+                                        </MenuItem>
+                                </MenuSection>
+                            </MenuBarMenu>
+                        </div>
                         {(this.props.canManageFiles) && (
                             <div
                                 className={classNames(styles.menuBarItem, styles.hoverable, {
