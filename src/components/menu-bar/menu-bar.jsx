@@ -618,6 +618,7 @@ class MenuBar extends React.Component {
                                 </MenuBarMenu>
                             </div>
                         </div>}
+                        {/*
                         <div
                                 className={classNames(styles.menuBarItem, styles.hoverable, {
                                     [styles.active]: this.props.openAppearanceMenu
@@ -650,6 +651,7 @@ class MenuBar extends React.Component {
                                 </MenuSection>
                             </MenuBarMenu>
                         </div>
+                        */}
                         {(this.props.canManageFiles) && (
                             <div
                                 className={classNames(styles.menuBarItem, styles.hoverable, {
