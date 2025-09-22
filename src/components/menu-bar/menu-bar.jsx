@@ -495,16 +495,6 @@ class MenuBar extends React.Component {
                 )}
             >
                 <div className={styles.mainMenu}>
-                    <div className={classNames(styles.menuBarItem, styles.hoverable)}
-                        onMouseUp={this.handleToggleHighContrast}
-                        role="button"
-                        tabIndex={0}
-                        aria-pressed={this.state.highContrast}
-                        aria-label={this.state.highContrast ? "Disable high contrast mode" : "Enable high contrast mode"}
-                        style={{ marginRight: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', minWidth: '32px', justifyContent: 'center' }}
-                    >
-                        <img src={highContrastIcon} alt="High Contrast" style={{ width: '24px', height: '24px', display: 'block', filter: this.state.highContrast ? 'invert(1)' : 'none' }} />
-                    </div>
                     <div className={styles.fileGroup}>
                         {this.props.onClickLogo ? (
                             <div className={classNames(styles.menuBarItem)}>
@@ -557,6 +547,16 @@ class MenuBar extends React.Component {
                                 />
                             </div>
                         )}
+                        <div className={classNames(styles.menuBarItem, styles.hoverable)}
+                            onMouseUp={this.handleToggleHighContrast}
+                            role="button"
+                            tabIndex={0}
+                            aria-pressed={this.state.highContrast}
+                            aria-label={this.state.highContrast ? "Disable high contrast mode" : "Enable high contrast mode"}
+                            style={{ marginRight: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', minWidth: '32px', justifyContent: 'center' }}
+                        >
+                            <img src={highContrastIcon} alt="High Contrast" style={{ width: '24px', height: '24px', display: 'block', filter: this.state.highContrast ? 'invert(1)' : 'none' }} />
+                        </div>
                         {/* tw: display compile errors */}
                         {this.props.compileErrors.length > 0 && <div>
                             <div
