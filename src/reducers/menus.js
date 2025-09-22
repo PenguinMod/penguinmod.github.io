@@ -48,6 +48,7 @@ const closeMenu = menu => ({
 const openAboutMenu = () => openMenu(MENU_ABOUT);
 const openAppearanceMenu = () => openMenu(MENU_APPEARANCE);
 const closeAppearanceMenu = () => closeMenu(MENU_APPEARANCE);
+const appearanceMenuOpen = state => state.scratchGui.menus[MENU_APPEARANCE];
 const closeAboutMenu = () => closeMenu(MENU_ABOUT);
 const aboutMenuOpen = state => state.scratchGui.menus[MENU_ABOUT];
 const openAccountMenu = () => openMenu(MENU_ACCOUNT);
@@ -73,6 +74,7 @@ export {
     reducer as default,
     initialState as menuInitialState,
     openAboutMenu,
+    appearanceMenuOpen,
     closeAboutMenu,
     aboutMenuOpen,
     openAccountMenu,

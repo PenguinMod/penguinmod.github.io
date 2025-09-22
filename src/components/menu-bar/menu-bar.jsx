@@ -65,7 +65,8 @@ import {
     closeLoginMenu,
     loginMenuOpen,
     openAppearanceMenu,
-    closeAppearanceMenu
+    closeAppearanceMenu,
+    appearanceMenuOpen
 } from '../../reducers/menus';
 import { setFileHandle } from '../../reducers/tw.js';
 
@@ -201,7 +202,8 @@ class MenuBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            highContrast: false
+            highContrast: false,
+            darkMode: false
         };
         bindAll(this, [
             'handleClickSeeInside',
@@ -220,7 +222,9 @@ class MenuBar extends React.Component {
             'handleRestoreOption',
             'getSaveToComputerHandler',
             'restoreOptionMessage',
-            'handleToggleHighContrast'
+            'handleToggleDarkModeNew',
+            'handleToggleHighContrast',
+            'handleClickTheme'
         ]);
     }
 
@@ -240,6 +244,21 @@ class MenuBar extends React.Component {
         }
 
         return { highContrast: isHighContrast };
+    });
+}
+
+   handleToggleDarkModeNew() {
+    this.setState(prevState => {
+        // testing stub
+        const isDarkMode = !prevState.darkMode;
+        
+        if (isDarkMode) {
+            document.documentElement.setAttribute('data-theme', 'dark')
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+        }
+
+        return { darkMode: isDarkMode };
     });
 }
 
@@ -366,6 +385,12 @@ class MenuBar extends React.Component {
                 break;
         }
     }
+
+    handleClickTheme () {
+            this.setState(state => ({
+                dark: !state.dark
+            }));
+        }
 
     restoreOptionMessage(deletedItem) {
         switch (deletedItem) {
@@ -555,16 +580,6 @@ class MenuBar extends React.Component {
                                 />
                             </div>
                         )}
-                        <div className={classNames(styles.menuBarItem, styles.hoverable)}
-                            onMouseUp={this.handleToggleHighContrast}
-                            role="button"
-                            tabIndex={0}
-                            aria-pressed={this.state.highContrast}
-                            aria-label={this.state.highContrast ? "Disable high contrast mode" : "Enable high contrast mode"}
-                            style={{ marginRight: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', minWidth: '32px', justifyContent: 'center' }}
-                        >
-                            <img src={highContrastIcon} alt="High Contrast" style={{ width: '24px', height: '24px', display: 'block', filter: this.state.highContrast ? 'invert(1)' : 'none' }} />
-                        </div>
                         {/* tw: display compile errors */}
                         {this.props.compileErrors.length > 0 && <div>
                             <div
@@ -618,7 +633,6 @@ class MenuBar extends React.Component {
                                 </MenuBarMenu>
                             </div>
                         </div>}
-                        {/*
                         <div
                                 className={classNames(styles.menuBarItem, styles.hoverable, {
                                     [styles.active]: this.props.openAppearanceMenu
@@ -632,7 +646,7 @@ class MenuBar extends React.Component {
                             />
                             <MenuBarMenu
                                     className={classNames(styles.menuBarMenu)}
-                                    open={this.props.errorsMenuOpen}
+                                    open={this.props.appearanceMenuOpen}
                                     place={this.props.isRtl ? 'left' : 'right'}
                                     onRequestClose={this.props.onRequestCloseAppearance}
                             >
@@ -648,10 +662,23 @@ class MenuBar extends React.Component {
                                                 id="gui.menuBar.hcontrast"
                                             />
                                         </MenuItem>
+                                        {/*
+                                        <MenuItem
+                                            isRtl={this.props.isRtl}
+                                            onClick={this.handleToggleDarkModeNew}
+                                        >
+                                            <FormattedMessage
+                                                defaultMessage="Toggle Dark Mode"
+                                                // eslint-disable-next-line max-len
+                                                description="aaaaa"
+                                                id="gui.menuBar.dark"
+                                            />
+                                        </MenuItem>
+                                        */}
                                 </MenuSection>
                             </MenuBarMenu>
                         </div>
-                        */}
+                        
                         {(this.props.canManageFiles) && (
                             <div
                                 className={classNames(styles.menuBarItem, styles.hoverable, {
@@ -1061,6 +1088,7 @@ MenuBar.propTypes = {
     onClickSeeInside: PropTypes.func,
     aboutMenuOpen: PropTypes.bool,
     accountMenuOpen: PropTypes.bool,
+    appearanceMenuOpen: PropTypes.bool,
     authorId: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     authorThumbnailUrl: PropTypes.string,
     authorUsername: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
@@ -1164,6 +1192,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         aboutMenuOpen: aboutMenuOpen(state),
         accountMenuOpen: accountMenuOpen(state),
+        appearanceMenuOpen: appearanceMenuOpen(state),
         authorThumbnailUrl: state.scratchGui.tw.author.thumbnail,
         authorUsername: state.scratchGui.tw.author.username,
         compileErrors: state.scratchGui.tw.compileErrors,
