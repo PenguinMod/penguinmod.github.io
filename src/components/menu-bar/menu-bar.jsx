@@ -223,18 +223,22 @@ class MenuBar extends React.Component {
     }
 
     handleToggleHighContrast() {
-        this.setState(prevState => {
-            // wcag high contrast mode
-            if (!prevState.highContrast) {
-                document.body.style.setProperty('--text-menubar', '#000000');
-                window.isHighContrast = true;
-            } else {
-                document.body.style.setProperty('--text-menubar', '#FFFFFF');
-                window.isHighContrast = false;
-            }
-            return { highContrast: !prevState.highContrast };
-        });
-    }
+    this.setState(prevState => {
+        // wcag high contrast mode
+        const isHighContrast = !prevState.highContrast;
+        
+        if (isHighContrast) {
+            document.documentElement.setAttribute('data-theme', 'high-contrast');
+            window.isHighContrast = true;
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            window.isHighContrast = false;
+        }
+
+        return { highContrast: isHighContrast };
+    });
+}
+
     componentDidMount() {
         document.addEventListener('keydown', this.handleKeyPress);
     }
