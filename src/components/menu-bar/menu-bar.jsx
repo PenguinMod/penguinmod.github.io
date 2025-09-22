@@ -63,7 +63,9 @@ import {
     languageMenuOpen,
     openLoginMenu,
     closeLoginMenu,
-    loginMenuOpen
+    loginMenuOpen,
+    openAppearanceMenu,
+    closeAppearanceMenu
 } from '../../reducers/menus';
 import { setFileHandle } from '../../reducers/tw.js';
 
@@ -560,6 +562,38 @@ class MenuBar extends React.Component {
                             style={{ marginRight: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', minWidth: '32px', justifyContent: 'center' }}
                         >
                             <img src={highContrastIcon} alt="High Contrast" style={{ width: '24px', height: '24px', display: 'block', filter: this.state.highContrast ? 'invert(1)' : 'none' }} />
+                        </div>
+                        <div
+                                className={classNames(styles.menuBarItem, styles.hoverable, {
+                                    [styles.active]: this.props.onClickAppearance
+                                })}
+                                onMouseUp={this.props.onClickAppearance}
+                            >
+                            <FormattedMessage
+                                    defaultMessage="Appearance"
+                                    description="Text for appearance dropdown menu"
+                                    id="gui.menuBar.appearance"
+                            />
+                            <MenuBarMenu
+                                    className={classNames(styles.menuBarMenu)}
+                                    open={this.props.errorsMenuOpen}
+                                    place={this.props.isRtl ? 'left' : 'right'}
+                                    onRequestClose={this.props.onRequestCloseAppearance}
+                            >
+                                <MenuSection>
+                                    <MenuItem
+                                            isRtl={this.props.isRtl}
+                                            onClick={this.handleToggleHighContrast}
+                                        >
+                                            <FormattedMessage
+                                                defaultMessage="Toggle High Contrast"
+                                                // eslint-disable-next-line max-len
+                                                description="aaaaa"
+                                                id="pm.menuBar.hcontrast"
+                                            />
+                                        </MenuItem>
+                                </MenuSection>
+                            </MenuBarMenu>
                         </div>
                         {/* tw: display compile errors */}
                         {this.props.compileErrors.length > 0 && <div>
@@ -1073,6 +1107,7 @@ MenuBar.propTypes = {
     onClickRestorePoints: PropTypes.func,
     onClickEdit: PropTypes.func,
     onClickFile: PropTypes.func,
+    onClickAppearance: PropTypes.func,
     onClickLanguage: PropTypes.func,
     onClickLogin: PropTypes.func,
     onClickLogo: PropTypes.func,
@@ -1156,6 +1191,8 @@ const mapDispatchToProps = dispatch => ({
     onClickAccount: () => dispatch(openAccountMenu()),
     onRequestCloseAccount: () => dispatch(closeAccountMenu()),
     onClickFile: () => dispatch(openFileMenu()),
+    onClickAppearance: () => dispatch(openAppearanceMenu()),
+    onRequestCloseAppearance: () => dispatch(closeAppearanceMenu()),
     onRequestCloseFile: () => dispatch(closeFileMenu()),
     onClickEdit: () => dispatch(openEditMenu()),
     onRequestCloseEdit: () => dispatch(closeEditMenu()),
