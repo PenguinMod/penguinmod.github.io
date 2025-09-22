@@ -231,9 +231,11 @@ class MenuBar extends React.Component {
         
         if (isHighContrast) {
             document.documentElement.setAttribute('data-theme', 'high-contrast');
+            document.body.style.setProperty('--text-menubar', '#000000');
             window.isHighContrast = true;
         } else {
             document.documentElement.removeAttribute('data-theme');
+            document.body.style.setProperty('--text-menubar', '#FFFFFF');
             window.isHighContrast = false;
         }
 
