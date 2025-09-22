@@ -665,16 +665,6 @@ const control = function (isInitialSetup, isStage) {
             </value>
         </block>
         ${blockSeparator}
-        <block type="control_if">
-            <value name="CONDITION">
-                <shadow type="checkbox" />
-            </value>
-        </block>
-        <block type="control_if_else">
-            <value name="CONDITION">
-                <shadow type="checkbox" />
-            </value>
-        </block>
         <block type="control_expandableIf">
             <mutation branches="1" ends-in-else="false"></mutation>
             <value name="BOOL1">
