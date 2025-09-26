@@ -32,8 +32,11 @@ const manifest = {
   ],
   "tags": [
     "recommended",
+    "editor",
     "new"
   ],
-  "enabledByDefault": false
+  "enabledByDefault": false,
+  "dynamicEnable": true,
+  "dynamicDisable": true
 };
 export default manifest;
