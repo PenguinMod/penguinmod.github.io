@@ -96,7 +96,7 @@ const manifest = {
     }
   ],
   "tags": [
-    "new", "theme"
+    "theme"
   ],
   "enabledByDefault": true
 };
