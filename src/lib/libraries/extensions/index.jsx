@@ -396,15 +396,6 @@ const menuItems = [
         featured: true
     },
     {
-        name: 'Looks Expanded',
-        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Looks-Expanded.js',
-        iconURL: sharkpoolLooksExpandedIcon,
-        tags: ['penguinmod', 'categoryexpansion', 'graphics'],
-        description: 'Expansion of the Looks Category.',
-        extDeveloper: 'SharkPool, CST1229',
-        featured: true
-    },
-    {
         name: 'Motion Expansion',
         extensionId: 'pmMotionExpansion',
         iconURL: pmMotionExpansionExtensionIcon,
@@ -412,6 +403,15 @@ const menuItems = [
         description: 'More small motion blocks for movement or collision.',
         featured: true,
         credits: 'Some blocks from NexusKitten'
+    },
+    {
+        name: 'Looks Expanded',
+        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Looks-Expanded.js',
+        iconURL: sharkpoolLooksExpandedIcon,
+        tags: ['penguinmod', 'categoryexpansion', 'graphics'],
+        description: 'Expansion of the Looks Category.',
+        extDeveloper: 'SharkPool, CST1229',
+        featured: true
     },
     {
         name: 'Events Expansion',
@@ -601,7 +601,7 @@ const menuItems = [
         featured: true
     },
     {
-        name: 'JSON',
+        name: 'Objects',
         extensionId: 'https://extensions.penguinmod.com/extensions/DogeisCut/dogeiscutObject.js',
         iconURL: 'https://extensions.penguinmod.com/images/DogeisCut/dogeiscutObject.svg',
         tags: ['penguinmod', 'datamgmt'],
