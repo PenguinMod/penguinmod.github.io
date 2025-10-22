@@ -288,6 +288,30 @@ export default async function ({ addon, console, msg }) {
         },
         noopSwitch,
       ];
+      blockSwitches["looks_setStretch"] = [
+        noopSwitch,
+        {
+          opcode: "looks_changeStretch"
+        }
+      ];
+      blockSwitches["looks_changeStretch"] = [
+        {
+          opcode: "looks_setStretch"
+        },
+        noopSwitch,
+      ];
+      blockSwitches["looks_stretchGetX"] = [
+        noopSwitch,
+        {
+          opcode: "looks_stretchGetY"
+        }
+      ];
+      blockSwitches["looks_stretchGetY"] = [
+        {
+          opcode: "looks_stretchGetX"
+        },
+        noopSwitch,
+      ];
       blockSwitches["looks_costumenumbername"] = [
         noopSwitch,
         {
