@@ -716,6 +716,7 @@ export default async function ({ addon, console, msg }) {
         },
         noopSwitch,
       ];
+
       blockSwitches["control_repeat_until"] = [
         noopSwitch,
         {
@@ -739,13 +740,6 @@ export default async function ({ addon, console, msg }) {
         },
         noopSwitch,
       ];
-      blockSwitches["control_wait_until"] = [
-        {
-          opcode: "control_repeat_until",
-        },
-        noopSwitch,
-      ];
-
       blockSwitches["control_while"] = [
         {
           opcode: "control_repeat_until",
@@ -754,6 +748,48 @@ export default async function ({ addon, console, msg }) {
         {
           opcode: "control_forever",
           splitInputs: ["CONDITION"],
+        },
+      ];
+
+      blockSwitches["control_wait_until"] = [
+        {
+          opcode: "control_wait",
+          createInput: {
+            DURATION: {
+              shadowType: "math_number",
+              value: "1"
+            }
+          },
+          splitInputs: [ "CONDITION" ]
+        },
+        {
+          opcode: "control_repeat_until",
+        },
+        {
+          opcode: "control_repeat_until",
+        },
+        noopSwitch,
+      ];
+
+      blockSwitches["control_wait"] = [
+        noopSwitch,
+        {
+          opcode: "control_waitsecondsoruntil"
+        },
+        {
+          opcode: "control_wait_until",
+          splitInputs: [ "DURATION" ]
+        }
+      ];
+      blockSwitches["control_waitsecondsoruntil"] = [
+        {
+          opcode: "control_wait",
+          splitInputs: [ "CONDITION" ]
+        },
+        noopSwitch,
+        {
+          opcode: "control_wait_until",
+          splitInputs: [ "DURATION" ]
         },
       ];
     }
