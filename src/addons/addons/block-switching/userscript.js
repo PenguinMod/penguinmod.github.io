@@ -250,12 +250,26 @@ export default async function ({ addon, console, msg }) {
         {
           opcode: "motion_yposition",
         },
+        {
+          opcode: "motion_direction"
+        },
       ];
       blockSwitches["motion_yposition"] = [
         {
           opcode: "motion_xposition",
         },
         noopSwitch,
+        {
+          opcode: "motion_direction"
+        },
+      ];
+      blockSwitches["motion_direction"] = [
+        {
+          opcode: "motion_xposition",
+        },
+        {
+          opcode: "motion_yposition",
+        },
       ];
     }
 
