@@ -380,6 +380,7 @@ export default async function ({ addon, console, msg }) {
         },
         noopSwitch,
       ];
+
       blockSwitches["looks_say"] = [
         noopSwitch,
         {
@@ -403,6 +404,11 @@ export default async function ({ addon, console, msg }) {
             },
           },
         },
+        {
+          opcode: "looks_stoptalking",
+          splitInputs: [ "MESSAGE" ],
+        }
+
       ];
       blockSwitches["looks_think"] = [
         {
@@ -427,20 +433,28 @@ export default async function ({ addon, console, msg }) {
             },
           },
         },
+        {
+          opcode: "looks_stoptalking",
+          splitInputs: [ "MESSAGE" ],
+        }
       ];
       blockSwitches["looks_sayforsecs"] = [
         {
           opcode: "looks_say",
           splitInputs: ["SECS"],
         },
+        noopSwitch,
         {
           opcode: "looks_think",
           splitInputs: ["SECS"],
         },
-        noopSwitch,
         {
           opcode: "looks_thinkforsecs",
         },
+        {
+          opcode: "looks_stoptalking",
+          splitInputs: [ "MESSAGE", "SECS" ],
+        }
       ];
       blockSwitches["looks_thinkforsecs"] = [
         {
@@ -448,14 +462,66 @@ export default async function ({ addon, console, msg }) {
           splitInputs: ["SECS"],
         },
         {
+          opcode: "looks_sayforsecs",
+        },
+        {
           opcode: "looks_think",
           splitInputs: ["SECS"],
         },
+        noopSwitch,
         {
-          opcode: "looks_sayforsecs",
+          opcode: "looks_stoptalking",
+          splitInputs: [ "MESSAGE", "SECS" ],
+        }
+      ];
+      blockSwitches["looks_stoptalking"] = [
+        {
+            opcode: "looks_say",
+            createInputs: {
+                MESSAGE: {
+                    shadowType: "text",
+                    value: "Hello!",
+                }
+            }
+        },
+        {
+            opcode: "looks_sayforsecs",
+            createInputs: {
+                MESSAGE: {
+                    shadowType: "text",
+                    value: "Hello!"
+                },
+                SECS: {
+                    shadowType: "math_number",
+                    value: "2"
+                },
+            }
+        },
+        {
+            opcode: "looks_think",
+            createInputs: {
+                MESSAGE: {
+                    shadowType: "text",
+                    value: "Hmm..."
+                }
+            }
+        },
+        {
+            opcode: "looks_thinkforsecs",
+            createInputs: {
+                MESSAGE: {
+                    shadowType: "text",
+                    value: "Hmm..."
+                },
+                SECS: {
+                    shadowType: "math_number",
+                    value: "2"
+                },
+            }
         },
         noopSwitch,
       ];
+
       blockSwitches["looks_switchbackdropto"] = [
         noopSwitch,
         {
