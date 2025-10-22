@@ -687,6 +687,19 @@ export default async function ({ addon, console, msg }) {
         },
         noopSwitch,
       ];
+
+      blockSwitches["event_whenkeypressed"] = [
+        noopSwitch,
+        {
+            opcode: "event_whenkeyhit"
+        }
+      ];
+    blockSwitches["event_whenkeyhit"] = [
+        {
+            opcode: "event_whenkeypressed"
+        },
+        noopSwitch,
+      ];
     }
 
     if (addon.settings.get("control")) {
