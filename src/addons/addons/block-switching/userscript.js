@@ -792,6 +792,15 @@ export default async function ({ addon, console, msg }) {
           splitInputs: [ "DURATION" ]
         },
       ];
+
+      blockSwitches["control_switch"] = [
+        noopSwitch,
+        { opcode: "control_switch_default" },
+      ];
+      blockSwitchs["control_switch_default"] = [
+        { opcode: "control_switch" },
+        noopSwitch
+      ];
     }
 
     if (addon.settings.get("operator")) {
