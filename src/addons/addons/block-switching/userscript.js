@@ -380,7 +380,6 @@ export default async function ({ addon, console, msg }) {
         },
         noopSwitch,
       ];
-
       blockSwitches["looks_say"] = [
         noopSwitch,
         {
@@ -521,7 +520,6 @@ export default async function ({ addon, console, msg }) {
         },
         noopSwitch,
       ];
-
       blockSwitches["looks_switchbackdropto"] = [
         noopSwitch,
         {
@@ -577,14 +575,78 @@ export default async function ({ addon, console, msg }) {
       blockSwitches["sound_play"] = [
         noopSwitch,
         {
+          opcode: "sound_play_at_seconds",
+          createInputs: {
+            VALUE: {
+              shadowType: "math_number",
+              value: "5",
+            }
+          }
+        },
+        {
           opcode: "sound_playuntildone",
+        },
+        {
+          opcode: "sound_play_at_seconds_until_done",
+          createInputs: {
+            VALUE: {
+              shadowType: "math_number",
+              value: "5",
+            }
+          }
         },
       ];
       blockSwitches["sound_playuntildone"] = [
         {
           opcode: "sound_play",
         },
+        {
+          opcode: "sound_play_at_seconds",
+          createInputs: {
+            VALUE: {
+              shadowType: "math_number",
+              value: "5",
+            }
+          }
+        },
         noopSwitch,
+        {
+          opcode: "sound_play_at_seconds_until_done",
+          createInputs: {
+            VALUE: {
+              shadowType: "math_number",
+              value: "5",
+            }
+          }
+        },
+      ];
+      blockSwitches["sound_play_at_seconds"] = [
+        {
+          opcode: "sound_play",
+          splitInputs: ["VALUE"],
+        }
+        noopSwitch,
+        {
+          opcode: "sound_playuntildone",
+          splitInputs: [ "VALUE" ]
+        },
+        {
+          opcode: "sound_play_at_seconds_until_done"
+        }
+      ];
+      blockSwitches["sound_play_at_seconds_until_done"] = [
+        {
+          opcode: "sound_play",
+          splitInputs: ["VALUE"],
+        }
+        {
+          opcode: "sound_play_at_seconds"
+        },
+        {
+          opcode: "sound_playuntildone",
+          splitInputs: [ "VALUE" ]
+        },
+        noopSwitch
       ];
       blockSwitches["sound_seteffectto"] = [
         noopSwitch,
