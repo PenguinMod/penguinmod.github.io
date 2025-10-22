@@ -25,12 +25,31 @@ export default async function ({ addon, console, msg }) {
         {
           opcode: "motion_turnleft",
         },
+        {
+          opcode: "motion_pointindirection",
+          remapInputName: { DEGREES: "DIRECTION" }
+        }
       ];
       blockSwitches["motion_turnleft"] = [
         {
           opcode: "motion_turnright",
         },
         noopSwitch,
+        {
+          opcode: "motion_pointindirection",
+          remapInputName: { DEGREES: "DIRECTION" }
+        }
+      ];
+      blockSwitches["motion_pointindirection"] = [
+        {
+          opcode: "motion_turnright",
+          remapInputName: { DIRECTION: "DEGREES" }
+        },
+        {
+          opcode: "motion_turnleft",
+          remapInputName: { DIRECTION: "DEGREES" }
+        },
+        noopSwitch
       ];
       blockSwitches["motion_gotoxy"] = [
         noopSwitch,
