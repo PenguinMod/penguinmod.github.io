@@ -797,9 +797,18 @@ export default async function ({ addon, console, msg }) {
         noopSwitch,
         { opcode: "control_switch_default" },
       ];
-      blockSwitchs["control_switch_default"] = [
+      blockSwitches["control_switch_default"] = [
         { opcode: "control_switch" },
         noopSwitch
+      ];
+
+      blockSwitches["control_exitLoop"] = [
+        noopSwitch,
+        { opcode: "control_continueLoop" }
+      ];
+      blockSwitches["control_continueLoop"] = [
+        { opcode: "control_exitLoop" }
+        noopSwitch,
       ];
     }
 
