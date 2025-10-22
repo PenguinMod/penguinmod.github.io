@@ -37,7 +37,27 @@ export default async function ({ addon, console, msg }) {
         {
           opcode: "motion_changebyxy",
           remapInputName: { X: "DX", Y: "DY" },
-        }
+        },
+        {
+          opcode: "motion_setx",
+          remapInputName: { X: "X" },
+          splitInputs: [ "Y" ]
+        },
+        {
+          opcode: "motion_changexby",
+          remapInputName: { X: "DX" },
+          splitInputs: [ "Y" ]
+        },
+        {
+          opcode: "motion_sety",
+          remapInputName: { Y: "Y" },
+          splitInputs: [ "DX" ]
+        },
+        {
+          opcode: "motion_changeyby",
+          remapInputName: { Y: "DY" },
+          splitInputs: [ "DX" ]
+        },
       ];
       blockSwitches["motion_changebyxy"] = [
         {
@@ -45,8 +65,48 @@ export default async function ({ addon, console, msg }) {
           remapInputName: { DX: "X", DY: "Y" },
         },
         noopSwitch,
+        {
+          opcode: "motion_setx",
+          remapInputName: { DX: "X" },
+          splitInputs: [ "DY" ]
+        },
+        {
+          opcode: "motion_changexby",
+          remapInputName: { DX: "DX" },
+          splitInputs: [ "DY" ]
+        },
+        {
+          opcode: "motion_sety",
+          remapInputName: { DY: "Y" },
+          splitInputs: [ "DX" ]
+        },
+        {
+          opcode: "motion_changeyby",
+          remapInputName: { DY: "DY" },
+          splitInputs: [ "DX" ]
+        },
       ];
       blockSwitches["motion_setx"] = [
+        {
+          opcode: "motion_gotoxy",
+          remapInputName: { X: "X" },
+          createInputs: {
+            Y: {
+              shadowType: "math_number",
+              value: "0",
+            }
+          }
+        },
+        {
+          opcode: "motion_changebyxy",
+          remapInputName: { X: "DX" },
+          createInputs: {
+            DY: {
+              shadowType: "math_number",
+              value: "0",
+            }
+          }
+        },
         noopSwitch,
         {
           opcode: "motion_changexby",
@@ -63,6 +123,26 @@ export default async function ({ addon, console, msg }) {
       ];
       blockSwitches["motion_changexby"] = [
         {
+          opcode: "motion_gotoxy",
+          remapInputName: { DX: "X" },
+          createInputs: {
+            Y: {
+              shadowType: "math_number",
+              value: "0",
+            }
+          }
+        },
+        {
+          opcode: "motion_changebyxy",
+          remapInputName: { DX: "DX" },
+          createInputs: {
+            DY: {
+              shadowType: "math_number",
+              value: "0",
+            }
+          }
+        },
+        {
           opcode: "motion_setx",
           remapInputName: { DX: "X" },
         },
@@ -78,6 +158,26 @@ export default async function ({ addon, console, msg }) {
       ];
       blockSwitches["motion_sety"] = [
         {
+          opcode: "motion_gotoxy",
+          remapInputName: { Y: "Y" },
+          createInputs: {
+            X: {
+              shadowType: "math_number",
+              value: "0",
+            }
+          }
+        },
+        {
+          opcode: "motion_changebyxy",
+          remapInputName: { Y: "DY" },
+          createInputs: {
+            DX: {
+              shadowType: "math_number",
+              value: "0",
+            }
+          }
+        },
+        {
           opcode: "motion_setx",
           remapInputName: { Y: "X" },
         },
@@ -92,6 +192,26 @@ export default async function ({ addon, console, msg }) {
         },
       ];
       blockSwitches["motion_changeyby"] = [
+        {
+          opcode: "motion_gotoxy",
+          remapInputName: { DY: "Y" },
+          createInputs: {
+            X: {
+              shadowType: "math_number",
+              value: "0",
+            }
+          }
+        },
+        {
+          opcode: "motion_changebyxy",
+          remapInputName: { DY: "DY" },
+          createInputs: {
+            DX: {
+              shadowType: "math_number",
+              value: "0",
+            }
+          }
+        },
         {
           opcode: "motion_setx",
           remapInputName: { DY: "X" },
