@@ -1053,6 +1053,16 @@ export default async function ({ addon, console, msg }) {
         },
         noopSwitch,
       ];
+
+      blockSwitches["operator_indexOfTextInText"] = [
+        noopSwitch,
+        { opcode: "operator_lastIndexOfTextInText" },
+      ];
+      blockSwitches["operator_lastIndexOfTextInText"] = [
+        { opcode: "operator_indexOfTextInText" },
+        noopSwitch,
+      ];
+
     }
 
     if (addon.settings.get("sensing")) {
