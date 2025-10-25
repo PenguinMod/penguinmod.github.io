@@ -1097,6 +1097,19 @@ export default async function ({ addon, console, msg }) {
         },
         noopSwitch,
       ];
+
+      blockSwitches["sensing_distanceTo"] = [
+        noopSwitch,
+        {
+          opcode: "sensing_directionTo"
+        }
+      ];
+      blockSwitches["sensing_directionTo"] = [
+        noopSwitch,
+        {
+          opcode: "sensing_distanceTo"
+        }
+      ];
     }
 
     if (addon.settings.get("data")) {
