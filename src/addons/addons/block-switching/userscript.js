@@ -1203,19 +1203,54 @@ export default async function ({ addon, console, msg }) {
         {
           opcode: "data_replaceitemoflist",
           createInputs: {
-            INDEX: { shadowType: "math_number" }
+            INDEX: {
+              shadowType: "math_number",
+              value: "1"
+            }
+
           }
         },
         {
           opcode: "data_insertatlist",
           createInputs: {
-            INDEX: { shadowType: "math_number" }
+            INDEX: {
+              shadowType: "math_number",
+              value: "1"
+            }
           }
         },
         noopSwitch
       ];
 
       blockSwitches["data_deleteoflist"] = [
+        {
+          opcode: "data_replaceitemoflist",
+          createInputs: {
+            ITEM: {
+              shadowType: "text".
+              value: "thing",
+            }
+          }
+        },
+        {
+          opcode: "data_insertatlist",
+          createInputs: {
+            ITEM: {
+              shadowType: "text".
+              value: "thing",
+            }
+          }
+        },
+        {
+          opcode: "data_addtolist",
+          splitInputs: ["INDEX"],
+          createInputs: {
+            ITEM: {
+              shadowType: "text".
+              value: "thing",
+            }
+          }
+        },
         noopSwitch,
         {
           opcode: "data_deletealloflist",
@@ -1223,6 +1258,46 @@ export default async function ({ addon, console, msg }) {
         },
       ];
       blockSwitches["data_deletealloflist"] = [
+        {
+          opcode: "data_replaceitemoflist",
+          createInputs: {
+            INDEX: {
+              shadowType: "math_integer",
+              value: "1",
+            },
+            ITEM: {
+              shadowType: "text".
+              value: "thing",
+            }
+          }
+        },
+        {
+          opcode: "data_insertatlist",
+          createInputs: {
+            INDEX: {
+              shadowType: "math_integer",
+              value: "1",
+            },
+            ITEM: {
+              shadowType: "text".
+              value: "thing",
+            }
+          }
+        },
+        {
+          opcode: "data_addtolist",
+          splitInputs: ["INDEX"],
+          createInputs: {
+            INDEX: {
+              shadowType: "math_integer",
+              value: "1",
+            },
+            ITEM: {
+              shadowType: "text".
+              value: "thing",
+            }
+          }
+        },
         {
           opcode: "data_deleteoflist",
           createInputs: {
