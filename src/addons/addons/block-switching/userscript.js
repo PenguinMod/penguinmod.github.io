@@ -1062,7 +1062,6 @@ export default async function ({ addon, console, msg }) {
         { opcode: "operator_indexOfTextInText" },
         noopSwitch,
       ];
-
     }
 
     if (addon.settings.get("sensing")) {
@@ -1179,10 +1178,15 @@ export default async function ({ addon, console, msg }) {
         },
         noopSwitch,
       ];
+
       blockSwitches["data_replaceitemoflist"] = [
         noopSwitch,
         {
           opcode: "data_insertatlist",
+        },
+        {
+          opcode: "data_addtolist",
+          splitInputs: ["INDEX"]
         },
       ];
       blockSwitches["data_insertatlist"] = [
@@ -1190,7 +1194,27 @@ export default async function ({ addon, console, msg }) {
           opcode: "data_replaceitemoflist",
         },
         noopSwitch,
+        {
+          opcode: "data_addtolist",
+          splitInputs: ["INDEX"]
+        },
       ];
+      blockSwitches["data_addtolist"] = [
+        {
+          opcode: "data_replaceitemoflist",
+          createInputs: {
+            INDEX: { shadowType: "math_number" }
+          }
+        },
+        {
+          opcode: "data_insertatlist",
+          createInputs: {
+            INDEX: { shadowType: "math_number" }
+          }
+        },
+        noopSwitch
+      ];
+
       blockSwitches["data_deleteoflist"] = [
         noopSwitch,
         {
