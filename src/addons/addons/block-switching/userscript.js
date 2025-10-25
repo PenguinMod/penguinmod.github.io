@@ -1188,6 +1188,18 @@ export default async function ({ addon, console, msg }) {
           opcode: "data_addtolist",
           splitInputs: ["INDEX"]
         },
+        {
+          opcode: "data_deleteoflist",
+          splitInputs: ["ITEM"]
+        },
+        {
+          opcode: "data_deletealloflist",
+          splitInputs: ["INDEX","ITEM"],
+        },
+        {
+          opcode: "data_shiftlist",
+          splitInputs: ["ITEM"]
+        },
       ];
       blockSwitches["data_insertatlist"] = [
         {
@@ -1197,6 +1209,18 @@ export default async function ({ addon, console, msg }) {
         {
           opcode: "data_addtolist",
           splitInputs: ["INDEX"]
+        },
+        {
+          opcode: "data_deleteoflist",
+          splitInputs: ["ITEM"]
+        },
+        {
+          opcode: "data_deletealloflist",
+          splitInputs: ["INDEX","ITEM"],
+        },
+        {
+          opcode: "data_shiftlist",
+          splitInputs: ["ITEM"]
         },
       ];
       blockSwitches["data_addtolist"] = [
@@ -1219,9 +1243,20 @@ export default async function ({ addon, console, msg }) {
             }
           }
         },
-        noopSwitch
+        noopSwitch,
+        {
+          opcode: "data_deleteoflist",
+          splitInputs: ["ITEM"]
+        },
+        {
+          opcode: "data_deletealloflist",
+          splitInputs: ["INDEX","ITEM"],
+        },
+        {
+          opcode: "data_shiftlist",
+          splitInputs: ["ITEM"]
+        },
       ];
-
       blockSwitches["data_deleteoflist"] = [
         {
           opcode: "data_replaceitemoflist",
@@ -1255,6 +1290,9 @@ export default async function ({ addon, console, msg }) {
         {
           opcode: "data_deletealloflist",
           splitInputs: ["INDEX"],
+        },
+        {
+          opcode: "data_shiftlist",
         },
       ];
       blockSwitches["data_deletealloflist"] = [
@@ -1308,6 +1346,53 @@ export default async function ({ addon, console, msg }) {
           },
         },
         noopSwitch,
+        {
+          opcode: "data_shiftlist",
+          createInputs: {
+            INDEX: {
+              shadowType: "math_integer",
+              value: "1",
+            },
+          },
+        },
+      ];
+      blockSwitches["data_shiftlist"] = [
+        {
+          opcode: "data_replaceitemoflist",
+          createInputs: {
+            ITEM: {
+              shadowType: "text".
+              value: "thing",
+            }
+          }
+        },
+        {
+          opcode: "data_insertatlist",
+          createInputs: {
+            ITEM: {
+              shadowType: "text".
+              value: "thing",
+            }
+          }
+        },
+        {
+          opcode: "data_addtolist",
+          splitInputs: ["INDEX"],
+          createInputs: {
+            ITEM: {
+              shadowType: "text".
+              value: "thing",
+            }
+          }
+        },
+        {
+          opcode: "data_deleteoflist"
+        },
+        {
+          opcode: "data_deletealloflist",
+          splitInputs: ["INDEX"],
+        },
+        noopSwitch
       ];
     }
 
