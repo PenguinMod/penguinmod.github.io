@@ -1105,10 +1105,38 @@ export default async function ({ addon, console, msg }) {
         }
       ];
       blockSwitches["sensing_directionTo"] = [
-        noopSwitch,
         {
           opcode: "sensing_distanceTo"
         }
+        noopSwitch,
+      ];
+
+      blockSwitches["sensing_thing_is_text"] = [
+        noopSwitch,
+        {
+          opcode: "sensing_thing_is_number",
+        },
+        {
+          opcode: "sensing_thing_has_text",
+        }
+      ];
+      blockSwitches["sensing_thing_is_number"] = [
+        {
+          opcode: "sensing_thing_is_text",
+        },
+        noopSwitch,
+        {
+          opcode: "sensing_thing_has_text",
+        }
+      ];
+      blockSwitches["sensing_thing_has_text"] = [
+       {
+          opcode: "sensing_thing_is_text",
+       }
+       {
+          opcode: "sensing_thing_is_number",
+       },
+       noopSwitch,
       ];
     }
 
