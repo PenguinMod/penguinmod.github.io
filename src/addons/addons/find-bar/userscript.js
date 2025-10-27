@@ -220,6 +220,8 @@ export default async function ({ addon, msg, console }) {
       let myBlocksByProcCode = {};
 
       let topBlocks = this.workspace.getTopBlocks();
+      let labelBlocks = Object.values(this.workspace.blockDB_)
+        .filter(b => b.type.startsWith("jwProto_"));
 
       /**
        * @param cls
@@ -311,7 +313,14 @@ export default async function ({ addon, msg, console }) {
         addBlock("receive", "event " + event.eventName, event.block).eventName = event.eventName;
       }
 
-      const clsOrder = { flag: 0, receive: 1, event: 2, define: 3, var: 4, VAR: 5, list: 6, LIST: 7 };
+      for (const root of labelBlocks) {
+        addBlock("label", getDescFromField(root), root);
+      }
+
+      const clsOrder = {
+        flag: 0, receive: 1, event: 2, define: 3,
+        var: 4, VAR: 5, list: 6, LIST: 7, label: 8
+      };
 
       myBlocks.sort((a, b) => {
         let t = clsOrder[a.cls] - clsOrder[b.cls];
