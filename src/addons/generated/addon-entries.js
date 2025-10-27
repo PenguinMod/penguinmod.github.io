@@ -81,4 +81,5 @@ export default {
   "paint-reshape-tweaks": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/paint-reshape-tweaks/_runtime_entry.js"),
   "editor-tweaks": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/editor-tweaks/_runtime_entry.js"),
   "copy-reporter": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/copy-reporter/_runtime_entry.js"),
+  "block-pins": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/block-pins/_runtime_entry.js"),
 };
