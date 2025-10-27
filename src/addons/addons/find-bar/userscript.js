@@ -481,6 +481,16 @@ export default async function ({ addon, msg, console }) {
       };
       if (proc.cls === "flag") {
         item.className = "sa-find-flag";
+      } else if (proc.cls === "label") {
+        item.style.color = "#707070";
+        item.onmouseenter = () => {
+          item.style.color = "#fff";
+          item.style.background = "#707070";
+        };
+        item.onmouseleave = () => {
+          item.style.color = "#707070";
+          item.style.background = "transparent";
+        };
       } else {
         const colorId = colorIds[proc.cls];
         item.className = `sa-block-color sa-block-color-${colorId}`;
