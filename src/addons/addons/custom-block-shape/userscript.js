@@ -5,6 +5,8 @@ export default async function ({ addon, console }) {
     const BlockSvg = BlocklyInstance.BlockSvg;
     var vm = addon.tab.traps.vm;
 
+    const ogFieldImageInit = BlocklyInstance.FieldImage.prototype.init;
+
     const { GRID_UNIT } = BlockSvg;
 
     function path2SegmentList(path) {
@@ -76,11 +78,14 @@ export default async function ({ addon, console }) {
     function applyChanges(
       paddingSize = addon.settings.get("paddingSize"),
       cornerSize = addon.settings.get("cornerSize"),
-      notchSize = addon.settings.get("notchSize")
+      notchSize = addon.settings.get("notchSize"),
+      iconSize = addon.settings.get("iconSize")
     ) {
       let multiplier = paddingSize / 100;
       cornerSize = cornerSize / 100;
       notchSize = notchSize / 100;
+      iconSize = iconSize / 100;
+
       BlockSvg.SEP_SPACE_Y = 2 * GRID_UNIT * multiplier;
       BlockSvg.MIN_BLOCK_X = 16 * GRID_UNIT * multiplier;
       BlockSvg.MIN_BLOCK_X_OUTPUT = 12 * GRID_UNIT * multiplier;
@@ -327,6 +332,14 @@ export default async function ({ addon, console }) {
         (1 * GRID_UNIT - BlockSvg.CORNER_RADIUS);
 
       BlockSvg.STATEMENT_INPUT_INNER_SPACE = 2.8 * GRID_UNIT - 0.9 * GRID_UNIT * cornerSize;
+
+      Blockly.FieldImage.prototype.init = function (...args) {
+        this.width_ *= iconSize;
+        this.height_ *= iconSize;
+        this.size_.width *= iconSize;
+        this.size_.height *= iconSize;
+        ogFieldImageInit.call(this, ...args);
+      }
     }
 
     function applyAndUpdate(...args) {
