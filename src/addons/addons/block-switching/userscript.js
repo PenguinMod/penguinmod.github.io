@@ -624,7 +624,7 @@ export default async function ({ addon, console, msg }) {
         {
           opcode: "sound_play",
           splitInputs: ["VALUE"],
-        }
+        },
         noopSwitch,
         {
           opcode: "sound_playuntildone",
@@ -638,7 +638,7 @@ export default async function ({ addon, console, msg }) {
         {
           opcode: "sound_play",
           splitInputs: ["VALUE"],
-        }
+        },
         {
           opcode: "sound_play_at_seconds"
         },
@@ -807,7 +807,7 @@ export default async function ({ addon, console, msg }) {
         { opcode: "control_continueLoop" }
       ];
       blockSwitches["control_continueLoop"] = [
-        { opcode: "control_exitLoop" }
+        { opcode: "control_exitLoop" },
         noopSwitch,
       ];
     }
@@ -1106,7 +1106,7 @@ export default async function ({ addon, console, msg }) {
       blockSwitches["sensing_directionTo"] = [
         {
           opcode: "sensing_distanceTo"
-        }
+        },
         noopSwitch,
       ];
 
@@ -1131,7 +1131,7 @@ export default async function ({ addon, console, msg }) {
       blockSwitches["sensing_thing_has_text"] = [
        {
           opcode: "sensing_thing_is_text",
-       }
+       },
        {
           opcode: "sensing_thing_is_number",
        },
@@ -1262,7 +1262,7 @@ export default async function ({ addon, console, msg }) {
           opcode: "data_replaceitemoflist",
           createInputs: {
             ITEM: {
-              shadowType: "text".
+              shadowType: "text",
               value: "thing",
             }
           }
@@ -1271,7 +1271,7 @@ export default async function ({ addon, console, msg }) {
           opcode: "data_insertatlist",
           createInputs: {
             ITEM: {
-              shadowType: "text".
+              shadowType: "text",
               value: "thing",
             }
           }
@@ -1281,7 +1281,7 @@ export default async function ({ addon, console, msg }) {
           splitInputs: ["INDEX"],
           createInputs: {
             ITEM: {
-              shadowType: "text".
+              shadowType: "text",
               value: "thing",
             }
           }
@@ -1304,7 +1304,7 @@ export default async function ({ addon, console, msg }) {
               value: "1",
             },
             ITEM: {
-              shadowType: "text".
+              shadowType: "text",
               value: "thing",
             }
           }
@@ -1317,7 +1317,7 @@ export default async function ({ addon, console, msg }) {
               value: "1",
             },
             ITEM: {
-              shadowType: "text".
+              shadowType: "text",
               value: "thing",
             }
           }
@@ -1331,7 +1331,7 @@ export default async function ({ addon, console, msg }) {
               value: "1",
             },
             ITEM: {
-              shadowType: "text".
+              shadowType: "text",
               value: "thing",
             }
           }
@@ -1361,7 +1361,7 @@ export default async function ({ addon, console, msg }) {
           opcode: "data_replaceitemoflist",
           createInputs: {
             ITEM: {
-              shadowType: "text".
+              shadowType: "text",
               value: "thing",
             }
           }
@@ -1370,7 +1370,7 @@ export default async function ({ addon, console, msg }) {
           opcode: "data_insertatlist",
           createInputs: {
             ITEM: {
-              shadowType: "text".
+              shadowType: "text",
               value: "thing",
             }
           }
@@ -1380,7 +1380,7 @@ export default async function ({ addon, console, msg }) {
           splitInputs: ["INDEX"],
           createInputs: {
             ITEM: {
-              shadowType: "text".
+              shadowType: "text",
               value: "thing",
             }
           }
