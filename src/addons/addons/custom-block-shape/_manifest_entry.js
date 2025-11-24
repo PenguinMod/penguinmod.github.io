@@ -72,6 +72,22 @@ const manifest = {
       "default": 100,
       "max": 200
     },
+    {
+      "dynamic": true,
+      "name": "Superellipse reporters (corner smoothing)",
+      "id": "superellipseReporters",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "dynamic": true,
+      "name": "Superellipse strength (50-150%)",
+      "id": "superellipseFactor",
+      "type": "integer",
+      "min": 50,
+      "default": 100,
+      "max": 150,
+    }
   ],
   "presets": [
     {
