@@ -33,6 +33,11 @@ const manifest = {
       "type": "notice",
       "text": "Decreasing the padding size is only visible to you, so when your projects are viewed by other users, your scripts may overlap.",
       "id": "paddingWarning"
+    },
+    {
+      "type": "notice",
+      "text": "Higher superellipse strength values cause the reporter shape to become more square, and can cause the block to be confused with other output types like Array.",
+      "id": "confusionWarning"
     }
   ],
   "settings": [
