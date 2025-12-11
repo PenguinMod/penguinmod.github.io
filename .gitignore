@@ -15,6 +15,7 @@ npm-*
 !dist/
 build/*
 yarn.lock
+.webpack
 
 # Generated translation files
 /translations

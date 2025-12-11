@@ -3,7 +3,7 @@ import bindAll from 'lodash.bindall';
 import PropTypes from 'prop-types';
 import React from 'react';
 import localforage from 'localforage';
-import {defineMessages, injectIntl, intlShape} from 'react-intl';
+import {defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl';
 
 import LibraryItem from '../../containers/library-item.jsx';
 import Modal from '../../containers/modal.jsx';
@@ -192,13 +192,11 @@ class LibraryComponent extends React.Component {
         // console.log(tag, enabled);
         if (this.state.playingItem === null) {
             this.setState({
-                filterQuery: '',
                 selectedTags: this.state.selectedTags.concat([tag.toLowerCase()])
             });
         } else {
             this.props.onItemMouseLeave(this.getFilteredData()[[this.state.playingItem]]);
             this.setState({
-                filterQuery: '',
                 playingItem: null,
                 selectedTags: this.state.selectedTags.concat([tag.toLowerCase()])
             });
@@ -238,42 +236,53 @@ class LibraryComponent extends React.Component {
         if (this.state.playingItem === null) {
             this.setState({
                 filterQuery: event.target.value,
-                selectedTags: []
             });
         } else {
             this.props.onItemMouseLeave(this.getFilteredData()[[this.state.playingItem]]);
             this.setState({
                 filterQuery: event.target.value,
                 playingItem: null,
-                selectedTags: []
             });
         }
     }
     handleFilterClear () {
         this.setState({filterQuery: ''});
     }
+    get custom_extensions() {
+        return this.state.favorites
+            .filter(item => (typeof item !== "string"))
+            .map(item => Object.assign(item, { custom: true }));
+    }
     createFilteredData () {
-        if (this.state.selectedTags.length <= 0) {
-            if (!this.state.filterQuery) return this.state.data;
-            return this.state.data.filter(dataItem => (
-                (dataItem.tags || [])
-                    // Second argument to map sets `this`
-                    .map(String.prototype.toLowerCase.call, String.prototype.toLowerCase)
-                    .concat(dataItem.name ?
-                        (typeof dataItem.name === 'string' ?
-                        // Use the name if it is a string, else use formatMessage to get the translated name
-                            dataItem.name : this.props.intl.formatMessage(dataItem.name.props)
-                        ).toLowerCase() :
-                        null)
-                    .join('\n') // unlikely to partially match newlines
-                    .indexOf(this.state.filterQuery.toLowerCase()) !== -1
-            ));
-        }
-        return this.state.data.filter(dataItem => (arrayIncludesItemsFrom(
-            dataItem.tags &&
-            dataItem.tags
-                .map(String.prototype.toLowerCase.call, String.prototype.toLowerCase),
-        this.state.selectedTags)));
+        const data = [].concat(
+            this.state.data,
+        );
+
+        const no_tags = this.state.selectedTags.length === 0;
+        const no_query = this.state.filterQuery === "";
+        if (no_tags && no_query) return data;
+
+        return data.filter(dataItem => {
+            var tags = (dataItem.tags ?? []).map(tag => tag.toLowerCase());
+
+            if (!arrayIncludesItemsFrom(tags, this.state.selectedTags)) return false;
+
+            if (no_query) return true;
+
+            var name = dataItem.name;
+            if (name) {
+                if (typeof dataItem.name !== "string") {
+                    name = this.props.intl.formatMessage(dataItem.name.props);
+                }
+                tags.push(name.toLowerCase());
+            }
+
+            tags = tags.join("\n");
+
+            const query = this.state.filterQuery.toLowerCase();
+
+            return tags.includes(query)
+        });
     }
     getFilteredData () {
         const filtered = this.createFilteredData();
@@ -282,16 +291,13 @@ class LibraryComponent extends React.Component {
             return filtered;
         }
 
-        const final = [].concat(
-            this.state.favorites
-                .filter(item => (typeof item !== "string"))
-                .map(item => ({ ...item, custom: true }))
-                .reverse(),
+        const fully_filtered = [].concat(
+            this.custom_extensions,
             filtered.filter(item => (this.state.favorites.includes(item.extensionId))),
             filtered.filter(item => (!this.state.favorites.includes(item.extensionId)))
-        ).map(item => ({ ...item, custom: typeof item.custom === "boolean" ? item.custom : false }));
-        
-        return final;
+        ).map(item => Object.assign(item, { custom: !!item.custom }));
+
+        return fully_filtered;
     }
     scrollToTop () {
         this.filteredDataRef.scrollTop = 0;
@@ -307,9 +313,6 @@ class LibraryComponent extends React.Component {
                 id={this.props.id}
                 onRequestClose={this.handleClose}
             >
-                {/*
-                    todo: translation support?
-                */}
                 {this.props.header ? (
                     <h1
                         className={classNames(
@@ -340,23 +343,26 @@ class LibraryComponent extends React.Component {
                         className={classNames(styles.libraryFilterBar)}
                         style={this.state.collapsed ? { display: "none" } : null}
                     >
-                        {/*
-                            todo: translation?
-                        */}
-                        <h3 className={classNames(styles.whiteTextInDarkMode)}>Filters</h3>
+                        <h3 className={classNames(styles.whiteTextInDarkMode)}>
+                            <FormattedMessage
+                                defaultMessage="Filters"
+                                description="Header text for the filter controls in the asset picker"
+                                id="pm.library.filtersHeader"
+                            />
+                        </h3>
                         {this.props.filterable && (
                             <div>
-                                    <Filter
-                                        className={classNames(
-                                            styles.filterBarItem,
-                                            styles.filter
-                                        )}
-                                        filterQuery={this.state.filterQuery}
-                                        inputClassName={styles.filterInput}
-                                        placeholderText={this.props.intl.formatMessage(messages.filterPlaceholder)}
-                                        onChange={this.handleFilterChange}
-                                        onClear={this.handleFilterClear}
-                                    />
+                                <Filter
+                                    className={classNames(
+                                        styles.filterBarItem,
+                                        styles.filter
+                                    )}
+                                    filterQuery={this.state.filterQuery}
+                                    inputClassName={styles.filterInput}
+                                    placeholderText={this.props.intl.formatMessage(messages.filterPlaceholder)}
+                                    onChange={this.handleFilterChange}
+                                    onClear={this.handleFilterClear}
+                                />
                                 <Divider className={classNames(styles.filterBarItem, styles.divider)} />
                             </div>
                         )}

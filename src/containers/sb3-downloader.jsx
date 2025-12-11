@@ -117,7 +117,7 @@ class SB3Downloader extends React.Component {
             const handle = await FileSystemAPI.showDirectoryPicker("pm-project-folder", "documents");
 
             this.startedSaving();
-            const jsZip = this.props.saveProjectZip();
+            const jsZip = this.props.saveProjectZip(true);
             this.extractJSZipToHandle(jsZip, handle);
             this.finishedSaving();
 

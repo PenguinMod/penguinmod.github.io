@@ -136,7 +136,11 @@ class RestorePoint extends React.Component {
                             className={styles.exportButton}
                             onClick={this.handleClickExport}
                         >
-                            Export
+                            <FormattedMessage
+                                defaultMessage="Export"
+                                description="Button to export a restorepoint directly fromt he list of restore points"
+                                id="pm.restorePoints.exportRestorePoint"
+                            />
                         </button>
                     </div>
                 </div>

@@ -5,7 +5,6 @@ const manifest = {
     "name": "Show full blocks in block palette on hover",
     "description": "When hovering the mouse over a block in the block palette, all blocks in the palette will no longer be cut off at the edge.",
     "tags": [
-        "new",
         "recommended"
     ],
     "enabledByDefault": false,

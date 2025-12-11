@@ -11,7 +11,6 @@ import LargeMonitor from './large-monitor.jsx';
 import SliderMonitor from '../../containers/slider-monitor.jsx';
 import ListMonitor from '../../containers/list-monitor.jsx';
 
-
 import styles from './monitor.css';
 
 const categories = {
@@ -37,7 +36,7 @@ const MonitorComponent = props => (
         // TW: if export is defined, we always show it, even outside of the editor
         disable={!props.draggable && !props.onExport}
         holdToDisplay={props.mode === 'slider' ? -1 : 1000}
-        id={`monitor-${props.label}`}
+        id={`monitor-${props.id}`}
     >
         <Draggable
             bounds=".monitor-overlay" // Class for monitor container
@@ -66,7 +65,7 @@ const MonitorComponent = props => (
             // positioning conflicts between the monitors `transform: scale` and
             // the context menus `position: fixed`. For more details, see
             // http://meyerweb.com/eric/thoughts/2011/09/12/un-fixing-fixed-elements-with-css-transforms/
-            <ContextMenu id={`monitor-${props.label}`}>
+            <ContextMenu id={`monitor-${props.id}`}>
                 {props.draggable && props.onSetModeToDefault &&
                     <MenuItem onClick={props.onSetModeToDefault}>
                         <FormattedMessage

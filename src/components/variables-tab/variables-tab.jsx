@@ -88,13 +88,25 @@ class VariablesTab extends React.Component {
                 />
 
                 {filteredLocal.length > 0 && <div>
-                    <span className={styles.heading}>Variables for this sprite</span>
+                    <span className={styles.heading}>
+                        <FormattedMessage
+                            defaultMessage="For this sprite only"
+                            description="Text for the section of variables that are for only this sprite"
+                            id="pm.variablesTab.forThisSpriteOnly"
+                        />
+                    </span>
                     <table>
                         {filteredLocal.map(this.renderVariable)}
                     </table>
                 </div>}
                 {filteredGlobal.length > 0 && <div>
-                    <span className={styles.heading}>Variables for all sprites</span>
+                    <span className={styles.heading}>
+                        <FormattedMessage
+                            defaultMessage="Variables for all sprites"
+                            description="Text for the section of variables that are for all sprites to use"
+                            id="pm.variablesTab.forAllSprites"
+                        />
+                    </span>
                     <table>
                         {filteredGlobal.map(this.renderVariable)}
                     </table>

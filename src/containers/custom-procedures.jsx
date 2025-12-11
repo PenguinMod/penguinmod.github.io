@@ -5,31 +5,14 @@ import React from 'react';
 import CustomProceduresComponent from '../components/custom-procedures/custom-procedures.jsx';
 import LazyScratchBlocks from '../lib/tw-lazy-scratch-blocks';
 import {connect} from 'react-redux';
-import Color from './custom-procedures-util/color.js';
 
-function createHeavyColorFromHex(hex, percentage) {
-    const rgb = Color.hexToRgb(hex);
-    const hsv = Color.rgbToHsv(rgb);
+let ScratchBlocks; // defined later
 
-    if (hsv.v > 0.6) {
-        // so that pure white can still get color change
-        hsv.v -= percentage / 2;
-    }
-    // only white-black have this property
-    // so we can avoid adding red to them
-    if (!(hsv.h === 0 && hsv.s === 0)) {
-        hsv.s += percentage * hsv.v;
-    }
-
-    // make sure values arent invalid
-    if (hsv.v > 1) hsv.v = 1;
-    if (hsv.v < 0) hsv.v = 0;
-
-    if (hsv.s > 1) hsv.s = 1;
-    if (hsv.s < 0) hsv.s = 0;
-
-    const newRgb = Color.hsvToRgb(hsv);
-    return Color.rgbToHex(newRgb);
+function darkenColor(hex, amt) {
+    const Color = ScratchBlocks.goog.color;
+    return Color.rgbArrayToHex(Color.darken(
+        Color.hexToRgb(hex), amt
+    ));
 }
 
 class CustomProcedures extends React.Component {
@@ -74,7 +57,7 @@ class CustomProcedures extends React.Component {
         );
 
         // @todo This is a hack to make there be no toolbox.
-        const ScratchBlocks = LazyScratchBlocks.get();
+        ScratchBlocks = LazyScratchBlocks.get();
         const oldDefaultToolbox = ScratchBlocks.Blocks.defaultToolbox;
         ScratchBlocks.Blocks.defaultToolbox = null;
         this.workspace = ScratchBlocks.inject(this.blocks, workspaceConfig);
@@ -216,8 +199,8 @@ class CustomProcedures extends React.Component {
             const newColor = element.target.value;
             this.mutationRoot.setColor(
                 newColor,
-                createHeavyColorFromHex(newColor, 0.15),
-                createHeavyColorFromHex(newColor, 0.25)
+                darkenColor(newColor, 0.1),
+                darkenColor(newColor, 0.2)
             );
             this.setState({blockColor: newColor});
         }

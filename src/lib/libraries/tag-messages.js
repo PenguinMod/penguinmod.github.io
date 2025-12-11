@@ -49,7 +49,7 @@ export default defineMessages({
     themes: {
         defaultMessage: 'Themes',
         description: 'Tag for filtering a library for Themes',
-        id: 'gui.libraryTags.themes'
+        id: 'pm.libraryTags.themes'
     },
     music: {
         defaultMessage: 'Music',
@@ -134,101 +134,101 @@ export default defineMessages({
     swords: {
         defaultMessage: 'Swords',
         description: 'Tag for filtering a library for swords',
-        id: 'gui.libraryTags.swords'
+        id: 'pm.libraryTags.swords'
     },
     guns: {
         defaultMessage: 'Guns',
         description: 'Tag for filtering a library for guns',
-        id: 'gui.libraryTags.guns'
+        id: 'pm.libraryTags.guns'
     },
     penguinmod: {
         defaultMessage: 'PenguinMod',
         description: 'Tag for filtering a library by PenguinMod',
-        id: 'gui.libraryTags.penguinmod'
+        id: 'pm.libraryTags.penguinmod'
     },
     scratch: {
         defaultMessage: 'Scratch',
         description: 'Tag for filtering a library by Scratch',
-        id: 'gui.libraryTags.scratch'
+        id: 'pm.libraryTags.scratch'
     },
     turbowarp: {
         defaultMessage: 'TurboWarp',
         description: 'Tag for filtering a library by TurboWarp',
-        id: 'gui.libraryTags.turbowarp'
+        id: 'pm.libraryTags.turbowarp'
     },
     programminglanguage: {
         defaultMessage: 'Programming Languages',
         description: 'Tag for filtering a library by programminglanguage',
-        id: 'gui.libraryTags.programminglanguage'
+        id: 'pm.libraryTags.programminglanguage'
     },
     categoryexpansion: {
         defaultMessage: 'Category Expansions',
         description: 'Tag for filtering a library by categoryexpansion',
-        id: 'gui.libraryTags.categoryexpansion'
+        id: 'pm.libraryTags.categoryexpansion'
     },
     ui: {
         defaultMessage: 'Menu',
         description: 'Tag for filtering a library by UI/Menu',
-        id: 'gui.libraryTags.ui'
+        id: 'pm.libraryTags.ui'
     },
     footsteps: {
         defaultMessage: 'Footsteps',
         description: 'Tag for filtering a library by footsteps',
-        id: 'gui.libraryTags.footsteps'
+        id: 'pm.libraryTags.footsteps'
     },
     custom: {
         defaultMessage: 'Custom',
         description: 'Tag for filtering a library by custom. Usually this is a custom button, not an actual tag',
-        id: 'gui.libraryTags.custom'
+        id: 'pm.libraryTags.custom'
     },
     customextension: {
         defaultMessage: 'Load Custom Extension',
         description: 'Button that loads a custom extension.',
-        id: 'gui.libraryTags.customextension'
+        id: 'pm.libraryTags.customextension'
     },
     hardware: {
         defaultMessage: 'Hardware',
         description: 'Tag for filtering a library by hardware.',
-        id: 'gui.libraryTags.hardware'
+        id: 'pm.libraryTags.hardware'
     },
     library: {
         defaultMessage: 'Collections',
         description: 'Tag for filtering a library by extension collections.',
-        id: 'gui.libraryTags.library'
+        id: 'pm.libraryTags.library'
     },
     extcreate: {
         defaultMessage: 'Extension Creators',
         description: 'Tag for finding all extension creator programs / website',
-        id: 'gui.libraryTags.extcreate'
+        id: 'pm.libraryTags.extcreate'
     },
     datamgmt: {
         defaultMessage: 'Data Management',
         description: 'Tag for filtering a library by data management',
-        id: 'gui.libraryTags.datamgmt'
+        id: 'pm.libraryTags.datamgmt'
     },
     graphics: {
         defaultMessage: 'Graphics',
         description: 'Tag for filtering a library by graphics.',
-        id: 'gui.libraryTags.graphics'
+        id: 'pm.libraryTags.graphics'
     },
     noisemaker: {
         defaultMessage: 'Sound',
         description: 'Tag for filtering a library by their relation to sound.',
-        id: 'gui.libraryTags.noisemaker'
+        id: 'pm.libraryTags.noisemaker'
     },
     metal: {
         defaultMessage: 'Metal',
         description: 'Tag for filtering a library by metal sounds.',
-        id: 'gui.libraryTags.metal'
+        id: 'pm.libraryTags.metal'
     },
     monsters: {
         defaultMessage: 'Monsters',
         description: 'Tag for filtering a library by monster sounds.',
-        id: 'gui.libraryTags.monster'
+        id: 'pm.libraryTags.monster'
     },
     math: {
         defaultMessage: 'Math',
         description: 'Tag for filtering a library by math.',
-        id: 'gui.libraryTags.math'
+        id: 'pm.libraryTags.math'
     },
 });

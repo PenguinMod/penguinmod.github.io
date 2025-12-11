@@ -18,7 +18,7 @@ const messages = defineMessages({
         description: 'Green flag button title'
     },
     pauseTitle: {
-        id: 'gui.controls.pause',
+        id: 'pm.controls.pause',
         defaultMessage: 'Pause',
         description: 'Pause button title'
     },

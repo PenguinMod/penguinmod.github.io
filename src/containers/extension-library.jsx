@@ -34,6 +34,11 @@ const messages = defineMessages({
         defaultMessage: 'This extension is not recommended for real projects. It may be unstable and cause problems with your project later on. Are you sure you want to enable it?',
         description: 'Confirm loading buggy and unstable extension',
         id: 'pm.confirmBuggyUnstableExtension'
+    },
+    libraryHeader: {
+        defaultMessage: 'Extensions',
+        description: 'Header for the extension picker',
+        id: 'pm.costumeLibrary.extensionsHeader'
     }
 });
 
@@ -213,7 +218,7 @@ class ExtensionLibrary extends React.PureComponent {
                 tags={extensionTags}
                 id="extensionLibrary"
                 actor="ExtensionLibrary"
-                header={"Extensions"}
+                header={this.props.intl.formatMessage(messages.libraryHeader)}
                 title={this.props.intl.formatMessage(messages.extensionTitle)}
                 visible={this.props.visible}
                 onItemSelected={this.handleItemSelect}

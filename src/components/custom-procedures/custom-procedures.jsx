@@ -8,6 +8,7 @@ import dropperIcon from './icon--dropper.svg';
 
 import booleanInputIcon from './icon--boolean-input.svg';
 import textInputIcon from './icon--text-input.svg';
+import branchInputIcon from './icon--branch-input.svg';
 import labelIcon from './icon--label.svg';
 
 import stackBlockIcon from './icon--stack-block.svg';
@@ -229,24 +230,23 @@ const CustomProcedures = props => (
                     role="button"
                     tabIndex="0"
                     onClick={props.onAddCommand}
-                    style={{display: "none"}} //shhh
                 >
                     <img
                         className={styles.optionIcon}
-                        src={stackBlockIcon}
+                        src={branchInputIcon}
                     />
                     <div className={styles.optionTitle}>
                         <FormattedMessage
                             defaultMessage="Add an input"
                             description="Label for button to add a command input"
-                            id="gui.customProcedures.addAnInputCommand"
+                            id="pm.customProcedures.addAnInputCommand"
                         />
                     </div>
                     <div className={styles.optionDescription}>
                         <FormattedMessage
-                            defaultMessage="command"
+                            defaultMessage="branch"
                             description="Description of the command input type"
-                            id="gui.customProcedures.commandType"
+                            id="pm.customProcedures.commandType"
                         />
                     </div>
                 </div>
@@ -283,9 +283,9 @@ const CustomProcedures = props => (
                         />
                         <div className={styles.optionTitle}>
                             <FormattedMessage
-                                defaultMessage="Return Text"
+                                defaultMessage="Return Text or Number"
                                 description="Label for block to return text"
-                                id="gui.customProcedures.returnText"
+                                id="pm.customProcedures.returnText"
                             />
                         </div>
                     </div>
@@ -293,22 +293,21 @@ const CustomProcedures = props => (
                         className={styles.optionCard}
                         role="button"
                         tabIndex="0"
-                        onClick={() => props.onOutputTypeChanged('number')}
+                        onClick={() => props.onOutputTypeChanged('boolean')}
                     >
                         <img
                             className={styles.optionIcon}
-                            src={reporterBlockIcon}
+                            src={booleanBlockIcon}
                         />
                         <div className={styles.optionTitle}>
                             <FormattedMessage
-                                defaultMessage="Return a Number"
-                                description="Label for block to return a number"
-                                id="gui.customProcedures.returnANumber"
+                                defaultMessage="Return a Boolean"
+                                description="Label for block to return a boolean"
+                                id="pm.customProcedures.returnABoolean"
                             />
                         </div>
                     </div>
-                </>
-                : <>
+                </> : <>
                     <div
                         className={styles.optionCard}
                         role="button"
@@ -323,7 +322,7 @@ const CustomProcedures = props => (
                             <FormattedMessage
                                 defaultMessage="Normal block"
                                 description="Label for block to be a normal stack block"
-                                id="gui.customProcedures.normalBlock"
+                                id="pm.customProcedures.normalBlock"
                             />
                         </div>
                     </div>
@@ -341,29 +340,11 @@ const CustomProcedures = props => (
                             <FormattedMessage
                                 defaultMessage="Ending block"
                                 description="Label for block to be an ending block for a stack"
-                                id="gui.customProcedures.endingBlock"
+                                id="pm.customProcedures.endingBlock"
                             />
                         </div>
                     </div>
                 </>}
-                {props.returns && <div
-                    className={styles.optionCard}
-                    role="button"
-                    tabIndex="0"
-                    onClick={() => props.onOutputTypeChanged('boolean')}
-                >
-                    <img
-                        className={styles.optionIcon}
-                        src={booleanBlockIcon}
-                    />
-                    <div className={styles.optionTitle}>
-                        <FormattedMessage
-                            defaultMessage="Return a Boolean"
-                            description="Label for block to return a boolean"
-                            id="gui.customProcedures.returnABoolean"
-                        />
-                    </div>
-                </div>}
             </div>}
 
             <BlockColorSection {...props} />

@@ -25,6 +25,11 @@ const messages = defineMessages({
         defaultMessage: 'Choose a Sound',
         description: 'Heading for the sound library',
         id: 'gui.soundLibrary.chooseASound'
+    },
+    libraryHeader: {
+        defaultMessage: 'Sounds',
+        description: 'Header for the sound asset picker',
+        id: 'pm.costumeLibrary.soundsHeader'
     }
 });
 
@@ -265,7 +270,7 @@ class SoundLibrary extends React.PureComponent {
                 data={this.state.data}
                 id="soundLibrary"
                 actor="SoundLibrary"
-                header={"Sounds"}
+                header={this.props.intl.formatMessage(messages.libraryHeader)}
                 setStopHandler={this.setStopHandler}
                 tags={soundTags}
                 title={this.props.intl.formatMessage(messages.libraryTitle)}

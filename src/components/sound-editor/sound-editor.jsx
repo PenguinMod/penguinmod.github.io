@@ -140,6 +140,26 @@ const messages = defineMessages({
         id: 'gui.soundEditor.mute',
         description: 'Title of the button to apply the mute effect',
         defaultMessage: 'Mute'
+    },
+    lowPass: {
+        id: 'pm.soundEditor.lowPass',
+        description: 'Title of the button to apply low pass on audio',
+        defaultMessage: 'Low Pass'
+    },
+    highPass: {
+        id: 'pm.soundEditor.highPass',
+        description: 'Title of the button to apply high pass on audio',
+        defaultMessage: 'High Pass'
+    },
+    format: {
+        id: 'pm.soundEditor.format',
+        description: 'Title of the button that opens the audio formatting menu',
+        defaultMessage: 'Format'
+    },
+    modify: {
+        id: 'pm.soundEditor.modify',
+        description: 'Title of the button that opens the modify sound menu',
+        defaultMessage: 'Modify'
     }
 });
 
@@ -299,7 +319,7 @@ const SoundEditor = props => (
                 <IconButton
                     className={styles.effectButton}
                     img={modifyIcon}
-                    title={"Modify"}
+                    title={<FormattedMessage {...messages.modify} />}
                     onClick={props.onModifySound}
                 />
                 <IconButton
@@ -366,19 +386,19 @@ const SoundEditor = props => (
                 <IconButton
                     className={styles.effectButton}
                     img={lowpassIcon}
-                    title={"Low Pass"}
+                    title={<FormattedMessage {...messages.lowPass} />}
                     onClick={props.onLowPass}
                 />
                 <IconButton
                     className={styles.effectButton}
                     img={highpassIcon}
-                    title={"High Pass"}
+                    title={<FormattedMessage {...messages.highPass} />}
                     onClick={props.onHighPass}
                 />
                 <IconButton
                     className={styles.effectButton}
                     img={formatIcon}
-                    title={"Format"}
+                    title={<FormattedMessage {...messages.format} />}
                     onClick={props.onFormatSound}
                 />
             </div>

@@ -1,0 +1,8 @@
+div[class="scratchCategoryMenuRow"][data-dragger="true"] > div {
+    background: white;
+    font-size: 0.65rem;
+}
+
+[theme="dark"] div[class="scratchCategoryMenuRow"][data-dragger="true"] > div {
+    background: var(--ui-secondary);
+}

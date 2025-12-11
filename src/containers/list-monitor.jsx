@@ -37,6 +37,7 @@ class ListMonitor extends React.Component {
         }
 
         let activeValue = this.props.value[index];
+        if (activeValue === null || activeValue === undefined) activeValue = '';
         if (activeValue.toListEditor) activeValue = activeValue.toListEditor();
 
         this.setState({
@@ -53,7 +54,7 @@ class ListMonitor extends React.Component {
             const newListValue = getVariableValue(vm, targetId, variableId);
             const oldValue = this.props.value[this.state.activeIndex];
             let newValue = this.state.activeValue;
-            if (oldValue.fromListEditor) {
+            if (oldValue !== null && oldValue !== undefined && oldValue.fromListEditor) {
                 newValue = oldValue.fromListEditor(newValue);
             }
             newListValue[this.state.activeIndex] = newValue;

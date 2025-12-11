@@ -147,8 +147,9 @@ class ShareButton extends React.Component {
                 editPiece = `&id=${id}`;
             }
 
+            const projectTitle = encodeURIComponent(this.props.projectTitle);
             const url = location.origin;
-            window.open(`https://penguinmod.com/${targetPage}?name=${this.props.projectTitle}${editPiece}${remixPiece}&external=${url}`, '_blank');
+            window.open(`https://penguinmod.com/${targetPage}?name=${projectTitle}${editPiece}${remixPiece}&external=${url}`, '_blank');
         });
     }
     render() {
@@ -169,7 +170,7 @@ class ShareButton extends React.Component {
                     {isEdit ? <FormattedMessage
                             defaultMessage="Upload Edits"
                             description="Text for uploading edits for projects on PenguinMod"
-                            id="gui.menuBar.pmedit"
+                            id="pm.menuBar.pmedit"
                         /> :
                         (isRemix ?
                             <FormattedMessage
@@ -180,7 +181,7 @@ class ShareButton extends React.Component {
                             <FormattedMessage
                                 defaultMessage="Upload"
                                 description="Label for project share button"
-                                id="gui.menuBar.pmshare"
+                                id="pm.menuBar.pmshare"
                             />)}
                     {this.state.loading ? (
                         <img

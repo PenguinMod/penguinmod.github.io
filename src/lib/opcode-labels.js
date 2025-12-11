@@ -46,102 +46,102 @@ const messages = defineMessages({
     looks_stretchGetX: {
         defaultMessage: 'stretch x',
         description: 'Label for the stretch x monitor when shown on the stage',
-        id: 'gui.opcodeLabels.stretchGetX'
+        id: 'pm.opcodeLabels.stretchGetX'
     },
     looks_stretchGetY: {
         defaultMessage: 'stretch y',
         description: 'Label for the stretch y monitor when shown on the stage',
-        id: 'gui.opcodeLabels.stretchGetY'
+        id: 'pm.opcodeLabels.stretchGetY'
     },
     looks_sayWidth: {
         defaultMessage: 'bubble width',
         description: 'Label for the bubble width monitor when shown on the stage',
-        id: 'gui.opcodeLabels.sayWidth'
+        id: 'pm.opcodeLabels.sayWidth'
     },
     looks_sayHeight: {
         defaultMessage: 'bubble height',
         description: 'Label for the bubble height monitor when shown on the stage',
-        id: 'gui.opcodeLabels.sayHeight'
+        id: 'pm.opcodeLabels.sayHeight'
     },
     looks_getEffectValue: {
         defaultMessage: 'effect',
         description: 'Label for the effect monitor with no effect chosen when shown on the stage',
-        id: 'gui.opcodeLabels.getEffectValue'
+        id: 'pm.opcodeLabels.getEffectValue'
     },
     looks_getEffectValue_color: {
         defaultMessage: 'color effect',
         description: 'Label for the color effect monitor when shown on the stage',
-        id: 'gui.opcodeLabels.getEffectValue.color'
+        id: 'pm.opcodeLabels.getEffectValue.color'
     },
     looks_getEffectValue_fisheye: {
         defaultMessage: 'fisheye effect',
         description: 'Label for the fisheye effect monitor when shown on the stage',
-        id: 'gui.opcodeLabels.getEffectValue.fisheye'
+        id: 'pm.opcodeLabels.getEffectValue.fisheye'
     },
     looks_getEffectValue_whirl: {
         defaultMessage: 'whirl effect',
         description: 'Label for the whirl effect monitor when shown on the stage',
-        id: 'gui.opcodeLabels.getEffectValue.whirl'
+        id: 'pm.opcodeLabels.getEffectValue.whirl'
     },
     looks_getEffectValue_pixelate: {
         defaultMessage: 'pixelate effect',
         description: 'Label for the pixelate effect monitor when shown on the stage',
-        id: 'gui.opcodeLabels.getEffectValue.pixelate'
+        id: 'pm.opcodeLabels.getEffectValue.pixelate'
     },
     looks_getEffectValue_mosaic: {
         defaultMessage: 'mosaic effect',
         description: 'Label for the mosaic effect monitor when shown on the stage',
-        id: 'gui.opcodeLabels.getEffectValue.mosaic'
+        id: 'pm.opcodeLabels.getEffectValue.mosaic'
     },
     looks_getEffectValue_brightness: {
         defaultMessage: 'brightness effect',
         description: 'Label for the brightness effect monitor when shown on the stage',
-        id: 'gui.opcodeLabels.getEffectValue.brightness'
+        id: 'pm.opcodeLabels.getEffectValue.brightness'
     },
     looks_getEffectValue_ghost: {
         defaultMessage: 'ghost effect',
         description: 'Label for the ghost effect monitor when shown on the stage',
-        id: 'gui.opcodeLabels.getEffectValue.ghost'
+        id: 'pm.opcodeLabels.getEffectValue.ghost'
     },
     looks_getEffectValue_saturation: {
         defaultMessage: 'saturation effect',
         description: 'Label for the saturation effect monitor when shown on the stage',
-        id: 'gui.opcodeLabels.getEffectValue.saturation'
+        id: 'pm.opcodeLabels.getEffectValue.saturation'
     },
     looks_getEffectValue_red: {
         defaultMessage: 'red effect',
         description: 'Label for the red effect monitor when shown on the stage',
-        id: 'gui.opcodeLabels.getEffectValue.red'
+        id: 'pm.opcodeLabels.getEffectValue.red'
     },
     looks_getEffectValue_green: {
         defaultMessage: 'green effect',
         description: 'Label for the green effect monitor when shown on the stage',
-        id: 'gui.opcodeLabels.getEffectValue.green'
+        id: 'pm.opcodeLabels.getEffectValue.green'
     },
     looks_getEffectValue_blue: {
         defaultMessage: 'blue effect',
         description: 'Label for the blue effect monitor when shown on the stage',
-        id: 'gui.opcodeLabels.getEffectValue.blue'
+        id: 'pm.opcodeLabels.getEffectValue.blue'
     },
     looks_getEffectValue_opaque: {
         defaultMessage: 'opaque effect',
         description: 'Label for the opaque effect monitor when shown on the stage',
-        id: 'gui.opcodeLabels.getEffectValue.opaque'
+        id: 'pm.opcodeLabels.getEffectValue.opaque'
     },
     looks_tintColor: {
         defaultMessage: 'tint color',
         description: 'Label for the tint color monitor when shown on the stage',
-        id: 'gui.opcodeLabels.tintColor'
+        id: 'pm.opcodeLabels.tintColor'
     },
     looks_getSpriteVisible: {
         defaultMessage: 'visible?',
         description: 'Label for the visible monitor when shown on the stage',
-        id: 'gui.opcodeLabels.getSpriteVisible'
+        id: 'pm.opcodeLabels.getSpriteVisible'
     },
     looks_layersGetLayer: {
         defaultMessage: 'layer',
         description: 'Label for the layer monitor when shown on the stage',
-        id: 'gui.opcodeLabels.layersGetLayer'
+        id: 'pm.opcodeLabels.layersGetLayer'
     },
 
     // Sound
@@ -153,17 +153,17 @@ const messages = defineMessages({
     sound_getEffectValue: {
         defaultMessage: 'effect',
         description: 'Label for the sound effect monitor with no effect chosen when shown on the stage',
-        id: 'gui.opcodeLabels.soundgetEffectValue'
+        id: 'pm.opcodeLabels.soundgetEffectValue'
     },
     sound_getEffectValue_pitch: {
         defaultMessage: 'pitch',
         description: 'Label for the pitch effect monitor when shown on the stage',
-        id: 'gui.opcodeLabels.soundgetEffectValue.pitch'
+        id: 'pm.opcodeLabels.soundgetEffectValue.pitch'
     },
     sound_getEffectValue_pan: {
         defaultMessage: 'pan left/right',
         description: 'Label for the pan left/right effect monitor when shown on the stage',
-        id: 'gui.opcodeLabels.soundgetEffectValue.pan'
+        id: 'pm.opcodeLabels.soundgetEffectValue.pan'
     },
     sound_tempo: {
         defaultMessage: 'tempo',
@@ -225,7 +225,7 @@ const messages = defineMessages({
     sensing_current_timestamp: {
         defaultMessage: 'js timestamp',
         description: 'Label for the current js timestamp monitor when shown on the stage',
-        id: 'gui.opcodeLabels.timestamp'
+        id: 'pm.opcodeLabels.timestamp'
     },
     sensing_timer: {
         defaultMessage: 'timer',
@@ -255,7 +255,7 @@ const messages = defineMessages({
     sensing_getclipboard: {
         defaultMessage: 'clipboard item',
         description: 'Label for the clipboard item monitor when shown on the stage',
-        id: 'gui.opcodeLabels.getclipboard'
+        id: 'pm.opcodeLabels.getclipboard'
     },
     sensing_getdragmode: {
         defaultMessage: 'draggable?',
@@ -275,14 +275,14 @@ const messages = defineMessages({
     sensing_loggedin: {
         defaultMessage: 'logged in?',
         description: 'Label for the logged in monitor when shown on the stage',
-        id: 'gui.opcodeLabels.loggedin'
+        id: 'pm.opcodeLabels.loggedin'
     },
 
     // Control
     control_get_counter: {
         defaultMessage: 'counter',
         description: 'Label for the counter monitor when shown on the stage',
-        id: 'gui.opcodeLabels.counter'
+        id: 'pm.opcodeLabels.counter'
     }
 });
 

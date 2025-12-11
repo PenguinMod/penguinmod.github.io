@@ -258,7 +258,11 @@ class LibraryItemComponent extends React.PureComponent {
                                     {this.props.twDeveloper ? (
                                         <div className={styles.smallBottomMargin}>
                                             <div>
-                                                Originally for TurboWarp by
+                                                <FormattedMessage
+                                                    defaultMessage="Originally for TurboWarp by"
+                                                    description="Text for crediting that an extension was originally made for turbowarp, and who has made it."
+                                                    id="pm.libraryItem.turbowarpDeveloperCredits"
+                                                />
                                             </div>
                                             <div
                                                 className={styles.featuredExtensionMetadataDetail}
@@ -270,7 +274,11 @@ class LibraryItemComponent extends React.PureComponent {
                                     {this.props.extDeveloper ? (
                                         <div className={styles.smallBottomMargin}>
                                             <div>
-                                                Created by
+                                                <FormattedMessage
+                                                    defaultMessage="created by"
+                                                    description="Text for crediting an extensions creator."
+                                                    id="pm.libraryItem.extensionCredits"
+                                                />
                                             </div>
                                             <div
                                                 className={styles.featuredExtensionMetadataDetail}
@@ -282,7 +290,11 @@ class LibraryItemComponent extends React.PureComponent {
                                     {this.props.eventSubmittor ? (
                                         <div className={styles.smallBottomMargin}>
                                             <div>
-                                                Event Submission by
+                                                <FormattedMessage
+                                                    defaultMessage="event submission by"
+                                                    description="Text for crediting who made a submission for an event."
+                                                    id="pm.libraryItem.eventSubmissionCredits"
+                                                />
                                             </div>
                                             <div
                                                 className={styles.featuredExtensionMetadataDetail}
@@ -294,7 +306,11 @@ class LibraryItemComponent extends React.PureComponent {
                                     {this.props.credits ? (
                                         <div className={styles.smallBottomMargin}>
                                             <div>
-                                                Credits
+                                                <FormattedMessage
+                                                    defaultMessage="Credits"
+                                                    description="Text for put credits onto a library item."
+                                                    id="pm.libraryItem.generalCredits"
+                                                />
                                             </div>
                                             <div
                                                 className={styles.featuredExtensionMetadataDetail}
@@ -339,7 +355,11 @@ class LibraryItemComponent extends React.PureComponent {
             >
                 {this.props.isNew && (
                     <div className={styles.libraryItemNewBadge}>
-                        NEW
+                        <FormattedMessage
+                            defaultMessage="NEW"
+                            description="Badge text for new library items"
+                            id="pm.libraryItem.newItemBadge"
+                        />
                     </div>
                 )}
                 {/* Layers of wrapping is to prevent layout thrashing on animation */}

@@ -12,6 +12,7 @@ class Prompt extends React.Component {
             'handleOk',
             'handleScopeOptionSelection',
             'handleCancel',
+            'handleCustomButton',
             'handleChange',
             'handleKeyPress',
             'handleCloudVariableOptionChange'
@@ -34,13 +35,17 @@ class Prompt extends React.Component {
         event.target.select();
     }
     handleOk () {
-        this.props.onOk(this.state.inputValue, {
+        if (this.props.isCustom) this.props.onOk();
+        else this.props.onOk(this.state.inputValue, {
             scope: this.state.globalSelected ? 'global' : 'local',
             isCloud: this.state.cloudSelected
         });
     }
     handleCancel () {
         this.props.onCancel();
+    }
+    handleCustomButton(button) {
+        this.props.onCustomButton(button);
     }
     handleChange (e) {
         this.setState({inputValue: e.target.value});
@@ -58,7 +63,24 @@ class Prompt extends React.Component {
         }
     }
     render () {
-        return (
+        if (this.props.isCustom) return (
+            <PromptComponent
+                isCustom={this.props.isCustom}
+                componentRef={this.props.componentRef}
+                boxRef={this.props.boxRef}
+                onOk={this.handleOk}
+                onCancel={this.handleCancel}
+                onKeyPress={this.handleKeyPress}
+                styleContent={this.props.styleContent}
+                styleOverlay={this.props.styleOverlay}
+                title={this.props.title}
+                config={this.props.config}
+                customButtons={this.props.customButtons}
+                onCustomButton={this.handleCustomButton}
+                customRef={this.props.customRef}
+            />
+        )
+        else return (
             <PromptComponent
                 isAddingCloudVariableScratchSafe={this.state.isAddingCloudVariableScratchSafe}
                 canAddCloudVariable={this.state.canAddCloudVariable}
@@ -78,22 +100,46 @@ class Prompt extends React.Component {
                 onKeyPress={this.handleKeyPress}
                 onOk={this.handleOk}
                 onScopeOptionSelection={this.handleScopeOptionSelection}
+                componentRef={this.props.componentRef}
+                styleContent={this.props.styleContent}
+                styleOverlay={this.props.styleOverlay}
+                boxRef={this.props.boxRef}
             />
         );
     }
 }
 
 Prompt.propTypes = {
-    defaultValue: PropTypes.string,
-    isStage: PropTypes.bool.isRequired,
-    showListMessage: PropTypes.bool.isRequired,
-    label: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     onCancel: PropTypes.func.isRequired,
     onOk: PropTypes.func.isRequired,
-    showCloudOption: PropTypes.bool.isRequired,
-    showVariableOptions: PropTypes.bool.isRequired,
-    title: PropTypes.string.isRequired,
-    vm: PropTypes.instanceOf(VM)
+    defaultValue: PropTypes.string,
+    isStage: PropTypes.bool,
+    showListMessage: PropTypes.bool,
+    label: PropTypes.string,
+    showCloudOption: PropTypes.bool,
+    showVariableOptions: PropTypes.bool,
+    vm: PropTypes.instanceOf(VM),
+    componentRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    ]),
+    boxRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    ]),
+    styleContent: PropTypes.object,
+    styleOverlay: PropTypes.object,
+
+    /* custom modals */
+    isCustom: PropTypes.bool,
+    config: PropTypes.object,
+    onCustomButton: PropTypes.func,
+    customButtons: PropTypes.arrayOf(PropTypes.object),
+    customRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    ]),
 };
 
 export default Prompt;

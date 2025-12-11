@@ -85,7 +85,7 @@ import sharedMessages from '../../lib/shared-messages';
 import SeeInsideButton from './tw-see-inside.jsx';
 import { notScratchDesktop } from '../../lib/isScratchDesktop.js';
 
-import { consoleLogs } from '../../lib/pm-log-capture.js';
+import { downloadLogs } from '../../lib/pm-log-capture.js';
 
 const ariaMessages = defineMessages({
     language: {
@@ -207,6 +207,7 @@ class MenuBar extends React.Component {
             'handleClickPackager',
             'handleClickRestorePoints',
             'handleClickSeeCommunity',
+            'handleClickDownloadLogs',
             'handleClickShare',
             'handleKeyPress',
             'handleLanguageMouseUp',
@@ -422,18 +423,7 @@ class MenuBar extends React.Component {
             this.props.onRequestCloseAbout();
         };
     }
-    handleClickDownloadLogs() {
-        const str = JSON.stringify(consoleLogs);
-        const a = document.createElement('a');
-        a.style.display = 'none';
-        document.body.append(a);
-        const url = window.URL.createObjectURL(new Blob([str]));
-        a.href = url;
-        a.download = 'pm-log-trace.json';
-        a.click();
-        window.URL.revokeObjectURL(url);
-        a.remove();
-    }
+    handleClickDownloadLogs() { downloadLogs(); }
     render() {
         const saveNowMessage = (
             <FormattedMessage
@@ -705,14 +695,22 @@ class MenuBar extends React.Component {
                                             <MenuItem
                                                 onClick={this.props.onStartFolderUpload}
                                             >
-                                                {"Load from a folder"}
+                                                <FormattedMessage
+                                                    defaultMessage="Load from a folder"
+                                                    description="Loads the contents of a folder as if it was a project zip"
+                                                    id="pm.menuBar.loadFromFolder"
+                                                />
                                             </MenuItem>
                                             <SB3Downloader>{(_className, downloadProject, extended) => (
                                                 <React.Fragment>
                                                     <MenuItem
                                                         onClick={this.getSaveToComputerHandler(extended.saveAsFolder)}
                                                     >
-                                                        {"Export project to folder"}
+                                                        <FormattedMessage
+                                                            defaultMessage="Export project to folder"
+                                                            description="Exports the contents of a project save to a folder"
+                                                            id="pm.menuBar.ExportToFolder"
+                                                        />
                                                     </MenuItem>
                                                 </React.Fragment>
                                             )}</SB3Downloader>
@@ -739,11 +737,6 @@ class MenuBar extends React.Component {
                                                 description="Menu bar item to manage restore points"
                                                 id="tw.menuBar.restorePoints"
                                             />
-                                        </MenuItem>
-                                    </MenuSection>
-                                    <MenuSection>
-                                        <MenuItem onClick={this.handleClickDownloadLogs}>
-                                            {'Download Logs'}
                                         </MenuItem>
                                     </MenuSection>
                                 </MenuBarMenu>
@@ -860,6 +853,13 @@ class MenuBar extends React.Component {
                                             defaultMessage="Gameplay Settings"
                                             description="Menu bar item for gameplay settings"
                                             id="pm.menuBar.moreSettings"
+                                        />
+                                    </MenuItem>
+                                    <MenuItem onClick={this.handleClickDownloadLogs}>
+                                        <FormattedMessage
+                                            defaultMessage="Download Logs"
+                                            description="Menu bar button to download all logs stored by the browser."
+                                            id="pm.menuBar.downloadLogs"
                                         />
                                     </MenuItem>
                                 </MenuSection>

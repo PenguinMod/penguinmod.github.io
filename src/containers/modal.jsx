@@ -48,9 +48,19 @@ class Modal extends React.Component {
 
 Modal.propTypes = {
     id: PropTypes.string.isRequired,
+    componentRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    ]),
+    boxRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    ]),
     isRtl: PropTypes.bool,
     onRequestClose: PropTypes.func,
     onRequestOpen: PropTypes.func,
+    styleContent: PropTypes.object,
+    styleOverlay: PropTypes.object,
     scrollable: PropTypes.bool
 };
 

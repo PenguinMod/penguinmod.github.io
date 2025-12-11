@@ -30,13 +30,6 @@ const motion = function (isInitialSetup, isStage, targetId) {
                 </shadow>
             </value>
         </block>
-        <block type="motion_moveupdownsteps">
-            <value name="STEPS">
-                <shadow type="math_number">
-                    <field name="NUM">10</field>
-                </shadow>
-            </value>
-        </block>
         <block type="motion_turnright">
             <value name="DEGREES">
                 <shadow type="math_number">
@@ -136,7 +129,6 @@ const motion = function (isInitialSetup, isStage, targetId) {
                 </shadow>
             </value>
         </block>
-        <block type="motion_turnaround"/>
         ${blockSeparator}
         <block type="motion_changexby">
             <value name="DX">
@@ -363,7 +355,7 @@ const looks = function (isInitialSetup, isStage, targetId, costumeName, backdrop
                 </value>
                 <value name="Y">
                     <shadow type="math_number">
-                        <field name="NUM">15</field>
+                        <field name="NUM">0</field>
                     </shadow>
                 </value>
             </block>
@@ -575,7 +567,9 @@ const events = function (isInitialSetup, isStage) {
         ${blockSeparator}
         <block type="event_always"></block>
         <block type="event_whenanything">
-            <value name="ANYTHING"></value>
+            <value name="ANYTHING">
+                <shadow type="checkbox" />
+            </value>
         </block>
         ${blockSeparator}
         <block type="event_whenkeypressed"></block>
@@ -630,6 +624,9 @@ const control = function (isInitialSetup, isStage) {
                     <field name="NUM">1</field>
                 </shadow>
             </value>
+            <value name="CONDITION">
+                <shadow type="checkbox" />
+            </value>
         </block>
         ${blockSeparator}
         <block type="control_repeat">
@@ -668,13 +665,22 @@ const control = function (isInitialSetup, isStage) {
             </value>
         </block>
         ${blockSeparator}
-        <block type="control_if"/>
-        <block type="control_if_else"/>
-        <block id="wait_until" type="control_wait_until"/>
-        <block id="repeat_until" type="control_repeat_until"/>
-        <block id="while" type="control_while"/>
+        <block type="control_expandableIf">
+            <mutation branches="1" ends-in-else="false"></mutation>
+            <value name="BOOL1">
+                <shadow type="checkbox"></shadow>
+            </value>
+        </block>
+        <block type="control_expandableIf">
+            <mutation branches="2" ends-in-else="true"></mutation>
+            <value name="BOOL1">
+                <shadow type="checkbox"></shadow>
+            </value>
+        </block>
         <block type="control_if_return_else_return">
-            <value name="boolean"></value>
+            <value name="boolean">
+                <shadow type="checkbox" />
+            </value>
             <value name="TEXT1">
                 <shadow type="text">
                     <field name="TEXT">foo</field>
@@ -684,6 +690,22 @@ const control = function (isInitialSetup, isStage) {
                 <shadow type="text">
                     <field name="TEXT">bar</field>
                 </shadow>
+            </value>
+        </block>
+        ${blockSeparator}
+        <block id="wait_until" type="control_wait_until">
+            <value name="CONDITION">
+                <shadow type="checkbox" />
+            </value>
+        </block>
+        <block id="repeat_until" type="control_repeat_until">
+            <value name="CONDITION">
+                <shadow type="checkbox" />
+            </value>
+        </block>
+        <block id="while" type="control_while">
+            <value name="CONDITION">
+                <shadow type="checkbox" />
             </value>
         </block>
         ${blockSeparator}
@@ -1024,6 +1046,15 @@ const operators = function (isInitialSetup) {
                 </shadow>
             </value>
         </block>
+        <block type="operator_expandableMath">
+            <mutation inputcount="2" menuvalues="+"></mutation>
+            <value name="NUM1">
+                <shadow type="math_number"><field name="NUM">0</field></shadow>
+            </value>
+            <value name="NUM2">
+                <shadow type="math_number"><field name="NUM">0</field></shadow>
+            </value>
+        </block>
         <block type="operator_advMathExpanded">
             <value name="ONE">
                 <shadow type="math_number">
@@ -1162,13 +1193,49 @@ const operators = function (isInitialSetup) {
                 </shadow>
             </value>
         </block>
+        <block type="operator_expandableCompare">
+        <mutation inputcount="2" menuvalues=""></mutation>
+            <value name="INPUT1">
+                <shadow type="text"><field name="TEXT"></field></shadow>
+            </value>
+            <value name="INPUT2">
+                <shadow type="text"><field name="TEXT"></field></shadow>
+            </value>
+        </block>
         ${blockSeparator}
         <block type="operator_trueBoolean"></block>
         <block type="operator_falseBoolean"></block>
         ${blockSeparator}
-        <block type="operator_and"/>
-        <block type="operator_or"/>
-        <block type="operator_not"/>
+        <block type="operator_and">
+            <value name="OPERAND1">
+                <shadow type="checkbox" />
+            </value>
+            <value name="OPERAND2">
+                <shadow type="checkbox" />
+            </value>
+        </block>
+        <block type="operator_or">
+            <value name="OPERAND1">
+                <shadow type="checkbox" />
+            </value>
+            <value name="OPERAND2">
+                <shadow type="checkbox" />
+            </value>
+        </block>
+        <block type="operator_not">
+            <value name="OPERAND">
+                <shadow type="checkbox" />
+            </value>
+        </block>
+        <block type="operator_expandableBool">
+            <mutation inputcount="2" menuvalues=""></mutation>
+            <value name="BOOL1">
+                <shadow type="checkbox"><field name="CHECKBOX"></field></shadow>
+            </value>
+            <value name="BOOL2">
+                <shadow type="checkbox"><field name="CHECKBOX"></field></shadow>
+            </value>
+        </block>
         ${blockSeparator}
         ${isInitialSetup ? '' : `
             <block type="operator_newLine"></block>
@@ -1186,20 +1253,16 @@ const operators = function (isInitialSetup) {
                     </shadow>
                 </value>
             </block>
-            <block type="operator_join3">
-                <value name="STRING1">
+            <block type="operator_expandablejoininputs">
+                <mutation inputcount="2"></mutation>
+                <value name="INPUT1">
                     <shadow type="text">
-                        <field name="TEXT">${apple} </field>
+                        <field name="TEXT">apple</field>
                     </shadow>
                 </value>
-                <value name="STRING2">
+                <value name="INPUT2">
                     <shadow type="text">
-                        <field name="TEXT">${banana} </field>
-                    </shadow>
-                </value>
-                <value name="STRING3">
-                    <shadow type="text">
-                        <field name="TEXT">pear</field>
+                        <field name="TEXT">banana</field>
                     </shadow>
                 </value>
             </block>
@@ -1442,35 +1505,12 @@ const liveTests = function () {
             <mutation proccode="tw:debugger;" argumentids="[]" warp="false" returns="null" edited="true" optype="null"></mutation>
         </block>
         ${blockSeparator}
-        <block type="looks_setVertTransform">
-            <value name="PERCENT">
-                <shadow type="math_number">
-                    <field name="NUM">0</field>
-                </shadow>
-            </value>
-        </block>
-        <block type="looks_setHorizTransform">
-            <value name="PERCENT">
-                <shadow type="math_number">
-                    <field name="NUM">0</field>
-                </shadow>
-            </value>
-        </block>
-        ${blockSeparator}
+        <block type="operator_checkboxBoolean"></block>
         <block type="control_fieldbutton"></block>
-        <block type="operators_expandablejoininputs"></block>
         <block type="motion_mutatorCheckboxTest"></block>
         ${blockSeparator}
-        <block type="data_filterlist">
-            <value name="INDEX">
-                <shadow type="data_filterlistindex"></shadow>
-            </value>
-            <value name="ITEM">
-                <shadow type="data_filterlistitem"></shadow>
-            </value>
-        </block>
-        ${blockSeparator}
         <block type="control_dualblock"></block>
+        <block type="test_spread"></block>
     </category>
     `;
 };

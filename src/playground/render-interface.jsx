@@ -444,7 +444,23 @@ class Interface extends React.Component {
                             )}
                             {projectId !== '0' && extraProjectInfo.author && (
                                 <div>
-                                    {`${isUpdated ? 'Updated' : 'Uploaded'} ${projectReleaseMonth} ${projectReleaseDay} ${projectReleaseYear} at ${projectReleaseHour}:${projectReleaseMinute < 10 ? '0' : ''}${projectReleaseMinute} ${projectReleaseHalf}`}
+                                    {isUpdated ?
+                                        <FormattedMessage
+                                            defaultMessage="Updated {date}"
+                                            description="The date at which the project was updated"
+                                            id="pm.projectFooter.updatedAt"
+                                            values={{
+                                                date: extraProjectInfo.releaseDate.toLocaleString()
+                                            }}
+                                        /> :
+                                        <FormattedMessage
+                                            defaultMessage="Uploaded {date}"
+                                            description="The date at which the project was uploaded"
+                                            id="pm.projectFooter.uploadedAt"
+                                            values={{
+                                                date: extraProjectInfo.releaseDate.toLocaleString()
+                                            }}
+                                        />}
                                     <div className={styles.centerSector}>
                                         <button
                                             onClick={() => this.copyProjectLink(projectId)}
@@ -454,7 +470,11 @@ class Interface extends React.Component {
                                                 src="/share_project.png"
                                                 alt=">"
                                             />
-                                            {'Copy Link'}
+                                            <FormattedMessage
+                                                defaultMessage="Copy Link"
+                                                description="Copy project share link button"
+                                                id="pm.projectFooter.copyLink"
+                                            />
                                         </button>
                                         <a
                                             target="_blank"
@@ -466,7 +486,11 @@ class Interface extends React.Component {
                                                 src="report_flag.png"
                                                 alt="!"
                                             />
-                                            {'Report'}
+                                            <FormattedMessage
+                                                defaultMessage="Report"
+                                                description="Report project button in the project viewer"
+                                                id="pm.projectFooter.reportProject"
+                                            />
                                         </a>
                                     </div>
                                 </div>

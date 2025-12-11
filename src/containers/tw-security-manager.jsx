@@ -22,16 +22,17 @@ const manuallyTrustExtension = url => {
  * @returns {boolean} True if the extension can is trusted
  */
 const isTrustedExtensionOrigin = url => (
-    // Always trust our official extension repostiory.
+    /* Always trust the official extension repostiories */
     url.startsWith('https://extensions.turbowarp.org/') ||
     url.startsWith('https://extensions.penguinmod.com/') ||
     url.startsWith('https://penguinmod-extensions-gallery.vercel.app/') ||
 
-    // Trust other people's galleries. These can be removed in the future, they will just show a pop-up on load if they are.
+    /* Trust other people's galleries. These can be removed in the future, they will just show a pop-up on load if they are */
     url.startsWith('https://sharkpools-extensions.vercel.app/') || // SharkPool
+    url.startsWith('https://sharkpool-sp.github.io/SharkPools-Extensions/') || // SharkPool (github link)
     url.startsWith('https://pen-group.github.io/') || // Pen-Group / ObviousAlexC
 
-    // For development.
+    /* For development */
     url.startsWith('http://localhost:8000') ||
     url.startsWith('http://localhost:6000') || // Launcher Home
     url.startsWith('http://localhost:6001') || // Launcher Extensions

@@ -34,6 +34,8 @@ import ev3InsetIconURL from './ev3/ev3-small.svg';
 import ev3ConnectionIconURL from './ev3/ev3-hub-illustration.svg';
 import ev3ConnectionSmallIconURL from './ev3/ev3-small.svg';
 
+import faceSensingIconURL from './faceSensing/thumb.png';
+
 import wedo2IconURL from './wedo2/wedo.png'; // TODO: Rename file names to match variable/prop names?
 import wedo2InsetIconURL from './wedo2/wedo-small.svg';
 import wedo2ConnectionIconURL from './wedo2/wedo-illustration.svg';
@@ -60,11 +62,8 @@ import penguinmodLibraryExtensionIcon from './penguinmod/library.svg';
 import sharkpoolGalleryIcon from './penguinmod/sharkpool-library.svg';
 
 import ExtForgeIcon from './penguinmod/extforge.svg';
-import turboBuilderIcon from './penguinmod/turbobuilder.png';
-import turboBuilderDevIcon from './penguinmod/turbobuilder-dev.png';
 
 import filesExtensionIcon from './penguinmod/extensions/files.svg';
-import jgJSONExtensionIcon from './penguinmod/extensions/json.png';
 import jgTailgatingExtensionIcon from './penguinmod/extensions/tailgating.png';
 import jgRuntimeExtensionIcon from './penguinmod/extensions/runtime.svg';
 import jgPrismExtensionIcon from './penguinmod/extensions/prism.png';
@@ -72,7 +71,6 @@ import jgDebuggingIcon from './penguinmod/extensions/debugging.svg';
 
 import jwProtoExtensionIcon from './penguinmod/extensions/proto.svg';
 import jwUniteExtensionIcon from './penguinmod/extensions/Unite.png';
-import jwXmlExtensionIcon from './penguinmod/extensions/xml.png';
 
 import jwStructsExtensionIcon from './penguinmod/extensions/ooplogo.png';
 
@@ -81,6 +79,9 @@ import jwTargetsExtensionThumb from './penguinmod/extensions/jwTargets.svg';
 import jwNumExtensionThumb from './penguinmod/extensions/jwNum.svg';
 import jwColorExtensionThumb from './penguinmod/extensions/jwColor.svg';
 import jwVectorExtensionThumb from './penguinmod/extensions/jwVector.svg';
+import jwLambdaExtensionThumb from './penguinmod/extensions/jwLambda.svg';
+import jwScopeExtensionThumb from './penguinmod/extensions/jwScope.svg';
+import jwXMLExtensionIcon from './penguinmod/extensions/jwXML.svg';
 
 import iygPerlinNoiseExtensionIcon from './penguinmod/extensions/perlinnoisebanner.png';
 
@@ -106,17 +107,14 @@ import pointerlockThumb from './penguinmod/extensions/pointerlock.png';
 import cursorThumb from './penguinmod/extensions/cursor.svg';
 
 // LilyMakesThings 🙏
-// import lmsMcUtilsIcon from './penguinmod/extensions/mcutils.png';
 import lilyTempVariablesExtensionIcon from './penguinmod/orgtw/TempVariables2.svg';
 
 // more icons so they arent just red when the extension color is not red
 import gsaTempVariablesExtensionIcon from './penguinmod/extensions/tempvariables.svg';
-import gsaColorUtilExtensionIcon from './penguinmod/extensions/colorutil.png';
 import jgIframeExtensionIcon from './penguinmod/extensions/iframe.png';
 import jgExtendedAudioExtensionIcon from './penguinmod/extensions/extendedaudio.png';
 import jgScratchAuthExtensionIcon from './penguinmod/extensions/scratchauth2.svg';
 import jgPermissionExtensionIcon from './penguinmod/extensions/permissions.png';
-import silvxrcatOddMessagesExtensionIcon from './penguinmod/extensions/oddmessages.svg';
 import jgCloneManagerExtensionIcon from './penguinmod/extensions/clonemanager.png';
 import pmInlineBlocksExtensionIcon from './penguinmod/extensions/inlineblocks.png';
 import jgPackagerApplicationsExtensionIcon from './penguinmod/extensions/packagedApplications.png';
@@ -150,6 +148,10 @@ import sharkpoolBCIcon from './penguinmod/extensions/BetterComments.svg';
 import sharkpoolPEIcon from './penguinmod/extensions/particleEngine.svg';
 import jgScriptsExtensionIcon from './penguinmod/extensions/scripts.svg';
 import sharkpoolLooksExpandedIcon from './penguinmod/extensions/looksExpanded.svg';
+import spTurboSkinsIcon from './penguinmod/extensions/turboSkins.svg';
+import spFontManagerIcon from './penguinmod/extensions/fontManager.svg';
+import spSoundWaveIcon from './penguinmod/extensions/soundWaves.svg';
+import spTempVarsIcon from './penguinmod/extensions/sp_tempVars.svg';
 
 // events
 import jgStorageExtensionIcon from './penguinmod/extensions/storage.png';
@@ -167,12 +169,20 @@ import pmControlsExpansionExtensionIcon from './penguinmod/extensions/controls_e
 import pmSensingExpansionExtensionIcon from './penguinmod/extensions/sensing_expanded.png';
 import pmOperatorsExpansionExtensionIcon from './penguinmod/extensions/operators_expanded.png';
 
-// jg: default icon if you are too lazy to make one and you want me to make one instead lololololololol
-// gsa: ololololololo
+/*
+    Deprecated Thumbnails, uncomment if useful again
+import turboBuilderIcon from './penguinmod/turbobuilder.png';
+import turboBuilderDevIcon from './penguinmod/turbobuilder-dev.png';
+
+import silvxrcatOddMessagesExtensionIcon from './penguinmod/extensions/oddmessages.svg';
+import gsaColorUtilExtensionIcon from './penguinmod/extensions/colorutil.png';
+import jgJSONExtensionIcon from './penguinmod/extensions/json.png';
+*/
+
+// default icon if one is not made yet...
 import defaultExtensionIcon from './penguinmod/extensions/placeholder.png';
 
 const urlParams = new URLSearchParams(location.search);
-
 const IsLocal = String(window.location.href).startsWith(`http://localhost:`);
 const IsLiveTests = urlParams.has('livetests');
 
@@ -250,6 +260,14 @@ const menuItems = [
                 id="gui.extension.videosensing.description"
             />
         ),
+        featured: true
+    },
+    {
+        name: 'Face Sensing',
+        extensionId: 'https://extensions.turbowarp.org/lab/face-sensing.js',
+        iconURL: faceSensingIconURL,
+        tags: ['scratch'],
+        description: 'Sense faces with the camera.',
         featured: true
     },
     {
@@ -335,12 +353,11 @@ const menuItems = [
     },
     {
         name: 'Files',
-        extensionId: 'twFiles',
-        twDeveloper: 'GarboMuffin',
+        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Files-Expanded.js',
+        extDeveloper: 'SharkPool',
         iconURL: filesExtensionIcon,
-        insetIconURL: turbowarpIcon,
         tags: ['turbowarp', 'datamgmt'],
-        description: 'Blocks for reading and creating files.',
+        description: 'Blocks for reading, editing, & creating files & folders.',
         featured: true
     },
     {
@@ -382,19 +399,10 @@ const menuItems = [
     {
         name: 'Sound Waves',
         extensionId: 'https://extensions.penguinmod.com/extensions/SharkPool/Sound-Waves.js',
-        iconURL: 'https://extensions.penguinmod.com/images/SharkPool/Sound-Waves.svg',
+        iconURL: spSoundWaveIcon,
         tags: ['penguinmod', 'noisemaker'],
         description: 'Make sounds with oscillators!',
         extDeveloper: 'SharkPool',
-        featured: true
-    },
-    {
-        name: 'Looks Expanded',
-        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Looks-Expanded.js',
-        iconURL: sharkpoolLooksExpandedIcon,
-        tags: ['penguinmod', 'categoryexpansion', 'graphics'],
-        description: 'Expansion of the Looks Category.',
-        extDeveloper: 'SharkPool, CST1229',
         featured: true
     },
     {
@@ -405,6 +413,15 @@ const menuItems = [
         description: 'More small motion blocks for movement or collision.',
         featured: true,
         credits: 'Some blocks from NexusKitten'
+    },
+    {
+        name: 'Looks Expanded',
+        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Looks-Expanded.js',
+        iconURL: sharkpoolLooksExpandedIcon,
+        tags: ['penguinmod', 'categoryexpansion', 'graphics'],
+        description: 'Expansion of the Looks Category.',
+        extDeveloper: 'SharkPool, CST1229',
+        featured: true
     },
     {
         name: 'Events Expansion',
@@ -457,23 +474,6 @@ const menuItems = [
         tags: ['penguinmod', 'categoryexpansion'],
         description: 'Better Comments with Customization and Markdown support',
         extDeveloper: 'SharkPool',
-        featured: true
-    },
-    {
-        name: 'JSON',
-        extensionId: 'jgJSON',
-        iconURL: jgJSONExtensionIcon,
-        tags: ['penguinmod', 'datamgmt'],
-        description: 'Blocks for handling JSON objects and Arrays.',
-        featured: true
-    },
-    {
-        name: 'Swift JSON',
-        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/JSON-Array.js',
-        iconURL: spJSONExtensionIcon,
-        tags: ['penguinmod', 'datamgmt'],
-        extDeveloper: 'SharkPool',
-        description: 'POTENTIALLY DANGEROUS, but faster extension for handling JSON objects and arrays. Recommended if you are heavily using JSON several times in a project.',
         featured: true
     },
     {
@@ -552,14 +552,19 @@ const menuItems = [
         twDeveloper: 'LilyMakesThings'
     },
     {
-        name: 'Skins',
-        extensionId: 'https://extensions.turbowarp.org/Lily/Skins.js',
-        tags: ['turbowarp', 'graphics'],
-        iconURL: 'https://extensions.turbowarp.org/images/Lily/Skins.svg',
-        insetIconURL: turbowarpIcon,
-        description: 'Have your sprites show themselves as other images or costumes.',
+        name: 'Turbo Skins',
+        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Turbo-Skins.js',
+        tags: ['penguinmod', 'graphics'],
+        iconURL: spTurboSkinsIcon,
+        description: 'Display sprites with various images or costumes and control their hitboxes',
+        extraLabels: [
+            {
+                name: "Inspired by",
+                value: "\"Skins\" by LilyMakesThings"
+            }
+        ],
         featured: true,
-        twDeveloper: 'LilyMakesThings'
+        credits: 'SharkPool'
     },
     {
         name: 'Multiple Timers',
@@ -575,8 +580,15 @@ const menuItems = [
         extensionId: 'tempVars',
         iconURL: gsaTempVariablesExtensionIcon,
         tags: ['penguinmod'],
-        description: 'Create variables for use in one block stack. Useful to not clutter the variable list with variables you only use once.',
-        credits: 'LilyMakesThings',
+        description: 'Create temporary variables for use in one block stack.',
+        featured: true
+    },
+    {
+        name: 'SharkPool\'s Temporary Variables',
+        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Temporary-Variables.js',
+        iconURL: spTempVarsIcon,
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Create temporary runtime, threaded, sprite & scoped variables.',
         featured: true
     },
     {
@@ -587,6 +599,15 @@ const menuItems = [
         description: 'Create disposable runtime or thread variables.',
         insetIconURL: turbowarpIcon,
         credits: 'LilyMakesThings',
+        featured: true
+    },
+    {
+        name: 'Swift JSON',
+        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/JSON-Array.js',
+        iconURL: spJSONExtensionIcon,
+        tags: ['penguinmod', 'datamgmt'],
+        extDeveloper: 'SharkPool',
+        description: 'FAST Extension for handling JSON objects and arrays efficiently. Recommended if you are heavily using JSON several times in a project.',
         featured: true
     },
     {
@@ -601,7 +622,7 @@ const menuItems = [
     {
         name: 'Font Manager',
         extensionId: 'https://extensions.penguinmod.com/extensions/SharkPool/Font-Manager.js',
-        iconURL: 'https://extensions.penguinmod.com/images/SharkPool/Font-Manager.svg',
+        iconURL: spFontManagerIcon,
         tags: ['penguinmod', 'graphics'],
         description: 'Manage, create, and delete fonts.',
         credits: 'SharkPool, Ashimee',
@@ -649,7 +670,7 @@ const menuItems = [
     {
         name: 'Pang API',
         extensionId: 'https://extensions.penguinmod.com/extensions/SammerLOL/pangapi.js',
-        iconURL: 'https://extensions.penguinmod.com/images/SammerLOL/pangapi.png',
+        iconURL: 'https://extensions.penguinmod.com/images/SammerLOL/pangapi.avif',
         tags: ['penguinmod'],
         description: 'Fetch information from the PenguinMod API.',
         extDeveloper: 'oc9x97, Ianyourgod',
@@ -664,19 +685,10 @@ const menuItems = [
         extDeveloper: 'pinksheep2917',
         featured: true
     },
-    /*{                                   i dont like this extension anymore it kinda sucks
-        name: 'Extra Mathematics',
-        extensionId: 'https://extensions.penguinmod.com/extensions/jwklong/mathematics.js',
-        iconURL: 'https://extensions.penguinmod.com/images/jwklong/mathematics.png',
-        tags: ['penguinmod', 'categoryexpansion', 'math'],
-        description: 'Complicated maths extension for nerds.',
-        extDeveloper: 'jwklong',
-        featured: false
-    },*/
     {
         name: 'Random Utilities',
         extensionId: 'https://extensions.penguinmod.com/extensions/Gen1x/random_utils.js',
-        iconURL: 'https://extensions.penguinmod.com/images/Gen1x/randomutils.png',
+        iconURL: 'https://extensions.penguinmod.com/images/Gen1x/randomutils.avif',
         tags: ['penguinmod'],
         description: 'Many blocks related to generating random values, including seed-based number generation, true number generation, UUID\'s, random strings, etc.',
         extDeveloper: 'G1nX',
@@ -700,15 +712,6 @@ const menuItems = [
         featured: true
     },
     {
-        name: 'Odd Messages',
-        extensionId: 'oddMessage',
-        tags: ['penguinmod'],
-        iconURL: silvxrcatOddMessagesExtensionIcon,
-        description: 'For logging and variable utilization.',
-        featured: true,
-        extDeveloper: 'silvxrcat'
-    },
-    {
         name: 'HTML iframe Elements',
         extensionId: 'jgIframe',
         iconURL: jgIframeExtensionIcon,
@@ -724,23 +727,6 @@ const menuItems = [
         tags: ['penguinmod'],
         description: 'Allow the user to choose a color using the built-in color picker, so you don\'t need to make your own.',
         extDeveloper: 'TheShovel',
-        featured: true
-    },
-    {
-        name: 'Color Utility Blocks',
-        extensionId: 'colors',
-        iconURL: gsaColorUtilExtensionIcon,
-        tags: ['penguinmod'],
-        description: 'Converters for Hex, RGB, HSV and Decimal colors and other color related things.',
-        featured: true
-    },
-    {
-        name: 'All Menus',
-        extensionId: 'https://extensions.penguinmod.com/extensions/Lily/AllMenus.js',
-        iconURL: 'https://extensions.penguinmod.com/images/Lily/AllMenus.svg',
-        tags: ['penguinmod'],
-        description: 'Every dropdown menu for each block, in one extension.',
-        extDeveloper: 'LilyMakesThings',
         featured: true
     },
     {
@@ -862,7 +848,7 @@ const menuItems = [
     },
     {
         name: 'JavaScript',
-        extensionId: 'jgJavascript',
+        extensionId: 'SPjavascriptV2',
         iconURL: jgJavascriptExtensionIcon,
         tags: ['penguinmod', 'programminglanguage'],
         description: 'Run your own custom code written in JavaScript!',
@@ -874,6 +860,24 @@ const menuItems = [
         iconURL: jwArrayExtensionThumb,
         tags: ['penguinmod', 'datamgmt'],
         description: 'Store data efficiently in multi-purpose arrays.',
+        extDeveloper: 'jwklong',
+        featured: true
+    },
+    {
+        name: 'Objects',
+        extensionId: 'https://extensions.penguinmod.com/extensions/DogeisCut/dogeiscutObject.js',
+        iconURL: 'https://extensions.penguinmod.com/images/DogeisCut/dogeiscutObject.svg',
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Store data efficiently in multi-purpose objects.',
+        extDeveloper: 'DogeisCut',
+        featured: true
+    },
+    {
+        name: 'XML',
+        extensionId: 'jwXML',
+        iconURL: jwXMLExtensionIcon,
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Creating, parsing and modifying XML data.',
         extDeveloper: 'jwklong',
         featured: true
     },
@@ -911,6 +915,24 @@ const menuItems = [
         iconURL: jwVectorExtensionThumb,
         tags: ['penguinmod', 'math'],
         description: 'Vector type for calculating with X and Y coordinates.',
+        extDeveloper: 'jwklong',
+        featured: true
+    },
+    {
+        name: 'Lambda',
+        extensionId: 'jwLambda',
+        iconURL: jwLambdaExtensionThumb,
+        tags: ['penguinmod'],
+        description: 'Create anonymous functions with arguments and execute them.',
+        extDeveloper: 'jwklong',
+        featured: true
+    },
+    {
+        name: 'Scope',
+        extensionId: 'jwScope',
+        iconURL: jwScopeExtensionThumb,
+        tags: ['penguinmod'],
+        description: 'Temporary variables based on the block stack. (extra blocks included if Array extension is added)',
         extDeveloper: 'jwklong',
         featured: true
     },
@@ -1142,7 +1164,71 @@ const menuItems = [
         tags: ['extcreate'],
         featured: true
     },
-    /*{
+    {
+        // not really an extension, but it's easiest to present it as one
+        name: (
+            <FormattedMessage
+                defaultMessage="Custom Extension"
+                description="Name of library item to load a custom extension from a remote source"
+                id="tw.customExtension.name"
+            />
+        ),
+        extensionId: '',
+        iconURL: customExtensionIcon,
+        description: (
+            <FormattedMessage
+                defaultMessage="Load custom extensions from URLs, files, or JavaScript source code."
+                description="Description of library item to load a custom extension from a custom source"
+                id="tw.customExtension.description"
+            />
+        ),
+        featured: true
+    }
+    /*DEPRECATED
+    {
+        name: 'JSON',
+        extensionId: 'jgJSON',
+        iconURL: jgJSONExtensionIcon,
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Blocks for handling JSON objects and Arrays.',
+        featured: true
+    },
+    {
+        name: 'Color Utility Blocks',
+        extensionId: 'colors',
+        iconURL: gsaColorUtilExtensionIcon,
+        tags: ['penguinmod'],
+        description: 'Converters for Hex, RGB, HSV and Decimal colors and other color related things.',
+        featured: true
+    },
+    {
+        name: 'Odd Messages',
+        extensionId: 'oddMessage',
+        tags: ['penguinmod'],
+        iconURL: silvxrcatOddMessagesExtensionIcon,
+        description: 'For logging and variable utilization.',
+        featured: true,
+        extDeveloper: 'silvxrcat'
+    },
+    {
+        name: 'Extra Mathematics',
+        extensionId: 'https://extensions.penguinmod.com/extensions/jwklong/mathematics.js',
+        iconURL: 'https://extensions.penguinmod.com/images/jwklong/mathematics.avif',
+        tags: ['penguinmod', 'categoryexpansion', 'math'],
+        description: 'Complicated maths extension for nerds.',
+        extDeveloper: 'jwklong',
+        featured: false
+    },
+    {
+        name: 'All Menus',
+        extensionId: 'https://extensions.penguinmod.com/extensions/Lily/AllMenus.js',
+        iconURL: 'https://extensions.penguinmod.com/images/Lily/AllMenus.svg',
+        tags: ['penguinmod'],
+        description: 'Every dropdown menu for each block, in one extension.',
+        extDeveloper: 'LilyMakesThings',
+        featured: true
+    },
+    {
         // not really an extension, but it's easiest to present it as one
         name: 'TurboBuilder',
         href: 'https://turbobuilder.vercel.app/',
@@ -1165,26 +1251,6 @@ const menuItems = [
         tags: ['extcreate'],
         featured: true
     },*/
-    {
-        // not really an extension, but it's easiest to present it as one
-        name: (
-            <FormattedMessage
-                defaultMessage="Custom Extension"
-                description="Name of library item to load a custom extension from a remote source"
-                id="tw.customExtension.name"
-            />
-        ),
-        extensionId: '',
-        iconURL: customExtensionIcon,
-        description: (
-            <FormattedMessage
-                defaultMessage="Load custom extensions from URLs, files, or JavaScript source code."
-                description="Description of library item to load a custom extension from a custom source"
-                id="tw.customExtension.description"
-            />
-        ),
-        featured: true
-    }
 ];
 
 /*
@@ -1287,7 +1353,7 @@ if (IsLocal || IsLiveTests) {
         {
             name: 'Christmas',
             extensionId: 'jgChristmas',
-            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/christmas.png',
+            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/christmas.avif',
             tags: ['penguinmod', 'joke'],
             description: 'hooraye',
             featured: true
@@ -1295,7 +1361,7 @@ if (IsLocal || IsLiveTests) {
         {
             name: 'an amazing extension',
             extensionId: 'jgBestExtension',
-            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/epic.png',
+            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/epic.avif',
             internetConnectionRequired: true,
             tags: ['penguinmod', 'joke'],
             description: 'this is SUCH A GOOD EXTENSION USE IT NOW',
@@ -1304,7 +1370,7 @@ if (IsLocal || IsLiveTests) {
         {
             name: 'Epic utilities',
             extensionId: 'https://extensions.penguinmod.com/extensions/SharkPool/AprilFools.js',
-            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/epicutils.png',
+            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/epicutils.avif',
             tags: ['penguinmod', 'joke'],
             description: 'the super good utilities brought to you by todays sponsor sharkpool (the epic utilities)',
             featured: true
@@ -1312,7 +1378,7 @@ if (IsLocal || IsLiveTests) {
         {
             name: 'CATS',
             extensionId: 'https://extensions.penguinmod.com/extensions/Gen1x/CATS.js',
-            iconURL: 'https://extensions.penguinmod.com/images/Gen1x/cats.png',
+            iconURL: 'https://extensions.penguinmod.com/images/Gen1x/cats.avif',
             tags: ['penguinmod', 'joke'],
             description: 'Blocks related to cats.',
             extDeveloper: 'G1nX',
@@ -1331,7 +1397,7 @@ if (IsLocal || IsLiveTests) {
         {
             name: 'image blocks',
             extensionId: 'https://extensions.penguinmod.com/extensions/Ashime/funneimageblocks.js',
-            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/screenshot1.png',
+            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/screenshot1.avif',
             tags: ['penguinmod', 'joke'],
             internetConnectionRequired: true,
             description: 'who needs cat blocks when you have penguin block',
@@ -1353,15 +1419,6 @@ if (IsLocal || IsLiveTests) {
             iconURL: jwUniteExtensionIcon,
             tags: ['penguinmod'],
             description: 'Legacy extension that was eventually merged into the default toolbox.',
-            featured: true
-        },
-        {
-            name: 'XML',
-            extensionId: 'jwXml',
-            iconURL: jwXmlExtensionIcon,
-            tags: ['penguinmod', 'datamgmt'],
-            description: 'Enables the creation and getting of XML data. Not yet able to modify data.',
-            extDeveloper: 'jwklong',
             featured: true
         },
         {

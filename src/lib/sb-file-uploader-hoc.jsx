@@ -329,8 +329,8 @@ const SBFileUploaderHOC = function (WrappedComponent) {
                     // NOTE: Right now there's no reason to preserve directories, but the future save file format will use them.
                     // See here for more info: https://docs.penguinmod.com/save-format/
                     // we read the folder handle again
-                    const folder = zip.folder(handlePath);
-                    await this.readFolderHandleRecursively(handle, folder, `${handlePath}/`);
+                    zip.folder(handlePath)
+                    await this.readFolderHandleRecursively(handle, zip, `${handlePath}/`);
                 }
             }
         }

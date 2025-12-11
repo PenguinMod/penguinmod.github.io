@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 186" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <filter id="filter-0" bx:pinned="true" primitiveUnits="objectBoundingBox">
+      <feTurbulence result="turbulence-0" baseFrequency="0.01 0.05" type="fractalNoise" numOctaves="10" seed="31"></feTurbulence>
+      <feColorMatrix result="color-matrix-0" in="turbulence-0" type="luminanceToAlpha"></feColorMatrix>
+      <feColorMatrix result="color-matrix-1" in="color-matrix-0" values="0 0 0 0 1 0 0 0 0 0.6 0 0 0 0 0 0 0 0 256 -128"></feColorMatrix>
+    </filter>
+    <filter id="round-edges-filter-0" bx:preset="round-edges 1 10" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10 10"></feGaussianBlur>
+      <feColorMatrix mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 200 -100"></feColorMatrix>
+      <feComposite in="SourceGraphic" operator="atop"></feComposite>
+    </filter>
+    <bx:export>
+      <bx:file format="png" width="600" height="372"></bx:file>
+    </bx:export>
+    <filter id="round-edges-filter-1" bx:preset="round-edges 1 3" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3 3"></feGaussianBlur>
+      <feColorMatrix mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 200 -100"></feColorMatrix>
+      <feComposite in="SourceGraphic" operator="atop"></feComposite>
+    </filter>
+    <filter id="filter-1" bx:preset="round-edges 1 3" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3 3"></feGaussianBlur>
+      <feColorMatrix mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 200 -100"></feColorMatrix>
+      <feComposite in="SourceGraphic" operator="atop"></feComposite>
+    </filter>
+    <filter id="filter-2" bx:preset="round-edges 1 2" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2 2"></feGaussianBlur>
+      <feColorMatrix mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 200 -100"></feColorMatrix>
+      <feComposite in="SourceGraphic" operator="atop"></feComposite>
+    </filter>
+  </defs>
+  <rect width="300" height="186" style="fill: rgb(255, 214, 0);"></rect>
+  <rect width="300" height="186" style="fill: rgb(0, 234, 255); filter: url(#filter-0) url(#round-edges-filter-0);"></rect>
+  <path style="fill: none; stroke-width: 8px; stroke: rgb(255, 255, 255); stroke-linejoin: round; stroke-linecap: round; transform-box: fill-box; transform-origin: 50% 50%;" d="M 412.601 1.307 A 67.569 67.569 0 1 1 412.601 136.445 A 2267239406.491 2267239406.491 0 0 0 412.601 1.307 Z" bx:shape="crescent 412.601 68.876 67.569 180 0.5 1@6deda26e" transform="matrix(0, -1, 1, 0, -296.385497, 103.083641)"></path>
+  <ellipse style="stroke: rgb(255, 255, 255); stroke-width: 8px; fill: none;" cx="150" cy="103.251" rx="35.032" ry="35.032"></ellipse>
+  <path d="M 198 76.917 C 198 85.754 176.51 92.917 150 92.917 C 123.49 92.917 102 85.754 102 76.917 L 102 69 C 102 60.163 123.49 53 150 53 C 176.51 53 198 60.163 198 69 L 198 76.917 Z" style="fill: rgb(49, 49, 49); stroke-width: 1;"></path>
+  <ellipse style="fill: rgb(66, 66, 66); stroke-width: 1;" cx="150" cy="69" rx="48" ry="16"></ellipse>
+  <path d="M 186 67.31 C 186 73.937 169.882 79.31 150 79.31 C 130.118 79.31 114 73.937 114 67.31 L 114 20.87 C 114 14.243 130.118 8.87 150 8.87 C 169.882 8.87 186 14.243 186 20.87 L 186 67.31 Z" style="fill: rgb(49, 49, 49); stroke-width: 1;"></path>
+  <ellipse style="fill: rgb(66, 66, 66); stroke-width: 1;" cx="150" cy="20.87" rx="36" ry="12"></ellipse>
+  <path d="M 230.298 45.356 L 236.294 60.559 L 251.497 66.555 L 236.294 72.551 L 230.298 87.754 L 224.302 72.551 L 209.099 66.555 L 224.302 60.559 Z" bx:shape="star 230.298 66.555 21.199 21.199 0.4 4 1@14269c32" style="stroke-width: 45.4589px; fill: rgb(255, 255, 255); filter: url(#round-edges-filter-1); transform-box: fill-box; transform-origin: 50% 50%;" transform="matrix(0.989621, -0.143701, 0.143701, 0.989621, -0.000006, -0.000001)"></path>
+  <path d="M 230.298 42.49 L 237.105 59.748 L 254.363 66.555 L 237.105 73.362 L 230.298 90.62 L 223.491 73.362 L 206.233 66.555 L 223.491 59.748 Z" bx:shape="star 230.298 66.555 24.065 24.065 0.4 4 1@36e6b08a" style="stroke-width: 45.459; fill: rgb(255, 255, 255); filter: url(#filter-1); transform-origin: 230.298px 66.555px;" transform="matrix(0.909253, 0.416245, -0.416245, 0.909253, -159.773887, 18.670589)"></path>
+  <path d="M 230.298 53.271 L 234.055 62.798 L 243.582 66.555 L 234.055 70.312 L 230.298 79.839 L 226.541 70.312 L 217.014 66.555 L 226.541 62.798 Z" bx:shape="star 230.298 66.555 13.284 13.284 0.4 4 1@c55778ba" style="stroke-width: 45.459; fill: rgb(255, 255, 255); filter: url(#filter-2); transform-origin: 230.298px 66.555px;" transform="matrix(0.961451, 0.274977, -0.274977, 0.961451, -180.43411, -7.499123)"></path>
+</svg>

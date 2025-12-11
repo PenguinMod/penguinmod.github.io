@@ -276,7 +276,7 @@ export default async function ({ addon, console }) {
       this.sa_catBlockConstructor();
     }
     const r = originalRenderDraw.call(this, ...args);
-    if (this.output_ !== undefined) return r;
+    if (this.output_ !== undefined || this.isInMutator) return r;
     if (!this.outputConnection && !this.previousConnection) {
       this.initCatStuff();
     }

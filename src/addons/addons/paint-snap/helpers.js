@@ -63,11 +63,17 @@ export function loadModules(paper) {
    * @param {boolean} isBitmap True if the editor is in bitmap mode, false if it is in vector mode
    * @returns {paper.Rectangle} the bounds within which mouse events should work in the paint editor
    */
-  const getActionBounds = (isBitmap) => {
+  const getActionBounds = isBitmap => {
     if (isBitmap) {
       return ART_BOARD_BOUNDS;
     }
-    return paper.view.bounds.unite(ART_BOARD_BOUNDS).intersect(MAX_WORKSPACE_BOUNDS);
+    // i officially HATE the paper repo more than i hate the blockly repo now
+    return {
+      left: -Infinity,
+      right: Infinity,
+      top: -Infinity,
+      bottom: Infinity
+    };
   };
 
   const setDefaultGuideStyle = function (item) {

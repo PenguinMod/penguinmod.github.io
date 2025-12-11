@@ -42,7 +42,7 @@ const messages = defineMessages({
         defaultMessage: 'All Around'
     },
     lookAt: {
-        id: 'gui.directionPicker.rotationStyles.lookAt',
+        id: 'pm.directionPicker.rotationStyles.lookAt',
         description: 'Button to change to the look at rotation style',
         defaultMessage: 'Look At'
     },
@@ -52,7 +52,7 @@ const messages = defineMessages({
         defaultMessage: 'Left/Right'
     },
     upDown: {
-        id: 'gui.directionPicker.rotationStyles.upDown',
+        id: 'pm.directionPicker.rotationStyles.upDown',
         description: 'Button to change to the up-down rotation style',
         defaultMessage: 'Up/Down'
     },

@@ -2,6 +2,7 @@ on:
   workflow_dispatch:
   repository_dispatch:
   push:
+    branches: ["develop"]
 
 permissions:
   contents: read
@@ -27,8 +28,8 @@ jobs:
       with:
         node-version: 16.x
     - name: Install dependencies and build site
-      run: npm i -g pnpm@v6 && pnpm up && pnpm i --shamefully-hoist --force && NODE_ENV=production webpack --bail
-    - name: Upload artifact
+      run: npm i -g pnpm@v6 && pnpm up && pnpm i --shamefully-hoist --force && NODE_ENV="production" webpack --bail
+    - name: Upload artifact 
       uses: actions/upload-pages-artifact@v3
       with:
         path: ./build/

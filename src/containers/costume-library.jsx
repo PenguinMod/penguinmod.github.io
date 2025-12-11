@@ -13,6 +13,11 @@ const messages = defineMessages({
         defaultMessage: 'Choose a Costume',
         description: 'Heading for the costume library',
         id: 'gui.costumeLibrary.chooseACostume'
+    },
+    libraryHeader: {
+        defaultMessage: 'Costumes',
+        description: 'Header for the costume asset picker',
+        id: 'pm.costumeLibrary.costumesHeader'
     }
 });
 
@@ -46,7 +51,7 @@ class CostumeLibrary extends React.PureComponent {
                 id="costumeLibrary"
                 actor="CostumeLibrary"
                 tags={spriteTags}
-                header={"Costumes"}
+                header={this.props.intl.formatMessage(messages.libraryHeader)}
                 title={this.props.intl.formatMessage(messages.libraryTitle)}
                 onItemSelected={this.handleItemSelected}
                 onRequestClose={this.props.onRequestClose}

@@ -220,6 +220,8 @@ export default async function ({ addon, msg, console }) {
       let myBlocksByProcCode = {};
 
       let topBlocks = this.workspace.getTopBlocks();
+      let labelBlocks = Object.values(this.workspace.blockDB_)
+        .filter(b => b.type.startsWith("jwProto_") || b.type.startsWith("lmscomments_"));
 
       /**
        * @param cls
@@ -227,7 +229,7 @@ export default async function ({ addon, msg, console }) {
        * @param root
        * @returns BlockItem
        */
-      function addBlock(cls, txt, root) {
+      function addBlock(cls, txt, root, optData) {
         let id = root.id ? root.id : root.getId ? root.getId() : null;
         let clone = myBlocksByProcCode[txt];
         if (clone) {
@@ -238,23 +240,27 @@ export default async function ({ addon, msg, console }) {
           return clone;
         }
         let items = new BlockItem(cls, txt, id, 0);
+        if (optData) items.customData = optData;
         items.y = root.getRelativeToSurfaceXY ? root.getRelativeToSurfaceXY().y : null;
         myBlocks.push(items);
         myBlocksByProcCode[txt] = items;
         return items;
       }
 
-      function getDescFromField(root) {
-        let fields = root.inputList[0];
-        let desc;
-        for (const fieldRow of fields.fieldRow) {
-          desc = (desc ? desc + " " : "") + fieldRow.getText();
+      function getDescFromField(root, optRecurse) {
+        let desc = "";
+        if (optRecurse) desc = root.toString();
+        else {
+          let fields = root.inputList[0];
+          for (const fieldRow of fields.fieldRow) {
+            desc += fieldRow.getText() + " ";
+          }
         }
-        return desc;
+        return desc.trim();
       }
 
       for (const root of topBlocks) {
-        if (root.type === "procedures_definition") {
+        if (root.type === "procedures_definition" || root.type === "procedures_definition_return") {
           const label = root.getChildren()[0];
           const procCode = label.getProcCode();
           if (!procCode) {
@@ -292,6 +298,26 @@ export default async function ({ addon, msg, console }) {
           addBlock("event", getDescFromField(root), root); // "when I start as a clone"
           continue;
         }
+
+        // fall through
+        if (root.type.startsWith("jwProto_") || root.type.startsWith("lmscomments_")) {
+            continue;
+        }
+
+        if (root.startHat_) {
+          // custom, unrecognized hat
+          addBlock(
+            "customHat", getDescFromField(root, true), root,
+            { color: root.colour_ }
+          );
+          continue;
+        }
+
+        // orphan block stack/reporter
+        addBlock(
+          root.outputConnection ? "customOutput" : "customStack",
+          getDescFromField(root, true), root, { color: root.colour_ }
+        );
       }
 
       let map = this.workspace.getVariableMap();
@@ -311,7 +337,18 @@ export default async function ({ addon, msg, console }) {
         addBlock("receive", "event " + event.eventName, event.block).eventName = event.eventName;
       }
 
-      const clsOrder = { flag: 0, receive: 1, event: 2, define: 3, var: 4, VAR: 5, list: 6, LIST: 7 };
+      for (const root of labelBlocks) {
+        addBlock(
+          "label", getDescFromField(root, true), root,
+          { color: "#707070" }
+        );
+      }
+
+      const clsOrder = {
+        flag: 0, receive: 1, event: 2, customHat: 3,
+        define: 4, var: 5, VAR: 6, list: 7, LIST: 8,
+        label: 9, customStack: 10, customOutput: 11
+      };
 
       myBlocks.sort((a, b) => {
         let t = clsOrder[a.cls] - clsOrder[b.cls];
@@ -472,6 +509,17 @@ export default async function ({ addon, msg, console }) {
       };
       if (proc.cls === "flag") {
         item.className = "sa-find-flag";
+      } else if (proc.customData) {
+        const color = proc.customData.color ?? "#ff0000";
+        item.style.color = color;
+        item.onmouseenter = () => {
+          item.style.color = "#fff";
+          item.style.background = color;
+        };
+        item.onmouseleave = () => {
+          item.style.color = color;
+          item.style.background = "transparent";
+        };
       } else {
         const colorId = colorIds[proc.cls];
         item.className = `sa-block-color sa-block-color-${colorId}`;

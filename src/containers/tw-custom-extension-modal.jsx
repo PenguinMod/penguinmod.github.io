@@ -131,21 +131,21 @@ class CustomExtensionModal extends React.Component {
             if (this.props.swapId) {
                 const runtime = this.props.vm.runtime;
                 this.props.vm.extensionManager.prepareSwap(this.props.swapId);
-                let extIdx = runtime._blockInfo.findIndex(ext => ext.id === this.props.swapId);
                 const loadedIds = await this.props.vm.extensionManager.loadExtensionURL(url);
                 if (!loadedIds.includes(this.props.swapId)) {
                     for (const ext of loadedIds) this.props.vm.extensionManager.removeExtension(ext);
                     // eslint-disable-next-line no-alert
                     alert('The extension you used for the edit had a different ID than the one you were editing.');
                 }
-                this.props.vm.runtime._removeExtensionPrimitive(this.props.swapId);
                 loadedIds.forEach(extId => {
-                    const idx = runtime._blockInfo.findLastIndex(ext => ext.id === extId);
-                    const ext = runtime._blockInfo[idx];
-                    runtime._blockInfo.splice(idx, 1);
-                    runtime._blockInfo.splice(extIdx, 0, ext);
-                    extIdx++;
+                    const idx = runtime._blockInfo.findIndex(ext => ext.id === extId);
+                    const doubleIdx = runtime._blockInfo.findIndex((ext, i) => ext.id === extId && i !== idx);
+                    if (doubleIdx === -1) return;
+                    const extInfo = runtime._blockInfo[idx];
+                    runtime._blockInfo.splice(doubleIdx, 1);
+                    runtime._blockInfo.splice(idx, 1, extInfo);
                 });
+                this.props.vm.refreshWorkspace();
             } else {
                 await this.props.vm.extensionManager.loadExtensionURL(url);
             }

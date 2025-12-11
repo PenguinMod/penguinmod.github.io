@@ -210,6 +210,11 @@ const pmApiDevelopers = [
 
 const pmTranslators = [
     {
+        text: 'Mildanner',
+        image: `https://avatars.githubusercontent.com/u/179844994`,
+        href: "https://github.com/mildannerofc",
+    },
+    {
         text: 'kolikiscool',
         image: `https://penguinmod.com/unknown_user.png`,
         href: "https://studio.penguinmod.com/credits.html#",

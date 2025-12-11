@@ -56,6 +56,7 @@ class Dial extends React.Component {
      * @returns {string} Path data string for the gauge.
      */
     gaugePath (radius, direction) {
+        direction = ((direction + 180) % 360 + 360) % 360 - 180;
         const rads = (direction) * (Math.PI / 180);
         const path = [];
         path.push(`M ${radius} 0`);
