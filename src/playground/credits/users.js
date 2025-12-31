@@ -182,6 +182,10 @@ const pmPullRequestDevelopers = [ // these people made a PR that got merged, or 
         image: `https://github.com/NotEmbin.png`,
         href: `https://github.com/NotEmbin/`,
     },
+    {
+        text: 'ddededodediamante',
+        image: `https://github.com/ddededodediamante.png`,
+        href: `https://github.com/ddededodediamante/`,
     {  // rx or ry single fix
         text: 'NotCryptid',
         image: `https://penguinmod.com/unknown_user.png`,
@@ -955,7 +959,8 @@ const pmExtensionDevelopers = [
     'oc9x97',
     'lego7set',
     'mariocraft987',
-    'AshimeeAlt'
+    'AshimeeAlt',
+    'ddededodediamante'
 ].map(fromHardcodedGithub);
 
 const pmCodeUsedFrom = [
