@@ -186,6 +186,7 @@ const pmPullRequestDevelopers = [ // these people made a PR that got merged, or 
         text: 'ddededodediamante',
         image: `https://github.com/ddededodediamante.png`,
         href: `https://github.com/ddededodediamante/`,
+    },
     {  // rx or ry single fix
         text: 'NotCryptid',
         image: `https://penguinmod.com/unknown_user.png`,
