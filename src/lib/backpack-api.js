@@ -3,7 +3,7 @@ import costumePayload from './backpack/costume-payload';
 import soundPayload from './backpack/sound-payload';
 import spritePayload from './backpack/sprite-payload';
 import codePayload from './backpack/code-payload';
-import localBackpackAPI from './tw-local-backpack-api';
+import localBackpackAPI from './pm-local-backpack-api';
 
 export const LOCAL_API = '_local_';
 
