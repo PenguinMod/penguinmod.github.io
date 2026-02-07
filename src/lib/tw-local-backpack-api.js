@@ -196,6 +196,7 @@ const updateBackpackObject = async ({
 };
 
 export default {
+    idbItemToBackpackItem,
     getBackpackContents,
     saveBackpackObject,
     deleteBackpackObject,
