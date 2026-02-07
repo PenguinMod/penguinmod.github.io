@@ -14,6 +14,7 @@ import {
     codePayload,
     LOCAL_API
 } from '../lib/backpack-api';
+import PMLocalBackpackAPI from '../lib/pm-local-backpack-api.js';
 import DragConstants from '../lib/drag-constants';
 import DropAreaHOC from '../lib/drop-area-hoc.jsx';
 
@@ -48,7 +49,8 @@ class Backpack extends React.Component {
             'handleMouseLeave',
             'handleBlockDragEnd',
             'handleBlockDragUpdate',
-            'handleMore'
+            'handleMore',
+            'tryPortingOldBackpack'
         ]);
         this.state = {
             // While the DroppableHOC manages drop interactions for asset tiles,
@@ -92,7 +94,7 @@ class Backpack extends React.Component {
             window.dispatchEvent(new Event('resize'));
         });
         if (newState) {
-            this.getContents();
+            this.getContents(true);
         }
     }
     handleError (error) {
@@ -222,26 +224,41 @@ class Backpack extends React.Component {
                 });
         });
     }
-    getContents () {
+    async tryPortingOldBackpack() {
+        try {
+            const needsToPort = await PMLocalBackpackAPI.shouldPortBackpackContents();
+            if (needsToPort) {
+                console.log("Porting old TurboWarp-styled backpack");
+                await PMLocalBackpackAPI.portBackpackContents();
+            }
+        } catch (err) {
+            console.warn("Failed to port old backpack;", err);
+        }
+    }
+    getContents (tryPortingOldBackpack) {
         if ((this.props.token && this.props.username) || this.props.host === LOCAL_API) {
-            this.setState({loading: true, error: false}, () => {
-                getBackpackContents({
-                    host: this.props.host,
-                    token: this.props.token,
-                    username: this.props.username,
-                    offset: this.state.contents.length,
-                    limit: this.state.itemsPerPage
-                })
-                    .then(contents => {
-                        this.setState({
-                            contents: this.state.contents.concat(contents),
-                            moreToLoad: contents.length === this.state.itemsPerPage,
-                            loading: false
-                        });
-                    })
-                    .catch(error => {
-                        this.handleError(error);
+            this.setState({loading: true, error: false}, async () => {
+                try {
+                    // check to port
+                    if (tryPortingOldBackpack) {
+                        await this.tryPortingOldBackpack();
+                    }
+                    // load the backpack
+                    const contents = await getBackpackContents({
+                        host: this.props.host,
+                        token: this.props.token,
+                        username: this.props.username,
+                        offset: this.state.contents.length,
+                        limit: this.state.itemsPerPage
                     });
+                    this.setState({
+                        contents: this.state.contents.concat(contents),
+                        moreToLoad: contents.length === this.state.itemsPerPage,
+                        loading: false
+                    });
+                } catch (error) {
+                    this.handleError(error);
+                }
             });
         }
     }
@@ -278,7 +295,7 @@ class Backpack extends React.Component {
         });
     }
     handleMore () {
-        this.getContents();
+        this.getContents(false);
     }
     render () {
         return (
