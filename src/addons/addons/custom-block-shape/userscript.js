@@ -8,6 +8,7 @@ export default async function ({ addon, console }) {
     const ogFieldImageInit = BlocklyInstance.FieldImage.prototype.init;
 
     const { GRID_UNIT } = BlockSvg;
+    const cached_scalers = {};
 
     function path2SegmentList(path) {
       const cmds = structuredClone(BlockSvg.CUSTOM_NOTCH_UTIL.supportedCommands);
@@ -82,6 +83,8 @@ export default async function ({ addon, console }) {
       iconSize = addon.settings.get("iconSize")
     ) {
       let multiplier = paddingSize / 100;
+      cached_scalers.multiplier = multiplier;
+      cached_scalers.notchSize = notchSize;
       cornerSize = cornerSize / 100;
       notchSize = notchSize / 100;
       iconSize = iconSize / 100;
@@ -122,6 +125,7 @@ export default async function ({ addon, console }) {
       /* Custom Notch API Support */
       const adjustedNotchSize = (multiplier > 1 ? multiplier - 0.05 :
           multiplier < 1 ? multiplier + 0.05 : multiplier) + ((cornerSize - 1) / 10);
+      cached_scalers.adjustedNotchSize = adjustedNotchSize;
       BlockSvg.CUSTOM_NOTCHES.forEach((notch) => {
         if (!notch.ogLeft) {
           notch.ogLeft = notch.left;
@@ -204,7 +208,7 @@ export default async function ({ addon, console }) {
         'a 4,4 0 0,1 -4,-4 z';
 
       BlockSvg.INPUT_SHAPE_LEAF_WIDTH = 12 * GRID_UNIT * multiplier;
-      BlockSvg.INPUT_SHAPE_LEAF = 
+      BlockSvg.INPUT_SHAPE_LEAF =
         `M ${6 * GRID_UNIT * multiplier} 0
         l ${2 * GRID_UNIT * multiplier} 0
         a ${4 * GRID_UNIT * multiplier} ${4 * GRID_UNIT * multiplier} 0 0 1 ${4 * GRID_UNIT * multiplier} ${4 * GRID_UNIT * multiplier}
@@ -218,7 +222,7 @@ export default async function ({ addon, console }) {
         z`;
 
       BlockSvg.INPUT_SHAPE_PLUS_WIDTH = 12 * GRID_UNIT * multiplier;
-      BlockSvg.INPUT_SHAPE_PLUS = 
+      BlockSvg.INPUT_SHAPE_PLUS =
         `M ${9 * GRID_UNIT * multiplier} 0
         a ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier} 0 0 1 ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier}
         l 0 2
@@ -238,7 +242,7 @@ export default async function ({ addon, console }) {
         a ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier} 0 0 1 ${GRID_UNIT * multiplier} ${-GRID_UNIT * multiplier}
         a ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier} 0 0 0 ${GRID_UNIT * multiplier} ${-GRID_UNIT * multiplier}
         l 0 -2
-        a ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier} 0 0 1 ${GRID_UNIT * multiplier} ${-GRID_UNIT * multiplier} 
+        a ${GRID_UNIT * multiplier} ${GRID_UNIT * multiplier} 0 0 1 ${GRID_UNIT * multiplier} ${-GRID_UNIT * multiplier}
         z`;
 
       BlockSvg.INPUT_SHAPE_HEIGHT = 8 * GRID_UNIT * multiplier;
@@ -357,5 +361,33 @@ export default async function ({ addon, console }) {
     addon.self.addEventListener("reenabled", () => applyAndUpdate());
 
     applyAndUpdate();
+
+    const og_custom_shape_register = BlockSvg.registerCustomShape;
+    BlockSvg.registerCustomShape = function(name, shape) {
+        const multiplier = cached_scalers.multiplier;
+        shape.ogEmptySize = shape.emptyInputWidth;
+        shape.ogEmptyPath = shape.emptyInputPath;
+        shape.emptyInputWidth = shape.ogEmptySize * multiplier;
+        shape.emptyInputPath  = scalePathXY(shape.ogEmptyPath, multiplier, multiplier);
+        if (shape.emptyInputPath[0] !== "M" && shape.emptyInputPath[0] !== "m")
+            shape.emptyInputPath = "M" + shape.emptyInputPath;
+
+        og_custom_shape_register(name, shape);
+    };
+    const og_custom_notch_register = BlockSvg.registerCustomNotch;
+    BlockSvg.registerCustomNotch = function(name, notch) {
+        const adjustedNotchSize = cached_scalers.adjustedNotchSize;
+        const notchSize = cached_scalers.notchSize;
+
+        og_custom_notch_register(name, notch);
+
+        let registered_notch = BlockSvg.CUSTOM_NOTCHES.get(name);
+
+        registered_notch.ogLeft  = registered_notch.left;
+        registered_notch.ogRight = registered_notch.right;
+        registered_notch.left  = scalePathXY(registered_notch.ogLeft,  adjustedNotchSize, notchSize);
+        registered_notch.right = scalePathXY(registered_notch.ogRight, adjustedNotchSize, notchSize);
+    };
+
   })(window.Blockly);
 }
