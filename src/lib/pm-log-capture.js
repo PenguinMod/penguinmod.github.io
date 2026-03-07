@@ -199,6 +199,7 @@ window.addEventListener('unhandledrejection', e => push('promiseError', String(e
 class StackTrace extends Error {
     constructor() {
         super('');
+        this.name = 'StackTrace';
         if (this.stack.split('\n', 2)[0].includes('@')) {
             this.stack = this.stack
                 .split('\n')
