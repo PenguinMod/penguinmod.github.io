@@ -37,7 +37,7 @@ export default async ({ addon, console, msg }) => {
             const recordOptionSecondsInput = Object.assign(document.createElement("input"), {
                 type: "number",
                 min: 1,
-                defaultValue: 300,
+                defaultValue: 9900,
                 id: "recordOptionSecondsInput",
                 className: addon.tab.scratchClass("prompt_variable-name-text-input"),
             });
