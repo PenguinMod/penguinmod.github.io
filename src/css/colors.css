@@ -27,8 +27,8 @@ $ui-secondary-light: hsla(215, 75%, 95%, 1);
 $ui-tertiary-light: hsla(215, 50%, 90%, 1);
 $text-primary-light: hsla(225, 15%, 40%, 1);
 
-$red-primary: hsla(194, 100%, 50%, 1); /* #00c3ff */
-$red-tertiary: hsla(203, 100%, 39%, 1); /* #007bc7 */
+$red-primary: hsla(222, 100%, 50%, 1); /* #00c3ff */
+$red-tertiary: hsla(225, 100%, 36%, 1); /* #007bc7 */
 
 $sound-primary: hsla(300, 53%, 60%, 1); /* #CF63CF */
 $sound-tertiary: hsla(300, 48%, 50%, 1); /* #BD42BD */
