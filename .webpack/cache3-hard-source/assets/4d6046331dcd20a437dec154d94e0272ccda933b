@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 186" width="300px" height="186px" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <bx:export>
+      <bx:file format="png" width="600" height="372"></bx:file>
+    </bx:export>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="64.001" y1="13.331" x2="64.001" y2="114.669" id="gradient-0" gradientTransform="matrix(1, 0, 0, 1, 405.05542, 112.695984)">
+      <stop offset="0" style="stop-color: rgb(255, 175, 114);"></stop>
+      <stop offset="1" style="stop-color: rgb(255, 84, 84);"></stop>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="64.001" y1="13.331" x2="64.001" y2="114.669" id="gradient-1" gradientTransform="matrix(1, 0, 0, 1, 405.05542, 112.695984)">
+      <stop offset="0" style="stop-color: rgb(201, 127, 70);"></stop>
+      <stop offset="1" style="stop-color: rgb(196, 44, 44);"></stop>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="150" y1="0" x2="150" y2="186" id="gradient-2" gradientTransform="matrix(0.526723, -0.850037, 1.612903, 1, -79.008408, 127.505568)">
+      <stop offset="0" style="stop-color: rgb(255, 225, 207);"></stop>
+      <stop offset="1" style="stop-color: rgb(255, 204, 197);"></stop>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="150" y1="0" x2="150" y2="186" id="gradient-3" gradientTransform="matrix(0.532903, -0.846176, 1.612903, 1, -79.935432, 126.926478)">
+      <stop offset="0" style="stop-color: rgb(255, 175, 114);"></stop>
+      <stop offset="1" style="stop-color: rgb(255, 84, 84);"></stop>
+    </linearGradient>
+  </defs>
+  <rect width="300" height="186" style="stroke-width: 32px; fill: url(#gradient-2); stroke: url(#gradient-3);"></rect>
+  <g transform="matrix(1, 0, 0, 1, -319.055511, -83.695999)">
+    <path style="fill: url('#gradient-0'); stroke: url('#gradient-1'); stroke-width: 4px; paint-order: fill;" d="M 430.079 126.027 C 421.469 126.027 414.489 133.007 414.489 141.617 L 414.489 188.39 C 414.489 196.999 421.469 203.98 430.079 203.98 L 508.032 203.98 C 516.642 203.98 523.622 196.999 523.622 188.39 L 523.622 141.617 C 523.622 133.007 516.642 126.027 508.032 126.027 L 476.851 126.027 C 472.546 126.027 469.056 129.517 469.056 133.822 C 469.056 138.128 465.566 141.617 461.261 141.617 L 445.67 141.617 C 441.365 141.617 437.875 138.128 437.875 133.822 C 437.875 129.517 434.385 126.027 430.079 126.027 M 445.67 227.365 L 461.261 227.365 C 467.861 227.365 471.986 220.22 468.686 214.504 C 467.155 211.85 464.324 210.216 461.261 210.216 L 445.67 210.216 C 439.069 210.216 434.943 217.362 438.243 223.078 C 439.776 225.732 442.606 227.365 445.67 227.365"></path>
+  </g>
+</svg>

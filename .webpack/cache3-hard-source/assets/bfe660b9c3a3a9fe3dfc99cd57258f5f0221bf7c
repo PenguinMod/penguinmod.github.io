@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 186" width="300px" height="186px" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <bx:export>
+      <bx:file format="png" width="600" height="372"></bx:file>
+    </bx:export>
+  </defs>
+  <rect width="300" height="186" style="fill: rgb(255, 81, 61); stroke: rgb(205, 59, 44); stroke-width: 32px;"></rect>
+  <g style="" transform="matrix(8.59397, 0, 0, 8.59397, 72.6502, 15.6543)">
+    <path d="M 7.073 3.22 L 5.147 3.22 C 4.083 3.22 3.22 4.083 3.22 5.147 L 3.22 12.853 C 3.22 13.919 4.083 14.78 5.147 14.78 L 7.073 14.78 L 7.073 12.853 L 5.147 12.853 L 5.147 5.147 L 7.073 5.147 L 7.073 3.22 Z M 10.927 12.853 L 12.853 12.853 L 12.853 5.147 L 10.927 5.147 L 10.927 3.22 L 12.853 3.22 C 13.917 3.22 14.78 4.083 14.78 5.147 L 14.78 12.853 C 14.78 13.919 13.917 14.78 12.853 14.78 L 10.927 14.78 L 10.927 12.853 Z" fill="#fff" style=""></path>
+  </g>
+</svg>

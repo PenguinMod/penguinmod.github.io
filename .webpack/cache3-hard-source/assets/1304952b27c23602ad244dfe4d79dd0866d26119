@@ -1,0 +1,29 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewbox="0 0 93 41"
+    width="93"
+    height="57"
+    version="1.1"
+>
+    <g
+        class="blocklyBlockCanvas"
+        transform="translate(0,0) "
+    >
+        <g
+            data-id="OOCb7Z,PN4|a=/6zM8i6"
+            class="blocklyDraggable blocklySelected"
+            data-shapes="reporter boolean"
+            transform="translate(0,0)"
+        >
+            <path
+                class="blocklyPath blocklyBlockBackground"
+                stroke="#FF3355"
+                fill="#FF6680"
+                fill-opacity="1"
+                d="m 0,0 m 20,0 H 72.08333206176758 l 20 20 l -20 20 H 20 l -20 -20 l 20 -20 z"
+            />
+        </g>
+    </g>
+</svg>
