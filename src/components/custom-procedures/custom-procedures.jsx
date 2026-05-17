@@ -10,6 +10,8 @@ import booleanInputIcon from './icon--boolean-input.svg';
 import textInputIcon from './icon--text-input.svg';
 import branchInputIcon from './icon--branch-input.svg';
 import labelIcon from './icon--label.svg';
+// Make sure you have a vector input icon or reuse an existing one
+import vectorInputIcon from './icon--vector-input.svg'; 
 
 import stackBlockIcon from './icon--stack-block.svg';
 import terminalBlockIcon from './icon--terminal-block.svg';
@@ -250,6 +252,35 @@ const CustomProcedures = props => (
                         />
                     </div>
                 </div>
+
+                {/* --- NEW VECTOR INPUT CARD START --- */}
+                <div
+                    className={styles.optionCard}
+                    role="button"
+                    tabIndex="0"
+                    onClick={props.onAddVector}
+                >
+                    <img
+                        className={styles.optionIcon}
+                        src={vectorInputIcon}
+                    />
+                    <div className={styles.optionTitle}>
+                        <FormattedMessage
+                            defaultMessage="Add an input"
+                            description="Label for button to add a vector input"
+                            id="pm.customProcedures.addAnInputVector"
+                        />
+                    </div>
+                    <div className={styles.optionDescription}>
+                        <FormattedMessage
+                            defaultMessage="vector"
+                            description="Description of the vector input type"
+                            id="pm.customProcedures.vectorType"
+                        />
+                    </div>
+                </div>
+                {/* --- NEW VECTOR INPUT CARD END --- */}
+
                 <div
                     className={styles.optionCard}
                     role="button"
@@ -404,6 +435,7 @@ CustomProcedures.propTypes = {
     intl: intlShape,
     onAddBoolean: PropTypes.func.isRequired,
     onAddCommand: PropTypes.func.isRequired,
+    onAddVector: PropTypes.func.isRequired, // Added validation
     onAddLabel: PropTypes.func.isRequired,
     onAddTextNumber: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
