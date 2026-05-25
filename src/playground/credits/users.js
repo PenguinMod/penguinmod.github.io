@@ -74,7 +74,7 @@ electricfuzzball_pm (https://www.youtube.com/@ElectricFuzzball_YT) (discord: ele
 gug. [iamgugreal1939] (https://penguinmod.com/profile?user=kiwi) (discord: iamgugreal1939)
 aubreymcleen (https://penguinmod.com/profile?user=aubreymcleen) (discord: 2faceaub)
 kylomaskgamer (https://kylomaskgamer.ca/) (discord: kylomaskgamer)
-afk (https://penguinmod.com/profile?user=afk) (discord: aefarkalibastafinfein)
+dotun (https://penguinmod.com/profile?user=dotun) (discord: thedotun)
 dillonr
 UnbraveChimp (https://minerlegacy.net) (discord: UnbraveChimp)
 rooonym (https://penguinmod.com/profile?user=rooonym)
@@ -501,9 +501,9 @@ const pmTranslators = [
         href: "https://penguinmod.com/profile?user=Prode",
     },
     {
-        text: 'afk',
-        image: `https://projects.penguinmod.com/api/v1/users/getpfp?username=afk`,
-        href: "https://penguinmod.com/profile?user=afk",
+        text: 'dotun',
+        image: `https://projects.penguinmod.com/api/v1/users/getpfp?username=dotun`,
+        href: "https://penguinmod.com/profile?user=dotun",
     },
     {
         text: 'phi_wpentomino',
