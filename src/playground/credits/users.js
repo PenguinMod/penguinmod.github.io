@@ -78,6 +78,7 @@ dotun (https://penguinmod.com/profile?user=dotun) (discord: thedotun)
 dillonr
 UnbraveChimp (https://minerlegacy.net) (discord: UnbraveChimp)
 rooonym (https://penguinmod.com/profile?user=rooonym)
+DogeisCut (https://github.com/DogeisCut) (discord: dogeiscut)
 `;
 const pmSupporterImage = (username) => {
     switch (username) {
