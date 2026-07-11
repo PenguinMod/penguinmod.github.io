@@ -79,7 +79,13 @@ const cloudManagerHOC = function (WrappedComponent) {
             );
         }
         shouldConnect (props) {
-            console.debug(!this.isConnected(), this.canUseCloud(props), props.isShowingWithId, props.vm.runtime.hasCloudData(), props.canModifyCloudData);
+            console.debug(
+                'Cloud disconnected:', !this.isConnected(),
+                'Can use cloud:', this.canUseCloud(props),
+                'Showing with ID:', props.isShowingWithId,
+                'Has cloud data:', props.vm.runtime.hasCloudData(),
+                'Can modify cloud data:', props.canModifyCloudData,
+            );
             return !this.isConnected() && this.canUseCloud(props) &&
                 props.isShowingWithId && props.vm.runtime.hasCloudData() &&
                 props.canModifyCloudData;
