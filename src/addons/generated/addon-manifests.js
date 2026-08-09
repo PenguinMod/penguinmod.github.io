@@ -80,6 +80,7 @@ import _paint_reshape_tweaks from "../addons/paint-reshape-tweaks/_manifest_entr
 import _editor_tweaks from "../addons/editor-tweaks/_manifest_entry.js";
 import _copy_reporter from "../addons/copy-reporter/_manifest_entry.js";
 import _block_pins from "../addons/block-pins/_manifest_entry.js";
+import _rename_broadcasts from "../addons/rename-broadcasts/_manifest_entry.js";
 
 export default {
   "cat-blocks": _cat_blocks,
@@ -163,5 +164,6 @@ export default {
   "paint-reshape-tweaks": _paint_reshape_tweaks,
   "editor-tweaks": _editor_tweaks,
   "copy-reporter": _copy_reporter,
-  "block-pins": _block_pins
+  "block-pins": _block_pins,
+  "rename-broadcasts": _rename_broadcasts,
 };
