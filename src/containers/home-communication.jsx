@@ -45,22 +45,23 @@ class HomeCommunication extends React.Component {
     }
     
     async wrapperEventHandler(e) {
+        if (!this.state.canSetUsername) return;
+        if (!this.state.frame) return;
+
+        if (e.origin !== origin) return;
+
         const data = e.data;
-        // Don't recursively try to run this event.
-        if (e.origin === window.origin) {
-            return;
-        }
-        if (!data.type) return;
-        if (!data.packet) return;
+        if (typeof data.type !== "string") return;
+        if (!data.packet || typeof data.packet !== "object") return;
 
         switch (data.type) {
             case 'login': {
                 if (data.packet.loggedIn !== true) return;
-                if (!data.packet.username) return;
-                if (!this.state.canSetUsername) return;
-                this.props.onSetUsername(data.packet.username);
+                if (typeof data.packet.username !== "string") return;
                 this.setState({
                     canSetUsername: false
+                }, () => {
+                    this.props.onSetUsername(data.packet.username);
                 });
             }
         }
@@ -68,7 +69,7 @@ class HomeCommunication extends React.Component {
 
     render () {
         return (
-            <div></div>
+            <div style={{ display: "none" }}></div>
         );
     }
 }
