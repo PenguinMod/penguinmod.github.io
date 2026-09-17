@@ -231,7 +231,7 @@ const SBFileUploaderHOC = function (WrappedComponent) {
                     // Don't update file handle until after confirming replace.
                     const handle = thisFileInput.handle;
                     if (handle) {
-                        if (this.fileToUpload.name.endsWith('.pm') || this.fileToUpload.name.endsWith('.pmf') || this.fileToUpload.name.endsWith('.pmp')) {
+                        if (this.fileToUpload.name.endsWith('.sb') || this.fileToUpload.name.endsWith('.sb2') || this.fileToUpload.name.endsWith('.sb3') || this.fileToUpload.name.endsWith('.pm') || this.fileToUpload.name.endsWith('.pmf') || this.fileToUpload.name.endsWith('.pmp')) {
                             this.props.onSetFileHandle(handle);
                         } else {
                             this.props.onSetFileHandle(null);

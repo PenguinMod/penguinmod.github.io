@@ -1,7 +1,7 @@
 import projectData from './project-data';
 
 /* eslint-disable import/no-unresolved */
-import overrideDefaultProject from '!arraybuffer-loader!./default-project.sb3';
+import overrideDefaultProject from '!arraybuffer-loader!../../../default_project.pmf';
 import backdrop from '!raw-loader!./cd21514d0531fdffb22204e0ec5ed84a.svg';
 import costume1 from '!raw-loader!./penguin.svg';
 /* eslint-enable import/no-unresolved */
