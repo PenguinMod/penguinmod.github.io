@@ -8,9 +8,9 @@ const showSaveFilePicker = fileName => window.showSaveFilePicker({
     ...(!isTypeFilterAvailable() ? {} : {
         types: [
             {
-                description: 'PenguinMod Project',
+                description: 'Permafy Project',
                 accept: {
-                    'application/x.scratch.sb3': '.pmp'
+                    'application/x.scratch.sb3': '.pmf'
                 }
             }
         ],
@@ -26,13 +26,13 @@ const showOpenFilePicker = async () => {
                 {
                     description: 'Supported Files',
                     accept: {
-                        'application/x.scratch.sb3': ['.pmp', '.pm', '.sb3', '.sb2', '.sb']
+                        'application/x.scratch.sb3': ['.pmf', '.pmp', '.pm', '.sb3', '.sb2', '.sb']
                     }
                 },
                 {
-                    description: 'PenguinMod Project',
+                    description: 'Permafy Project',
                     accept: {
-                        'application/x.scratch.sb3': ['.pmp', '.pm']
+                        'application/x.scratch.sb3': ['.pmf', '.pmp', '.pm']
                     }
                 },
                 {

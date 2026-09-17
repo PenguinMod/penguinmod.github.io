@@ -9,6 +9,8 @@ import Button from '../button/button.jsx';
 import loadingIcon from './share-loading.svg';
 import styles from './share-button.css';
 
+const UPLOAD_SUPPORTED = false; // when i make my own API then turn "false;" to "true;".
+
 const getProjectThumbnail = () => new Promise(resolve => {
     window.vm.renderer.requestSnapshot(uri => {
         resolve(uri);
@@ -95,6 +97,8 @@ class ShareButton extends React.Component {
         }, e.origin);
     }
     async onUploadProject() {
+        if (!UPLOAD_SUPPORTED) return;
+
         if (this.state.loading) return;
         if (!window.vm) return;
         if (!window.vm.runtime) return;
@@ -179,7 +183,7 @@ class ShareButton extends React.Component {
                                 id="gui.menuBar.remix"
                             /> :
                             <FormattedMessage
-                                defaultMessage="Upload"
+                                defaultMessage="Upload not supported yet!"
                                 description="Label for project share button"
                                 id="pm.menuBar.pmshare"
                             />)}

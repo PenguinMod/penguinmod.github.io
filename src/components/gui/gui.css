@@ -175,6 +175,18 @@
 .tab:hover {
   background-color: $ui-primary;
 }
+.tab.tab-costumes,
+.tab.tab-sounds {
+    background-color: $sound-primary;
+    color: $ui-white;
+}
+.tab.tab-costumes:hover,
+.tab.tab-sounds:hover,
+.tab.tab-costumes.is-selected,
+.tab.tab-sounds.is-selected {
+    background-color: $sound-tertiary;
+    color: $ui-white;
+}
 [theme="dark"] .tab:hover {
     background-color: $ui-secondary;
 }
@@ -184,6 +196,10 @@
     color: $motion-primary;
     background-color: $ui-white;
     z-index: 4; /* Make sure selected is always above */
+}
+.tab.tab-costumes.is-selected,
+.tab.tab-sounds.is-selected {
+    color: $ui-white;
 }
 [theme="dark"] .tab.is-selected {
     background-color: $ui-secondary;

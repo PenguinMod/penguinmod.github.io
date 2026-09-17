@@ -237,7 +237,7 @@ const GUIComponent = props => {
                 />
             </ContextMenuWrapTab>
         </Tab>);
-    const costumesTab = (<Tab className={classNames(tabClassNames.tab, tabOrder.includes('costume') ? null : styles.tabDisabled)} onClick={onActivateCostumesTab}>
+    const costumesTab = (<Tab className={classNames(tabClassNames.tab, styles.tabCostumes, tabOrder.includes('costume') ? null : styles.tabDisabled)} onClick={onActivateCostumesTab}>
             <ContextMenuWrapTab tabId="costume">
                 <img
                     draggable={false}
@@ -258,7 +258,7 @@ const GUIComponent = props => {
                 )}
             </ContextMenuWrapTab>
         </Tab>);
-    const soundsTab = (<Tab className={classNames(tabClassNames.tab, tabOrder.includes('sound') ? null : styles.tabDisabled)} onClick={onActivateSoundsTab}>
+    const soundsTab = (<Tab className={classNames(tabClassNames.tab, styles.tabSounds, tabOrder.includes('sound') ? null : styles.tabDisabled)} onClick={onActivateSoundsTab}>
             <ContextMenuWrapTab tabId="sound">
                 <img
                     draggable={false}

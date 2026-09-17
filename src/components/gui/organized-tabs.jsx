@@ -104,7 +104,7 @@ class OrganizedTabs extends React.Component {
             );
             const costumesTab = (
                 <Tab
-                    className={tabClassNames.tab}
+                    className={classNames(tabClassNames.tab, styles.tabCostumes)}
                     onClick={onActivateCostumesTab}
                 >
                     <img draggable={false} src={costumesIcon} />
@@ -125,7 +125,7 @@ class OrganizedTabs extends React.Component {
             );
             const soundsTab = (
                 <Tab
-                    className={tabClassNames.tab}
+                    className={classNames(tabClassNames.tab, styles.tabSounds)}
                     onClick={onActivateSoundsTab}
                 >
                     <img draggable={false} src={soundsIcon} />
