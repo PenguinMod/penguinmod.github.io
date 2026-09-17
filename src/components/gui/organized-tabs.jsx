@@ -93,7 +93,7 @@ class OrganizedTabs extends React.Component {
             const tabOrder = safeJSONParse(tabOrderStr, [], true);
 
             const codeTab = (
-                <Tab className={tabClassNames.tab}>
+                <Tab className={classNames(tabClassNames.tab, styles.tabCode)}>
                     <img draggable={false} src={codeIcon} />
                     <FormattedMessage
                         defaultMessage="Code"

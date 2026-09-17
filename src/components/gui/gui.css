@@ -175,13 +175,16 @@
 .tab:hover {
   background-color: $ui-primary;
 }
+.tab.tab-code,
 .tab.tab-costumes,
 .tab.tab-sounds {
     background-color: $sound-primary;
     color: $ui-white;
 }
+.tab.tab-code:hover,
 .tab.tab-costumes:hover,
 .tab.tab-sounds:hover,
+.tab.tab-code.is-selected,
 .tab.tab-costumes.is-selected,
 .tab.tab-sounds.is-selected {
     background-color: $sound-tertiary;
@@ -197,12 +200,12 @@
     background-color: $ui-white;
     z-index: 4; /* Make sure selected is always above */
 }
-.tab.tab-costumes.is-selected,
-.tab.tab-sounds.is-selected {
-    color: $ui-white;
-}
 [theme="dark"] .tab.is-selected {
     background-color: $ui-secondary;
+}
+
+.permafy-paint-editor [class*="button"] {
+    filter: hue-rotate(106deg) saturate(0.8);
 }
 
 .tab img {

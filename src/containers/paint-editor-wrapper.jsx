@@ -6,6 +6,7 @@ import PaintEditor from '../lib/tw-scratch-paint';
 import {inlineSvgFonts} from 'scratch-svg-renderer';
 import ErrorBoundaryHOC from '../lib/error-boundary-hoc.jsx';
 import {openFontsModal} from '../reducers/modals';
+import styles from '../components/gui/gui.css';
 
 import {connect} from 'react-redux';
 
@@ -68,17 +69,19 @@ class PaintEditorWrapper extends React.Component {
         } = this.props;
 
         return (
-            <PaintEditor
-                {...componentProps}
-                image={vm.getCostume(selectedCostumeIndex)}
-                onUpdateImage={this.handleUpdateImage}
-                onUpdateName={this.handleUpdateName}
-                fontInlineFn={inlineSvgFonts}
-                theme={this.props.isDark ? 'dark' : 'light'}
-                customFonts={this.state.fonts}
-                width={this.props.customStageSize.width}
-                height={this.props.customStageSize.height}
-            />
+            <div className={styles.permafyPaintEditor}>
+                <PaintEditor
+                    {...componentProps}
+                    image={vm.getCostume(selectedCostumeIndex)}
+                    onUpdateImage={this.handleUpdateImage}
+                    onUpdateName={this.handleUpdateName}
+                    fontInlineFn={inlineSvgFonts}
+                    theme={this.props.isDark ? 'dark' : 'light'}
+                    customFonts={this.state.fonts}
+                    width={this.props.customStageSize.width}
+                    height={this.props.customStageSize.height}
+                />
+            </div>
         );
     }
 }

@@ -224,7 +224,7 @@ const GUIComponent = props => {
     };
 
     // currently each tab can decide whether or not its hidden, remove this once rearranging tabs is supported
-    const codeTab = (<Tab className={classNames(tabClassNames.tab, tabOrder.includes('code') ? null : styles.tabDisabled)}>
+    const codeTab = (<Tab className={classNames(tabClassNames.tab, styles.tabCode, tabOrder.includes('code') ? null : styles.tabDisabled)}>
             <ContextMenuWrapTab tabId="code">
                 <img
                     draggable={false}
