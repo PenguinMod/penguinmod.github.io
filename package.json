@@ -7,7 +7,7 @@
         "buildall": "npm run build && npm run deploy",
         "build": "cross-env NODE_OPTIONS=\"--openssl-legacy-provider\" webpack --colors --bail",
         "clean": "rimraf ./build && mkdirp build && rimraf ./dist && mkdirp dist",
-        "deploy": "npm uni gh-pages && npm i gh-pages -g && gh-pages -d src",
+        "deploy": "gh-pages -d build",
         "prune": "./prune-gh-pages.sh",
         "i18n:push": "tx-push-src scratch-editor interface translations/en.json",
         "i18n:src": "rimraf ./translations/messages/src && babel src > tmp.js && rimraf tmp.js && build-i18n-src ./translations/messages/src ./translations/ && npm run i18n:push",
