@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import VM from 'scratch-vm';
 import Box from '../components/box/box.jsx';
-import greenFlag from '../components/stage-header/stagecontrols/flag.svg';
+import greenFlag from '../components/stage-header/stagecontrols/flag.png';
 
 class GreenFlagOverlay extends React.Component {
     constructor (props) {

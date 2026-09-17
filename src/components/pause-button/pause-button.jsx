@@ -2,8 +2,8 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import pauseIcon from '../stage-header/stagecontrols/pause.svg';
-import playIcon from '../stage-header/stagecontrols/play.svg';
+import pauseIcon from '../stage-header/stagecontrols/pause.png';
+import playIcon from '../stage-header/stagecontrols/play.png';
 import styles from './pause-button.css';
 
 const PauseButtonComponent = function (props) {

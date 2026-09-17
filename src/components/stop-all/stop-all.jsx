@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import stopAllIcon from '../stage-header/stagecontrols/stop.svg';
+import stopAllIcon from '../stage-header/stagecontrols/stop.png';
 import styles from './stop-all.css';
 
 const StopAllComponent = function (props) {

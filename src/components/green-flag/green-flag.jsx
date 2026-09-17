@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import greenFlagIcon from '../stage-header/stagecontrols/flag.svg';
+import greenFlagIcon from '../stage-header/stagecontrols/flag.png';
 import styles from './green-flag.css';
 
 const GreenFlagComponent = function (props) {
