@@ -1,7 +1,7 @@
 {
-  "short_name": "PenguinMod",
-  "name": "PenguinMod",
-  "description": "Mod of TurboWarp that was made to allow for really cool projects.",
+  "short_name": "Permafy",
+  "name": "Permafy",
+  "description": "A creative coding editor for making and sharing projects.",
   "icons": [
     {
       "src": "images/192.png",
@@ -17,5 +17,5 @@
   "start_url": "editor",
   "background_color": "#333333",
   "display": "standalone",
-  "theme_color": "#333333"
+  "theme_color": "#7377ff"
 }

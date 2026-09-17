@@ -1,1 +1,1 @@
-export const APP_NAME = 'PenguinMod';
+export const APP_NAME = 'Permafy';

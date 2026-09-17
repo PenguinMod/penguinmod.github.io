@@ -58,16 +58,16 @@ const Credits = () => (
     <main className={styles.main}>
         <header className={styles.headerContainer}>
             <h1 className={styles.headerText}>
-                PenguinMod Credits
+                Permafy Credits
             </h1>
         </header>
         <section>
-            <h1>PenguinMod</h1>
+            <h1>Permafy</h1>
         </section>
         <section>
             <h2>Thank you</h2>
             <p>
-                Without TurboWarp, PenguinMod may have never existed.
+                Without TurboWarp, Permafy may have never existed.
                 Thank you to everyone who worked on Scratch and TurboWarp,
                 you have made many people finally be able to make whatever they can imagine.
             </p>
@@ -83,27 +83,27 @@ const Credits = () => (
             <h2>Our Supporters</h2>
             <p>
                 We rely on the support of our users to keep running parts of the website for free.
-                You do not need to support PenguinMod if you do not want to, but it will help us run the services that power
+                You do not need to support Permafy if you do not want to, but it will help us run the services that power
                 our project sharing and other online features.
             </p>
             <a href="https://penguinmod.com/support">
-                Support PenguinMod
+                Support Permafy
             </a>
             <br></br>
             <UserList users={UserData.pmSupporters} golden={true} />
             <p><i>The list order is randomized on each refresh.</i></p>
             <h2>Contributors</h2>
             <p>
-                PenguinMod is made by a small bunch of developers.
+                Permafy is made by a small bunch of developers.
                 A list is below, but you can also check <a href="https://github.com/orgs/PenguinMod/people">our GitHub</a> incase this one is out of date.
             </p>
             <UserList users={UserData.pmDevelopers} />
             <p><i>The list order is randomized on each refresh.</i></p>
-            <p>There are even community members who have helped develop PenguinMod. People like <i>you!</i></p>
+            <p>There are even community members who have helped develop Permafy. People like <i>you!</i></p>
             <UserList users={UserData.pmPullRequestDevelopers} />
             <p><i>The list order is randomized on each refresh.</i></p>
             <p>
-                We've also included work from other open-source projects inside of PenguinMod.
+                We've also included work from other open-source projects inside of Permafy.
                 Here's a list of some other projects you should check out:
             </p>
             <UserList users={UserData.pmCodeUsedFrom} />
@@ -114,7 +114,7 @@ const Credits = () => (
         </section>
         <section>
             <h2>GitHub Pages</h2>
-            <p>We currently use <a href="https://pages.github.com/">GitHub Pages</a> to host PenguinMod.</p>
+            <p>We currently use <a href="https://pages.github.com/">GitHub Pages</a> to host Permafy.</p>
             <a href="https://pages.github.com/">
                 <img
                     src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/collections/github-pages-examples/github-pages-examples.png"
@@ -147,7 +147,7 @@ const Credits = () => (
                 </a>
             </p>
             <p>
-                The PenguinMod Server API is maintained by many people. A list
+                The Permafy Server API is maintained by many people. A list
                 is below, but you can also check{" "}
                 <a href="https://github.com/PenguinMod/PenguinMod-BackendAPI/graphs/contributors?all=1">
                     the GitHub repository
@@ -158,7 +158,7 @@ const Credits = () => (
             <p><i>The list order is randomized on each refresh.</i></p>
             <h2>Costumes</h2>
             <p>
-                All PenguinMod costumes are downloaded or created from:
+                All Permafy costumes are downloaded or created from:
                 <ul>
                     <li><a href="https://publicdomainvectors.org/">https://publicdomainvectors.org/</a></li>
                     <li><a href="https://discord.gg/NZ9MBMYTZh">User-submissions from the PenguinMod Discord Server</a></li>
@@ -171,7 +171,7 @@ const Credits = () => (
             <p><i>The list order is randomized on each refresh.</i></p>
             <h2>Sound Effects</h2>
             <p>
-                All PenguinMod sounds are downloaded or created from:
+                All Permafy sounds are downloaded or created from:
                 <ul>
                     <li><a href="https://freesound.org/">https://freesound.org/</a></li>
                     <li><a href="https://opengameart.org/">https://opengameart.org/</a> (only Public Domain ones)</li>
@@ -186,7 +186,7 @@ const Credits = () => (
             <p><i>The list order is randomized on each refresh.</i></p>
             <h2>Accounts</h2>
             <p>
-                Scratch login on PenguinMod is managed with <a href="https://oauth2.scratch-wiki.info/">ScratchOAuth2</a>,
+                Scratch login on Permafy is managed with <a href="https://oauth2.scratch-wiki.info/">ScratchOAuth2</a>,
                 see their <a href="https://github.com/ScratchVerifier/ScratchOAuth2">GitHub repository</a>.
                 <br />
                 <br />
@@ -197,7 +197,7 @@ const Credits = () => (
             </p>
         </section>
         <section>
-            <h1>PenguinMod & TurboWarp</h1>
+            <h1>Permafy & TurboWarp</h1>
         </section>
         <section>
             <h2>Extensions</h2>
@@ -213,7 +213,7 @@ const Credits = () => (
             <UserList users={UserData.extensionDevelopers} />
             <p><i>The list order is randomized on each refresh.</i></p>
             <p>
-                PenguinMod also has a few people who made and submitted extensions too!
+                Permafy also has a few people who made and submitted extensions too!
                 This list may get outdated sometimes, but here they are listed below:
             </p>
             <UserList users={UserData.pmExtensionDevelopers} />
@@ -237,7 +237,7 @@ const Credits = () => (
             </p>
             <UserList users={UserData.addonDevelopers} />
             <p><i>The list order is randomized on each refresh.</i></p>
-            <p>PenguinMod-exclusive addons are created by the contributors listed in the Contributors section.</p>
+            <p>Permafy-exclusive addons are created by the contributors listed in the Contributors section.</p>
         </section>
         <section>
             <h1>TurboWarp</h1>
@@ -289,7 +289,7 @@ const Credits = () => (
                 PenguinMod is also (very very slowly) getting translated into other languages, in the future
                 hopefully the same number of languages can be supported. It'll take a while until we get there though.
             </p>
-            <p>Here is the current list of PenguinMod Translators:</p>
+            <p>Here is the current list of Permafy Translators:</p>
             <UserList users={UserData.pmTranslators} />
             <p><i>The list order is randomized on each refresh.</i></p>
         </section>
