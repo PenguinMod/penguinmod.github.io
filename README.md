@@ -39,6 +39,10 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 src/lib/default-project/dango.svg is based on [Twemoji](https://twemoji.twitter.com/) and is licensed under CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
 
+## language thing
+
+it's better to use Permafy on English as on other languages it just doesn't work very well and i am too lazy to fix it
+
 <!--
 
 # scratch-gui
