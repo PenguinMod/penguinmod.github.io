@@ -63,7 +63,10 @@ import {
     languageMenuOpen,
     openLoginMenu,
     closeLoginMenu,
-    loginMenuOpen
+    loginMenuOpen,
+    openAppearanceMenu,
+    closeAppearanceMenu,
+    appearanceMenuOpen
 } from '../../reducers/menus';
 import { setFileHandle } from '../../reducers/tw.js';
 
@@ -72,6 +75,7 @@ import collectMetadata from '../../lib/collect-metadata';
 import styles from './menu-bar.css';
 
 import remixIcon from './icon--remix.svg';
+import highContrastIcon from './icon--high-contrast.svg';
 import dropdownCaret from './dropdown-caret.svg';
 import languageIcon from '../language-selector/language-icon.svg';
 import aboutIcon from './icon--about.svg';
@@ -197,6 +201,10 @@ MenuItemLink.propTypes = {
 class MenuBar extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            highContrast: false,
+            darkMode: false
+        };
         bindAll(this, [
             'handleClickSeeInside',
             'handleClickNew',
@@ -213,9 +221,47 @@ class MenuBar extends React.Component {
             'handleLanguageMouseUp',
             'handleRestoreOption',
             'getSaveToComputerHandler',
-            'restoreOptionMessage'
+            'restoreOptionMessage',
+            'handleToggleDarkModeNew',
+            'handleToggleHighContrast',
+            'handleClickTheme'
         ]);
     }
+
+    handleToggleHighContrast() {
+    this.setState(prevState => {
+        // wcag high contrast mode
+        const isHighContrast = !prevState.highContrast;
+        
+        if (isHighContrast) {
+            document.documentElement.setAttribute('data-theme', 'high-contrast');
+            document.body.style.setProperty('--text-menubar', '#000000');
+            window.isHighContrast = true;
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            document.body.style.setProperty('--text-menubar', '#FFFFFF');
+            window.isHighContrast = false;
+        }
+
+        return { highContrast: isHighContrast };
+    });
+}
+
+   handleToggleDarkModeNew() {
+    this.setState(prevState => {
+        // testing stub
+        const isDarkMode = !prevState.darkMode;
+        
+        if (isDarkMode) {
+            document.documentElement.setAttribute('data-theme', 'dark')
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+        }
+
+        return { darkMode: isDarkMode };
+    });
+}
+
     componentDidMount() {
         document.addEventListener('keydown', this.handleKeyPress);
     }
@@ -339,6 +385,12 @@ class MenuBar extends React.Component {
                 break;
         }
     }
+
+    handleClickTheme () {
+            this.setState(state => ({
+                dark: !state.dark
+            }));
+        }
 
     restoreOptionMessage(deletedItem) {
         switch (deletedItem) {
@@ -492,19 +544,22 @@ class MenuBar extends React.Component {
                         ) : null}
                         {(this.props.canChangeLanguage) && (<div
                             className={classNames(styles.menuBarItem, styles.hoverable, styles.languageMenu)}
+                            style={{ minWidth: '32px', justifyContent: 'center', alignItems: 'center', display: 'flex' }}
                         >
-                            <div>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <img
                                     className={styles.languageIcon}
                                     src={languageIcon}
                                     width="24"
                                     height="24"
+                                    style={{ marginRight: '4px', filter: this.state.highContrast ? 'invert(1)' : 'none' }}
                                 />
                                 <img
                                     className={styles.languageCaret}
                                     src={dropdownCaret}
                                     width="8"
                                     height="5"
+                                    style={{ marginRight: '4px', filter: this.state.highContrast ? 'invert(1)' : 'none' }}
                                 />
                             </div>
                             <LanguageSelector label={this.props.intl.formatMessage(ariaMessages.language)} />
@@ -514,12 +569,14 @@ class MenuBar extends React.Component {
                             <div
                                 className={classNames(styles.menuBarItem, styles.hoverable)}
                                 onMouseUp={this.props.onClickTheme}
+                                style={{ minWidth: '32px', justifyContent: 'center', alignItems: 'center', display: 'flex' }}
                             >
                                 <img
                                     src={themeIcon}
                                     width="24"
                                     height="24"
                                     draggable={false}
+                                    style={{ filter: this.state.highContrast ? 'invert(1)' : 'none', marginRight: '2px' }}
                                 />
                             </div>
                         )}
@@ -576,6 +633,52 @@ class MenuBar extends React.Component {
                                 </MenuBarMenu>
                             </div>
                         </div>}
+                        <div
+                                className={classNames(styles.menuBarItem, styles.hoverable, {
+                                    [styles.active]: this.props.openAppearanceMenu
+                                })}
+                                onMouseUp={this.props.onClickAppearance}
+                            >
+                            <FormattedMessage
+                                    defaultMessage="Appearance"
+                                    description="Text for appearance dropdown menu"
+                                    id="gui.menuBar.appearance"
+                            />
+                            <MenuBarMenu
+                                    className={classNames(styles.menuBarMenu)}
+                                    open={this.props.appearanceMenuOpen}
+                                    place={this.props.isRtl ? 'left' : 'right'}
+                                    onRequestClose={this.props.onRequestCloseAppearance}
+                            >
+                                <MenuSection>
+                                    <MenuItem
+                                            isRtl={this.props.isRtl}
+                                            onClick={this.handleToggleHighContrast}
+                                        >
+                                            <FormattedMessage
+                                                defaultMessage="Toggle High Contrast"
+                                                // eslint-disable-next-line max-len
+                                                description="aaaaa"
+                                                id="gui.menuBar.hcontrast"
+                                            />
+                                        </MenuItem>
+                                        {/*
+                                        <MenuItem
+                                            isRtl={this.props.isRtl}
+                                            onClick={this.handleToggleDarkModeNew}
+                                        >
+                                            <FormattedMessage
+                                                defaultMessage="Toggle Dark Mode"
+                                                // eslint-disable-next-line max-len
+                                                description="aaaaa"
+                                                id="gui.menuBar.dark"
+                                            />
+                                        </MenuItem>
+                                        */}
+                                </MenuSection>
+                            </MenuBarMenu>
+                        </div>
+                        
                         {(this.props.canManageFiles) && (
                             <div
                                 className={classNames(styles.menuBarItem, styles.hoverable, {
@@ -905,13 +1008,15 @@ class MenuBar extends React.Component {
                         />
                     ) : null} */}
                     {this.props.canEditTitle ? (
-                        <div className={classNames(styles.menuBarItem, styles.growable)}>
+                        <div className={classNames(styles.menuBarItem, styles.growable)}
+                            style={{ minWidth: '120px', maxWidth: '200px', marginLeft: '8px', marginRight: '8px', display: 'flex', alignItems: 'center' }}>
                             <MenuBarItemTooltip
                                 enable
                                 id="title-field"
                             >
                                 <ProjectTitleInput
                                     className={classNames(styles.titleFieldGrowable)}
+                                    style={{ fontSize: '1em', padding: '3px 8px', borderRadius: '6px', border: '1px solid #ccc', background: 'var(--text-menubar, #fff)', color: this.state.highContrast ? '#000' : '#222', boxShadow: '0 1px 2px rgba(0,0,0,0.04)' }}
                                 />
                             </MenuBarItemTooltip>
                         </div>
@@ -956,14 +1061,18 @@ class MenuBar extends React.Component {
                             />)
                             : (null)}
                     </div>
-                    <div className={styles.menuBarItem}>
+                    <div className={styles.menuBarItem}
+                        style={{ marginLeft: '8px', marginRight: '8px', display: 'flex', alignItems: 'center' }}>
                         <a
                             className={styles.feedbackLink}
                             href="https://penguinmod.com"
                             rel="noopener noreferrer"
                             target="_blank"
+                            style={{ textDecoration: 'none' }}
                         >
-                            <Button className={styles.feedbackButton}>
+                            <Button className={styles.feedbackButton}
+                                style={this.state.highContrast ? { background: '#000', color: '#fff' } : undefined}
+                            >
                                 <FormattedMessage
                                     defaultMessage="Back to Home"
                                     description="Button to go back to the home page"
@@ -991,6 +1100,7 @@ MenuBar.propTypes = {
     onClickSeeInside: PropTypes.func,
     aboutMenuOpen: PropTypes.bool,
     accountMenuOpen: PropTypes.bool,
+    appearanceMenuOpen: PropTypes.bool,
     authorId: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     authorThumbnailUrl: PropTypes.string,
     authorUsername: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
@@ -1041,6 +1151,7 @@ MenuBar.propTypes = {
     onClickRestorePoints: PropTypes.func,
     onClickEdit: PropTypes.func,
     onClickFile: PropTypes.func,
+    onClickAppearance: PropTypes.func,
     onClickLanguage: PropTypes.func,
     onClickLogin: PropTypes.func,
     onClickLogo: PropTypes.func,
@@ -1093,6 +1204,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         aboutMenuOpen: aboutMenuOpen(state),
         accountMenuOpen: accountMenuOpen(state),
+        appearanceMenuOpen: appearanceMenuOpen(state),
         authorThumbnailUrl: state.scratchGui.tw.author.thumbnail,
         authorUsername: state.scratchGui.tw.author.username,
         compileErrors: state.scratchGui.tw.compileErrors,
@@ -1124,6 +1236,8 @@ const mapDispatchToProps = dispatch => ({
     onClickAccount: () => dispatch(openAccountMenu()),
     onRequestCloseAccount: () => dispatch(closeAccountMenu()),
     onClickFile: () => dispatch(openFileMenu()),
+    onClickAppearance: () => dispatch(openAppearanceMenu()),
+    onRequestCloseAppearance: () => dispatch(closeAppearanceMenu()),
     onRequestCloseFile: () => dispatch(closeFileMenu()),
     onClickEdit: () => dispatch(openEditMenu()),
     onRequestCloseEdit: () => dispatch(closeEditMenu()),

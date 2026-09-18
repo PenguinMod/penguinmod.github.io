@@ -8,6 +8,7 @@ const MENU_EDIT = 'editMenu';
 const MENU_LANGUAGE = 'languageMenu';
 const MENU_LOGIN = 'loginMenu';
 const MENU_ERRORS = 'errorMenu';
+const MENU_APPEARANCE = 'appearanceMenu';
 
 
 const initialState = {
@@ -17,7 +18,8 @@ const initialState = {
     [MENU_EDIT]: false,
     [MENU_LANGUAGE]: false,
     [MENU_LOGIN]: false,
-    [MENU_ERRORS]: false
+    [MENU_ERRORS]: false,
+    [MENU_APPEARANCE]: false
 };
 
 const reducer = function (state, action) {
@@ -44,6 +46,9 @@ const closeMenu = menu => ({
     menu: menu
 });
 const openAboutMenu = () => openMenu(MENU_ABOUT);
+const openAppearanceMenu = () => openMenu(MENU_APPEARANCE);
+const closeAppearanceMenu = () => closeMenu(MENU_APPEARANCE);
+const appearanceMenuOpen = state => state.scratchGui.menus[MENU_APPEARANCE];
 const closeAboutMenu = () => closeMenu(MENU_ABOUT);
 const aboutMenuOpen = state => state.scratchGui.menus[MENU_ABOUT];
 const openAccountMenu = () => openMenu(MENU_ACCOUNT);
@@ -69,6 +74,7 @@ export {
     reducer as default,
     initialState as menuInitialState,
     openAboutMenu,
+    appearanceMenuOpen,
     closeAboutMenu,
     aboutMenuOpen,
     openAccountMenu,
@@ -88,5 +94,7 @@ export {
     loginMenuOpen,
     openErrorsMenu,
     closeErrorsMenu,
-    errorsMenuOpen
+    errorsMenuOpen,
+    openAppearanceMenu,
+    closeAppearanceMenu
 };
