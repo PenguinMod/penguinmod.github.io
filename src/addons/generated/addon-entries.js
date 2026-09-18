@@ -82,4 +82,5 @@ export default {
   "editor-tweaks": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/editor-tweaks/_runtime_entry.js"),
   "copy-reporter": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/copy-reporter/_runtime_entry.js"),
   "block-pins": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/block-pins/_runtime_entry.js"),
+  "rename-broadcasts": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/rename-broadcasts/_runtime_entry.js"),
 };
