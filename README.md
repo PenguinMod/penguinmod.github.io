@@ -1,7 +1,11 @@
 ## Permafy
 
-
-
+<p align="center">
+	<img src="/favicon.png" />
+	<h3 align="center">
+		<a href="https://permafy.github.io">website :D</a>
+	</h3>
+</p>
 
 ## What is this?
 scratch-gui modified for use in [TurboWarp](https://turbowarp.org/) then modified for use in [PenguinMod](https://studio.penguinmod.com) and modified again for use in [Permafy](https://permafy.github.io) 😀
