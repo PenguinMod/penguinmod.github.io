@@ -1116,7 +1116,7 @@ export default async function ({ addon, console, msg }) {
 
       // Remove the old block and insert the new one.
       const oldTarget = block.nextConnection?.targetConnection;
-      block.nextConnection?.disconnect?.();
+      if (oldTarget) block.nextConnection?.disconnect?.();
       block.dispose();
       const newBlock = pasteBlockXML(workspace, xml);
       if (newBlock.nextConnection && oldTarget)
