@@ -423,6 +423,8 @@ export class BlockTypeInfo {
       } else {
         if (!field.argType_) {
           if (field.getText().trim().length !== 0) parts.push(field.getText());
+        } else if (field.argType_[0] === "checkbox") {
+          addInput(new BlockInputBoolean(inputIdx, fieldIdx));
         } else if (field.argType_[0] === "colour") {
           addInput(new BlockInputColour(inputIdx, fieldIdx));
         } else if (field.argType_[1] === "number") {
