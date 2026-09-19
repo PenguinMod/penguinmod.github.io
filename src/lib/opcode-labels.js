@@ -170,6 +170,11 @@ const messages = defineMessages({
         description: 'Label for the tempo monitor when shown on the stage',
         id: 'gui.opcodeLabels.tempo'
     },
+    sound_currentlyPlayingSounds: {
+        defaultMessage: 'currently playing sounds',
+        description: 'Label for the currently playing sounds monitor when shown on the stage',
+        id: 'gui.opcodeLabels.currentlyPlayingSounds'
+    },
 
     // Sensing
     sensing_answer: {
@@ -328,6 +333,7 @@ class OpcodeLabels {
             sound_volume: {category: 'sound'},
             sound_getEffectValue: {category: 'sound'},
             sound_tempo: {category: 'sound'},
+            sound_currentlyPlayingSounds: {category: 'sound' },
 
             // Sensing
             sensing_answer: {category: 'sensing'},
@@ -417,6 +423,7 @@ class OpcodeLabels {
             }
             return this._translator(messages.sound_getEffectValue);
         };
+        this._opcodeMap.sound_currentlyPlayingSounds.labelFn = () => this._translator(messages.sound_currentlyPlayingSounds);
 
         // Sensing
         this._opcodeMap.sensing_answer.labelFn = () => this._translator(messages.sensing_answer);
