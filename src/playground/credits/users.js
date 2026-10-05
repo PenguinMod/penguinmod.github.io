@@ -63,7 +63,7 @@ joe (https://penguinmod.com/profile?user=joe) (discord: puzzlingggg)
 algebruh_35
 giganttech (https://penguinmod.com/profile?user=giganttech)
 wwtv1 (https://penguinmod.com/profile?user=wwtv1) (discord: wwtv2346)
-freshpenguin112 (https://penguinmod.com/profile?user=freshpenguin112)
+freshpenguin112 (https://studio.penguinmod.com/credits.html#)
 stealpop_games
 TPR (https://penguinmod.com/profile?user=tpr)
 kypo
@@ -79,6 +79,14 @@ dillonr
 UnbraveChimp (https://minerlegacy.net) (discord: UnbraveChimp)
 rooonym (https://penguinmod.com/profile?user=rooonym)
 DogeisCut (https://github.com/DogeisCut) (discord: dogeiscut)
+Janix (https://www.youtube.com/@GDJarnixys) (discord: happijarnixys)
+mad_d0x_
+NishiFishy (discord: nishiowo)
+wavis_shr (discord: wavis8215)
+soup (discord: the_can_of_soup)
+malachite (discord: tearsinmytooneyes)
+bread_os (discord: breados12)
+cubey (discord: cubeycreator)
 `;
 const pmSupporterImage = (username) => {
     switch (username) {
@@ -90,6 +98,8 @@ const pmSupporterImage = (username) => {
             return "https://projects.penguinmod.com/api/v1/users/getpfp?username=kylomaskgamer";
         case "MrRedstonia":
             return "https://projects.penguinmod.com/api/v1/users/getpfp?username=mrredstonia";
+        case "DogeisCut":
+            return "https://projects.penguinmod.com/api/v1/users/getpfp?username=dogeiscut";
         default:
             return `https://penguinmod.com/unknown_user.png`;
     }
