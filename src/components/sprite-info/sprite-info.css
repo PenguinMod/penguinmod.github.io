@@ -13,6 +13,9 @@
 [theme="dark"] .sprite-info {
     background-color: $ui-primary;
 }
+[theme="high-contrast"] .sprite-info {
+    color: #ffffff;
+}
 
 .row {
     display: flex;
