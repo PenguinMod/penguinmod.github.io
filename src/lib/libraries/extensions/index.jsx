@@ -1185,6 +1185,166 @@ const menuItems = [
         featured: true
     },
     {
+        name: 'Iris Text',
+        extensionId: 'https://extensions.penguinmod.com/extensions/Gen1x/iris-text.js',
+        iconURL: 'https://extensions.penguinmod.com/images/Gen1x/iris-text.avif',
+        tags: ['penguinmod'],
+        description: 'A heavily-expanded text engine loosely based on Animated Text! Adds support for rich text, per-character control, and more!',
+        extDeveloper: 'Gen1xLol',
+        isNew: true,
+        featured: false
+    },
+    {
+        name: 'Lighting',
+        extensionId: 'https://extensions.penguinmod.com/extensions/Gen1x/lighting.js',
+        iconURL: 'https://extensions.penguinmod.com/images/Gen1x/lighting.avif',
+        tags: ['penguinmod'],
+        description: 'A fast, powerful and easy-to-use lighting engine powered by WebGL!',
+        extDeveloper: 'Gen1xLol',
+        isNew: true,
+        featured: false
+    },
+    {
+        name: 'Array Buffers',
+        extensionId: 'https://extensions.penguinmod.com/extensions/AndrewGaming587/agBuffer.js',
+        iconURL: 'https://extensions.penguinmod.com/images/AndrewGaming587/agBuffer.svg',
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Read, parse, and write raw data efficiently using Array Buffers',
+        extDeveloper: 'AndrewScripter587',
+        isNew: true,
+        featured: false
+    },
+    {
+        name: 'Date Format',
+        extensionId: 'https://extensions.penguinmod.com/extensions/ddededodediamante/dateFormatV2.js',
+        iconURL: 'https://extensions.penguinmod.com/images/ddededodediamante/dateFormat.svg',
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Manage, format and compare dates.',
+        extDeveloper: 'ddededodediamante',
+        featured: false
+    },
+    {
+        name: 'Regular Expressions',
+        extensionId: 'https://extensions.penguinmod.com/extensions/DogeisCut/dogeiscutRegularExpressions.js',
+        iconURL: 'https://extensions.penguinmod.com/images/DogeisCut/dogeiscutRegularExpressions.svg',
+        tags: ['penguinmod'],
+        description: 'Create, modify, filter, and more with the new regular expression type.',
+        extDeveloper: 'DogeisCut',
+        featured: false
+    },
+    {
+        name: 'Sets',
+        extensionId: 'https://extensions.penguinmod.com/extensions/DogeisCut/dogeiscutSet.js',
+        iconURL: 'https://extensions.penguinmod.com/images/DogeisCut/dogeiscutSet.svg',
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Store non-repeating, unordered data super efficiently in sets.',
+        extDeveloper: 'DogeisCut',
+        featured: false
+    },
+    {
+        name: 'Iterators',
+        extensionId: 'https://extensions.penguinmod.com/extensions/Div/divIterators.js',
+        iconURL: 'https://extensions.penguinmod.com/images/Div/divIterators.svg',
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Transform and iterate over different types of collections and more.',
+        extDeveloper: 'Dicuo',
+        featured: false
+    },
+    {
+        name: '3D Vectors & Quaternions',
+        extensionId: 'https://extensions.penguinmod.com/extensions/Div/divVecQuat.js',
+        iconURL: 'https://extensions.penguinmod.com/images/Div/divVecQuat.svg',
+        tags: ['penguinmod', '3d', 'datamgmt', 'math'],
+        description: 'Perform 3D Math and Rotations with Vectors and Quaternions',
+        extDeveloper: 'Dicuo',
+        isNew: true,
+        featured: false
+    },
+    {
+        name: 'ODE',
+        extensionId: 'https://extensions.penguinmod.com/extensions/NishiOwO/ode.js',
+        iconURL: 'https://extensions.penguinmod.com/images/NishiOwO/ode.svg',
+        tags: ['penguinmod'],
+        description: '3D physics using ODE.',
+        extDeveloper: 'NishiOwO',
+        isNew: true,
+        featured: false
+    },
+    {
+        name: 'TurboSynth',
+        extensionId: 'https://extensions.penguinmod.com/extensions/NishiOwO/turbosynth.js',
+        iconURL: 'https://extensions.penguinmod.com/images/NishiOwO/turbosynth.svg',
+        tags: ['penguinmod'],
+        description: 'Synthesizer that uses TurboSynth.',
+        extDeveloper: 'NishiOwO',
+        isNew: true,
+        featured: false
+    },
+    {
+        name: 'Libxmp',
+        extensionId: 'https://extensions.penguinmod.com/extensions/NishiOwO/libxmp.js',
+        iconURL: 'https://extensions.penguinmod.com/images/NishiOwO/libxmp.svg',
+        tags: ['penguinmod'],
+        description: 'Play tracker modules using Libxmp.',
+        extDeveloper: 'NishiOwO',
+        isNew: true,
+        featured: false
+    },
+    {
+        name: 'Beat Sync',
+        extensionId: 'https://extensions.penguinmod.com/extensions/Gen1x/beat_sync.js',
+        iconURL: 'https://extensions.penguinmod.com/images/Gen1x/beat_sync.avif',
+        tags: ['penguinmod'],
+        description: 'An extension designed to let you sync anything in your project to a musical beat, with incredible precision.',
+        extDeveloper: 'Gen1xLol',
+        featured: false
+    },
+    {
+        name: 'Chess',
+        extensionId: 'https://extensions.penguinmod.com/extensions/Gen1x/chess-ext.js',
+        iconURL: 'https://extensions.penguinmod.com/images/Gen1x/chess-ext.avif',
+        tags: ['penguinmod'],
+        description: 'A powerful extension that lets you manage a chessboard, customize it, use Stockfish 17 (via API), a local chess engine (Lozza) and much, MUCH more!',
+        extDeveloper: 'Gen1xLol',
+        featured: false
+    },
+    {
+        name: 'Device Motion',
+        extensionId: 'https://extensions.penguinmod.com/extensions/gaimerI17/DeviceMotion.js',
+        iconURL: 'https://extensions.penguinmod.com/images/gaimerI17/DeviceMotion.avif',
+        tags: ['penguinmod'],
+        description: 'Use Device Motion API to get rotation or movement of the device. Works best on mobile devices.',
+        extDeveloper: 'gaimerI',
+        featured: false
+    },
+    {
+        name: 'MIDI Controller',
+        extensionId: 'https://extensions.penguinmod.com/extensions/electricfuzzball_pm/MIDI.js',
+        iconURL: 'https://extensions.penguinmod.com/images/electricfuzzball_pm/MIDI.svg',
+        tags: ['penguinmod'],
+        description: 'Use a MIDI keyboard to interact with projects!',
+        extDeveloper: 'FloppyDisk-OSC',
+        featured: false
+    },
+    {
+        name: 'Resolution',
+        extensionId: 'https://extensions.penguinmod.com/extensions/DogeisCut/Resolution.js',
+        iconURL: 'https://extensions.penguinmod.com/images/DogeisCut/Resolution.svg',
+        tags: ['penguinmod', 'graphics'],
+        description: 'Provides utility blocks that simplify the creation of projects with dynamic resolution support.',
+        extDeveloper: 'DogeisCut',
+        featured: false
+    },
+    {
+        name: 'More Types',
+        extensionId: 'https://extensions.penguinmod.com/extensions/VeryGoodScratcher42/More-Types.js',
+        iconURL: 'https://extensions.penguinmod.com/images/VeryGoodScratcher42/More-Types.avif',
+        tags: ['penguinmod'],
+        description: 'Adds more value types to PenguinMod, implementing Functions, Objects, Arrays, Sets, Maps, Symbols and Nothing.',
+        extDeveloper: 'VeryGoodScratcher42',
+        featured: false
+    },
+    {
         // not really an extension, but it's easiest to present it as one
         name: (
             <FormattedMessage
