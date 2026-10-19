@@ -436,16 +436,6 @@ const menuItems = [
         featured: false
     },
     {
-        name: 'Libxmp',
-        extensionId: 'https://extensions.penguinmod.com/extensions/NishiOwO/libxmp.js',
-        iconURL: 'https://extensions.penguinmod.com/images/NishiOwO/libxmp.svg',
-        tags: ['penguinmod'],
-        description: 'Play tracker modules using Libxmp.',
-        extDeveloper: 'NishiOwO',
-        isNew: true,
-        featured: false
-    },
-    {
         name: 'Motion Expansion',
         extensionId: 'pmMotionExpansion',
         iconURL: pmMotionExpansionExtensionIcon,
@@ -580,15 +570,6 @@ const menuItems = [
         description: 'Place sprites on grids.',
         extDeveloper: 'SharkPool-SP',
         featured: true
-    },
-    {
-        name: 'Chess',
-        extensionId: 'https://extensions.penguinmod.com/extensions/Gen1x/chess-ext.js',
-        iconURL: 'https://extensions.penguinmod.com/images/Gen1x/chess-ext.avif',
-        tags: ['penguinmod'],
-        description: 'A powerful extension that lets you manage a chessboard, customize it, use Stockfish 17 (via API), a local chess engine (Lozza) and much, MUCH more!',
-        extDeveloper: 'Gen1xLol',
-        featured: false
     },
     {
         name: 'Canvas Effects',
@@ -872,15 +853,6 @@ const menuItems = [
         iconURL: sharkpoolPrintingIcon,
         description: 'Allows you to show a dialog for printing text, images, and custom HTML to a printer.',
         featured: true
-    },
-    {
-        name: 'Device Motion',
-        extensionId: 'https://extensions.penguinmod.com/extensions/gaimerI17/DeviceMotion.js',
-        iconURL: 'https://extensions.penguinmod.com/images/gaimerI17/DeviceMotion.avif',
-        tags: ['penguinmod', 'hardware'],
-        description: 'Use Device Motion API to get rotation or movement of the device. Works best on mobile devices.',
-        extDeveloper: 'gaimerI',
-        featured: false
     },
     {
         name: 'MIDI Controller',
@@ -1276,6 +1248,15 @@ const menuItems = [
             />
         ),
         helpLink: 'https://scratch.mit.edu/vernier'
+    },
+    {
+        name: 'Device Motion',
+        extensionId: 'https://extensions.penguinmod.com/extensions/gaimerI17/DeviceMotion.js',
+        iconURL: 'https://extensions.penguinmod.com/images/gaimerI17/DeviceMotion.avif',
+        tags: ['penguinmod', 'hardware'],
+        description: 'Use Device Motion API to get rotation or movement of the device. Works best on mobile devices.',
+        extDeveloper: 'gaimerI',
+        featured: false
     },
     {
         name: (
