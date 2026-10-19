@@ -539,7 +539,7 @@ const menuItems = [
         name: 'ODE',
         extensionId: 'https://extensions.penguinmod.com/extensions/NishiOwO/ode.js',
         iconURL: 'https://extensions.penguinmod.com/images/NishiOwO/ode.svg',
-        tags: ['penguinmod'],
+        tags: ['penguinmod', '3d'],
         description: '3D physics using ODE.',
         extDeveloper: 'NishiOwO',
         isNew: true,
