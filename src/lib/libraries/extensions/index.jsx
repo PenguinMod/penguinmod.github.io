@@ -429,7 +429,7 @@ const menuItems = [
         name: 'TurboSynth',
         extensionId: 'https://extensions.penguinmod.com/extensions/NishiOwO/turbosynth.js',
         iconURL: 'https://extensions.penguinmod.com/images/NishiOwO/turbosynth.svg',
-        tags: ['penguinmod'],
+        tags: ['penguinmod', 'noisemaker'],
         description: 'Synthesizer that uses TurboSynth.',
         extDeveloper: 'NishiOwO',
         isNew: true,
