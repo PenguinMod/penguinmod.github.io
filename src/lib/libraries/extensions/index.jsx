@@ -1080,15 +1080,6 @@ const menuItems = [
         featured: false
     },
     {
-        name: 'More Types',
-        extensionId: 'https://extensions.penguinmod.com/extensions/VeryGoodScratcher42/More-Types.js',
-        iconURL: 'https://extensions.penguinmod.com/images/VeryGoodScratcher42/More-Types.avif',
-        tags: ['penguinmod'],
-        description: 'Adds more value types to PenguinMod, implementing Functions, Objects, Arrays, Sets, Maps, Symbols and Nothing.',
-        extDeveloper: 'VeryGoodScratcher42',
-        featured: false
-    },
-    {
         name: 'micro:bit',
         extensionId: 'microbit',
         collaborator: 'micro:bit',
