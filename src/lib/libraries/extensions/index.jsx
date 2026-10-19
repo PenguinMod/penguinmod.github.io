@@ -855,15 +855,6 @@ const menuItems = [
         featured: true
     },
     {
-        name: 'MIDI Controller',
-        extensionId: 'https://extensions.penguinmod.com/extensions/electricfuzzball_pm/MIDI.js',
-        iconURL: 'https://extensions.penguinmod.com/images/electricfuzzball_pm/MIDI.svg',
-        tags: ['penguinmod', 'hardware'],
-        description: 'Use a MIDI keyboard to interact with projects!',
-        extDeveloper: 'FloppyDisk-OSC',
-        featured: false
-    },
-    {
         name: 'Clipping and Blending',
         extensionId: 'https://extensions.turbowarp.org/Xeltalliv/clippingblending.js',
         iconURL: clippingblending,
@@ -1247,6 +1238,15 @@ const menuItems = [
         tags: ['penguinmod', 'hardware'],
         description: 'Use Device Motion API to get rotation or movement of the device. Works best on mobile devices.',
         extDeveloper: 'gaimerI',
+        featured: false
+    },
+    {
+        name: 'MIDI Controller',
+        extensionId: 'https://extensions.penguinmod.com/extensions/electricfuzzball_pm/MIDI.js',
+        iconURL: 'https://extensions.penguinmod.com/images/electricfuzzball_pm/MIDI.svg',
+        tags: ['penguinmod', 'hardware'],
+        description: 'Use a MIDI keyboard to interact with projects!',
+        extDeveloper: 'FloppyDisk-OSC',
         featured: false
     },
     {
