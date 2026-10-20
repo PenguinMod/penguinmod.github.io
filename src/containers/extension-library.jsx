@@ -47,6 +47,7 @@ const messages = defineMessages({
 const TRUSTED_LOADEXT_ORIGINS = [
     'https://studio.penguinmod.com', // for development
     'https://extensions.penguinmod.com',
+    'https://sharkpools-extensions.penguinmod.com',
     'https://sharkpools-extensions.vercel.app',
     'https://raw.githubusercontent.com/SharkPool-SP/SharkPools-Extensions/main', // Some people cant connect to vercel
     'https://pen-group.github.io',
@@ -211,11 +212,13 @@ class ExtensionLibrary extends React.PureComponent {
         }
     }
     render() {
-        const extensionLibraryThumbnailData = extensionLibraryContent.map(extension => ({
-            rawURL: extension.iconURL || extensionIcon,
-            disabled: extension.disabled && !this.props.liveTest,
-            ...extension
-        }));
+        const extensionLibraryThumbnailData = extensionLibraryContent
+            .filter(extension => extension.featured)
+            .map(extension => ({
+                rawURL: extension.iconURL || extensionIcon,
+                disabled: extension.disabled && !this.props.liveTest,
+                ...extension
+            }));
         return (
             <LibraryComponent
                 data={extensionLibraryThumbnailData}

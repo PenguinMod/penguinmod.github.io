@@ -38,13 +38,23 @@ class LibraryItemComponent extends React.PureComponent {
                     styles.libraryItem,
                     styles.featuredItem,
                     {
-                        [styles.disabled]: this.props.disabled
+                        [styles.disabled]: this.props.disabled,
+                        [styles.libraryItemNew]: this.props.isNew,
                     },
                     typeof this.props.extensionId === 'string' ? styles.libraryItemExtension : null,
                     this.props.hidden ? styles.hidden : null
                 )}
                 onClick={this.props.onClick}
             >
+                {this.props.isNew && (
+                    <div className={styles.libraryItemNewBadge}>
+                        <FormattedMessage
+                            defaultMessage="NEW"
+                            description="Badge text for new library items"
+                            id="pm.libraryItem.newItemBadge"
+                        />
+                    </div>
+                )}
                 <div className={styles.featuredImageContainer}>
                     {this.props.disabled ? (
                         <div className={styles.comingSoonText}>

@@ -456,7 +456,7 @@ class LibraryComponent extends React.Component {
                                 extensionId={dataItem.extensionId}
                                 featured={dataItem.featured}
                                 hidden={dataItem.hidden}
-                                isNew={dataItem.tags && dataItem.tags.includes("new")}
+                                isNew={(dataItem.tags && dataItem.tags.includes("new")) || (dataItem.isNew)}
                                 href={dataItem.href}
                                 iconMd5={dataItem.costumes ? dataItem.costumes[0].md5ext : dataItem.md5ext}
                                 iconRawURL={this.props.actor === "CostumeLibrary" ? `${PM_LIBRARY_API}files/${dataItem.libraryFilePage}` : dataItem.rawURL}

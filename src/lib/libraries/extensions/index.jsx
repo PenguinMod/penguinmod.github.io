@@ -233,6 +233,15 @@ const menuItems = [
         featured: true
     },
     {
+        name: 'Pen+',
+        extensionId: 'https://extensions.penguinmod.com/extensions/ObviousAlexC/PenPlus.js',
+        tags: ['categoryexpansion', 'graphics'],
+        iconURL: 'https://extensions.penguinmod.com/images/ObviousAlexC/PenPlus.svg',
+        description: 'An extension to the Pen category! Adds blocks for drawing triangles using textures and tints, drawing images and editing their pixels, etc.',
+        featured: true,
+        extDeveloper: 'pinksheep2917'
+    },
+    {
         name: 'Animated Text',
         extensionId: 'text',
         iconURL: animatedTextIconURL,
@@ -240,6 +249,16 @@ const menuItems = [
         customInsetColor: '#9A66FF',
         tags: ['scratch'],
         description: 'Bring words to life.',
+        featured: true
+    },
+    {
+        name: 'Iris Text',
+        extensionId: 'https://extensions.penguinmod.com/extensions/Gen1x/iris-text.js',
+        iconURL: 'https://extensions.penguinmod.com/images/Gen1x/iris-text.avif',
+        tags: ['penguinmod', 'graphics'],
+        description: 'A heavily-expanded text engine loosely based on Animated Text! Adds support for rich text, per-character control, and more!',
+        extDeveloper: 'Gen1xLol',
+        isNew: true,
         featured: true
     },
     {
@@ -380,15 +399,6 @@ const menuItems = [
         description: 'Create and edit .zip format files, including .sb3 files.',
         twDeveloper: 'CST1229',
         featured: true
-    },
-    {
-        name: 'Pen+',
-        extensionId: 'https://extensions.penguinmod.com/extensions/ObviousAlexC/PenPlus.js',
-        tags: ['categoryexpansion', 'graphics'],
-        iconURL: 'https://extensions.penguinmod.com/images/ObviousAlexC/PenPlus.svg',
-        description: 'An extension to the Pen category! Adds blocks for drawing triangles using textures and tints, drawing images and editing their pixels, etc.',
-        featured: true,
-        extDeveloper: 'pinksheep2917'
     },
     {
         name: 'Sound Systems',
@@ -676,16 +686,6 @@ const menuItems = [
         tags: ['penguinmod', 'graphics'],
         description: 'Manage, create, and delete fonts.',
         credits: 'SharkPool, Ashimee',
-        featured: true
-    },
-    {
-        name: 'Iris Text',
-        extensionId: 'https://extensions.penguinmod.com/extensions/Gen1x/iris-text.js',
-        iconURL: 'https://extensions.penguinmod.com/images/Gen1x/iris-text.avif',
-        tags: ['penguinmod', 'graphics'],
-        description: 'A heavily-expanded text engine loosely based on Animated Text! Adds support for rich text, per-character control, and more!',
-        extDeveloper: 'Gen1xLol',
-        isNew: true,
         featured: true
     },
     {
@@ -1071,6 +1071,24 @@ const menuItems = [
         featured: true
     },
     {
+        name: 'Device Motion',
+        extensionId: 'https://extensions.penguinmod.com/extensions/gaimerI17/DeviceMotion.js',
+        iconURL: 'https://extensions.penguinmod.com/images/gaimerI17/DeviceMotion.avif',
+        tags: ['penguinmod', 'hardware'],
+        description: 'Use Device Motion API to get rotation or movement of the device. Works best on mobile devices.',
+        extDeveloper: 'gaimerI',
+        featured: true
+    },
+    {
+        name: 'MIDI Controller',
+        extensionId: 'https://extensions.penguinmod.com/extensions/electricfuzzball_pm/MIDI.js',
+        iconURL: 'https://extensions.penguinmod.com/images/electricfuzzball_pm/MIDI.svg',
+        tags: ['penguinmod', 'hardware'],
+        description: 'Use a MIDI keyboard to interact with projects!',
+        extDeveloper: 'FloppyDisk-OSC',
+        featured: true
+    },
+    {
         name: 'micro:bit',
         extensionId: 'microbit',
         collaborator: 'micro:bit',
@@ -1232,24 +1250,6 @@ const menuItems = [
         helpLink: 'https://scratch.mit.edu/vernier'
     },
     {
-        name: 'Device Motion',
-        extensionId: 'https://extensions.penguinmod.com/extensions/gaimerI17/DeviceMotion.js',
-        iconURL: 'https://extensions.penguinmod.com/images/gaimerI17/DeviceMotion.avif',
-        tags: ['penguinmod', 'hardware'],
-        description: 'Use Device Motion API to get rotation or movement of the device. Works best on mobile devices.',
-        extDeveloper: 'gaimerI',
-        featured: true
-    },
-    {
-        name: 'MIDI Controller',
-        extensionId: 'https://extensions.penguinmod.com/extensions/electricfuzzball_pm/MIDI.js',
-        iconURL: 'https://extensions.penguinmod.com/images/electricfuzzball_pm/MIDI.svg',
-        tags: ['penguinmod', 'hardware'],
-        description: 'Use a MIDI keyboard to interact with projects!',
-        extDeveloper: 'FloppyDisk-OSC',
-        featured: true
-    },
-    {
         name: (
             <FormattedMessage
                 defaultMessage="PenguinMod Extra Extensions"
@@ -1312,7 +1312,6 @@ const menuItems = [
         iconURL: ExtForgeIcon,
         description: 'Create extensions with a block-based UI.',
         extDeveloper: 'jwklong',
-        isNew: true,
         tags: ['extcreate'],
         featured: true
     },
@@ -1369,7 +1368,7 @@ const menuItems = [
         tags: ['penguinmod', 'categoryexpansion', 'math'],
         description: 'Complicated maths extension for nerds.',
         extDeveloper: 'jwklong',
-        featured: false
+        featured: true
     },
     {
         name: 'All Menus',

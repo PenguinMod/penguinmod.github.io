@@ -56,6 +56,9 @@
 .library-item-sound .library-item-new-badge {
     background-color: $sound-primary;
 }
+.featured-item .library-item-new-badge {
+    z-index: 10;
+}
 
 .library-item-extension {
     align-self: stretch;
@@ -329,7 +332,6 @@
     flex-basis: 300px;
     max-width: 300px;
     height: auto;
-    overflow: hidden;
     padding: 0;
 }
 
