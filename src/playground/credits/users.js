@@ -1377,9 +1377,9 @@ export default {
             href: "https://penguinmod.com/profile?user=alpacalii"
         },
         {
-            text: "vedal",
-            image: "https://projects.penguinmod.com/api/v1/users/getpfp?username=vedal",
-            href: "https://penguinmod.com/profile?user=vedal"
+            text: "aster",
+            image: "https://projects.penguinmod.com/api/v1/users/getpfp?username=aster",
+            href: "https://penguinmod.com/profile?user=aster"
         },
         {
             text: "TheShovel",
@@ -1417,9 +1417,9 @@ export default {
             href: brokenHref
         },
         {
-            text: "UnbraveChimp",
+            text: "eamon",
             image: brokenImage,
-            href: "https://minerlegacy.net"
+            href: "https://eamonw.nl/"
         },
         {
             text: "rooonym",
