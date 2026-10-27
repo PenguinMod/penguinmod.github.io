@@ -11,7 +11,7 @@
     /* tw: no max width */
     /* max-width: 260px; */
     overflow: visible;
-    color: $ui-white;
+    color: $text-menubar;;
     box-shadow: 0 8px 8px 0 $ui-black-transparent-default;
 }
 [theme="dark"] .menu {
