@@ -323,12 +323,25 @@ export default async ({ addon, console, msg }) => {
                 vm.runtime.audioEngine.inputNode.connect(mediaStreamDestination);
                 const audioSource = ctx.createMediaStreamSource(mediaStreamDestination.stream);
                 audioSource.connect(dest);
-                // literally any other extension
-                for (const audioData of vm.runtime._extensionAudioObjects.values()) {
-                    if (audioData.audioContext && audioData.gainNode) {
-                        const mediaStreamDestination = audioData.audioContext.createMediaStreamDestination();
-                        audioData.gainNode.connect(mediaStreamDestination);
+
+                // connecting extensions to the media stream
+                for (const extensionInformation of vm.runtime._extensionIntegrationObjects.values()) {
+                    if (extensionInformation.whitelistUsed && !extensionInformation.whitelist.includes("audioMediaStream")) continue;
+                    // map destination AudioNodes to their AudioContexts
+                    const contextMap = new Map();
+                    for (const audioNode of extensionInformation.audioNodes) {
+                        const nodeArray = contextMap.get(audioNode.context) || [];
+                        nodeArray.push(audioNode);
+                        contextMap.set(audioNode.context, nodeArray);
+                    }
+                    // make media stream destinations, connect destination nodes from each context to the stream
+                    for (const audioContext of extensionInformation.audioContexts) {
+                        const mediaStreamDestination = audioContext.createMediaStreamDestination();
                         const audioSource = ctx.createMediaStreamSource(mediaStreamDestination.stream);
+                        const audioNodes = contextMap.get(audioContext);
+                        for (const audioNode of audioNodes) {
+                            audioNode.connect(mediaStreamDestination);
+                        }
                         audioSource.connect(dest);
                     }
                 }
