@@ -25,19 +25,58 @@ export default async function ({ addon, console, msg }) {
         {
           opcode: "motion_turnleft",
         },
+        {
+          opcode: "motion_pointindirection",
+          remapInputName: { DEGREES: "DIRECTION" }
+        }
       ];
       blockSwitches["motion_turnleft"] = [
         {
           opcode: "motion_turnright",
         },
         noopSwitch,
+        {
+          opcode: "motion_pointindirection",
+          remapInputName: { DEGREES: "DIRECTION" }
+        }
+      ];
+      blockSwitches["motion_pointindirection"] = [
+        {
+          opcode: "motion_turnright",
+          remapInputName: { DIRECTION: "DEGREES" }
+        },
+        {
+          opcode: "motion_turnleft",
+          remapInputName: { DIRECTION: "DEGREES" }
+        },
+        noopSwitch
       ];
       blockSwitches["motion_gotoxy"] = [
         noopSwitch,
         {
           opcode: "motion_changebyxy",
           remapInputName: { X: "DX", Y: "DY" },
-        }
+        },
+        {
+          opcode: "motion_setx",
+          remapInputName: { X: "X" },
+          splitInputs: [ "Y" ]
+        },
+        {
+          opcode: "motion_changexby",
+          remapInputName: { X: "DX" },
+          splitInputs: [ "Y" ]
+        },
+        {
+          opcode: "motion_sety",
+          remapInputName: { Y: "Y" },
+          splitInputs: [ "DX" ]
+        },
+        {
+          opcode: "motion_changeyby",
+          remapInputName: { Y: "DY" },
+          splitInputs: [ "DX" ]
+        },
       ];
       blockSwitches["motion_changebyxy"] = [
         {
@@ -45,8 +84,48 @@ export default async function ({ addon, console, msg }) {
           remapInputName: { DX: "X", DY: "Y" },
         },
         noopSwitch,
+        {
+          opcode: "motion_setx",
+          remapInputName: { DX: "X" },
+          splitInputs: [ "DY" ]
+        },
+        {
+          opcode: "motion_changexby",
+          remapInputName: { DX: "DX" },
+          splitInputs: [ "DY" ]
+        },
+        {
+          opcode: "motion_sety",
+          remapInputName: { DY: "Y" },
+          splitInputs: [ "DX" ]
+        },
+        {
+          opcode: "motion_changeyby",
+          remapInputName: { DY: "DY" },
+          splitInputs: [ "DX" ]
+        },
       ];
       blockSwitches["motion_setx"] = [
+        {
+          opcode: "motion_gotoxy",
+          remapInputName: { X: "X" },
+          createInputs: {
+            Y: {
+              shadowType: "math_number",
+              value: "0",
+            }
+          }
+        },
+        {
+          opcode: "motion_changebyxy",
+          remapInputName: { X: "DX" },
+          createInputs: {
+            DY: {
+              shadowType: "math_number",
+              value: "0",
+            }
+          }
+        },
         noopSwitch,
         {
           opcode: "motion_changexby",
@@ -63,6 +142,26 @@ export default async function ({ addon, console, msg }) {
       ];
       blockSwitches["motion_changexby"] = [
         {
+          opcode: "motion_gotoxy",
+          remapInputName: { DX: "X" },
+          createInputs: {
+            Y: {
+              shadowType: "math_number",
+              value: "0",
+            }
+          }
+        },
+        {
+          opcode: "motion_changebyxy",
+          remapInputName: { DX: "DX" },
+          createInputs: {
+            DY: {
+              shadowType: "math_number",
+              value: "0",
+            }
+          }
+        },
+        {
           opcode: "motion_setx",
           remapInputName: { DX: "X" },
         },
@@ -78,6 +177,26 @@ export default async function ({ addon, console, msg }) {
       ];
       blockSwitches["motion_sety"] = [
         {
+          opcode: "motion_gotoxy",
+          remapInputName: { Y: "Y" },
+          createInputs: {
+            X: {
+              shadowType: "math_number",
+              value: "0",
+            }
+          }
+        },
+        {
+          opcode: "motion_changebyxy",
+          remapInputName: { Y: "DY" },
+          createInputs: {
+            DX: {
+              shadowType: "math_number",
+              value: "0",
+            }
+          }
+        },
+        {
           opcode: "motion_setx",
           remapInputName: { Y: "X" },
         },
@@ -92,6 +211,26 @@ export default async function ({ addon, console, msg }) {
         },
       ];
       blockSwitches["motion_changeyby"] = [
+        {
+          opcode: "motion_gotoxy",
+          remapInputName: { DY: "Y" },
+          createInputs: {
+            X: {
+              shadowType: "math_number",
+              value: "0",
+            }
+          }
+        },
+        {
+          opcode: "motion_changebyxy",
+          remapInputName: { DY: "DY" },
+          createInputs: {
+            DX: {
+              shadowType: "math_number",
+              value: "0",
+            }
+          }
+        },
         {
           opcode: "motion_setx",
           remapInputName: { DY: "X" },
@@ -111,12 +250,26 @@ export default async function ({ addon, console, msg }) {
         {
           opcode: "motion_yposition",
         },
+        {
+          opcode: "motion_direction"
+        },
       ];
       blockSwitches["motion_yposition"] = [
         {
           opcode: "motion_xposition",
         },
         noopSwitch,
+        {
+          opcode: "motion_direction"
+        },
+      ];
+      blockSwitches["motion_direction"] = [
+        {
+          opcode: "motion_xposition",
+        },
+        {
+          opcode: "motion_yposition",
+        },
       ];
     }
 
@@ -146,6 +299,30 @@ export default async function ({ addon, console, msg }) {
         {
           opcode: "looks_setsizeto",
           remapInputName: { CHANGE: "SIZE" },
+        },
+        noopSwitch,
+      ];
+      blockSwitches["looks_setStretch"] = [
+        noopSwitch,
+        {
+          opcode: "looks_changeStretch"
+        }
+      ];
+      blockSwitches["looks_changeStretch"] = [
+        {
+          opcode: "looks_setStretch"
+        },
+        noopSwitch,
+      ];
+      blockSwitches["looks_stretchGetX"] = [
+        noopSwitch,
+        {
+          opcode: "looks_stretchGetY"
+        }
+      ];
+      blockSwitches["looks_stretchGetY"] = [
+        {
+          opcode: "looks_stretchGetX"
         },
         noopSwitch,
       ];
@@ -226,6 +403,11 @@ export default async function ({ addon, console, msg }) {
             },
           },
         },
+        {
+          opcode: "looks_stoptalking",
+          splitInputs: [ "MESSAGE" ],
+        }
+
       ];
       blockSwitches["looks_think"] = [
         {
@@ -250,20 +432,28 @@ export default async function ({ addon, console, msg }) {
             },
           },
         },
+        {
+          opcode: "looks_stoptalking",
+          splitInputs: [ "MESSAGE" ],
+        }
       ];
       blockSwitches["looks_sayforsecs"] = [
         {
           opcode: "looks_say",
           splitInputs: ["SECS"],
         },
+        noopSwitch,
         {
           opcode: "looks_think",
           splitInputs: ["SECS"],
         },
-        noopSwitch,
         {
           opcode: "looks_thinkforsecs",
         },
+        {
+          opcode: "looks_stoptalking",
+          splitInputs: [ "MESSAGE", "SECS" ],
+        }
       ];
       blockSwitches["looks_thinkforsecs"] = [
         {
@@ -271,11 +461,62 @@ export default async function ({ addon, console, msg }) {
           splitInputs: ["SECS"],
         },
         {
+          opcode: "looks_sayforsecs",
+        },
+        {
           opcode: "looks_think",
           splitInputs: ["SECS"],
         },
+        noopSwitch,
         {
-          opcode: "looks_sayforsecs",
+          opcode: "looks_stoptalking",
+          splitInputs: [ "MESSAGE", "SECS" ],
+        }
+      ];
+      blockSwitches["looks_stoptalking"] = [
+        {
+            opcode: "looks_say",
+            createInputs: {
+                MESSAGE: {
+                    shadowType: "text",
+                    value: "Hello!",
+                }
+            }
+        },
+        {
+            opcode: "looks_sayforsecs",
+            createInputs: {
+                MESSAGE: {
+                    shadowType: "text",
+                    value: "Hello!"
+                },
+                SECS: {
+                    shadowType: "math_number",
+                    value: "2"
+                },
+            }
+        },
+        {
+            opcode: "looks_think",
+            createInputs: {
+                MESSAGE: {
+                    shadowType: "text",
+                    value: "Hmm..."
+                }
+            }
+        },
+        {
+            opcode: "looks_thinkforsecs",
+            createInputs: {
+                MESSAGE: {
+                    shadowType: "text",
+                    value: "Hmm..."
+                },
+                SECS: {
+                    shadowType: "math_number",
+                    value: "2"
+                },
+            }
         },
         noopSwitch,
       ];
@@ -334,14 +575,78 @@ export default async function ({ addon, console, msg }) {
       blockSwitches["sound_play"] = [
         noopSwitch,
         {
+          opcode: "sound_play_at_seconds",
+          createInputs: {
+            VALUE: {
+              shadowType: "math_number",
+              value: "5",
+            }
+          }
+        },
+        {
           opcode: "sound_playuntildone",
+        },
+        {
+          opcode: "sound_play_at_seconds_until_done",
+          createInputs: {
+            VALUE: {
+              shadowType: "math_number",
+              value: "5",
+            }
+          }
         },
       ];
       blockSwitches["sound_playuntildone"] = [
         {
           opcode: "sound_play",
         },
+        {
+          opcode: "sound_play_at_seconds",
+          createInputs: {
+            VALUE: {
+              shadowType: "math_number",
+              value: "5",
+            }
+          }
+        },
         noopSwitch,
+        {
+          opcode: "sound_play_at_seconds_until_done",
+          createInputs: {
+            VALUE: {
+              shadowType: "math_number",
+              value: "5",
+            }
+          }
+        },
+      ];
+      blockSwitches["sound_play_at_seconds"] = [
+        {
+          opcode: "sound_play",
+          splitInputs: ["VALUE"],
+        },
+        noopSwitch,
+        {
+          opcode: "sound_playuntildone",
+          splitInputs: [ "VALUE" ]
+        },
+        {
+          opcode: "sound_play_at_seconds_until_done"
+        }
+      ];
+      blockSwitches["sound_play_at_seconds_until_done"] = [
+        {
+          opcode: "sound_play",
+          splitInputs: ["VALUE"],
+        },
+        {
+          opcode: "sound_play_at_seconds"
+        },
+        {
+          opcode: "sound_playuntildone",
+          splitInputs: [ "VALUE" ]
+        },
+        noopSwitch
       ];
       blockSwitches["sound_seteffectto"] = [
         noopSwitch,
@@ -382,6 +687,19 @@ export default async function ({ addon, console, msg }) {
         },
         noopSwitch,
       ];
+
+      blockSwitches["event_whenkeypressed"] = [
+        noopSwitch,
+        {
+            opcode: "event_whenkeyhit"
+        }
+      ];
+    blockSwitches["event_whenkeyhit"] = [
+        {
+            opcode: "event_whenkeypressed"
+        },
+        noopSwitch,
+      ];
     }
 
     if (addon.settings.get("control")) {
@@ -398,6 +716,7 @@ export default async function ({ addon, console, msg }) {
         },
         noopSwitch,
       ];
+
       blockSwitches["control_repeat_until"] = [
         noopSwitch,
         {
@@ -421,13 +740,6 @@ export default async function ({ addon, console, msg }) {
         },
         noopSwitch,
       ];
-      blockSwitches["control_wait_until"] = [
-        {
-          opcode: "control_repeat_until",
-        },
-        noopSwitch,
-      ];
-
       blockSwitches["control_while"] = [
         {
           opcode: "control_repeat_until",
@@ -437,6 +749,66 @@ export default async function ({ addon, console, msg }) {
           opcode: "control_forever",
           splitInputs: ["CONDITION"],
         },
+      ];
+
+      blockSwitches["control_wait_until"] = [
+        {
+          opcode: "control_wait",
+          createInput: {
+            DURATION: {
+              shadowType: "math_number",
+              value: "1"
+            }
+          },
+          splitInputs: [ "CONDITION" ]
+        },
+        {
+          opcode: "control_repeat_until",
+        },
+        {
+          opcode: "control_repeat_until",
+        },
+        noopSwitch,
+      ];
+
+      blockSwitches["control_wait"] = [
+        noopSwitch,
+        {
+          opcode: "control_waitsecondsoruntil"
+        },
+        {
+          opcode: "control_wait_until",
+          splitInputs: [ "DURATION" ]
+        }
+      ];
+      blockSwitches["control_waitsecondsoruntil"] = [
+        {
+          opcode: "control_wait",
+          splitInputs: [ "CONDITION" ]
+        },
+        noopSwitch,
+        {
+          opcode: "control_wait_until",
+          splitInputs: [ "DURATION" ]
+        },
+      ];
+
+      blockSwitches["control_switch"] = [
+        noopSwitch,
+        { opcode: "control_switch_default" },
+      ];
+      blockSwitches["control_switch_default"] = [
+        { opcode: "control_switch" },
+        noopSwitch
+      ];
+
+      blockSwitches["control_exitLoop"] = [
+        noopSwitch,
+        { opcode: "control_continueLoop" }
+      ];
+      blockSwitches["control_continueLoop"] = [
+        { opcode: "control_exitLoop" },
+        noopSwitch,
       ];
     }
 
@@ -681,6 +1053,15 @@ export default async function ({ addon, console, msg }) {
         },
         noopSwitch,
       ];
+
+      blockSwitches["operator_indexOfTextInText"] = [
+        noopSwitch,
+        { opcode: "operator_lastIndexOfTextInText" },
+      ];
+      blockSwitches["operator_lastIndexOfTextInText"] = [
+        { opcode: "operator_indexOfTextInText" },
+        noopSwitch,
+      ];
     }
 
     if (addon.settings.get("sensing")) {
@@ -714,6 +1095,47 @@ export default async function ({ addon, console, msg }) {
           splitInputs: ["COLOR2"],
         },
         noopSwitch,
+      ];
+
+      blockSwitches["sensing_distanceTo"] = [
+        noopSwitch,
+        {
+          opcode: "sensing_directionTo"
+        }
+      ];
+      blockSwitches["sensing_directionTo"] = [
+        {
+          opcode: "sensing_distanceTo"
+        },
+        noopSwitch,
+      ];
+
+      blockSwitches["sensing_thing_is_text"] = [
+        noopSwitch,
+        {
+          opcode: "sensing_thing_is_number",
+        },
+        {
+          opcode: "sensing_thing_has_text",
+        }
+      ];
+      blockSwitches["sensing_thing_is_number"] = [
+        {
+          opcode: "sensing_thing_is_text",
+        },
+        noopSwitch,
+        {
+          opcode: "sensing_thing_has_text",
+        }
+      ];
+      blockSwitches["sensing_thing_has_text"] = [
+       {
+          opcode: "sensing_thing_is_text",
+       },
+       {
+          opcode: "sensing_thing_is_number",
+       },
+       noopSwitch,
       ];
     }
 
@@ -756,10 +1178,27 @@ export default async function ({ addon, console, msg }) {
         },
         noopSwitch,
       ];
+
       blockSwitches["data_replaceitemoflist"] = [
         noopSwitch,
         {
           opcode: "data_insertatlist",
+        },
+        {
+          opcode: "data_addtolist",
+          splitInputs: ["INDEX"]
+        },
+        {
+          opcode: "data_deleteoflist",
+          splitInputs: ["ITEM"]
+        },
+        {
+          opcode: "data_deletealloflist",
+          splitInputs: ["INDEX","ITEM"],
+        },
+        {
+          opcode: "data_shiftlist",
+          splitInputs: ["ITEM"]
         },
       ];
       blockSwitches["data_insertatlist"] = [
@@ -767,15 +1206,136 @@ export default async function ({ addon, console, msg }) {
           opcode: "data_replaceitemoflist",
         },
         noopSwitch,
+        {
+          opcode: "data_addtolist",
+          splitInputs: ["INDEX"]
+        },
+        {
+          opcode: "data_deleteoflist",
+          splitInputs: ["ITEM"]
+        },
+        {
+          opcode: "data_deletealloflist",
+          splitInputs: ["INDEX","ITEM"],
+        },
+        {
+          opcode: "data_shiftlist",
+          splitInputs: ["ITEM"]
+        },
+      ];
+      blockSwitches["data_addtolist"] = [
+        {
+          opcode: "data_replaceitemoflist",
+          createInputs: {
+            INDEX: {
+              shadowType: "math_number",
+              value: "1"
+            }
+
+          }
+        },
+        {
+          opcode: "data_insertatlist",
+          createInputs: {
+            INDEX: {
+              shadowType: "math_number",
+              value: "1"
+            }
+          }
+        },
+        noopSwitch,
+        {
+          opcode: "data_deleteoflist",
+          splitInputs: ["ITEM"]
+        },
+        {
+          opcode: "data_deletealloflist",
+          splitInputs: ["INDEX","ITEM"],
+        },
+        {
+          opcode: "data_shiftlist",
+          splitInputs: ["ITEM"]
+        },
       ];
       blockSwitches["data_deleteoflist"] = [
+        {
+          opcode: "data_replaceitemoflist",
+          createInputs: {
+            ITEM: {
+              shadowType: "text",
+              value: "thing",
+            }
+          }
+        },
+        {
+          opcode: "data_insertatlist",
+          createInputs: {
+            ITEM: {
+              shadowType: "text",
+              value: "thing",
+            }
+          }
+        },
+        {
+          opcode: "data_addtolist",
+          splitInputs: ["INDEX"],
+          createInputs: {
+            ITEM: {
+              shadowType: "text",
+              value: "thing",
+            }
+          }
+        },
         noopSwitch,
         {
           opcode: "data_deletealloflist",
           splitInputs: ["INDEX"],
         },
+        {
+          opcode: "data_shiftlist",
+        },
       ];
       blockSwitches["data_deletealloflist"] = [
+        {
+          opcode: "data_replaceitemoflist",
+          createInputs: {
+            INDEX: {
+              shadowType: "math_integer",
+              value: "1",
+            },
+            ITEM: {
+              shadowType: "text",
+              value: "thing",
+            }
+          }
+        },
+        {
+          opcode: "data_insertatlist",
+          createInputs: {
+            INDEX: {
+              shadowType: "math_integer",
+              value: "1",
+            },
+            ITEM: {
+              shadowType: "text",
+              value: "thing",
+            }
+          }
+        },
+        {
+          opcode: "data_addtolist",
+          splitInputs: ["INDEX"],
+          createInputs: {
+            INDEX: {
+              shadowType: "math_integer",
+              value: "1",
+            },
+            ITEM: {
+              shadowType: "text",
+              value: "thing",
+            }
+          }
+        },
         {
           opcode: "data_deleteoflist",
           createInputs: {
@@ -786,6 +1346,53 @@ export default async function ({ addon, console, msg }) {
           },
         },
         noopSwitch,
+        {
+          opcode: "data_shiftlist",
+          createInputs: {
+            INDEX: {
+              shadowType: "math_integer",
+              value: "1",
+            },
+          },
+        },
+      ];
+      blockSwitches["data_shiftlist"] = [
+        {
+          opcode: "data_replaceitemoflist",
+          createInputs: {
+            ITEM: {
+              shadowType: "text",
+              value: "thing",
+            }
+          }
+        },
+        {
+          opcode: "data_insertatlist",
+          createInputs: {
+            ITEM: {
+              shadowType: "text",
+              value: "thing",
+            }
+          }
+        },
+        {
+          opcode: "data_addtolist",
+          splitInputs: ["INDEX"],
+          createInputs: {
+            ITEM: {
+              shadowType: "text",
+              value: "thing",
+            }
+          }
+        },
+        {
+          opcode: "data_deleteoflist"
+        },
+        {
+          opcode: "data_deletealloflist",
+          splitInputs: ["INDEX"],
+        },
+        noopSwitch
       ];
     }
 
