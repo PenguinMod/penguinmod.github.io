@@ -32,6 +32,9 @@ import reverseIcon from './icon--reverse.svg';
 import fadeOutIcon from './icon--fade-out.svg';
 import fadeInIcon from './icon--fade-in.svg';
 import muteIcon from './icon--mute.svg';
+import telephoneIcon from './icon--telephone.svg';
+import alienIcon from './icon--alien.svg';
+import distortionIcon from './icon--distortion.svg';
 
 import deleteIcon from './icon--delete.svg';
 import copyIcon from './icon--copy.svg';
@@ -160,6 +163,21 @@ const messages = defineMessages({
         id: 'pm.soundEditor.modify',
         description: 'Title of the button that opens the modify sound menu',
         defaultMessage: 'Modify'
+    },
+    telephone: {
+        id: 'gui.soundEditor.telephone',
+        description: 'Title of the button to apply the telephone effect',
+        defaultMessage: 'Telephone'
+    },
+    alien: {
+        id: 'gui.soundEditor.alien',
+        description: 'Title of the button to apply the alien effect',
+        defaultMessage: 'Alien'
+    },
+    distortion: {
+        id: 'gui.soundEditor.distortion',
+        description: 'Title of the button to apply the distortion effect',
+        defaultMessage: 'Distortion'
     }
 });
 
@@ -401,6 +419,24 @@ const SoundEditor = props => (
                     title={<FormattedMessage {...messages.format} />}
                     onClick={props.onFormatSound}
                 />
+                <IconButton
+                    className={styles.effectButton}
+                    img={telephoneIcon}
+                    title={<FormattedMessage {...messages.telephone} />}
+                    onClick={props.onTelephone}
+                />
+                <IconButton
+                    className={styles.effectButton}
+                    img={alienIcon}
+                    title={<FormattedMessage {...messages.alien} />}
+                    onClick={props.onAlien}
+                />
+                <IconButton
+                    className={styles.effectButton}
+                    img={distortionIcon}
+                    title={<FormattedMessage {...messages.distortion} />}
+                    onClick={props.onDistortion}
+                />
             </div>
         </div>
         <div className={styles.infoRow}>
@@ -493,6 +529,9 @@ SoundEditor.propTypes = {
     onFormatSound: PropTypes.func.isRequired,
     onLouder: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
+    onAlien: PropTypes.func.isRequired,
+    onDistortion: PropTypes.func.isRequired,
+    onTelephone: PropTypes.func.isRequired,
     onPaste: PropTypes.func.isRequired,
     onPlay: PropTypes.func.isRequired,
     onRedo: PropTypes.func.isRequired,

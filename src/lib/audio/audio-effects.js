@@ -5,6 +5,9 @@ import FadeEffect from './effects/fade-effect.js';
 import MuteEffect from './effects/mute-effect.js';
 import LowPassEffect from './effects/lowpass-effect.js';
 import HighPassEffect from './effects/highpass-effect.js';
+import AlienEffect from './effects/alien-effect.js';
+import DistortionEffect from './effects/distortion-effect.js';
+import TelephoneEffect from './effects/telephone-effect.js';
 
 const effectTypes = {
     ROBOT: 'robot',
@@ -18,7 +21,10 @@ const effectTypes = {
     FADEOUT: 'fade out',
     MUTE: 'mute',
     LOWPASS: 'low pass',
-    HIGHPASS: 'high pass'
+    HIGHPASS: 'high pass',
+    ALIEN: 'alien',
+    DISTORTION: 'distortion',
+    TELEPHONE: 'telephone'
 };
 
 const centsToFrequency = (cents) => {
@@ -222,6 +228,18 @@ class AudioEffects {
                 break;
             case effectTypes.MUTE:
                 ({input, output} = new MuteEffect(this.audioContext,
+                    this.adjustedTrimStartSeconds, this.adjustedTrimEndSeconds));
+                break;
+            case effectTypes.ALIEN:
+                ({input, output} = new AlienEffect(this.audioContext,
+                    this.adjustedTrimStartSeconds, this.adjustedTrimEndSeconds));
+                break;
+            case effectTypes.DISTORTION:
+                ({input, output} = new DistortionEffect(this.audioContext,
+                    this.adjustedTrimStartSeconds, this.adjustedTrimEndSeconds));
+                break;
+            case effectTypes.TELEPHONE:
+                ({input, output} = new TelephoneEffect(this.audioContext,
                     this.adjustedTrimStartSeconds, this.adjustedTrimEndSeconds));
                 break;
             default:
