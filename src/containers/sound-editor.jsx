@@ -731,6 +731,9 @@ class SoundEditor extends React.Component {
                 onModifySound={this.handleModifyMenu}
                 onFormatSound={this.handleFormatMenu}
                 onMute={this.effectFactory(effectTypes.MUTE)}
+                onAlien={this.effectFactory(effectTypes.ALIEN)}
+                onDistortion={this.effectFactory(effectTypes.DISTORTION)}
+                onTelephone={this.effectFactory(effectTypes.TELEPHONE)}
                 onPaste={this.handlePaste}
                 onPlay={this.handlePlay}
                 onRedo={this.handleRedo}
