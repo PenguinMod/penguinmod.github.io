@@ -1,8 +1,0 @@
-node_modules/*
-!build/*
-!dist/*
-# Files imported from upstream
-!src/addons/addons
-!src/addons/libraries
-!src/addons/api-libraries
-!src/addons/generated

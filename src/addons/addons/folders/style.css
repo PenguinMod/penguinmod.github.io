@@ -1,9 +1,0 @@
-.sa-folders-contextmenu-item {
-  max-width: 250px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-[sa-folders-context-type="folder"] .react-contextmenu > :not(.sa-ctx-menu) {
-  display: none;
-}

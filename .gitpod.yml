@@ -1,8 +1,0 @@
-tasks:
-    - name: Install and build
-      init: npm i -g pnpm && pnpm up && pnpm i --shamefully-hoist
-      command: npm run start
-
-ports:
-     - port: 3000
-       onOpen: open-browser

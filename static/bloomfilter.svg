@@ -1,6 +1,0 @@
-<svg width="640" height="360" xmlns="http://www.w3.org/2000/svg">
-    <filter id="bloom">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
-        <feComposite in2="SourceGraphic" operator="arithmetic" k2="0.5" k3="1" color-interpolation-filters="sRGB" />
-    </filter>
-</svg>

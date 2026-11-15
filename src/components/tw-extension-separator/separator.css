@@ -1,8 +1,0 @@
-@import "../../css/colors.css";
-
-.separator {
-  width: 100%;
-  border: none;
-  border-top: 2px solid $ui-black-transparent;
-  margin: 0.5rem 0;
-}

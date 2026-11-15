@@ -1,3 +1,0 @@
-This is basically https://github.com/LLK/scratch-render-fonts except the fonts are loaded as files instead of as base64 URIs in the JS.
-
-All PenguinMod fonts have their own license files (if the download included them), regardless of if they use the OF License (Open Font License) or not.
