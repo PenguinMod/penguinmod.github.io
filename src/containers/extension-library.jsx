@@ -44,7 +44,7 @@ const messages = defineMessages({
 
 // Only trust loading extension links from these origins.
 // For user-made libraries.
-const TRUSTED_LOADEXT_ORIGINS = [
+const TRUSTED_LOADEXT_ORIGINS = [ 
     'https://studio.penguinmod.com', // for development
     'https://extensions.penguinmod.com',
     'https://sharkpools-extensions.penguinmod.com',
