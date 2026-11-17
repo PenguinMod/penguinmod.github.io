@@ -16,6 +16,10 @@
     border-bottom: 0;
 }
 
+[theme="high-contrast"] .sprite-selector .spriteIcon {
+    filter: invert(1);
+}
+
 .sprite-wrapper {
     /*
         Our goal is to fit sprites evenly in a row without leftover space.

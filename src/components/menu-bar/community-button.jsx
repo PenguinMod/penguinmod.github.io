@@ -16,15 +16,21 @@ const CommunityButton = ({
             className,
             styles.communityButton
         )}
-        iconClassName={styles.communityButtonIcon}
-        iconSrc={communityIcon}
         onClick={onClick}
     >
-        <FormattedMessage
-            defaultMessage="See Project Page"
-            description="Label for see project page button"
-            id="gui.menuBar.seeProjectPage"
-        />
+        <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <img
+                src={communityIcon}
+                className={styles.communityButtonIcon}
+                alt="See Project Page"
+                style={{ filter: (typeof window !== 'undefined' && window.isHighContrast) ? 'invert(1)' : 'none' }}
+            />
+            <FormattedMessage
+                defaultMessage="See Project Page"
+                description="Label for see project page button"
+                id="gui.menuBar.seeProjectPage"
+            />
+        </span>
     </Button>
 );
 
