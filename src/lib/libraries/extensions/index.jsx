@@ -383,7 +383,7 @@ const menuItems = [
     },
     {
         name: 'Files',
-        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Files-Expanded.js',
+        extensionId: 'https://sharkpool-sp.github.io/SharkPools-Extensions/extension-code/Files-Expanded.js',
         extDeveloper: 'SharkPool',
         iconURL: filesExtensionIcon,
         tags: ['turbowarp', 'datamgmt'],
@@ -410,7 +410,7 @@ const menuItems = [
     },
     {
         name: 'Tune Shark V3',
-        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Tune-Shark-V3.js',
+        extensionId: 'https://sharkpool-sp.github.io/SharkPools-Extensions/extension-code/Tune-Shark-V3.js',
         iconURL: sharkpoolTuneIcon,
         tags: ['penguinmod', 'categoryexpansion', 'noisemaker'],
         description: 'Advanced audio engine with complex sound control, multiple audio effects and more!',
@@ -456,7 +456,7 @@ const menuItems = [
     },
     {
         name: 'Looks Expanded',
-        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Looks-Expanded.js',
+        extensionId: 'https://sharkpool-sp.github.io/SharkPools-Extensions/extension-code/Looks-Expanded.js',
         iconURL: sharkpoolLooksExpandedIcon,
         tags: ['penguinmod', 'categoryexpansion', 'graphics'],
         description: 'Expansion of the Looks Category.',
@@ -500,7 +500,7 @@ const menuItems = [
     },
     {
         name: 'My Blocks+',
-        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/My-Blocks-Plus.js',
+        extensionId: 'https://sharkpool-sp.github.io/SharkPools-Extensions/extension-code/My-Blocks-Plus.js',
         iconURL: sharkpoolMBPIcon,
         tags: ['penguinmod', 'categoryexpansion'],
         description: 'Create private or global custom blocks with custom inputs, colors, and more!',
@@ -509,7 +509,7 @@ const menuItems = [
     },
     {
         name: 'Better Comments',
-        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Better-Comments.js',
+        extensionId: 'https://sharkpool-sp.github.io/SharkPools-Extensions/extension-code/Better-Comments.js',
         iconURL: sharkpoolBCIcon,
         tags: ['penguinmod', 'categoryexpansion'],
         description: 'Better Comments with Customization and Markdown support',
@@ -518,7 +518,7 @@ const menuItems = [
     },
     {
         name: 'Particle Engine',
-        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Particle-Engine.js',
+        extensionId: 'https://sharkpool-sp.github.io/SharkPools-Extensions/extension-code/Particle-Engine.js',
         iconURL: sharkpoolPEIcon,
         tags: ['penguinmod', 'graphics'],
         description: 'Create powerful Particle Engines without Clones',
@@ -613,7 +613,7 @@ const menuItems = [
     },
     {
         name: 'Turbo Skins',
-        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Turbo-Skins.js',
+        extensionId: 'https://sharkpool-sp.github.io/SharkPools-Extensions/extension-code/Turbo-Skins.js',
         tags: ['penguinmod', 'graphics'],
         iconURL: spTurboSkinsIcon,
         description: 'Display sprites with various images or costumes and control their hitboxes',
@@ -645,7 +645,7 @@ const menuItems = [
     },
     {
         name: 'SharkPool\'s Temporary Variables',
-        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Temporary-Variables.js',
+        extensionId: 'https://sharkpool-sp.github.io/SharkPools-Extensions/extension-code/Temporary-Variables.js',
         iconURL: spTempVarsIcon,
         tags: ['penguinmod', 'datamgmt'],
         description: 'Create temporary runtime, threaded, sprite & scoped variables.',
@@ -663,7 +663,7 @@ const menuItems = [
     },
     {
         name: 'Swift JSON',
-        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/JSON-Array.js',
+        extensionId: 'https://sharkpool-sp.github.io/SharkPools-Extensions/extension-code/JSON-Array.js',
         iconURL: spJSONExtensionIcon,
         tags: ['penguinmod', 'datamgmt'],
         extDeveloper: 'SharkPool',
@@ -1297,7 +1297,7 @@ const menuItems = [
     },
     {
         name: 'SharkPool\'s Extension Collection',
-        href: 'https://sharkpools-extensions.vercel.app/?originPM=true',
+        href: 'https://sharkpool-sp.github.io/SharkPools-Extensions/?originPM=true',
         extensionId: 'special_sharkpoolExtensionLibrary',
         iconURL: sharkpoolGalleryIcon,
         description: 'Tons of extensions created by SharkPool.\n\nClick on an extension while this menu is open to add it to your project.',
