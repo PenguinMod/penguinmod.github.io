@@ -6,6 +6,7 @@ export default {
   "middle-click-popup": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/middle-click-popup/_runtime_entry.js"),
   "editor-block-chomping": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/editor-block-chomping/_runtime_entry.js"),
   "paint-gradient-maker": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/paint-gradient-maker/_runtime_entry.js"),
+  "paint-editor-infinite-scroll": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/paint-editor-infinite-scroll/_runtime_entry.js"),
   "paint-tool-panel": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/paint-tool-panel/_runtime_entry.js"),
   "paint-rounded-rect-seperate": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/paint-rounded-rect-seperate/_runtime_entry.js"),
   "paint-default-smoothing": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/paint-default-smoothing/_runtime_entry.js"),

@@ -340,5 +340,12 @@
     "hide-stage/@name": "ステージとスプライトペインを隠す",
     "editor-stepping/@description": "実行中のブロックの周りに色のついた枠線を表示する。",
     "editor-stepping/@name": "実行中のブロック枠線",
-    "editor-stepping/@settings-name-highlight-color": "枠線の色"
+    "editor-stepping/@settings-name-highlight-color": "枠線の色",
+    "paint-editor-infinite-scroll/@show-button": "∞ボタンをエディターに表示",
+    "paint-editor-infinite-scroll/@infinite-grid": "グリッドを拡張",
+    "paint-editor-infinite-scroll/@min-zoom": "ズームの最小倍率（%）",
+    "paint-editor-infinite-scroll/@max-zoom": "ズームの最大倍率（%）（0 = 無制限）",
+    "paint-editor-infinite-scroll/@zoom-speed": "ズームの速度（%）",
+    "paint-editor-infinite-scroll/@zoom-correction": "ズームの補正（%）（0 = 元の動作、100 = ズーム倍率に比例）",
+    "paint-editor-infinite-scroll/@show-zoom-percent": "ズームの倍率を表示"
 }

@@ -82,7 +82,8 @@ const newAddons = [
     "waveform-chunk-size",
     "paint-rounded-rect-seperate",
     "paint-default-smoothing",
-    "paint-tool-panel"
+    "paint-tool-panel",
+    "paint-editor-infinite-scroll"
 ];
 
 // eslint-disable-next-line import/no-commonjs

@@ -1,0 +1,41 @@
+.sa-paint-infinite-group {
+  position: relative;
+  flex-direction: row;
+}
+
+.sa-paint-infinite-group[data-hidden="true"] {
+  display: none !important;
+}
+
+.sa-paint-infinite-button {
+  position: relative;
+}
+
+.sa-paint-infinite-button:focus-within {
+  background-color: hsla(194, 100%, 65%, 0.2);
+}
+
+.sa-paint-infinite-button[data-enabled="true"] {
+  background-color: #00c3ff;
+}
+
+.sa-paint-infinite-button[data-enabled="true"] .sa-paint-infinite-image {
+  filter: brightness(0) invert(1);
+}
+
+.sa-paint-infinite-zoom {
+  width: 3.6em;
+  height: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  padding: 0 4px;
+  border: 0;
+  outline: 0;
+}
+
+.sa-paint-infinite-zoom:focus {
+  background: hsla(194, 100%, 65%, 0.2);
+}
