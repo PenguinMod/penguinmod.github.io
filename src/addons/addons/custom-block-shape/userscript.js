@@ -6,8 +6,110 @@ export default async function ({ addon, console }) {
     var vm = addon.tab.traps.vm;
 
     const ogFieldImageInit = BlocklyInstance.FieldImage.prototype.init;
+    const ogRender = BlockSvg.prototype.render;
 
     const { GRID_UNIT } = BlockSvg;
+
+    // gets the superellipse strength setting
+    function getSuperellipseHandleFactor() {
+      const setting = addon.settings.get("superellipseFactor") || 100;
+      // normalize the setting to values we can use
+      return 0.55 + ((setting - 50) / 100) * 0.30;
+    }
+
+    // arc to superellipse
+    function convertRoundPathToSuperellipse(pathString) {
+      // path parsing stuff (thanks stackoverflow)
+      const commands = pathString.match(/[mMhHvVlLcCaAzZ][^mMhHvVlLcCaAzZ]*/g);
+      if (!commands) return pathString;
+      
+      let currentX = 0;
+      let currentY = 0;
+      let newCommands = [];
+      
+      for (let cmd of commands) {
+        const type = cmd[0];
+        const args = cmd.slice(1).trim().split(/[\s,]+/).filter(s => s).map(parseFloat);
+        
+        if (type === 'm' || type === 'M') {
+          if (type === 'm') {
+            currentX += args[0] || 0;
+            currentY += args[1] || 0;
+          } else {
+            currentX = args[0] || 0;
+            currentY = args[1] || 0;
+          }
+          newCommands.push(cmd);
+        } else if (type === 'H') {
+          currentX = args[0];
+          newCommands.push(cmd);
+        } else if (type === 'h') {
+          currentX += args[0];
+          newCommands.push(cmd);
+        } else if (type === 'V') {
+          currentY = args[0];
+          newCommands.push(cmd);
+        } else if (type === 'v') {
+          currentY += args[0];
+          newCommands.push(cmd);
+        } else if (type === 'a' || type === 'A') {
+          const rx = args[0];
+          const ry = args[1];
+          const dx = args[5];
+          const dy = args[6];
+          
+          const r = rx;
+          const handle = r * getSuperellipseHandleFactor();
+          
+          if (dx === 0 && dy > 0) {
+            const topCurve = `C ${currentX + handle} ${currentY}, ${currentX + r} ${currentY + (r - handle)}, ${currentX + r} ${currentY + r}`;
+            const bottomCurve = `C ${currentX + r} ${currentY + r + handle}, ${currentX + handle} ${currentY + 2 * r}, ${currentX} ${currentY + 2 * r}`;
+            
+            newCommands.push(topCurve);
+            newCommands.push(bottomCurve);
+            
+            currentY += 2 * r;
+          } else if (dx === 0 && dy < 0) {
+            const bottomCurve = `C ${currentX - handle} ${currentY}, ${currentX - r} ${currentY - (r - handle)}, ${currentX - r} ${currentY - r}`;
+            const topCurve = `C ${currentX - r} ${currentY - r - handle}, ${currentX - handle} ${currentY - 2 * r}, ${currentX} ${currentY - 2 * r}`;
+            
+            newCommands.push(bottomCurve);
+            newCommands.push(topCurve);
+            
+            currentY -= 2 * r;
+          } else {
+            newCommands.push(cmd);
+          }
+        } else {
+          newCommands.push(cmd);
+        }
+      }
+      
+      return newCommands.join(' ');
+    }
+
+    BlockSvg.prototype.render = function(opt_bubble) {
+      const result = ogRender.call(this, opt_bubble);
+      
+      if (addon.settings.get("superellipseReporters")) {
+        if (this.outputConnection && !this.previousConnection && !this.nextConnection) {
+          const pathElement = this.svgPath_;
+          if (pathElement) {
+            const currentPath = pathElement.getAttribute('d');
+            // if it contains an "a" arc command
+            if (currentPath && currentPath.includes('a ')) {
+              const radiusMatch = currentPath.match(/a\s+([\d.]+)/);
+              const radius = radiusMatch ? parseFloat(radiusMatch[1]) : 20;
+              
+              const newPath = convertRoundPathToSuperellipse(currentPath);
+              pathElement.setAttribute('d', newPath);
+            }
+          }
+        }
+      }
+      
+      return result;
+    };
 
     function path2SegmentList(path) {
       const cmds = structuredClone(BlockSvg.CUSTOM_NOTCH_UTIL.supportedCommands);
@@ -57,6 +159,19 @@ export default async function ({ addon, console }) {
           return val *= i % 2 ? scaleX : scaleY;
         });
       }).flat().join(" ");
+    }
+
+    // reporters use arcs, but superellipses are cooler and need cool bezier curves
+    function arcToSuperellipseBezier(rx, ry, multiplier) {
+      const handle = SUPERELLIPSE_MAGIC * SUPERELLIPSE_FACTOR;
+      const cx1 = rx * handle;
+      const cy1 = 0;
+      const cx2 = rx;
+      const cy2 = ry * (1 - handle);
+      const x = rx;
+      const y = ry;
+      
+      return `c ${cx1} ${cy1} ${cx2} ${cy2} ${x} ${y}`;
     }
 
     function updateAllBlocks() {
@@ -170,6 +285,7 @@ export default async function ({ addon, console }) {
         "," +
         -4 * GRID_UNIT * multiplier +
         " z";
+
       BlockSvg.INPUT_SHAPE_ROUND_WIDTH = 12 * GRID_UNIT * multiplier;
       BlockSvg.INPUT_SHAPE_ROUND =
         "M " +
