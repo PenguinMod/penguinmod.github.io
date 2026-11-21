@@ -30,6 +30,7 @@ const isTrustedExtensionOrigin = url => (
     /* Trust other people's galleries. These can be removed in the future, they will just show a pop-up on load if they are */
     url.startsWith('https://sharkpools-extensions.vercel.app/') || // SharkPool
     url.startsWith('https://sharkpool-sp.github.io/SharkPools-Extensions/') || // SharkPool (github link)
+    url.startsWith('https://cdn.jsdelivr.net/gh/SharkPool-SP/SharkPools-Extensions/') ||
     url.startsWith('https://pen-group.github.io/') || // Pen-Group / ObviousAlexC
 
     /* For development */
